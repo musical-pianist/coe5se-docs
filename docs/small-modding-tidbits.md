@@ -31,13 +31,13 @@ Mod Settings are the one exception, whatever you pick: `newsetting`, `newsetting
 
 As a first example, here's a unit in the .c5m who gets a new spell from a CoE5SE sidecar, cut down from the Machine Cult (`ToolsAndExamples/MachineCult/` in [CoE5SE](https://www.nexusmods.com/mods/1?game_id=10486)'s folder). If CoE5SE ever gets disabled, the spell would fail, but the mod would still work.
 
-``` title="MyMod.c5m"
+``` c5m title="MyMod.c5m"
 newmonster "Tech-Priest"
 copystats "Captain"
 copyspr "Illusionist"
 ```
 
-``` title="MyMod.c5se"
+``` c5se title="MyMod.c5se"
 newspellpath "Machine Cult"
 
 newspell "Blessing of the Omnissiah"
@@ -52,7 +52,7 @@ spellweapon "Machine Cult" 1
 
 As a second example, here is Elysium Remastered's .c5m, with everything else in its .c5se:
 
-``` title="ElysiumRemastered.c5m"
+``` c5m title="ElysiumRemastered.c5m"
 icon "Smallbanner.tga"
 description "An overhaul mod. Flavor, balance and content."
 needs_glu32.dll_and_CoE5SE_enabled_at_launch

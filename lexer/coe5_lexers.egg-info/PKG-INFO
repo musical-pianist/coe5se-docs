@@ -1,0 +1,5 @@
+Metadata-Version: 2.4
+Name: coe5-lexers
+Version: 1.0.0
+Summary: Pygments lexers for CoE5 .c5m and CoE5SE .c5se files
+Requires-Dist: pygments

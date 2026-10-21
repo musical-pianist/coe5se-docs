@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "coe5-lexers"
+version = "1.0.0"
+description = "Pygments lexers for CoE5 .c5m and CoE5SE .c5se files"
+dependencies = ["pygments"]
+
+[project.entry-points."pygments.lexers"]
+c5m = "coe5_lexers:C5mLexer"
+c5se = "coe5_lexers:C5seLexer"
+
+[tool.setuptools]
+packages = ["coe5_lexers"]
+
+[tool.setuptools.package-data]
+coe5_lexers = ["*.json"]

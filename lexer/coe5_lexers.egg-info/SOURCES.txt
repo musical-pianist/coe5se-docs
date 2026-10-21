@@ -1,0 +1,10 @@
+pyproject.toml
+coe5_lexers/__init__.py
+coe5_lexers/c5m.tmLanguage.json
+coe5_lexers/c5se.tmLanguage.json
+coe5_lexers.egg-info/PKG-INFO
+coe5_lexers.egg-info/SOURCES.txt
+coe5_lexers.egg-info/dependency_links.txt
+coe5_lexers.egg-info/entry_points.txt
+coe5_lexers.egg-info/requires.txt
+coe5_lexers.egg-info/top_level.txt
