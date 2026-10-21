@@ -1,0 +1,12 @@
+site_name: CoE5SE
+repo_url: https://github.com/musical-pianist/coe5se-docs
+edit_uri: edit/main/docs/
+docs_dir: docs
+theme:
+  name: material
+  features:
+    - content.action.edit
+    - navigation.indexes
+    - search.highlight
+nav:
+  - Home: index.md
