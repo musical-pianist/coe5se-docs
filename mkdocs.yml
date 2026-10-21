@@ -8,5 +8,10 @@ theme:
     - content.action.edit
     - navigation.indexes
     - search.highlight
+markdown_extensions:
+  - tables
+  - pymdownx.highlight
+  - pymdownx.superfences
 nav:
   - Home: index.md
+  - Small Modding Tidbits: small-modding-tidbits.md
