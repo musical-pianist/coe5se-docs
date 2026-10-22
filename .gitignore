@@ -1,1 +1,4 @@
 site/
+# Vale packages, installed by `vale sync`.
+styles/*
+!styles/CoE5SE/

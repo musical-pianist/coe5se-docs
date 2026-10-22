@@ -1,0 +1,16 @@
+extends: existence
+message: "'%s' is about what CoE5SE reports, which a modder can't use while writing a line. Cut it."
+link: https://diataxis.fr/reference/
+level: error
+ignorecase: true
+scope: text
+tokens:
+  - logs?
+  - logged
+  - logging
+  - coe5mod\.log
+  - left out
+  - CoE5SE page
+  - pop-?up
+  - refus(?:ed|es|al)
+  - reason=

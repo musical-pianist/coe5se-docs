@@ -1,0 +1,117 @@
+/* The site's look: the CoE5SE banner's black, with the warm earth of its tiles for accents. */
+
+:root,
+[data-md-color-scheme="default"] {
+  --coe5se-rule: #7a3f2c;
+  --md-primary-fg-color: #000;
+  --md-primary-fg-color--light: #1a1a1a;
+  --md-primary-fg-color--dark: #000;
+  --md-accent-fg-color: #b0714f;
+  --md-typeset-a-color: #7a3f2c;
+}
+
+[data-md-color-scheme="slate"] {
+  --coe5se-rule: #b0714f;
+  --md-default-bg-color: #121212;
+  --md-code-bg-color: #1c1c1c;
+  --md-typeset-a-color: #d08c66;
+}
+
+/* The banner is the header's logo, as tall as the header allows. */
+.md-header__button.md-logo {
+  padding: 0.2rem 0.4rem;
+}
+
+.md-header__button.md-logo img {
+  height: 2rem;
+  width: auto;
+}
+
+/* Where the theme shows the logo, the banner already names the site. */
+@media screen and (min-width: 76.25em) {
+  .md-header__title .md-header__topic:first-child {
+    visibility: hidden;
+  }
+}
+
+.md-nav__button.md-logo img {
+  height: auto;
+  width: 100%;
+}
+
+/* The repository's star and fork counts. */
+.md-source__facts {
+  display: none;
+}
+
+.md-typeset h1 {
+  color: var(--md-default-fg-color);
+}
+
+/* A command entry: a rule above it, its heading set as the code a modder types. */
+.md-typeset h3 {
+  margin-top: 2.6em;
+  padding-top: 0.9em;
+  border-top: 0.15rem solid var(--coe5se-rule);
+  font-family: var(--md-code-font-family);
+  font-size: 1.05em;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+.md-typeset h3 + p {
+  margin-top: 0.5em;
+}
+
+/* A page's whole example closes it; its heading reads as a label, not a command. */
+.md-typeset h3#example,
+.md-typeset h3#example-events {
+  font-family: var(--md-text-font-family);
+  border-top-style: double;
+  border-top-width: 0.3rem;
+}
+
+/* The Commands overview's headings are sections, not commands. */
+.md-typeset h3#where,
+.md-typeset h3#pages {
+  font-family: var(--md-text-font-family);
+}
+
+/* In-game screenshots as numbered steps, one under the other, each at its own size. */
+.md-typeset .coe5se-shots {
+  display: grid;
+  gap: 1.2rem;
+  justify-items: start;
+}
+
+.md-typeset .coe5se-shots figure {
+  margin: 0;
+}
+
+.md-typeset .coe5se-shots img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.2rem;
+}
+
+.md-typeset .coe5se-shots figcaption {
+  margin: 0.4rem 0 0;
+  text-align: left;
+  font-style: normal;
+}
+
+/* An entry's example sits close to its text; a label reads as a caption over its code. */
+.md-typeset .tabbed-set {
+  margin-top: 0.8em;
+}
+
+.md-typeset .tabbed-block > p {
+  margin: 0.8em 0 0.2em;
+  font-size: 0.9em;
+  color: var(--md-default-fg-color--light);
+}
+
+.md-typeset .tabbed-block > p:first-child {
+  margin-top: 0.4em;
+}

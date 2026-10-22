@@ -4,14 +4,59 @@ edit_uri: edit/main/docs/
 docs_dir: docs
 theme:
   name: material
+  logo: assets/banner.png
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-night
+        name: Dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-sunny
+        name: Light mode
   features:
     - content.action.edit
+    - content.code.copy
     - navigation.indexes
+    - navigation.sections
     - search.highlight
+    - toc.follow
+extra_css:
+  - stylesheets/site.css
+validation:
+  anchors: warn
 markdown_extensions:
   - tables
+  - admonition
+  - attr_list
+  - md_in_html
+  - toc:
+      permalink: true
+  - pymdownx.details
   - pymdownx.highlight
   - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
 nav:
   - Home: index.md
-  - Small Modding Tidbits: small-modding-tidbits.md
+  - CoE5SE Commands:
+      - commands/index.md
+      - Spells:
+          - New Spells: commands/spells.md
+          - Spell Modifiers: commands/spell-modifiers.md
+          - Spell Paths: commands/spell-paths.md
+      - Monsters:
+          - Monster Traits: commands/monster-traits.md
+          - Commander Names: commands/commander-names.md
+          - Monster and Ritual Names: commands/monster-names.md
+      - Planes: commands/planes.md
+      - Mod Setup:
+          - Mod Settings: commands/mod-settings.md
+          - Mod Loading: commands/mod-loading.md
+          - Other Commands: commands/other-commands.md
