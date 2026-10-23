@@ -19,7 +19,7 @@
    "name": "keyword.operator.trigger.c5m"
   },
   {
-   "match": "^\\s*(?:needs_glu32\\.dll_and_CoE5SE_enabled_at_launch|expand_ritual_table|planezonepopulate|newsettingheader|selectspellpath|heallivingarmy|notunderground|planezoneunits|newsettingpage|healhumanarmy|planepopulate|planezoneswap|prioritylearn|terrainground|terrainsprite|combatcaster|newspellpath|terraindecor|terrainlooks|newnametype|planepiece|planeshape|planeunits|newsetting|fixedname|planefile|planefill|planeicon|planelike|planesize|planezone|optiontip|newplane|newspell|requires|slowcast|addname|maxdata|default|restart|notsea|weapon|choice|option|small|onoff|label|group|fixed|path|key|tip)\\b",
+   "match": "^\\s*(?:needs_glu32\\.dll_and_CoE5SE_enabled_at_launch|expand_ritual_table|planezonepopulate|newsettingheader|selectspellpath|heallivingarmy|notunderground|planezoneunits|newsettingpage|healhumanarmy|planepopulate|planezoneswap|prioritylearn|terrainground|terrainsprite|combatcaster|doesntaffect|newspellpath|randartifact|terraindecor|terrainlooks|doubledmgvs|newnametype|onlyaffects|randomequip|planepiece|planeshape|planeunits|newsetting|fixedname|planefile|planefill|planeicon|planelike|planesize|planezone|optiontip|newplane|newspell|requires|slowcast|addname|maxdata|default|restart|notsea|weapon|choice|option|small|onoff|label|group|fixed|path|key|tip)\\b",
    "name": "support.function.coe5se.c5m"
   },
   {
