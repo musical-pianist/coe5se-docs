@@ -55,6 +55,7 @@ nav:
           - Monster Traits: commands/monster-traits.md
           - Commander Names: commands/commander-names.md
           - Monster and Ritual Names: commands/monster-names.md
+      - Ritual Effects: commands/ritual-effects.md
       - Planes: commands/planes.md
       - Mod Setup:
           - Mod Settings: commands/mod-settings.md

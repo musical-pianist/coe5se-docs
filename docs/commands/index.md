@@ -22,6 +22,7 @@ Examples have a .c5se tab and a .c5m tab. The few commands that work in one file
 | Monsters | [Monster Traits](monster-traits.md) | Traits on a monster or item |
 | | [Commander Names](commander-names.md) | Lists of commander names |
 | | [Monster and Ritual Names](monster-names.md) | Names in place of offsets |
+| Rituals | [Ritual Effects](ritual-effects.md) | Effects only the game's own rituals had |
 | Planes | [Planes](planes.md) | New planes, and planes by name |
 | Mod Setup | [Mod Settings](mod-settings.md) | Settings players change |
 | | [Mod Loading](mod-loading.md) | Needing CoE5SE, and loading after another mod |
