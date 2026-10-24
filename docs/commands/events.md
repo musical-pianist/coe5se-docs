@@ -24,7 +24,7 @@ Starts the branches. The triggers above it hold for every branch below it: when 
 
 === ".c5se"
 
-    On turn 150, whatever the player holds:
+    A trigger every branch needs:
 
     ```c5se
     +turnnbr 150
@@ -33,7 +33,7 @@ Starts the branches. The triggers above it hold for every branch below it: when 
 
 === ".c5m"
 
-    On turn 150, whatever the player holds:
+    A trigger every branch needs:
 
     ```c5m
     +turnnbr 150
@@ -46,7 +46,7 @@ Starts another group of triggers. The event holds when every trigger in any one 
 
 === ".c5se"
 
-    A Ring of Power, either one:
+    Either of two items:
 
     ```c5se
     +hasitem -2 "Ring of Invisibility"
@@ -56,7 +56,7 @@ Starts another group of triggers. The event holds when every trigger in any one 
 
 === ".c5m"
 
-    A Ring of Power, either one:
+    Either of two items:
 
     ```c5m
     +hasitem -2 "Ring of Invisibility"
@@ -70,7 +70,7 @@ Starts another branch: its own triggers, then its own actions. It runs only if n
 
 === ".c5se"
 
-    Or the player holds a palantir:
+    Or the player holds another item:
 
     ```c5se
     elseif
@@ -79,7 +79,7 @@ Starts another branch: its own triggers, then its own actions. It runs only if n
 
 === ".c5m"
 
-    Or the player holds a palantir:
+    Or the player holds another item:
 
     ```c5m
     #!@elseif
@@ -92,7 +92,7 @@ Starts the last branch, with no triggers: its actions run whenever no branch bef
 
 === ".c5se"
 
-    Otherwise, the player kept the Grey Wizard:
+    Otherwise:
 
     ```c5se
     else
@@ -102,7 +102,7 @@ Starts the last branch, with no triggers: its actions run whenever no branch bef
 
 === ".c5m"
 
-    Otherwise, the player kept the Grey Wizard:
+    Otherwise:
 
     ```c5m
     #!@else

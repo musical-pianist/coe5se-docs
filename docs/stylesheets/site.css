@@ -77,6 +77,12 @@
   font-family: var(--md-text-font-family);
 }
 
+/* Code blocks wrap long lines instead of scrolling sideways. */
+.md-typeset pre > code {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
 /* In-game screenshots as numbered steps, one under the other, each at its own size. */
 .md-typeset .coe5se-shots {
   display: grid;
