@@ -18,7 +18,7 @@ Each word stands alone on its line, inside a `playerevent` or `squareevent`.
 - `or` splits one branch's triggers into groups. The branch holds if every trigger in any one group holds.
 - The game tries the branches from the top. The first branch whose triggers hold runs its actions, and the rest of the event is skipped, so one branch runs for each player each turn.
 
-### if { #if data-toc-label="if" }
+### if <span class="new-badge">New</span> { #if data-toc-label="if" }
 
 Starts the branches. The triggers above it hold for every branch below it: when they hold, each branch starts from there; when they fail, no branch runs, `else` included. At most one `if`, before the first branch's actions.
 

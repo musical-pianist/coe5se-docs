@@ -28,6 +28,9 @@ theme:
     - navigation.sections
     - search.highlight
     - toc.follow
+extra:
+  status:
+    new: Recently added
 extra_css:
   - stylesheets/site.css
 validation:

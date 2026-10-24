@@ -83,6 +83,25 @@
   overflow-wrap: anywhere;
 }
 
+/* The New label on an entry from one of the four newest CoE5SE releases. */
+.md-typeset .new-badge {
+  display: inline-block;
+  margin-left: 0.5em;
+  padding: 0.1em 0.55em;
+  border-radius: 1em;
+  background-color: var(--md-accent-fg-color);
+  color: var(--md-accent-bg-color);
+  font-family: var(--md-text-font-family);
+  font-size: 0.6em;
+  font-weight: 700;
+  vertical-align: middle;
+}
+
+/* Hover boxes keep their line breaks, as the VS Code extension's do. */
+.md-tooltip2__inner {
+  white-space: pre-line;
+}
+
 /* In-game screenshots as numbered steps, one under the other, each at its own size. */
 .md-typeset .coe5se-shots {
   display: grid;
