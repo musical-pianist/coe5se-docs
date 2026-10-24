@@ -24,6 +24,7 @@ Examples have a .c5se tab and a .c5m tab. The few commands that work in one file
 | | [Monster and Ritual Names](monster-names.md) | Names in place of offsets |
 | Rituals | [Ritual Effects](ritual-effects.md) | Effects only the game's own rituals had |
 | Planes | [Planes](planes.md) | New planes, and planes by name |
+| Events | [Events](events.md) | Events that choose between groups of triggers and branches |
 | Mod Setup | [Mod Settings](mod-settings.md) | Settings players change |
 | | [Mod Loading](mod-loading.md) | Needing CoE5SE, and loading after another mod |
 | | [Other Commands](other-commands.md) | The rest |

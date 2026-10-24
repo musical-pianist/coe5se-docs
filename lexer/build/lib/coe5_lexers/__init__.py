@@ -20,6 +20,9 @@ SCOPE_TOKENS = [
     ("string", String.Double),
     ("constant.numeric", Number),
     ("keyword.other.coe5se-line", Comment.Preproc),
+    ("keyword.control.branch.if", Keyword.Branch.If),
+    ("keyword.control.branch.elseif", Keyword.Branch.Elseif),   # its own colour: docs/stylesheets/site.css
+    ("keyword.control.branch.else", Keyword.Branch.Else),
     ("keyword.operator", Operator),
     ("support.function", Name.Function),
     ("keyword", Keyword),

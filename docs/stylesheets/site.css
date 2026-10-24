@@ -115,3 +115,8 @@
 .md-typeset .tabbed-block > p:first-child {
   margin-top: 0.4em;
 }
+
+/* The event branch words, each its own bold colour, as in the VS Code extension. */
+.md-typeset .highlight .k-Branch-If { color: #00c853; font-weight: bold; }
+.md-typeset .highlight .k-Branch-Elseif { color: #ff9f1c; font-weight: bold; }
+.md-typeset .highlight .k-Branch-Else { color: #e040fb; font-weight: bold; }
