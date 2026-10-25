@@ -4,6 +4,7 @@ edit_uri: edit/main/docs/
 docs_dir: docs
 theme:
   name: material
+  custom_dir: overrides
   logo: assets/banner.png
   palette:
     - media: "(prefers-color-scheme: light)"
@@ -73,3 +74,4 @@ nav:
 
 hooks:
   - hooks/tooltips.py
+  - hooks/new_labels.py

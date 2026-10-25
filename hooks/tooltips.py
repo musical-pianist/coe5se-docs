@@ -1,7 +1,8 @@
 # Each command word in a code block gets the VS Code extension's hover text as its title, which the
 # theme's improved tooltips (content.tooltips) shows as a hover box, and so does each number the
 # manual's number tables explain (newunits 28: Inferno). words.json and tables.json are copies of the
-# extension's data/words.json and data/tables.json.
+# extension's data/words.json and data/tables.json. On a noexplode line each part number gets the part
+# of the addstring above it, read back as the extension reads it, and start and end their form.
 import html
 import json
 import re
@@ -106,11 +107,60 @@ def titled_numbers(line):
     return "".join(out) + line[pos:]
 
 
+def first_word(line):
+    """A code line's first word, its #!@ prefix left off, and its plain text."""
+    plain = html.unescape(TAG.sub("", line))
+    m = re.match(r"\s*(?:#!@)?\s*(\S+)", plain)
+    return (m.group(1) if m else ""), plain
+
+
+def part_meaning(string, value):
+    """What part number `value` of a noexplode line names in `string`, the addstring above it."""
+    if string is None:
+        return "No addstring above it in this block."
+    parts, n = string.split(" & "), int(value)
+    if n < 1 or n > len(parts):
+        return f"No part {value}: the string has {len(parts)}."
+    part = parts[n - 1]
+    count = re.sub(r"^\([^)]*\)", "", part).split("*")
+    return f"Part {n}: {part}" + ("" if len(count) > 1 and "d" in count[0] else " (no dice)")
+
+
+def form_meaning(value):
+    """The noexplode form that names `value` (start or end)."""
+    forms = (WORDS.get("noexplode") or {}).get("forms", [])
+    form = next((f for f in forms if re.search(rf"\bnoexplode\s+{value}\b", f["signature"])), None)
+    return form["doc"] if form else None
+
+
+def titled_noexplode(line, string):
+    """A noexplode line with its part numbers and its start or end titled."""
+    def number(m):
+        return f'<span class="{m.group(1)}" title="{title_attribute(part_meaning(string, m.group(2)))}">{m.group(2)}</span>'
+    def word(m):
+        text = form_meaning(m.group(2))
+        return f'{m.group(1)}<span title="{title_attribute(text)}">{m.group(2)}</span>' if text else m.group(0)
+    head, sep, rest = line.partition("noexplode")
+    if rest.startswith("</span>"):   # the word's own span, when the lexer knows it
+        sep, rest = sep + "</span>", rest[len("</span>"):]
+    rest = NUMBER.sub(number, rest)
+    rest = re.sub(r"(^\s*(?:<span[^>]*>)?)(start|end)\b", word, rest)
+    return head + sep + rest
+
+
 def on_page_content(content, page, config, files):
     def block(m):
         classes = m.group(1)
         if "language-" in classes and not re.search(r"language-c5(?:m|se)\b", classes):
             return m.group(0)   # another language's block (Lua): its words aren't .c5m words
-        lines = "\n".join(titled_numbers(line) for line in m.group(0).split("\n"))
-        return SPAN.sub(titled, lines)
+        out, string = [], None   # string: the last addstring's text in the block the line is in
+        for line in m.group(0).split("\n"):
+            word, plain = first_word(line)
+            if word == "addstring":
+                quoted = re.search(r'"([^"]*)"?', plain)
+                string = quoted.group(1) if quoted else None
+            elif re.fullmatch(r"(?:new|select)\w+", word):
+                string = None
+            out.append(titled_noexplode(line, string) if word == "noexplode" else titled_numbers(line))
+        return SPAN.sub(titled, "\n".join(out))
     return BLOCK.sub(block, content)

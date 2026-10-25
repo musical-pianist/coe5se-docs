@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{#- The New labels' switch, beside the colour switch: a reader who has seen what is new can hide every
+    New label (headings, table of contents, nav), and the site remembers it. The choice is read before
+    the page draws, so a hidden label never flashes. -#}
+{% block extrahead %}
+  {{ super() }}
+  <script>
+    try { if (localStorage.getItem("coe5se-new-labels") === "off") document.documentElement.dataset.newLabels = "off" } catch (e) {}
+  </script>
+{% endblock %}
+
+{% block scripts %}
+  {{ super() }}
+  {#- Two buttons, one shown per state, each with its own title, as Material's colour switch does: its
+      tooltips read a title once. -#}
+  <template id="new-labels-switch">
+    <span class="new-labels-switch">
+      <button class="md-header__button md-icon new-labels-switch__hide" type="button" title="Hide New labels" aria-label="Hide New labels">{% include ".icons/material/new-box.svg" %}</button>
+      <button class="md-header__button md-icon new-labels-switch__show" type="button" title="Show New labels" aria-label="Show New labels">{% include ".icons/material/new-box.svg" %}</button>
+    </span>
+  </template>
+  <script>
+    (function () {
+      var root = document.documentElement, palette = document.querySelector('[data-md-component="palette"]')
+      var template = document.getElementById("new-labels-switch")
+      if (!palette || !template) return
+      var switches = template.content.firstElementChild.cloneNode(true)
+      function set(on) {
+        if (on) delete root.dataset.newLabels
+        else root.dataset.newLabels = "off"
+        try { localStorage.setItem("coe5se-new-labels", on ? "on" : "off") } catch (e) {}
+      }
+      switches.querySelector(".new-labels-switch__hide").addEventListener("click", function () { set(false) })
+      switches.querySelector(".new-labels-switch__show").addEventListener("click", function () { set(true) })
+      palette.parentNode.insertBefore(switches, palette)
+    })()
+  </script>
+{% endblock %}

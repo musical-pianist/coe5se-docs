@@ -69,6 +69,65 @@ Gives the caster a random magic item, like the game's Create Artifact.
     #!@randartifact fire
     ```
 
+### noexplode [parts | start | end] <span class="new-badge">New</span> { #noexplode data-toc-label="noexplode" }
+
+Keeps the dice in the `addstring` above it from exploding, for `summoning` and `farsummon`. A die that lands on its highest face stops there instead of rolling again, so `1d6` gives 1 to 6.
+
+- **parts:** Parts of the string above, by number, counted from 1 at each ` & `. Name more than one with spaces: `noexplode 1 3`. With no number, no die in the string explodes. A part named needs dice (`2d6*Wight` has them, `c*Mound King` doesn't): a part without dice, or a number past the last part, makes the line change nothing.
+- **start**, **end:** Every `addstring` and every weapon from a `noexplode start` line to a `noexplode end` line, but not the weapon whose block `start` is in: put `start` above the first `newweapon` it's for. Without an `end`, it runs to the end of your mod's files.
+
+=== ".c5se"
+
+    Every die in the string above:
+
+    ```c5se
+    addstring "1d3+2*Wight & 3d6*Soulless"
+    noexplode
+    ```
+
+    Or only the Wights, so they come 3 to 5 while the Soulless still explode:
+
+    ```c5se
+    addstring "1d3+2*Wight & 3d6*Soulless"
+    noexplode 1
+    ```
+
+    Or every summoning string and weapon between two lines:
+
+    ```c5se
+    noexplode start
+    noexplode end
+    ```
+
+=== ".c5m"
+
+    Every die in the string above:
+
+    ```c5m
+    addstring "1d3+2*Wight & 3d6*Soulless"
+    #!@noexplode
+    ```
+
+    Or only the Wights, so they come 3 to 5 while the Soulless still explode:
+
+    ```c5m
+    addstring "1d3+2*Wight & 3d6*Soulless"
+    #!@noexplode 1
+    ```
+
+    Or every summoning string and weapon between two lines:
+
+    ```c5m
+    #!@noexplode start
+    #!@noexplode end
+    ```
+
+!!! warning "Put it right under its addstring"
+    Each `noexplode` changes the last `addstring` above it, so put one right under each string it's for. Above the ritual's first `addstring` it changes nothing, and your players' summons still explode.
+
+!!! tip "For players without CoE5SE"
+    In the .c5m, their game skips the `#!@` line, so those dice still explode.
+
 ### Item groups { #item-groups }
 
 ??? info "Names and numbers of the five item groups"
@@ -100,6 +159,13 @@ Gives the caster a random magic item, like the game's Create Artifact.
     descr "The smiths of Eregion forge a treasure as in the old days."
     level 3
     randartifact
+
+    newritual "Barrow Summons"
+    descr "The Witch-king calls up the dead of the Barrow-downs."
+    level 1
+    summoning
+    addstring "1d3+2*Wight & 3d6*Soulless"
+    noexplode 1
     ```
 
 === ".c5m"
@@ -119,4 +185,11 @@ Gives the caster a random magic item, like the game's Create Artifact.
     descr "The smiths of Eregion forge a treasure as in the old days."
     level 3
     #!@randartifact
+
+    newritual "Barrow Summons"
+    descr "The Witch-king calls up the dead of the Barrow-downs."
+    level 1
+    summoning
+    addstring "1d3+2*Wight & 3d6*Soulless"
+    #!@noexplode 1
     ```

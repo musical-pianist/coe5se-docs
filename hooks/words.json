@@ -1,6 +1,6 @@
 {
  "+setting": {
-  "doc": "True when your mod's setting (a newsetting block in its .c5se) is on, or a key setting has a key; with an index, when a choice has that option picked or a key setting has that key value. -setting is the opposite.",
+  "doc": "True when your setting is on, or with an index, when that option or key is picked. -setting is the opposite.",
   "group": "CoE5SE",
   "kinds": [
    "coe5se-trigger"
@@ -129,7 +129,8 @@
    {
     "context": "Rituals",
     "doc": "increases the value of this event variable by 1",
-    "signature": "addeventvar <var>"
+    "signature": "addeventvar <var>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -142,7 +143,7 @@
   "docs": [
    {
     "context": "Classes",
-    "doc": "This command works like addunitrec, but the recruitment is mercenary and listed in green color. Mercenaries can only be recruited once and do not count against recruitment limits.",
+    "doc": "Like addunitrec, but a green mercenary entry: recruited once, outside the recruitment limits.",
     "signature": "addmercrec \"monster name\" <chance> <nbr> <gold> <gold die> <iron>"
    }
   ],
@@ -154,6 +155,7 @@
  },
  "addname": {
   "doc": "Adds a name to the list.",
+  "docsUrl": "https://musical-pianist.github.io/coe5se-docs/commands/commander-names/#addname",
   "group": "CoE5SE",
   "kinds": [
    "coe5se"
@@ -181,7 +183,7 @@
   "docs": [
    {
     "context": "Classes",
-    "doc": "Adds a starting commander to the class. All starting units added after the commander will appear already assigned to that commander's squad at the beginning of the game. The main commander should not be added as a startcom.",
+    "doc": "Adds a starting commander; starting units added after it join its squad. Not for the main commander.",
     "signature": "addstartcom \"monster name\""
    }
   ],
@@ -209,7 +211,7 @@
   "docs": [
    {
     "context": "Classes",
-    "doc": "Adds <nbr> monsters to the starting army for the class. Use this command multiple times to assign several different types of monsters (for example spearmen and archers).",
+    "doc": "Adds nbr of this monster to the class's starting army. Use it once per monster type.",
     "signature": "addstartunits \"monster name\" <nbr>"
    }
   ],
@@ -223,8 +225,9 @@
   "docs": [
    {
     "context": "Rituals",
-    "doc": "Adds some text data to a ritual. Most often used to set what is summoned by a summoning ritual, but it depends on what effects are in the ritual. All addstring commands will be processed before any other commands for the ritual, so it does not matter where in the ritual you place them.",
-    "signature": "addstring \"string\""
+    "doc": "Adds a text line to the ritual, usually a summoning string. Read before the ritual's other commands, wherever it sits.",
+    "signature": "addstring \"string\"",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual modding: start, basic, clear and copy",
@@ -251,7 +254,7 @@
   "docs": [
    {
     "context": "Classes",
-    "doc": "Adds a monster to the recruitment list for the active class. The chance is a percentage chance that this unit can be recruited each month. The gold die is an open ended die that will be added to the base gold cost of the unit.",
+    "doc": "Adds a monster to the class's recruitment list: its monthly chance, number, gold, an exploding gold die, and iron.",
     "signature": "addunitrec \"monster name\" <chance> <nbr> <gold> <gold die> <iron>"
    }
   ],
@@ -280,7 +283,8 @@
    {
     "context": "Weapons",
     "doc": "The weapon only affects animals.",
-    "signature": "affectanimal"
+    "signature": "affectanimal",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon special attributes",
@@ -301,7 +305,8 @@
    {
     "context": "Weapons",
     "doc": "The weapon only affects units with the res_convert attribute.",
-    "signature": "affecthuman"
+    "signature": "affecthuman",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon special attributes",
@@ -315,7 +320,8 @@
    {
     "context": "Weapons",
     "doc": "This weapon will not affect females",
-    "signature": "affectmale"
+    "signature": "affectmale",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon special attributes",
@@ -329,7 +335,8 @@
    {
     "context": "Weapons",
     "doc": "The weapon only affects undead.",
-    "signature": "affectundead"
+    "signature": "affectundead",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon special attributes",
@@ -357,7 +364,8 @@
    {
     "context": "Rituals",
     "doc": "Gives an affliction bitmask to the target unit. See table Special Afflictions.",
-    "signature": "afftarg <aff nbr>"
+    "signature": "afftarg <aff nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -374,7 +382,8 @@
    {
     "context": "Rituals",
     "doc": "must know previous ritual before learning this one",
-    "signature": "afterprev"
+    "signature": "afterprev",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual learning difficulty",
@@ -415,8 +424,9 @@
   "docs": [
    {
     "context": "Rituals",
-    "doc": "AI will always (if chance = 100 try to cast this ritual, but not make any long time plans for it. chance=999 is special and means the AI will also make plans for the ritual.)",
-    "signature": "aialways <chance>"
+    "doc": "At 100 the AI always casts it when it can, with no long plans; 999 also makes plans.",
+    "signature": "aialways <chance>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -430,7 +440,8 @@
    {
     "context": "Rituals",
     "doc": "AI will dedicate apprentices to stay at home and only spam this ritual. Chance is 0-100",
-    "signature": "aiapprspam <chance>"
+    "signature": "aiapprspam <chance>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -486,7 +497,8 @@
    {
     "context": "Rituals",
     "doc": "An AI player will never cast this ritual more than this number of times in a game",
-    "signature": "aimaxcast <value>"
+    "signature": "aimaxcast <value>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -528,7 +540,8 @@
    {
     "context": "Rituals",
     "doc": "No more than one commander may plan to cast this ritual at once",
-    "signature": "ainosimul"
+    "signature": "ainosimul",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -542,7 +555,8 @@
    {
     "context": "Rituals",
     "doc": "AI will not cast ritual if close to this terrain, radius=1",
-    "signature": "ainotclose1 <terrain nbr>"
+    "signature": "ainotclose1 <terrain nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -556,7 +570,8 @@
    {
     "context": "Rituals",
     "doc": "AI will not cast ritual if close to this terrain, radius=2",
-    "signature": "ainotclose2 <terrain nbr>"
+    "signature": "ainotclose2 <terrain nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -570,7 +585,8 @@
    {
     "context": "Rituals",
     "doc": "AI will not cast ritual if close to this terrain, radius=3",
-    "signature": "ainotclose3 <terrain nbr>"
+    "signature": "ainotclose3 <terrain nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -584,7 +600,8 @@
    {
     "context": "Rituals",
     "doc": "AI will not cast ritual in this terrain",
-    "signature": "ainothere <terrain nbr>"
+    "signature": "ainothere <terrain nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -598,7 +615,8 @@
    {
     "context": "Rituals",
     "doc": "AI should not cast this ritual close to home (mindist = nbr of squares away)",
-    "signature": "ainotnearhome <mindist>"
+    "signature": "ainotnearhome <mindist>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -612,7 +630,8 @@
    {
     "context": "Rituals",
     "doc": "AI will only cast ritual when on this plane",
-    "signature": "aionlyplane <plane nr>"
+    "signature": "aionlyplane <plane nr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -681,8 +700,9 @@
   "docs": [
    {
     "context": "Rituals",
-    "doc": "Reduces the chance of the AI trying to use this ritual. Chance is the chance of casting the ritual and can be from 1-99. -1 is a special value meaning never cast it.",
-    "signature": "airare <chance>"
+    "doc": "Lowers the AI's chance to cast the ritual, 1 to 99; -1 is never.",
+    "signature": "airare <chance>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -710,7 +730,8 @@
    {
     "context": "Rituals",
     "doc": "AI will always try to cast this ritual if it has at least this many of the primary resource for the ritual",
-    "signature": "airestrig <value>"
+    "signature": "airestrig <value>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -738,7 +759,8 @@
    {
     "context": "Rituals",
     "doc": "For long range rituals. 1=try to target squares with enemy commanders, 2=try to target valuable squares with corpses in",
-    "signature": "aitarg <value>"
+    "signature": "aitarg <value>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -752,7 +774,8 @@
    {
     "context": "Rituals",
     "doc": "AI commander will only cast this ritual if his troop strength is below this value. One spearman gives 10 troop strength points.",
-    "signature": "aiweakonly <troop strength>"
+    "signature": "aiweakonly <troop strength>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -765,8 +788,9 @@
   "docs": [
    {
     "context": "Rituals",
-    "doc": "restricts the AI to only cast ritual in certain places. 1=seldom in plains/cities (for druid animal summoning), 2=only in squares we want to defend (for immobile guardian summoning)",
-    "signature": "aiwhere <value>"
+    "doc": "Where the AI casts it: 1 seldom in plains or cities, 2 only in squares it wants to defend.",
+    "signature": "aiwhere <value>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -830,7 +854,8 @@
    {
     "context": "Rituals",
     "doc": "Changes target square to this terrain.",
-    "signature": "alterloc <terrain nbr>"
+    "signature": "alterloc <terrain nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -858,7 +883,8 @@
    {
     "context": "Weapons",
     "doc": "The weapon ignores armor.",
-    "signature": "an"
+    "signature": "an",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon special attributes",
@@ -918,8 +944,9 @@
   "docs": [
    {
     "context": "Weapons",
-    "doc": "Sets the area of effect for the weapon in squares. The default value is 0 (a single monster). A value of x will hit up to x monsters near the target. See Table Area of Effects. Those that are written as e.g. 30xx must be written as a 4 digit number e.g. \"aoe 3005\" for a cone of 5 squares.",
-    "signature": "aoe <nbr>"
+    "doc": "Units hit near the target; 0 is one. Shapes such as cones are 4-digit numbers: aoe 3005 is a 5-square cone.",
+    "signature": "aoe <nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon modding: start, basic, sound and visuals, chained",
@@ -933,7 +960,8 @@
    {
     "context": "Rituals",
     "doc": "Extra Action Points cost for the rituals.",
-    "signature": "apcost <nbr>"
+    "signature": "apcost <nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    },
    {
     "context": "Terrain",
@@ -970,7 +998,7 @@
    },
    {
     "context": "Monsters",
-    "doc": "This command sets the monster's armor value, which represents its natural protection or the armor it is wearing. Normal human troops have an armor value of 0. Medium armored human troops have an armor value of 1. Heavily armored human troops like Heavy Infantry have an armor value of 2 and very heavily armored troops like Knights and High Lords have an armor value of 3. Extremely tough monsters like dragons may have an armor value of 4 or more.",
+    "doc": "Armor value: 0 normal troops, 1 medium, 2 heavy, 3 Knights, 4 or more dragons.",
     "signature": "armor <nbr>"
    }
   ],
@@ -1013,7 +1041,8 @@
    {
     "context": "Weapons",
     "doc": "The effects of this weapon can be negated by the Air Shield attribute.",
-    "signature": "arrow"
+    "signature": "arrow",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon special attributes",
@@ -1026,7 +1055,7 @@
   "docs": [
    {
     "context": "Monsters",
-    "doc": "Equips the monster with an assassination weapon. Used to make an assassination attempt on an enemy before normal combat begins. Can only be used by the attacker.",
+    "doc": "A weapon for an assassination attempt before combat starts. Only the attacker uses it.",
     "signature": "assassinweapon <dmg> \"weapon\""
    }
   ],
@@ -1176,7 +1205,7 @@
   "docs": [
    {
     "context": "Terrain",
-    "doc": "Associates the terrain with a certain battle map. See Battle Maps table. This is usually used for fortified locations, but villages also have a battle map.",
+    "doc": "The battle map the terrain fights on, mostly for forts and villages.",
     "signature": "batmap <batmap nbr>"
    }
   ],
@@ -1233,7 +1262,8 @@
    {
     "context": "Rituals",
     "doc": "Caster cannot have this beneficial bitmask",
-    "signature": "benrestrict <ben nbr>"
+    "signature": "benrestrict <ben nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -1246,8 +1276,9 @@
   "docs": [
    {
     "context": "Rituals",
-    "doc": "Gives a beneficial bitmask to the target unit. See table Special Benefits. Particularly useful values for rituals are 2^26 to get the twiceborn effect or 2^24 to get the Stygian Bath effect. Note that most ben effects are temporary any will disappear after battle or during the turn and will be useless for rituals.",
-    "signature": "bentarg <ben nbr>"
+    "doc": "Gives the target a benefit mask; 2^26 is twiceborn, 2^24 Stygian Bath. Most benefits are temporary.",
+    "signature": "bentarg <ben nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -1264,7 +1295,8 @@
    {
     "context": "Rituals",
     "doc": "Like bentarg, but also affects all the target's followers.",
-    "signature": "bentargall <ben nbr>"
+    "signature": "bentargall <ben nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -1278,7 +1310,8 @@
    {
     "context": "Rituals",
     "doc": "Like bentarg, but the unit will only be affected if he is located in the terrain in the generic modding variable.",
-    "signature": "bentargvar <ben nbr>"
+    "signature": "bentargvar <ben nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -1311,7 +1344,8 @@
    {
     "context": "Weapons",
     "doc": "Set color of damage numbers",
-    "signature": "blue"
+    "signature": "blue",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon special attributes",
@@ -1405,7 +1439,8 @@
    {
     "context": "Rituals",
     "doc": "Add value to the number of times this ritual has been cast by this player",
-    "signature": "castcount <value>"
+    "signature": "castcount <value>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -1419,7 +1454,8 @@
    {
     "context": "Rituals",
     "doc": "Sets target unit to caster.",
-    "signature": "castertarg"
+    "signature": "castertarg",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -1475,7 +1511,8 @@
    {
     "context": "Rituals",
     "doc": "Center map on caster.",
-    "signature": "centercaster"
+    "signature": "centercaster",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -1489,7 +1526,8 @@
    {
     "context": "Rituals",
     "doc": "Center map on target location.",
-    "signature": "centerloc"
+    "signature": "centerloc",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -1585,8 +1623,9 @@
   "docs": [
    {
     "context": "Rituals",
-    "doc": "Player will choose a target unit that has this fx nbr. By default only friendly units can be selected. Fx nbr 0 = no special fx nbr required. Fx nbr -1 = can choose a unit owned by other players too.",
-    "signature": "choosefxtarg <fx nbr>"
+    "doc": "The player picks a target unit with this fx; 0 any, -1 another player's units too.",
+    "signature": "choosefxtarg <fx nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -1600,7 +1639,8 @@
    {
     "context": "Rituals",
     "doc": "Player choose target location. 2=deviate to many dead, 3=empty mirror req, 4=empty gold mirror, 5=horror mark deviation",
-    "signature": "chooseloc <1-5>"
+    "signature": "chooseloc <1-5>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -1614,7 +1654,8 @@
    {
     "context": "Rituals",
     "doc": "Player will choose target location for ritual.",
-    "signature": "chooseterrloc <terrain nbr>"
+    "signature": "chooseterrloc <terrain nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -1689,7 +1730,7 @@
   "docs": [
    {
     "context": "Classes",
-    "doc": "Sets the description for the ability section of the class. The text must be on one line. The ^ symbol may be used for paragraph breaks.",
+    "doc": "The class's ability description, on one line; ^ starts a paragraph.",
     "signature": "classabdescr \"text\""
    }
   ],
@@ -1802,7 +1843,8 @@
    {
     "context": "Rituals",
     "doc": "set this event variable to 0",
-    "signature": "cleareventvar <var>"
+    "signature": "cleareventvar <var>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -1858,7 +1900,8 @@
    {
     "context": "Rituals",
     "doc": "Removes all special attributes from a ritual. This is only useful when modifying existing rituals.",
-    "signature": "clearritspec"
+    "signature": "clearritspec",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual modding: start, basic, clear and copy",
@@ -1871,7 +1914,7 @@
   "docs": [
    {
     "context": "Monsters",
-    "doc": "Removes all special abilities from the active monster. The special abilities are things like Fire Immunity, Regeneration, etc. This command does not clear movement abilities. Use the clearmove command for that.",
+    "doc": "Removes every special ability from the monster, but not movement (clearmove does that).",
     "signature": "clearspec"
    },
    {
@@ -1891,7 +1934,8 @@
    {
     "context": "Rituals",
     "doc": "Clears special square flags on target location.",
-    "signature": "clearsquarespec <ss bitmask>"
+    "signature": "clearsquarespec <ss bitmask>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -1947,7 +1991,8 @@
    {
     "context": "Weapons",
     "doc": "Clears all special attributes of the weapon.",
-    "signature": "clearwspec"
+    "signature": "clearwspec",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon modding: start, basic, sound and visuals, chained",
@@ -1961,7 +2006,8 @@
    {
     "context": "Rituals",
     "doc": "Closes the ritual window after the ritual has completed.",
-    "signature": "closewin"
+    "signature": "closewin",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -2116,6 +2162,7 @@
  },
  "combatcaster": {
   "doc": "Combat Caster, as the game's Paladins have it. The unit screen lists it. combatcaster 0 takes it off.",
+  "docsUrl": "https://musical-pianist.github.io/coe5se-docs/commands/monster-traits/#combatcaster",
   "group": "CoE5SE",
   "kinds": [
    "coe5se"
@@ -2126,7 +2173,7 @@
   "docs": [
    {
     "context": "Items",
-    "doc": "Mode -1 = spell will be auto cast on the first round, 1 = unit can cast this spell (like a wand), 2 = spell will be auto cast each round. The spell name is simply the name of the combat spell to be cast, e.g. \"Fireball\".",
+    "doc": "A combat spell: -1 cast on round one, 1 the unit can cast it, 2 cast every round.",
     "signature": "combatspell <mode> \"spell name\""
    }
   ],
@@ -2140,7 +2187,7 @@
   "docs": [
    {
     "context": "Items",
-    "doc": "Mode -1 = will summon on the first round of combat, 1 = will summon on all rounds of combat. Summoning string is very similar to the summoning strings used for ritual summoning. E.g. \"2d4*Deer & 2*wolf\" would summon 2-8 deer and 2 wolves. Commanders cannot be summoned in battle.",
+    "doc": "Summons in combat: -1 on round one, 1 every round. A ritual-style string, such as \"2d4*Deer\", without commanders.",
     "signature": "combatsum <mode> \"summoning string\""
    }
   ],
@@ -2197,7 +2244,8 @@
    {
     "context": "Rituals",
     "doc": "Copies all stats and abilities (except pow nbr and name) from another ritual to the current one.",
-    "signature": "copyritual \"name\""
+    "signature": "copyritual \"name\"",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual modding: start, basic, clear and copy",
@@ -2262,8 +2310,9 @@
   "docs": [
    {
     "context": "Rituals",
-    "doc": "Adds a resource cost to the ritual. E.g. cost 4 10 to add a cost of 10 sacrifices. A single ritual can have at most 4 different costs. See the Resource Types table for resource types.",
-    "signature": "cost <resource type> <amount>"
+    "doc": "A resource cost; cost 4 10 is 10 sacrifices. At most 4 costs.",
+    "signature": "cost <resource type> <amount>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual modding: start, basic, clear and copy",
@@ -2313,7 +2362,8 @@
    {
     "context": "Rituals",
     "doc": "Has this chance of curing one affliction on the target unit.",
-    "signature": "cureoneaff <chance>"
+    "signature": "cureoneaff <chance>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -2439,7 +2489,8 @@
    {
     "context": "Rituals",
     "doc": "Default control chance for summonings. Can be overridden by monster's own ctrlchance.",
-    "signature": "defctrl <percent>"
+    "signature": "defctrl <percent>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -2485,7 +2536,7 @@
   "docs": [
    {
     "context": "Monsters",
-    "doc": "setup this unit outside fort in battles. The monster probably needs to be small (1x1 square) and few in numbers for the deployment to work properly, there is not much space left outside the walls before coming too close to the enemies.",
+    "doc": "Deploys outside the fort in battle. Best for few, 1 x 1 monsters.",
     "signature": "deployoutside <0-1>"
    }
   ],
@@ -2656,7 +2707,8 @@
    {
     "context": "Rituals",
     "doc": "Destroys any valuable terrain at target location.",
-    "signature": "destroyterr"
+    "signature": "destroyterr",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -2669,7 +2721,7 @@
   "docs": [
    {
     "context": "Terrain",
-    "doc": "Turns into this terrain when destroyed or burned up. Usually this command is not needed and it the terrain will be turned into something appropriate depending on its attributes.",
+    "doc": "The terrain it becomes when destroyed or burnt. Usually not needed.",
     "signature": "destroyto <terrain nbr>"
    }
   ],
@@ -2759,7 +2811,8 @@
    {
     "context": "Weapons",
     "doc": "Victim becomes a dispossessed spirit",
-    "signature": "dispossess"
+    "signature": "dispossess",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon special attributes",
@@ -2772,8 +2825,9 @@
   "docs": [
    {
     "context": "Weapons",
-    "doc": "Sets the damage for the weapon. The default value is 0, which makes the weapon a natural weapon whose base damage is determined during monster modding. Note that damage types 12 and 13 require a bitmask value for their special effects.",
-    "signature": "dmg <nbr>"
+    "doc": "The weapon's damage. 0, the default, makes it a natural weapon whose damage the monster sets.",
+    "signature": "dmg <nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon modding: start, basic, sound and visuals, chained",
@@ -2786,7 +2840,7 @@
   "docs": [
    {
     "context": "Monsters",
-    "doc": "Takes 1 point of dmg per month when in this terrain. A single unit can only have one dmgonterr ability. If it has more than one, only the one highest terrain nbr will take effect.",
+    "doc": "Takes 1 damage a month in this terrain. Only one, the highest terrain number, counts.",
     "signature": "dmgonterr <terrain nbr>"
    }
   ],
@@ -2815,7 +2869,8 @@
    {
     "context": "Weapons",
     "doc": "Sets the damage type for the weapon. See table Damage Types. The default value is 3 (piercing damage).",
-    "signature": "dmgtype <nbr>"
+    "signature": "dmgtype <nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon modding: start, basic, sound and visuals, chained",
@@ -2836,7 +2891,7 @@
   "signature": "doesntaffect <trait>"
  },
  "doubledmgvs": {
-  "doc": "Double damage against units with the trait. With more doubledmgvs lines, the damage doubles once when any of them matches, as holykill does for undead and demons.",
+  "doc": "Double damage against units with the trait. Several lines double once, when any matches.",
   "group": "CoE5SE",
   "kinds": [
    "coe5se"
@@ -2862,7 +2917,8 @@
    {
     "context": "Weapons",
     "doc": "Draining damage that will heal the attacker",
-    "signature": "drain"
+    "signature": "drain",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon special attributes",
@@ -2875,7 +2931,7 @@
   "docs": [
    {
     "context": "Monsters",
-    "doc": "Draw the unit this amount of percent larger when shown on his unit token. Can be negative for smaller as well. Use this command to easily fine tune the units size to fit nicely in it token. Don't use any large values as the resizing is not done everywhere in the game.",
+    "doc": "Draws the unit this percent larger on its token, negative for smaller. Keep it small.",
     "signature": "drawsize <percent>"
    }
   ],
@@ -2890,7 +2946,8 @@
    {
     "context": "Weapons",
     "doc": "Water breathers are immune to this weapon.",
-    "signature": "drown"
+    "signature": "drown",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon special attributes",
@@ -2925,7 +2982,8 @@
    {
     "context": "Weapons",
     "doc": "Passing an easy magic resistance check negates the effects of this weapon.",
-    "signature": "easymr"
+    "signature": "easymr",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon special attributes",
@@ -3055,7 +3113,8 @@
    {
     "context": "Rituals",
     "doc": "This type of Enchantment must be active where there ritual is cast.",
-    "signature": "enchherereq <ench nbr>"
+    "signature": "enchherereq <ench nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -3069,7 +3128,8 @@
    {
     "context": "Rituals",
     "doc": "Enchantment will be auto dispelled if it is outside this terrain.",
-    "signature": "enchreqterr <terrain nbr>"
+    "signature": "enchreqterr <terrain nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -3108,7 +3168,8 @@
    {
     "context": "Weapons",
     "doc": "The weapon does not affect Ethereal beings",
-    "signature": "ethereal"
+    "signature": "ethereal",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    },
    {
     "context": "With 0 after it (CoE5SE)",
@@ -3141,7 +3202,8 @@
    {
     "context": "Rituals",
     "doc": "This event variable must be 1 or higher for ritual to be castable.",
-    "signature": "eventvarreq <var>"
+    "signature": "eventvarreq <var>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -3151,7 +3213,8 @@
   "signature": "eventvarreq <var>"
  },
  "expand_ritual_table": {
-  "doc": "Does nothing: CoE5SE's ritual table has room for 10000 rituals from mods on every launch. Past that, a ritual is refused (c5m_refused reason=out_of_ritual_slots) and the \"CoE5SE: Rituals left out\" pop-up names its mod. Kept so mods that carry the line still load; a value after it is c5m_refused reason=unexpected_value. A CoE5SE command: without CoE5SE, the game's Mod Error.",
+  "doc": "Does nothing now: CoE5SE always has room for 10000 mod rituals. Kept so older mods still load.",
+  "docsUrl": "https://musical-pianist.github.io/coe5se-docs/commands/other-commands/#expand-ritual-table",
   "group": "CoE5SE",
   "kinds": [
    "coe5se"
@@ -3205,7 +3268,8 @@
    {
     "context": "Rituals",
     "doc": "Failed summons will be owned by this player.",
-    "signature": "failplayer <player nbr>"
+    "signature": "failplayer <player nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -3266,7 +3330,8 @@
    {
     "context": "Rituals",
     "doc": "Like summoning, but it will occur at target location instead of at the caster's location.",
-    "signature": "farsummon"
+    "signature": "farsummon",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -3307,7 +3372,7 @@
   "docs": [
    {
     "context": "Monsters",
-    "doc": "A fast healing unit will be fully recovered from any non-fatal damage in at most two months. Battle afflictions are also healed, but it can take a few more months.",
+    "doc": "Heals any non-fatal damage within two months; afflictions take a few more.",
     "signature": "fastheal"
    },
    {
@@ -3360,7 +3425,8 @@
    {
     "context": "Rituals",
     "doc": "The monsters in addstring \"(-)...\" must not be more than max at current location.",
-    "signature": "fewmonreq <max>"
+    "signature": "fewmonreq <max>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -3374,7 +3440,8 @@
    {
     "context": "Rituals",
     "doc": "Puts a number of images into a mirror, -1 = fill to default value (mirrorammo)",
-    "signature": "fillmirror <images>"
+    "signature": "fillmirror <images>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -3449,6 +3516,7 @@
  },
  "fixedname": {
   "doc": "The active monster's commanders are always named that. Only while a monster is active.",
+  "docsUrl": "https://musical-pianist.github.io/coe5se-docs/commands/commander-names/#fixedname",
   "group": "CoE5SE",
   "kinds": [
    "coe5se"
@@ -3479,7 +3547,8 @@
    {
     "context": "Weapons",
     "doc": "Flying and Floating units are immune.",
-    "signature": "flying"
+    "signature": "flying",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon special attributes",
@@ -3493,7 +3562,8 @@
    {
     "context": "Weapons",
     "doc": "Flying units have 75% chance of evading this attack",
-    "signature": "flying2"
+    "signature": "flying2",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon special attributes",
@@ -3507,7 +3577,8 @@
    {
     "context": "Weapons",
     "doc": "The visual effect of the flying projectile, ranged weapons only. If flymode is 1 a fly sprite should be used instead of a look number.",
-    "signature": "flylook <look>"
+    "signature": "flylook <look>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon modding: start, basic, sound and visuals, chained",
@@ -3520,8 +3591,9 @@
   "docs": [
    {
     "context": "Weapons",
-    "doc": "Set this if a projectile should be visible for a ranged attack. See Fly Modes table. Those marked with an asterisk (*) behave like normal for aoe 1 effects, but with larger aoe they still only create one flying graphical effect. If using a sprite (flymode 1) then the look value will be used to set the sprite used. See the table Fly Sprites.",
-    "signature": "flymode <flymode nbr>"
+    "doc": "Shows a projectile for a ranged attack; with sprites, look picks the sprite.",
+    "signature": "flymode <flymode nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon modding: start, basic, sound and visuals, chained",
@@ -3539,7 +3611,8 @@
    {
     "context": "Weapons",
     "doc": "The sound effect when the projectile starts flying, ranged weapons only. -1 = none.",
-    "signature": "flysound <sound>"
+    "signature": "flysound <sound>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon modding: start, basic, sound and visuals, chained",
@@ -3670,7 +3743,8 @@
    {
     "context": "Rituals",
     "doc": "Caster will forget this ritual after casting it.",
-    "signature": "forgetcurrit"
+    "signature": "forgetcurrit",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -3684,7 +3758,8 @@
    {
     "context": "Rituals",
     "doc": "Forgets all known rituals.",
-    "signature": "forgetrits"
+    "signature": "forgetrits",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -3698,7 +3773,8 @@
    {
     "context": "Rituals",
     "doc": "There must be a fort with this fort part here.",
-    "signature": "fortreq <fort part>"
+    "signature": "fortreq <fort part>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -3712,7 +3788,8 @@
    {
     "context": "Rituals",
     "doc": "always start with this ritual in addition the others",
-    "signature": "free"
+    "signature": "free",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual learning difficulty",
@@ -3744,8 +3821,9 @@
   "docs": [
    {
     "context": "Weapons",
-    "doc": "The attack will hit all adjacent units. The primary target takes full damage and all subsequent targets take a cumulative -1 damage (so the second target takes full damage -1, the third target takes full damage -2 etc).",
-    "signature": "fullsweep"
+    "doc": "Hits every adjacent unit, each one after the first taking 1 less damage.",
+    "signature": "fullsweep",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon special attributes",
@@ -3792,7 +3870,8 @@
    {
     "context": "Rituals",
     "doc": "Unit must have 1+ in this fx to learn and cast this ritual. This command is probably not useful for modding.",
-    "signature": "fxreq <fx nbr>"
+    "signature": "fxreq <fx nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -3806,7 +3885,8 @@
    {
     "context": "Rituals",
     "doc": "Percent chance of gaining a bless effect.",
-    "signature": "gainbless <percent>"
+    "signature": "gainbless <percent>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -3820,7 +3900,8 @@
    {
     "context": "Rituals",
     "doc": "Percent chance of gaining a dark bless effect.",
-    "signature": "gaindarkbless <percent>"
+    "signature": "gaindarkbless <percent>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -3834,7 +3915,8 @@
    {
     "context": "Rituals",
     "doc": "Learns the ritual that is offset numbers away. E.g. offset 1 = learn the following ritual when casting this one.",
-    "signature": "gainrit <offset>"
+    "signature": "gainrit <offset>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -3909,7 +3991,8 @@
    {
     "context": "Rituals",
     "doc": "will start gathering gems when knowing this ritual",
-    "signature": "gathergems"
+    "signature": "gathergems",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Monster and magic item attributes (the manual lists them under each)",
@@ -4006,7 +4089,7 @@
   "docs": [
    {
     "context": "Terrain",
-    "doc": "A bitmask value that determines the gem income of the location. See the Gem Income Bitmask table. Note that you can add multiple 1 income values together to create a higher income value of a certain type of gem. Maximum income for a single gem type is 7.",
+    "doc": "The square's gem income, a bitmask; at most 7 of one gem type.",
     "signature": "gems <nbr>"
    }
   ],
@@ -4021,7 +4104,8 @@
    {
     "context": "Weapons",
     "doc": "Humanoids killed by this weapon will become ghouls",
-    "signature": "ghoulify"
+    "signature": "ghoulify",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon special attributes",
@@ -4067,7 +4151,7 @@
   "docs": [
    {
     "context": "Classes",
-    "doc": "Percentage bonus to gold income. For example, a bonus of 25 means that the class will have a 25% bonus on all gold income like the Baron.",
+    "doc": "Percent bonus to gold income, like the Baron's 25.",
     "signature": "goldbonus <percent>"
    },
    {
@@ -4118,7 +4202,7 @@
   ]
  },
  "group": {
-  "doc": "Keys of one group never hold the same key: the player's key list greys out a key another key of the group holds, and a click on it asks whether to move the key and leave the other key with none (never a fixed key's). Goes in the newsetting block of a key.",
+  "doc": "Keys in one group never share a key. Goes in a key setting's newsetting block.",
   "group": "CoE5SE",
   "kinds": [
    "coe5se"
@@ -4261,7 +4345,8 @@
    {
     "context": "Weapons",
     "doc": "A morale check vs 1d20 negates the effects of this weapon.",
-    "signature": "hardmorale"
+    "signature": "hardmorale",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon special attributes",
@@ -4275,7 +4360,8 @@
    {
     "context": "Weapons",
     "doc": "Passing a hard magic resistance check negates the effects of this weapon.",
-    "signature": "hardmr"
+    "signature": "hardmr",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon special attributes",
@@ -4316,7 +4402,7 @@
   "docs": [
    {
     "context": "Events",
-    "doc": "True if player has a unit in the current square that has all the afflictions in the aff mask. See table Special Afflictions. Also sets target unit (player -1 = any player)",
+    "doc": "True if player has a unit here with every affliction in the mask; -1 any player. Sets the target unit.",
     "signature": "+hasaffunithere <player> <aff>"
    }
   ],
@@ -4390,7 +4476,8 @@
    {
     "context": "Rituals",
     "doc": "Player must own a portal of this number.",
-    "signature": "hasportalreq <portal nbr>"
+    "signature": "hasportalreq <portal nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -4443,6 +4530,7 @@
  },
  "healhumanarmy": {
   "doc": "Knowing it heals the humans and hoburghers of the caster's army faster.",
+  "docsUrl": "https://musical-pianist.github.io/coe5se-docs/commands/spell-modifiers/#healhumanarmy",
   "group": "CoE5SE",
   "kinds": [
    "coe5se"
@@ -4451,6 +4539,7 @@
  },
  "heallivingarmy": {
   "doc": "Knowing it heals every unit of the caster's army that isn't lifeless faster.",
+  "docsUrl": "https://musical-pianist.github.io/coe5se-docs/commands/spell-modifiers/#heallivingarmy",
   "group": "CoE5SE",
   "kinds": [
    "coe5se"
@@ -4522,7 +4611,7 @@
   "docs": [
    {
     "context": "Events",
-    "doc": "1=Any independent units on this square will hold and not move away. This holdit flag is cleared if the square is conquered or if any unit is spawned on it.",
+    "doc": "1: independents on this square stay. Cleared when the square is conquered or a unit spawns there.",
     "signature": "holdit <0-1>"
    }
   ],
@@ -4556,7 +4645,8 @@
    {
     "context": "Weapons",
     "doc": "The weapon causes double damage against undead & demons",
-    "signature": "holykill"
+    "signature": "holykill",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon special attributes",
@@ -4577,7 +4667,8 @@
    {
     "context": "Rituals",
     "doc": "Can only cast this in the player's home citadel. -1=cannot.",
-    "signature": "homecitreq < -1 or 1>"
+    "signature": "homecitreq < -1 or 1>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -4605,7 +4696,8 @@
    {
     "context": "Rituals",
     "doc": "Caster can only cast this in his home province. -1=cannot.",
-    "signature": "homereq < -1 or 1>"
+    "signature": "homereq < -1 or 1>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -4618,7 +4710,7 @@
   "docs": [
    {
     "context": "Classes",
-    "doc": "Sets the home terrain (home citadel) for the class. This terrain must be a citadel or the player will lose immediately when the game begins. This command is mandatory for a new class.",
+    "doc": "The class's home citadel terrain. Must be a citadel. Needed for a new class.",
     "signature": "hometerr <terrain nbr>"
    }
   ],
@@ -4651,7 +4743,7 @@
    },
    {
     "context": "Monsters",
-    "doc": "The maximum number of hit points for the monster. A normal human soldier has 6 hit points and an elite heavily armored soldier has 10 hit points. An ogre has 25 hit points, a troll has 56 hit points and giants, dragons and other huge monsters can have well over a 100 hit points.",
+    "doc": "Maximum hit points: 6 a human soldier, 25 an ogre, 56 a troll, over 100 for giants and dragons.",
     "signature": "hp <nbr>"
    }
   ],
@@ -4685,7 +4777,8 @@
    {
     "context": "Weapons",
     "doc": "The weapon does not affect Huge beings.",
-    "signature": "huge"
+    "signature": "huge",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon special attributes",
@@ -4771,7 +4864,7 @@
   "signature": "icon \"image.tga\""
  },
  "if": {
-  "doc": "Starts the branches. The triggers above it hold for every branch: when they hold, each branch starts from what they kept (a playerevent's target, a squareevent's squares); when they fail, no branch runs, else included. At most one, before the first branch's actions.",
+  "doc": "Starts the branches. Triggers above it hold for every branch; at most one if, before the first branch's actions.",
   "group": "CoE5SE",
   "kinds": [
    "action",
@@ -4836,7 +4929,8 @@
    {
     "context": "Weapons",
     "doc": "The weapon does not affect Lifeless beings.",
-    "signature": "inanimate"
+    "signature": "inanimate",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    },
    {
     "context": "With 0 after it (CoE5SE)",
@@ -4925,7 +5019,8 @@
    {
     "context": "Weapons",
     "doc": "Initiative value for the weapon, default is 2. Some common initiative values: 1=spell, 2=fist/dagger/bow, 3=club/axe, 4=sword, 6=spear.",
-    "signature": "init <nbr>"
+    "signature": "init <nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon modding: start, basic, sound and visuals, chained",
@@ -4939,7 +5034,8 @@
    {
     "context": "Rituals",
     "doc": "Gives insanity to the target unit. Negative value can be used to cure insanity. Only works if target is a commander.",
-    "signature": "insanity <value>"
+    "signature": "insanity <value>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -5042,7 +5138,7 @@
   "docs": [
    {
     "context": "Classes",
-    "doc": "Percentage bonus to iron income. For example, a bonus of 25 means that the class will have a 25% bonus on all iron income like the Baron.",
+    "doc": "Percent bonus to iron income, like the Baron's 25.",
     "signature": "ironbonus <percent>"
    },
    {
@@ -5168,7 +5264,8 @@
    {
     "context": "Rituals",
     "doc": "Gives between 1 and \\<dmg\\> amount of damage to target unit. Use a value of 9999 for autokill.",
-    "signature": "killtarg <dmg>"
+    "signature": "killtarg <dmg>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -5181,7 +5278,7 @@
   "docs": [
    {
     "context": "Events",
-    "doc": "Hits the target unit with this amount of damage. Use 9999+ for a purge that will disregard any special abilities the target might have (including immortality).",
+    "doc": "Deals this damage to the target unit; 9999 or more ignores every ability, immortality included.",
     "signature": "killunit <dmg>"
    }
   ],
@@ -5246,7 +5343,8 @@
    {
     "context": "Weapons",
     "doc": "The weapon does not affect monsters that are 2x2 tiles or larger in size on the battlefield.",
-    "signature": "large"
+    "signature": "large",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon special attributes",
@@ -5293,7 +5391,8 @@
    {
     "context": "Rituals",
     "doc": "The level of the ritual. Usually the level is between 1 (apprentice level) and 3 (master level).",
-    "signature": "level <1-9>"
+    "signature": "level <1-9>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    },
    {
     "context": "In a newspell block (CoE5SE)",
@@ -5312,7 +5411,8 @@
    {
     "context": "Rituals",
     "doc": "Caster must be exactly this level to use this ritual and cannot have another power at higher level.",
-    "signature": "levelreq <1-9>"
+    "signature": "levelreq <1-9>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -5326,7 +5426,8 @@
    {
     "context": "Rituals",
     "doc": "Will level up if caster is below this level. Leveling up means becoming a new monster determined by the mastery monster command.",
-    "signature": "levelup <1-9>"
+    "signature": "levelup <1-9>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -5340,7 +5441,8 @@
    {
     "context": "Rituals",
     "doc": "Like levelup, but the new monster type is set by the addstring command. Set the new monster type in the addstring command.",
-    "signature": "levelupmon <1-9>"
+    "signature": "levelupmon <1-9>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -5367,7 +5469,7 @@
   "docs": [
    {
     "context": "Monsters",
-    "doc": "For monsters that can level up in a magic library, a value of 2 = magic library or better required, 3 = academy of high magic required. A mastery command is also required on the monster, to determine what monster it will level up to.",
+    "doc": "The library a level-up needs: 2 a magic library, 3 an academy of high magic. Needs mastery too.",
     "signature": "libmastery <library level>"
    }
   ],
@@ -5428,7 +5530,7 @@
    },
    {
     "context": "Terrain",
-    "doc": "Sets amount of lifeforce that can be drained from the square * 10. A plain has 10 and a forest 30. Negative values means square drain lifeforce with this radius (Pillar of Power has a value of -1).",
+    "doc": "Lifeforce drainable from the square, x 10: a plain 10, a forest 30. Negative drains in that radius.",
     "signature": "lifeforce <nbr>"
    }
   ],
@@ -5555,7 +5657,8 @@
    {
     "context": "Weapons",
     "doc": "Use this command for arrows, sling stones and other weapons with an arcing trajectory.",
-    "signature": "lob"
+    "signature": "lob",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon special attributes",
@@ -5624,8 +5727,9 @@
   "docs": [
    {
     "context": "Weapons",
-    "doc": "Sets the visual effect that occurs where the weapon strikes down, e.g. a fiery explosion for a fireball. See the Visual Effects table. The default is no visual effect.",
-    "signature": "look <look>"
+    "doc": "The visual effect where the weapon strikes, such as a fireball's explosion.",
+    "signature": "look <look>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon modding: start, basic, sound and visuals, chained",
@@ -5766,7 +5870,7 @@
   "docs": [
    {
     "context": "Events",
-    "doc": "Gives a special benefit to target unit. See table Special Benefits. Particularly useful values are 2^26 to get the twiceborn effect or 2^24 to get the Stygian Bath effect. Note that most ben effects are temporary any will disappear after battle or during the turn and will be useless for events.",
+    "doc": "Gives the target unit a benefit; 2^26 is twiceborn, 2^24 Stygian Bath. Most benefits are temporary.",
     "signature": "makeben <ben>"
    }
   ],
@@ -5854,7 +5958,8 @@
    {
     "context": "Rituals",
     "doc": "Connect this square to other portals of the same number. Portal nbr 1000 is special and will create a unique number.",
-    "signature": "makeportal <portal nbr>"
+    "signature": "makeportal <portal nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -5937,8 +6042,9 @@
   "docs": [
    {
     "context": "Rituals",
-    "doc": "Ritual cannot be cast more than this number of times per player. This number can be modified by the two following commands to create more exotic restrictions, e.g. a ritual that can only be cast once per 6 months.",
-    "signature": "maxcast <value>"
+    "doc": "The most times each player can cast the ritual.",
+    "signature": "maxcast <value>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -5949,6 +6055,7 @@
  },
  "maxdata": {
   "doc": "Your mod's area holds this many MB, a whole number from 1 to 100. Once per .c5se.",
+  "docsUrl": "https://musical-pianist.github.io/coe5se-docs/commands/other-commands/#maxdata",
   "group": "CoE5SE",
   "kinds": [
    "coe5se"
@@ -6049,7 +6156,7 @@
   "docs": [
    {
     "context": "Monsters",
-    "doc": "Equips the monster with a special melee weapon. Any normal melee attacks after this one will not be used if this attack was used. Normally used for lances.",
+    "doc": "A special melee weapon, such as a lance: once used, later melee attacks are skipped.",
     "signature": "meleeweaponspec <dmg> \"weapon\""
    }
   ],
@@ -6162,7 +6269,8 @@
    {
     "context": "Weapons",
     "doc": "The weapon does not affect Mindless beings.",
-    "signature": "mind"
+    "signature": "mind",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon special attributes",
@@ -6246,7 +6354,8 @@
    {
     "context": "Rituals",
     "doc": "The monsters in addstring \"(&)...\" must be at least 'min' in number at current location.",
-    "signature": "minmonreq <min>"
+    "signature": "minmonreq <min>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -6329,7 +6438,7 @@
   "docs": [
    {
     "context": "Events",
-    "doc": "True if the event's square holds at least nbr living units of this exact monster name, capitals included, belonging to player (player -1 = any player). An empty name matches no monster. -minunitshere is the opposite. New in CoE5 5.41.",
+    "doc": "True if the event's square holds at least nbr of this exact monster, player's; -1 any player.",
     "signature": "+minunitshere <player> <nbr> \"monster name\""
    }
   ],
@@ -6386,7 +6495,8 @@
    {
     "context": "Rituals",
     "doc": "Set targ to an empty mirror unit, attr = size for mirror, -1=any size",
-    "signature": "mirrortarg <mirror size>"
+    "signature": "mirrortarg <mirror size>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -6441,7 +6551,7 @@
   "docs": [
    {
     "context": "Index",
-    "doc": "Sets when this mod should be loaded in relation to other mods. Default is 5 and lower numbers are loaded first. Usually you don't need to use this command.",
+    "doc": "Load order, 1 to 9, lower first; 5 by default. Usually not needed.",
     "signature": "modprio <prio 1-9>"
    }
   ],
@@ -6492,8 +6602,9 @@
   "docs": [
    {
     "context": "Rituals",
-    "doc": "At least min number (default 1) of the monsters in addstring \"(&)...\" must be in the world and owned by the current player. The min attribute is optional and can be omitted.",
-    "signature": "monplayerreq [<min>]"
+    "doc": "At least min (default 1) of the \"(&)...\" monsters must be alive and the caster's player's.",
+    "signature": "monplayerreq [<min>]",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -6521,7 +6632,8 @@
    {
     "context": "Rituals",
     "doc": "Sets targ unit to a random unit at target location among the type added by addstring.",
-    "signature": "montarg <1>"
+    "signature": "montarg <1>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -6534,8 +6646,9 @@
   "docs": [
    {
     "context": "Rituals",
-    "doc": "At least min number (default 1) of the monsters in addstring \"(&)...\" must be in the world. The min attribute is optional and can be omitted.",
-    "signature": "monworldreq [<min>]"
+    "doc": "At least min (default 1) of the \"(&)...\" monsters must be alive in the world.",
+    "signature": "monworldreq [<min>]",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -6548,7 +6661,7 @@
   "docs": [
    {
     "context": "Monsters",
-    "doc": "The morale of the monster. A normal human soldier has a morale of 4, an elite human soldier has 5 or 6 and powerful monsters can have a morale of 8 or more. Very fearless monsters may have a morale of 15. Setting the morale to 99 makes the monster Mindless and it will be completely unaffected by fear or any other effects that influence morale.",
+    "doc": "Morale: 4 a human soldier, 8 or more powerful monsters, 15 fearless; 99 is Mindless.",
     "signature": "mor <nbr>"
    }
   ],
@@ -6568,7 +6681,8 @@
    {
     "context": "Weapons",
     "doc": "A morale check vs 1d10 negates the effects of this weapon.",
-    "signature": "morale"
+    "signature": "morale",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon special attributes",
@@ -6623,7 +6737,7 @@
   "docs": [
    {
     "context": "Monsters",
-    "doc": "Spawns as one of a few special spawners in the game. 1 = mother of monsters, 2 = teotls of war (spawns d2 jaguars or 1 ozelotls, not on homeplane), 3 = teotls of rain (spawns d3 toad warriors, not on homeplane), 4 = bloody mother (spawns d2 jaguars or d3 serpents, not on homeplane), 5 = teotls of night (spawns d3 bats or 1 ozelotls, not on homeplane), 6 = teotls of underworld (spawns 2d3 longdead, not on homeplane), 7 = teotls of sky (spawns d3 bats or d3 eagle warriors, not on homeplane)",
+    "doc": "Spawns as one of the game's special spawners: 1 Mother of Monsters, 2 to 7 the teotls and the bloody mother.",
     "signature": "motherspawn <0-7>"
    }
   ],
@@ -6685,7 +6799,8 @@
    {
     "context": "Rituals",
     "doc": "Moves home citadel location to target square.",
-    "signature": "movehome"
+    "signature": "movehome",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -6703,13 +6818,14 @@
    },
    {
     "context": "Monsters",
-    "doc": "The magic resistance of the monster. Animals have a magic resistance of 2, a normal human has 4 and a more susceptible human has 3. Apprentice mages have a magic resistance of 6, full mages have 8 and master mages have 9. Some highly magical beings may have even higher magic resistance and they can almost never be affected by magic that is resistible.",
+    "doc": "Magic resistance: 2 animals, 4 humans, 6 apprentices, 8 mages, 9 master mages.",
     "signature": "mr <nbr>"
    },
    {
     "context": "Weapons",
     "doc": "Passing a normal magic resistance check negates the effects of this weapon.",
-    "signature": "mr"
+    "signature": "mr",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Monster modding: start, basic, copy and clear, weapons",
@@ -6723,7 +6839,8 @@
    {
     "context": "Rituals",
     "doc": "Set wheter chooseloc can select locations on other planes or not. 0=same plane only, 1=similar planes (default), 2=all planes.",
-    "signature": "multiplane <0-2>"
+    "signature": "multiplane <0-2>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -6736,8 +6853,9 @@
   "docs": [
    {
     "context": "Weapons",
-    "doc": "Being Ethereal protects against this weapon. Ethereal units have a 75% chance to be unaffected by the weapon. Most weapons such as swords and spears are mundane.",
-    "signature": "mundane"
+    "doc": "Ethereal units ignore it 75% of the time. Most swords and spears are mundane.",
+    "signature": "mundane",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon special attributes",
@@ -6750,8 +6868,9 @@
   "docs": [
    {
     "context": "Weapons",
-    "doc": "A victim killed by this weapon becomes a monster of the type that immediately follows the killer in the monster list. For example, units killed by a Doppelganger become Doppelspawn, which is the next unit in order from Doppelganger.",
-    "signature": "mutate"
+    "doc": "A victim it kills becomes the monster listed right after the killer, as Doppelganger makes Doppelspawn.",
+    "signature": "mutate",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon special attributes",
@@ -6825,7 +6944,8 @@
    {
     "context": "Rituals",
     "doc": "This terrain must be within 1 square when casting the ritual (a 3x3 square area).",
-    "signature": "nearby1req <terrain nbr>"
+    "signature": "nearby1req <terrain nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -6839,7 +6959,8 @@
    {
     "context": "Rituals",
     "doc": "This terrain must be within 3 squares when casting the ritual (a 7x7 square area).",
-    "signature": "nearby3req <terrain nbr>"
+    "signature": "nearby3req <terrain nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -6853,7 +6974,8 @@
    {
     "context": "Rituals",
     "doc": "This terrain must be within 5 squares when casting the ritual (a 11x11 square area).",
-    "signature": "nearby5req <terrain nbr>"
+    "signature": "nearby5req <terrain nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -6867,7 +6989,8 @@
    {
     "context": "Rituals",
     "doc": "This terrain must be within 7 squares when casting the ritual (a 15x15 square area).",
-    "signature": "nearby7req <terrain nbr>"
+    "signature": "nearby7req <terrain nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -6881,7 +7004,8 @@
    {
     "context": "Rituals",
     "doc": "This terrain must be somewhere on the same plane when casting the ritual",
-    "signature": "nearby99req <terrain nbr>"
+    "signature": "nearby99req <terrain nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -6891,7 +7015,7 @@
   "signature": "nearby99req <terrain nbr>"
  },
  "needs_glu32.dll_and_CoE5SE_enabled_at_launch": {
-  "doc": "Right after the icon and description lines. Nothing: CoE5SE takes the line. Without CoE5SE running (no glu32.dll, or CoE5SE off when the game started), the game stops at it with its Mod Error: \"Error in mod '<path>' at line 3\", then \"mod command 'needs_glu32.dll_and_CoE5SE_enabled_at_launch' did nothing\". Every mod that does nothing without CoE5SE carries it (a Lua or DLL mod, or one with CoE5SE commands in its .c5m); a mod whose CoE5SE lines are all in its .c5se or on #!@ lines doesn't, and neither does CoE5SE's own .c5m.",
+  "doc": "Right after icon and description. Without CoE5SE running, the game stops here with its Mod Error, so players know they need it.",
   "group": "CoE5SE",
   "kinds": [
    "coe5se"
@@ -6966,7 +7090,8 @@
    {
     "context": "Rituals",
     "doc": "Like randnewloc but will go to other planes if necessary (but not hades)",
-    "signature": "newlocplanes <terrain nbr>"
+    "signature": "newlocplanes <terrain nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -6979,7 +7104,7 @@
   "docs": [
    {
     "context": "Monsters",
-    "doc": "Creates a new monster. This new monster will be affected by the following modding commands until the next active monster is set. The monster can have the same name as another monster.",
+    "doc": "Creates a monster; the lines after it change it until another monster is set.",
     "signature": "newmonster \"monster name\""
    }
   ],
@@ -6991,6 +7116,7 @@
  },
  "newnametype": {
   "doc": "Starts a name list. A second newnametype with a list's name adds to that list, from this mod or another.",
+  "docsUrl": "https://musical-pianist.github.io/coe5se-docs/commands/commander-names/#newnametype",
   "group": "CoE5SE",
   "kinds": [
    "coe5se"
@@ -6998,7 +7124,8 @@
   "signature": "newnametype \"<list>\""
  },
  "newplane": {
-  "doc": "Starts a plane's block. No other plane may have the name: a mod's, or a game plane's full name (\"Celestial Plane\") or short name (\"Celestial\"). Capitals matter in a plane's name.",
+  "doc": "Starts a plane's block. The name must be new: no mod's or game plane's name, capitals counting.",
+  "docsUrl": "https://musical-pianist.github.io/coe5se-docs/commands/planes/#newplane",
   "group": "CoE5SE",
   "kinds": [
    "coe5se"
@@ -7010,7 +7137,8 @@
    {
     "context": "Rituals",
     "doc": "Grants a new ritual of this level.",
-    "signature": "newrit <1-9>"
+    "signature": "newrit <1-9>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -7024,7 +7152,8 @@
    {
     "context": "Rituals",
     "doc": "Creates an entire new school of rituals called a ritpow. This should be the first command when creating a new batch of rituals.",
-    "signature": "newritpow"
+    "signature": "newritpow",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual modding: start, basic, clear and copy",
@@ -7038,7 +7167,8 @@
    {
     "context": "Rituals",
     "doc": "Create a new ritual with this name. This should be the first command for each new ritual.",
-    "signature": "newritual \"name\""
+    "signature": "newritual \"name\"",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual modding: start, basic, clear and copy",
@@ -7073,6 +7203,7 @@
  },
  "newspell": {
   "doc": "Opens a spell block. Like the game's own newmonster and newritual, it ends the block before it.",
+  "docsUrl": "https://musical-pianist.github.io/coe5se-docs/commands/spells/#newspell",
   "group": "CoE5SE",
   "kinds": [
    "coe5se"
@@ -7084,7 +7215,8 @@
    {
     "context": "Rituals",
     "doc": "Learns one new level 1 combat spell from this path.",
-    "signature": "newspell1 <path nbr>"
+    "signature": "newspell1 <path nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -7098,7 +7230,8 @@
    {
     "context": "Rituals",
     "doc": "Learns one new level 2 combat spell from this path.",
-    "signature": "newspell2 <path nbr>"
+    "signature": "newspell2 <path nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -7112,7 +7245,8 @@
    {
     "context": "Rituals",
     "doc": "Learns one new level 3 combat spell from this path.",
-    "signature": "newspell3 <path nbr>"
+    "signature": "newspell3 <path nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -7122,7 +7256,8 @@
   "signature": "newspell3 <path nbr>"
  },
  "newspellpath": {
-  "doc": "Makes a path with that name, numbered from 70 in load order on every mod pass. A name a path already has (the game's, or an earlier mod's) is that path, so mods that name the same path share it.",
+  "doc": "Makes a spell path with that name. Mods that name the same path share it.",
+  "docsUrl": "https://musical-pianist.github.io/coe5se-docs/commands/spell-paths/#newspellpath",
   "group": "CoE5SE",
   "kinds": [
    "coe5se"
@@ -7148,7 +7283,8 @@
    {
     "context": "Weapons",
     "doc": "This command creates a new weapon.",
-    "signature": "newweapon \"weapon name\""
+    "signature": "newweapon \"weapon name\"",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon modding: start, basic, sound and visuals, chained",
@@ -7161,8 +7297,9 @@
   "docs": [
    {
     "context": "Weapons",
-    "doc": "If the target is wounded by the weapon, it will also be hit by the next weapon, i.e. the weapon defined next in the mod after this weapon. This command can only be used for new weapons, so you must have created one with the newweapon command.",
-    "signature": "next"
+    "doc": "A target this wounds is also hit by the next weapon in the mod. New weapons only.",
+    "signature": "next",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon modding: start, basic, sound and visuals, chained",
@@ -7176,7 +7313,8 @@
    {
     "context": "Weapons",
     "doc": "Like next, but will take effect even if no damage was inflicted on the target.",
-    "signature": "nextalways"
+    "signature": "nextalways",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon modding: start, basic, sound and visuals, chained",
@@ -7190,7 +7328,8 @@
    {
     "context": "Weapons",
     "doc": "Like 'nextalways' but the additional strike will come from a named weapon that has already been created.",
-    "signature": "nextalwayswep \"weapon name\" \\| <nbr>"
+    "signature": "nextalwayswep \"weapon name\" \\| <nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon modding: start, basic, sound and visuals, chained",
@@ -7204,7 +7343,8 @@
    {
     "context": "Weapons",
     "doc": "Sets the damage of the chained weapon.",
-    "signature": "nextdmg <dmg>"
+    "signature": "nextdmg <dmg>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon modding: start, basic, sound and visuals, chained",
@@ -7218,7 +7358,8 @@
    {
     "context": "Rituals",
     "doc": "receives next ritual too when receiving this one",
-    "signature": "nexttoo"
+    "signature": "nexttoo",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual learning difficulty",
@@ -7232,7 +7373,8 @@
    {
     "context": "Weapons",
     "doc": "Like 'next' but the additional strike will come from a named weapon that has already been created.",
-    "signature": "nextwep \"weapon name\" \\| <nbr>"
+    "signature": "nextwep \"weapon name\" \\| <nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon modding: start, basic, sound and visuals, chained",
@@ -7284,7 +7426,8 @@
    {
     "context": "Rituals",
     "doc": "demons never know this ritual",
-    "signature": "nodemon"
+    "signature": "nodemon",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual learning difficulty",
@@ -7326,7 +7469,8 @@
    {
     "context": "Rituals",
     "doc": "This event variable must be 0 or lower for ritual to be castable.",
-    "signature": "noeventvarreq <var>"
+    "signature": "noeventvarreq <var>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -7334,6 +7478,29 @@
    "parser"
   ],
   "signature": "noeventvarreq <var>"
+ },
+ "noexplode": {
+  "doc": "Stops exploding dice: a weapon's damage, after newweapon or selectweapon, or the dice of the addstring above it.",
+  "docsUrl": "https://musical-pianist.github.io/coe5se-docs/commands/ritual-effects/#noexplode",
+  "forms": [
+   {
+    "doc": "Stops exploding dice: a weapon's damage, after newweapon or selectweapon, or the dice of the addstring above it.",
+    "signature": "noexplode"
+   },
+   {
+    "doc": "Under an addstring: only those parts' dice, counted from 1 at each &.",
+    "signature": "noexplode <part> ..."
+   },
+   {
+    "doc": "No die explodes in a weapon or addstring between the two lines.",
+    "signature": "noexplode start, then noexplode end"
+   }
+  ],
+  "group": "CoE5SE",
+  "kinds": [
+   "coe5se"
+  ],
+  "signature": "noexplode"
  },
  "noeyes": {
   "docs": [
@@ -7354,7 +7521,8 @@
    {
     "context": "Rituals",
     "doc": "females never know this ritual",
-    "signature": "nofemale"
+    "signature": "nofemale",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual learning difficulty",
@@ -7368,7 +7536,8 @@
    {
     "context": "Rituals",
     "doc": "There cannot be a fort with this fort part here.",
-    "signature": "nofortreq <fort part>"
+    "signature": "nofortreq <fort part>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -7382,7 +7551,8 @@
    {
     "context": "Rituals",
     "doc": "Cannot be a unit with this fx at the current location.",
-    "signature": "nofxherereq <fx nbr>"
+    "signature": "nofxherereq <fx nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -7447,8 +7617,9 @@
   "docs": [
    {
     "context": "Rituals",
-    "doc": "Monsters in addstring \"(-)...\" must not be in elysium/sky/agartha. Monster in addstring \"(+)...\" will disable following minuses if monster fulfills same requirement. This applies for all nomon... commands.",
-    "signature": "nomonelysiumreq"
+    "doc": "The \"(-)...\" monsters must not be in Elysium, the Sky or Agartha; a \"(+)...\" one lifts the minuses after it.",
+    "signature": "nomonelysiumreq",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -7462,7 +7633,8 @@
    {
     "context": "Rituals",
     "doc": "Monsters in addstring \"(-)...\" must not have their home at current location.",
-    "signature": "nomonhomereq"
+    "signature": "nomonhomereq",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -7476,7 +7648,8 @@
    {
     "context": "Rituals",
     "doc": "Monsters in addstring \"(-)...\" must not be in the world and owned by the current player unless level is higher than ritual requires",
-    "signature": "nomonmasteryreq"
+    "signature": "nomonmasteryreq",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -7490,7 +7663,8 @@
    {
     "context": "Rituals",
     "doc": "Monsters in addstring \"(-)...\" in the world and owned by the current player must be fewer than limit. Default limit is 1.",
-    "signature": "nomonplayerreq [<limit>]"
+    "signature": "nomonplayerreq [<limit>]",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -7504,7 +7678,8 @@
    {
     "context": "Rituals",
     "doc": "Monsters in addstring \"(-)...\" must not be at current location.",
-    "signature": "nomonreq"
+    "signature": "nomonreq",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -7518,7 +7693,8 @@
    {
     "context": "Rituals",
     "doc": "Monsters in addstring \"(-)...\" in the world must be fewer than limit. Default limit is 1.",
-    "signature": "nomonworldreq [<limit>]"
+    "signature": "nomonworldreq [<limit>]",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -7532,7 +7708,8 @@
    {
     "context": "Rituals",
     "doc": "This terrain cannot be within 1 square when casting the ritual (a 3x3 square area).",
-    "signature": "nonearby1req <terrain nbr>"
+    "signature": "nonearby1req <terrain nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -7546,7 +7723,8 @@
    {
     "context": "Rituals",
     "doc": "This terrain cannot be within 3 squares when casting the ritual (a 7x7 square area).",
-    "signature": "nonearby3req <terrain nbr>"
+    "signature": "nonearby3req <terrain nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -7560,7 +7738,8 @@
    {
     "context": "Rituals",
     "doc": "This terrain cannot be within 5 squares when casting the ritual (a 11x11 square area).",
-    "signature": "nonearby5req <terrain nbr>"
+    "signature": "nonearby5req <terrain nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -7574,7 +7753,8 @@
    {
     "context": "Rituals",
     "doc": "This terrain cannot be within 7 squares when casting the ritual (a 15x15 square area).",
-    "signature": "nonearby7req <terrain nbr>"
+    "signature": "nonearby7req <terrain nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -7588,7 +7768,8 @@
    {
     "context": "Rituals",
     "doc": "This terrain cannot be anywhere on the same plane when casting the ritual",
-    "signature": "nonearby99req <terrain nbr>"
+    "signature": "nonearby99req <terrain nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -7649,7 +7830,8 @@
    {
     "context": "Rituals",
     "doc": "Cannot be cast on this plane. See table Plane Numbers.",
-    "signature": "noplanereq <plane nbr>"
+    "signature": "noplanereq <plane nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -7666,7 +7848,8 @@
    {
     "context": "Rituals",
     "doc": "Location where ritual is cast mustn't contain a portal",
-    "signature": "noportalreq <0-1>"
+    "signature": "noportalreq <0-1>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -7741,7 +7924,8 @@
    {
     "context": "Rituals",
     "doc": "never start with this ritual (or learn from mastery)",
-    "signature": "nostart"
+    "signature": "nostart",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    },
    {
     "context": "Terrain",
@@ -7788,7 +7972,8 @@
    {
     "context": "Weapons",
     "doc": "The weapon is unaffected by damage bonuses from any source",
-    "signature": "nostr"
+    "signature": "nostr",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon special attributes",
@@ -7802,7 +7987,8 @@
    {
     "context": "Rituals",
     "doc": "units with more expensive rituals can't get this one",
-    "signature": "notforpoor"
+    "signature": "notforpoor",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual learning difficulty",
@@ -7813,6 +7999,7 @@
  },
  "notsea": {
   "doc": "Can't be cast at sea.",
+  "docsUrl": "https://musical-pianist.github.io/coe5se-docs/commands/spell-modifiers/#notsea",
   "group": "CoE5SE",
   "kinds": [
    "coe5se"
@@ -7821,6 +8008,7 @@
  },
  "notunderground": {
   "doc": "Can't be cast underground.",
+  "docsUrl": "https://musical-pianist.github.io/coe5se-docs/commands/spell-modifiers/#notunderground",
   "group": "CoE5SE",
   "kinds": [
    "coe5se"
@@ -7832,7 +8020,8 @@
    {
     "context": "Rituals",
     "doc": "undeads never know this ritual",
-    "signature": "noundead"
+    "signature": "noundead",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual learning difficulty",
@@ -7865,7 +8054,8 @@
    {
     "context": "Weapons",
     "doc": "The weapon can only be used once per battle.",
-    "signature": "oneshot"
+    "signature": "oneshot",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon special attributes",
@@ -7887,7 +8077,8 @@
    {
     "context": "Weapons",
     "doc": "This weapon will not affect friendly troops",
-    "signature": "onlyenemy"
+    "signature": "onlyenemy",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon special attributes",
@@ -7901,7 +8092,8 @@
    {
     "context": "Weapons",
     "doc": "This weapon will only affect friendly troops",
-    "signature": "onlyfriend"
+    "signature": "onlyfriend",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon special attributes",
@@ -7935,7 +8127,7 @@
   "signature": "optiontip <number> \"<text>\""
  },
  "or": {
-  "doc": "Between groups of triggers: the event holds when every trigger of one group holds. Triggers in a group still all have to hold, as in the game.",
+  "doc": "Between groups of triggers: the event holds when every trigger of one group holds.",
   "group": "CoE5SE",
   "kinds": [
    "action",
@@ -7947,8 +8139,9 @@
   "docs": [
    {
     "context": "Rituals",
-    "doc": "This ritual will have one of two possible effects. The first effect will consist of the following command, the next effect will consist of the remaining commands. Percent is the chance of the first effect happening.",
-    "signature": "ornext <percent>"
+    "doc": "Two possible effects: the next command, at this percent, or the rest.",
+    "signature": "ornext <percent>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -7961,8 +8154,9 @@
   "docs": [
    {
     "context": "Rituals",
-    "doc": "This ritual will have one of two possible effects. The first effect will consist of the two following commands, the next effect will consist of the remaining commands. Percent is the chance of the first effect happening.",
-    "signature": "ornext2 <percent>"
+    "doc": "Two possible effects: the next two commands, at this percent, or the rest.",
+    "signature": "ornext2 <percent>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -7975,8 +8169,9 @@
   "docs": [
    {
     "context": "Rituals",
-    "doc": "This ritual will have one of two possible effects. The first effect will consist of the three following commands, the next effect will consist of the remaining commands. Percent is the chance of the first effect happening.",
-    "signature": "ornext3 <percent>"
+    "doc": "Two possible effects: the next three commands, at this percent, or the rest.",
+    "signature": "ornext3 <percent>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -7990,7 +8185,8 @@
    {
     "context": "Rituals",
     "doc": "Like the other ornext commands.",
-    "signature": "ornext4 <percent>"
+    "signature": "ornext4 <percent>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -8004,7 +8200,8 @@
    {
     "context": "Rituals",
     "doc": "Like the other ornext commands.",
-    "signature": "ornext5 <percent>"
+    "signature": "ornext5 <percent>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -8017,7 +8214,7 @@
   "docs": [
    {
     "context": "Classes",
-    "doc": "Will enable the class to survive without owning a citadel in Elysium. Note that all classes will survive when owning their start citadel, even if it is not in Elysium.",
+    "doc": "The class survives without a citadel in Elysium.",
     "signature": "otherplanar"
    }
   ],
@@ -8084,7 +8281,8 @@
   "signature": "passwall"
  },
  "path": {
-  "doc": "The magic path: a number the game names (1 to 69; the manual's Magic Paths table lists 1 to 68), or a path's name, the game's or one made with newspellpath (Spell Paths). Needed.",
+  "doc": "The spell's magic path: a game path's number, or a path's name in quotes. Needed.",
+  "docsUrl": "https://musical-pianist.github.io/coe5se-docs/commands/spells/#path",
   "group": "CoE5SE",
   "kinds": [
    "coe5se"
@@ -8170,7 +8368,7 @@
   "docs": [
    {
     "context": "Events",
-    "doc": "True if target square is on this plane. See table Plane Numbers. The special values -1 (all planes) and -2 (Elysium-near planes) can also be used.",
+    "doc": "True if the target square is on this plane; -1 all planes, -2 Elysium-like ones.",
     "signature": "+plane <planenr>"
    }
   ],
@@ -8185,6 +8383,7 @@
  },
  "planefile": {
   "doc": "The plane's squares from a map file (Map Files for Planes). With planelike too, the recipe builds over the file's squares.",
+  "docsUrl": "https://musical-pianist.github.io/coe5se-docs/commands/planes/#planefile",
   "group": "CoE5SE",
   "kinds": [
    "coe5se"
@@ -8193,6 +8392,7 @@
  },
  "planefill": {
   "doc": "The terrain every square starts as. Required, unless the block has planelike or planefile; without it every square starts as 0, Plain.",
+  "docsUrl": "https://musical-pianist.github.io/coe5se-docs/commands/planes/#planefill",
   "group": "CoE5SE",
   "kinds": [
    "coe5se"
@@ -8200,7 +8400,8 @@
   "signature": "planefill <terrain>"
  },
  "planeicon": {
-  "doc": "The picture on the plane's map button, a .tga or .png file; 64 x 64, like the game's plane icons. Without it, a plane with planelike shows that plane's icons, and any other plane a coloured square, a different colour for each mod's plane, up to 8.",
+  "doc": "The plane's map button picture, a 64 x 64 .tga or .png.",
+  "docsUrl": "https://musical-pianist.github.io/coe5se-docs/commands/planes/#planeicon",
   "group": "CoE5SE",
   "kinds": [
    "coe5se"
@@ -8208,7 +8409,8 @@
   "signature": "planeicon \"./<file>.tga\""
  },
  "planelike": {
-  "doc": "Builds the plane with that game plane's recipe: \"Celestial\", \"Sky\", \"Agartha\", \"Inferno\", \"Hades\", \"Elemental\" or \"Void\". A recipe is CoE5SE's copy of the game's random map generator for that plane, its steps in the game's order; they are in planes/plane_recipes.lua, in CoE5SE's folder. A step the plane is too small for is skipped, never scaled down (plane_too_small). Where the game copies Elysium (the Sky, Agartha, Hades), the recipe reads Elysium at the same offset and fills past Elysium's size. The plane also takes that plane's ground pictures wherever the game sets ground (at the world build and at every terrain change): the Sky's clouds, Agartha's and the Inferno's rock, Hades' shade land and black water, the Elemental Planes' ash. A planelike \"Sky\" plane takes the Sky's tint too: red over the map while a Blood Sun is up, as the game tints the Sky.",
+  "doc": "Builds the plane with that game plane's recipe, ground pictures and tint.",
+  "docsUrl": "https://musical-pianist.github.io/coe5se-docs/commands/planes/#planelike",
   "group": "CoE5SE",
   "kinds": [
    "coe5se"
@@ -8220,7 +8422,8 @@
    {
     "context": "Rituals",
     "doc": "Shift target loc to same position but on another plane (neg = toggle between this plane and elysium).",
-    "signature": "planeloc <plane nbr>"
+    "signature": "planeloc <plane nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -8231,6 +8434,7 @@
  },
  "planepiece": {
   "doc": "A set piece: a map file stamped into the built plane (Set Pieces and Zones). centre works as center.",
+  "docsUrl": "https://musical-pianist.github.io/coe5se-docs/commands/planes/#planepiece",
   "group": "CoE5SE",
   "kinds": [
    "coe5se"
@@ -8238,7 +8442,8 @@
   "signature": "planepiece \"./<file>.coem\" center, random <count>, at <x> <y> or nearportal"
  },
  "planepopulate": {
-  "doc": "Places that game plane's independents on the plane, or none with off. Without it, planelike's plane's independents. The game places independents by terrain number, so another plane's independents appear only on terrains both planes have. A unique monster already alive is never moved (plane_unique_kept).",
+  "doc": "Places that game plane's independents on the plane, or none with off.",
+  "docsUrl": "https://musical-pianist.github.io/coe5se-docs/commands/planes/#planepopulate",
   "group": "CoE5SE",
   "kinds": [
    "coe5se"
@@ -8250,7 +8455,8 @@
    {
     "context": "Rituals",
     "doc": "Can only be cast on this plane. See table Plane Numbers.",
-    "signature": "planereq <plane nbr>"
+    "signature": "planereq <plane nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -8263,7 +8469,8 @@
   ]
  },
  "planeshape": {
-  "doc": "After newmonster or selectmonster: the monster becomes <monster> on <plane>, a mod's plane, as elysiumshape to voidshape do on the game planes (coe5.setPlaneShape). \"\" gives it no shape there.",
+  "doc": "After a monster: it becomes that monster on your plane, as elysiumshape does on Elysium. \"\" gives it none.",
+  "docsUrl": "https://musical-pianist.github.io/coe5se-docs/commands/planes/#planeshape",
   "group": "CoE5SE",
   "kinds": [
    "coe5se"
@@ -8285,7 +8492,8 @@
   "signature": "planeshift <plane nbr>"
  },
  "planesize": {
-  "doc": "The plane's width and height in squares. Required, unless planefile gives the size or planelike is \"Sky\", \"Agartha\", \"Hades\" or \"Inferno\": without planesize those take the size the game gives that plane in each world, Elysium's (the Inferno 4 more each way, its Void frame), at least 32 x 32 for all four, the Inferno's smallest. A planesize of its own is not bound by that: any size from 1 x 1.",
+  "doc": "The plane's width and height in squares. Needed, unless planefile or a planelike Sky, Agartha, Hades or Inferno gives it.",
+  "docsUrl": "https://musical-pianist.github.io/coe5se-docs/commands/planes/#planesize",
   "group": "CoE5SE",
   "kinds": [
    "coe5se"
@@ -8297,7 +8505,8 @@
    {
     "context": "Rituals",
     "doc": "Swaps target square with corresponding square on this plane.",
-    "signature": "planeswap <plane nbr>"
+    "signature": "planeswap <plane nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -8308,6 +8517,7 @@
  },
  "planeunits": {
   "doc": "The plane gets only these monsters, outside the zones that have their own list or are off. planelike's and planepopulate's independents are not placed.",
+  "docsUrl": "https://musical-pianist.github.io/coe5se-docs/commands/planes/#planeunits",
   "group": "CoE5SE",
   "kinds": [
    "coe5se"
@@ -8316,6 +8526,7 @@
  },
  "planezone": {
   "doc": "A zone: every square within <radius> of each copy of that planepiece file. The zone commands below act on the last planezone above them.",
+  "docsUrl": "https://musical-pianist.github.io/coe5se-docs/commands/planes/#planezone",
   "group": "CoE5SE",
   "kinds": [
    "coe5se"
@@ -8324,6 +8535,7 @@
  },
  "planezonepopulate": {
   "doc": "The zone gets no independents.",
+  "docsUrl": "https://musical-pianist.github.io/coe5se-docs/commands/planes/#planezonepopulate",
   "group": "CoE5SE",
   "kinds": [
    "coe5se"
@@ -8332,6 +8544,7 @@
  },
  "planezoneswap": {
   "doc": "In the zone, each square of the first terrain becomes the second, before the independents are placed. Up to 32 lines a zone.",
+  "docsUrl": "https://musical-pianist.github.io/coe5se-docs/commands/planes/#planezoneswap",
   "group": "CoE5SE",
   "kinds": [
    "coe5se"
@@ -8340,6 +8553,7 @@
  },
  "planezoneunits": {
   "doc": "The zone gets only these monsters: on each square, <chance> percent for <count> of them.",
+  "docsUrl": "https://musical-pianist.github.io/coe5se-docs/commands/planes/#planezoneunits",
   "group": "CoE5SE",
   "kinds": [
    "coe5se"
@@ -8393,7 +8607,8 @@
    {
     "context": "Weapons",
     "doc": "Poison resistance helps against this attack even though the weapon is not poison.",
-    "signature": "poison"
+    "signature": "poison",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon special attributes",
@@ -8505,7 +8720,8 @@
    {
     "context": "Rituals",
     "doc": "Creates a portal to a location around this terrain.",
-    "signature": "portalroom <terrain nbr>"
+    "signature": "portalroom <terrain nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -8518,7 +8734,7 @@
   "docs": [
    {
     "context": "Monsters",
-    "doc": "pow nbr 0 means the last created ritual school, -1 = the one before that, etc. Positive numbers are existing ritual powers from CoE5, see the Ritual Schools table.",
+    "doc": "A ritual school: 0 the last one made, -1 the one before; positive numbers are the game's.",
     "signature": "power <pow nbr>"
    }
   ],
@@ -8549,7 +8765,7 @@
   "docs": [
    {
     "context": "Monsters",
-    "doc": "By default all animals can be made into primal animals. -1 = monster cannot be turned into a primal variant, 1 = can be turned into a primal variant.",
+    "doc": "-1 never a primal variant, 1 can be one. Animals can be by default.",
     "signature": "primable <value>"
    }
   ],
@@ -8617,6 +8833,7 @@
  },
  "prioritylearn": {
   "doc": "A unit that starts with spells learns this one before the others of its path and level.",
+  "docsUrl": "https://musical-pianist.github.io/coe5se-docs/commands/spell-modifiers/#prioritylearn",
   "group": "CoE5SE",
   "kinds": [
    "coe5se"
@@ -8655,8 +8872,9 @@
   "docs": [
    {
     "context": "Rituals",
-    "doc": "Promote existing units to another monster type. Use addstring to add promotion pairs, the first string sets a source unit and the second one the destination units. Multiple of these pairs can be added to a single ritual.",
-    "signature": "promotion <nbr of units>"
+    "doc": "Promotes units to another monster, with addstring pairs: the source, then the result.",
+    "signature": "promotion <nbr of units>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -8670,7 +8888,8 @@
    {
     "context": "Rituals",
     "doc": "Promoted units will be owned by this player instead. Use this command before the promotion command.",
-    "signature": "promplayer <player number>"
+    "signature": "promplayer <player number>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -8698,7 +8917,8 @@
    {
     "context": "Weapons",
     "doc": "Set color of damage numbers",
-    "signature": "purple"
+    "signature": "purple",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon special attributes",
@@ -8711,8 +8931,9 @@
   "docs": [
    {
     "context": "Rituals",
-    "doc": "Creates a number of human corpses in the target square (as if a fight involving humans had taken place there). Add 10000 to nbr in order to make the number of corpses scale with the sacrifice amount used.",
-    "signature": "putcorpses <nbr>"
+    "doc": "Puts this many human corpses on the target square; add 10000 to scale with the sacrifices.",
+    "signature": "putcorpses <nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -8740,7 +8961,8 @@
    {
     "context": "Rituals",
     "doc": "Raises animal corpses from the dead.",
-    "signature": "raiseanimals"
+    "signature": "raiseanimals",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -8754,7 +8976,8 @@
    {
     "context": "Rituals",
     "doc": "Raises humanoid corpses from the dead.",
-    "signature": "raisedead"
+    "signature": "raisedead",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -8764,7 +8987,22 @@
   "signature": "raisedead"
  },
  "randartifact": {
-  "doc": "The ritual's target unit gets a random magic item, as from the game's Create Artifact: from the Common items, with a 10% chance of Rare and Rare & Unique items too. If that unit has no free equipment slot for it, another unit on the square gets it.",
+  "doc": "The ritual's target gets a random magic item, as from the game's Create Artifact.",
+  "docsUrl": "https://musical-pianist.github.io/coe5se-docs/commands/ritual-effects/#randartifact",
+  "forms": [
+   {
+    "doc": "The ritual's target gets a random magic item, as from the game's Create Artifact.",
+    "signature": "randartifact"
+   },
+   {
+    "doc": "The same, from items in no group or in every group the number adds up: 1 fire, 2 water, 4 air, 8 earth, 16 books.",
+    "signature": "randartifact <nbr>"
+   },
+   {
+    "doc": "The same, with one group's name: fire, water, air, earth or books.",
+    "signature": "randartifact <group>"
+   }
+  ],
   "group": "CoE5SE",
   "kinds": [
    "coe5se"
@@ -8775,7 +9013,7 @@
   "docs": [
    {
     "context": "Events",
-    "doc": "Gives a random magic item to the target unit. Rare chance is the chance of being eligible for a rare magic item. It will always be an item that the target unit has appropriate equipment slots for.",
+    "doc": "Gives the target unit a random magic item for its slots, with this chance of a rare one.",
     "signature": "randitem <rare chance>"
    }
   ],
@@ -8789,7 +9027,7 @@
   "docs": [
    {
     "context": "Events",
-    "doc": "Move target location to a random location. See the Plane Numbers table. The plane special values -1 (all planes) and -2 (Elysium-near planes) can also be used. Negative terrain numbers can also be used for special group of terrains. Cannot be used on squareevents.",
+    "doc": "Moves the target to a random square on that plane and terrain. Not in squareevents.",
     "signature": "randloc <planenr> <terr nbr>"
    }
   ],
@@ -8821,7 +9059,8 @@
    {
     "context": "Rituals",
     "doc": "Like previous, but try to find an unknown location first.",
-    "signature": "randnewloc <terrain nbr>"
+    "signature": "randnewloc <terrain nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -8831,7 +9070,8 @@
   "signature": "randnewloc <terrain nbr>"
  },
  "randomequip": {
-  "doc": "The ritual's target unit gets one item, picked at random from the ritual's \"\\|...\" strings (addstring \"\\|Soul Contract with Belial\"), as the game's Enter Soul Contract does. The game's ritequipall gives every one.",
+  "doc": "The ritual's target gets one item picked at random from the ritual's \"|...\" strings, like Enter Soul Contract.",
+  "docsUrl": "https://musical-pianist.github.io/coe5se-docs/commands/ritual-effects/#randomequip",
   "group": "CoE5SE",
   "kinds": [
    "coe5se"
@@ -8857,7 +9097,8 @@
    {
     "context": "Rituals",
     "doc": "1=random land loc, 2=many dead (excluding present), 3=rand enemy com, 4=rand enemy citadel, 5=home citadel",
-    "signature": "randomloc <1-5>"
+    "signature": "randomloc <1-5>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -8913,7 +9154,8 @@
    {
     "context": "Rituals",
     "doc": "Sets loc to a random terrain of this type on active plane.",
-    "signature": "randterrloc <terrain nbr>"
+    "signature": "randterrloc <terrain nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -8927,7 +9169,8 @@
    {
     "context": "Weapons",
     "doc": "The maximum range of the weapon. This should be 1 for melee weapons. A normal bow has range 5.",
-    "signature": "range <nbr>"
+    "signature": "range <nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon modding: start, basic, sound and visuals, chained",
@@ -8982,7 +9225,7 @@
   "docs": [
    {
     "context": "Monsters",
-    "doc": "Equips the monster with a range+skip weapon that has 50% chance of being used in melee (100% at range). When used the next weapon will be skipped.",
+    "doc": "A ranged weapon used in melee half the time, always at range; when used, the next weapon is skipped.",
     "signature": "rangedweapon50s <dmg> \"weapon\""
    }
   ],
@@ -8996,7 +9239,7 @@
   "docs": [
    {
     "context": "Monsters",
-    "doc": "Equips the monster with a range+skip weapon that has 50% chance of being used in melee or range. When used the next weapon will be skipped.",
+    "doc": "A ranged weapon used half the time, in melee or at range; when used, the next weapon is skipped.",
     "signature": "rangedweapon50x <dmg> \"weapon\""
    }
   ],
@@ -9025,7 +9268,8 @@
    {
     "context": "Weapons",
     "doc": "Damage penalty at long range. All normal range weapons like bows and slings have this.",
-    "signature": "rangepen"
+    "signature": "rangepen",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon special attributes",
@@ -9072,7 +9316,8 @@
    {
     "context": "Rituals",
     "doc": "reduced chance of starting with this ritual",
-    "signature": "rarestart"
+    "signature": "rarestart",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual learning difficulty",
@@ -9119,7 +9364,8 @@
    {
     "context": "Weapons",
     "doc": "A victim killed by the weapon becomes a Soulless.",
-    "signature": "reanimate"
+    "signature": "reanimate",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Monster and magic item attributes (the manual lists them under each)",
@@ -9166,7 +9412,8 @@
    {
     "context": "Rituals",
     "doc": "Units with this fx nbr get 25% rebate",
-    "signature": "rebatefx25 <fx nbr>"
+    "signature": "rebatefx25 <fx nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -9180,7 +9427,8 @@
    {
     "context": "Rituals",
     "doc": "Units with this fx nbr get 50% rebate",
-    "signature": "rebatefx50 <fx nbr>"
+    "signature": "rebatefx50 <fx nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -9194,7 +9442,8 @@
    {
     "context": "Rituals",
     "doc": "This ritual will be half price if caster is this level or higher.",
-    "signature": "rebatelvl <1-9>"
+    "signature": "rebatelvl <1-9>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -9208,7 +9457,8 @@
    {
     "context": "Rituals",
     "doc": "Ritual cost is 20% cheaper in this terrain",
-    "signature": "rebateterr20 <terrain nbr>"
+    "signature": "rebateterr20 <terrain nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -9222,7 +9472,8 @@
    {
     "context": "Rituals",
     "doc": "Ritual cost is 50% cheaper in this terrain",
-    "signature": "rebateterr50 <terrain nbr>"
+    "signature": "rebateterr50 <terrain nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -9263,7 +9514,7 @@
   "docs": [
    {
     "context": "Classes",
-    "doc": "This will alter the requirements for the last added recruitment. string can be something like \"+Baron\" to require a Baron, \"-Baron\" to require the Baron to not be alive or \"=Dwarf Worker\" to require dwarf workers to be upgraded into the new troops.",
+    "doc": "Changes the last recruit's requirement: \"+Baron\" needs one, \"-Baron\" needs none alive, \"=Dwarf Worker\" upgrades them.",
     "signature": "reclimiter \"string\""
    }
   ],
@@ -9305,7 +9556,7 @@
   "docs": [
    {
     "context": "Classes",
-    "doc": "The previous entry in recruitment list will get an additional cost of a special resource (not gold or iron). See the Resource Types table for resource types.",
+    "doc": "Adds a special resource cost (not gold or iron) to the last recruit.",
     "signature": "recxcost <resource type> <amount>"
    }
   ],
@@ -9323,7 +9574,8 @@
    {
     "context": "Rituals",
     "doc": "Reduces settlement at target location one step in size.",
-    "signature": "reducetown"
+    "signature": "reducetown",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -9378,7 +9630,7 @@
   "docs": [
    {
     "context": "Monsters",
-    "doc": "A unit with regeneration will heal 5 percent of its hit points each combat round until it is killed. Battle afflictions are also healed, but they will take at least one month to heal. A regenerating creature that is killed will continue to regenerate unless its negative hit points are more than half of its maximum hit points.",
+    "doc": "Heals 5% of its hit points each round, even when killed, unless far below 0.",
     "signature": "regeneration"
    },
    {
@@ -9454,7 +9706,8 @@
    {
     "context": "Weapons",
     "doc": "It takes 1 combat round to reload this weapon.",
-    "signature": "reload1"
+    "signature": "reload1",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon special attributes",
@@ -9468,7 +9721,8 @@
    {
     "context": "Weapons",
     "doc": "It takes 2 combat rounds to reload this weapon.",
-    "signature": "reload2"
+    "signature": "reload2",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon special attributes",
@@ -9482,7 +9736,8 @@
    {
     "context": "Weapons",
     "doc": "It takes 3 combat rounds to reload this weapon.",
-    "signature": "reload3"
+    "signature": "reload3",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon special attributes",
@@ -9496,7 +9751,8 @@
    {
     "context": "Weapons",
     "doc": "Sound when reloading, -1 = none.",
-    "signature": "reloadsnd <sound>"
+    "signature": "reloadsnd <sound>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon modding: start, basic, sound and visuals, chained",
@@ -9580,7 +9836,8 @@
    {
     "context": "Weapons",
     "doc": "A victim killed by this weapon becomes the same type of monster as the killer.",
-    "signature": "replicate"
+    "signature": "replicate",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon special attributes",
@@ -9593,7 +9850,7 @@
   "docs": [
    {
     "context": "Classes",
-    "doc": "The class requires at least one square of this terrain to be present on a map to play. This must be a terrain type that is normally present on maps. There can only be one reqterr per class.",
+    "doc": "The map must have this terrain for the class to be played. One per class.",
     "signature": "reqterr <terrain nbr>"
    }
   ],
@@ -9604,7 +9861,8 @@
   "signature": "reqterr <terrain nbr>"
  },
  "requires": {
-  "doc": "<ModName> is the other mod's .c5m file name without .c5m, capitals included, not its Workshop title. Loads that mod's DLLs and Lua scripts first (Load Order, rule 3); its .c5m and .c5se content still load by modprio and name. Missing, older than asked, or in a cycle: a line under \"Mod requirements\" on the CoE5SE page and mod_requirement_missing, mod_requirement_old, or mod_requirement_cycle in the log (mod, required, have, want, line). Never stops a mod loading. A mod with no modversion meets any version. A CoE5SE command: without CoE5SE, the game's Mod Error.",
+  "doc": "Loads that mod's DLLs and Lua scripts first, with an optional minimum version. Never stops your mod loading.",
+  "docsUrl": "https://musical-pianist.github.io/coe5se-docs/commands/mod-loading/#requires",
   "group": "CoE5SE",
   "kinds": [
    "coe5se"
@@ -9617,7 +9875,8 @@
    {
     "context": "Rituals",
     "doc": "Caster must have this resistance bitmask.",
-    "signature": "resreq <res nbr>"
+    "signature": "resreq <res nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -9631,7 +9890,8 @@
    {
     "context": "Rituals",
     "doc": "Caster cannot have this resistance bitmask. Useful values are 2^4 for undead, 2^20 for immortal and 2^26 for ethereal.",
-    "signature": "resrestrict <res nbr>"
+    "signature": "resrestrict <res nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -9641,7 +9901,7 @@
   "signature": "resrestrict <res nbr>"
  },
  "restart": {
-  "doc": "When the player leaves your page with it changed, a \"CoE5SE: Restart needed\" box offers to restart the game now; No keeps the change for the next launch. Goes in a newsetting block.",
+  "doc": "Changing this setting offers to restart the game. Goes in a newsetting block.",
   "group": "CoE5SE",
   "kinds": [
    "coe5se"
@@ -9652,7 +9912,7 @@
   "docs": [
    {
     "context": "Events",
-    "doc": "Reveals target square to a player or all players (player -1). Radius is in deci-squares, use 5 to only reveal the current target square. Level 1=darkened square, 2=normal seen square, 3=scryed square. This square will fade to dark before the player is playing, so level 1 is probably the only one that makes sense.",
+    "doc": "Reveals the target square to a player, -1 all; radius in tenths of a square, 5 this square alone.",
     "signature": "reveal <player> <radius> <level>"
    }
   ],
@@ -9680,7 +9940,7 @@
   "docs": [
    {
     "context": "Monsters",
-    "doc": "Monster will revert to being owned by this faction after its player owner has been defeated. Use player number 24 to revert to a standard independent.",
+    "doc": "Who owns the monster once its player is defeated; 24 is the independents.",
     "signature": "revertowner <player number>"
    }
   ],
@@ -9694,8 +9954,9 @@
   "docs": [
    {
     "context": "Rituals",
-    "doc": "Gives all items in \"\\|...\" strings to the target unit. E.g. use addstring \"\\|Ring of Protection\" if you want the target unit to receive a ring of protection.",
-    "signature": "ritequipall"
+    "doc": "Gives the target every item in the ritual's \"|...\" strings.",
+    "signature": "ritequipall",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -9709,7 +9970,8 @@
    {
     "context": "Rituals",
     "doc": "Limits the maximum range of any following choose... rituals. The range is in number of squares.",
-    "signature": "ritmaxrange <range>"
+    "signature": "ritmaxrange <range>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -9722,8 +9984,9 @@
   "docs": [
    {
     "context": "Rituals",
-    "doc": "Sets the ritpow used. If command is not used, the latest created newritpow will be used. Existing ritpow numbers can be found in the Ritual Schools table.",
-    "signature": "ritpow <pow nbr>"
+    "doc": "The ritual's school; without it, the latest newritpow.",
+    "signature": "ritpow <pow nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual modding: start, basic, clear and copy",
@@ -9782,7 +10045,8 @@
    {
     "context": "Rituals",
     "doc": "Summoning amount scales with sacrifice production of target square",
-    "signature": "sacrscale"
+    "signature": "sacrscale",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -9795,7 +10059,7 @@
   "docs": [
    {
     "context": "Events",
-    "doc": "Sets a sample file (sample.sw) as a certain sound effect number (sound). The sound effect number can be between 0 and 249, high numbers (170+) will create new samples and low number will replace the old samples that already occupies those numbers. The sample file should have the .sw (mono) or .sw2 (stereo) extension and be saved as a signed 16-bit 22050 Hz sample.",
+    "doc": "Loads a .sw or .sw2 sample (16-bit, 22050 Hz) as sound 0 to 249; 170 and up are new.",
     "signature": "sample <sound> \"sample.sw\""
    }
   ],
@@ -9823,7 +10087,7 @@
   "docs": [
    {
     "context": "Events",
-    "doc": "Turns this sample into one a class specific tunes. That means it will loop into a background tune when it has finished playing. If you create a sample as a class specific tune, this must be used on that sample to keep the music playing. If used on a background tune it will remove that tune from the loop of background music.",
+    "doc": "Makes the sample a class tune that loops into the background music; on a background tune, removes it.",
     "signature": "sampleismusic <sound>"
    }
   ],
@@ -9880,7 +10144,8 @@
    {
     "context": "Weapons",
     "doc": "A missile weapon with this attribute may deviate one square",
-    "signature": "scatter"
+    "signature": "scatter",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon special attributes",
@@ -9908,7 +10173,8 @@
    {
     "context": "Rituals",
     "doc": "Scry in a scattered way around target location.",
-    "signature": "scatterscry <nbr of squares>"
+    "signature": "scatterscry <nbr of squares>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -9964,7 +10230,8 @@
    {
     "context": "Rituals",
     "doc": "Scry in a circle around target location.",
-    "signature": "scryloc <radius*10>"
+    "signature": "scryloc <radius*10>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -9999,7 +10266,8 @@
    {
     "context": "Rituals",
     "doc": "Can only be cast in this season. 0=summer, 1=autumn, 2=winter, 3=spring.",
-    "signature": "seasonreq <season>"
+    "signature": "seasonreq <season>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -10086,7 +10354,8 @@
    {
     "context": "Rituals",
     "doc": "Sets mod-fx-nbr to this value. Used by next command.",
-    "signature": "selectfx <fx nbr>"
+    "signature": "selectfx <fx nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -10113,7 +10382,7 @@
   "docs": [
    {
     "context": "Monsters",
-    "doc": "Selects the monster that will be affected by the following modding commands. The selected monster is referred to as the active monster. The selectmonster command always selects the first monster of that name in the monster list. If there is more than one monster with the same name (e.g. longdead) the offset value can be used to select them. Leave the offset out if you only want to select the first monster. The default value of the offset is 0. The offset used by this command cannot be set to a negative value, unlike the offset for the lookslike command. Offset value 1 means the command selects the (first + 1) monster of that name, i.e. the second monster. Offset 2 selects the third monster of the same name etc. Note that this command cannot use the \"1:spearman\" syntax.",
+    "doc": "Selects a monster for the lines after it, the first of that name; offset picks a later one.",
     "signature": "selectmonster \"monster name\" [<offset>]"
    }
   ],
@@ -10127,8 +10396,9 @@
   "docs": [
    {
     "context": "Rituals",
-    "doc": "The optional value offs can be used to select a ritual other than the first one with this name. 0=the first one, 1=the second ritual with this name.",
-    "signature": "selectritual \"name\" [<offs>]"
+    "doc": "Selects a ritual; offs picks a later one of that name.",
+    "signature": "selectritual \"name\" [<offs>]",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual modding: start, basic, clear and copy",
@@ -10139,6 +10409,7 @@
  },
  "selectspellpath": {
   "doc": "Renames the path, for every mod. name is the game's command, taken only on the line right after.",
+  "docsUrl": "https://musical-pianist.github.io/coe5se-docs/commands/spell-paths/#selectspellpath",
   "group": "CoE5SE",
   "kinds": [
    "coe5se"
@@ -10149,7 +10420,7 @@
   "docs": [
    {
     "context": "Terrain",
-    "doc": "Select the terrain to be modified. Select a low number to alter an existing terrain or select a number between 500 - 999 to create a new terrain. Press ctrl-i in game on a terrain to see what number it has.",
+    "doc": "Selects a terrain; 500 to 999 makes a new one. Ctrl-i shows a terrain's number.",
     "signature": "selectterr <terrain nbr>"
    }
   ],
@@ -10163,7 +10434,7 @@
   "docs": [
    {
     "context": "Terrain",
-    "doc": "Select the terrain group to be modified. The number must be between -1000 and -1199. The numbers between -1 and -999 are reserved for standard CoE5 and cannot be modified.",
+    "doc": "Selects a terrain group, -1000 to -1199; -1 to -999 are the game's.",
     "signature": "selectterrgroup <terrgroup nbr>"
    }
   ],
@@ -10177,8 +10448,9 @@
   "docs": [
    {
     "context": "Weapons",
-    "doc": "Selects an existing weapon for modification. There may be several different weapons with the same name, in which case you should use the weapon number for selecting the desired weapon. You can see existing weapon numbers in game by pressing ctrl-i when inspecting a unit.",
-    "signature": "selectweapon \"weapon name\" \\| <nbr>"
+    "doc": "Selects a weapon by name or number. Ctrl-i on a unit shows weapon numbers.",
+    "signature": "selectweapon \"weapon name\" \\| <nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon modding: start, basic, sound and visuals, chained",
@@ -10248,7 +10520,8 @@
    {
     "context": "Rituals",
     "doc": "set this event variable to 1",
-    "signature": "seteventvar <var>"
+    "signature": "seteventvar <var>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -10262,7 +10535,8 @@
    {
     "context": "Rituals",
     "doc": "Gives target unit a fx of type mod-fx-nbr and sets it to this value.",
-    "signature": "setfx <value>"
+    "signature": "setfx <value>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -10289,7 +10563,7 @@
   "docs": [
    {
     "context": "Classes",
-    "doc": "Sets the main commander for the class. For example, the main commander for the Baron class is Baron and the main commander for the Barbarian class is Barbarian Leader. If the main commander does not appear in the recruitment list for the class, he cannot be replaced if lost.",
+    "doc": "The class's main commander, like the Baron's Baron. Not on its recruit list, it can't be replaced.",
     "signature": "setmaincom \"monster name\""
    }
   ],
@@ -10318,7 +10592,8 @@
    {
     "context": "Rituals",
     "doc": "Following randomloc etc. commands will be restricted to this plane",
-    "signature": "setplane <plane nbr>"
+    "signature": "setplane <plane nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -10332,7 +10607,8 @@
    {
     "context": "Rituals",
     "doc": "Following summons will be owned by this player. Default owner is the current player. Player -1 resets the owner to the default.",
-    "signature": "setplayer <player nbr>"
+    "signature": "setplayer <player nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -10365,7 +10641,8 @@
    {
     "context": "Rituals",
     "doc": "Set the generic modding variable to this value.",
-    "signature": "setvar <nbr>"
+    "signature": "setvar <nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -10413,7 +10690,8 @@
    {
     "context": "Weapons",
     "doc": "The weapon ignores shields.",
-    "signature": "shieldneg"
+    "signature": "shieldneg",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon special attributes",
@@ -10510,7 +10788,7 @@
   "docs": [
    {
     "context": "Monsters",
-    "doc": "Equips the monster with a siege weapon. Used in locations that allow sieges, like cities and castles. Siege weapons are used in the first ten rounds of combat before any normal attacks are made.",
+    "doc": "A weapon used in sieges, in the first ten rounds before normal attacks.",
     "signature": "siegeweapon <dmg> \"weapon\""
    }
   ],
@@ -10525,7 +10803,8 @@
    {
     "context": "Rituals",
     "doc": "Creates a simulacrum.",
-    "signature": "simulacrum"
+    "signature": "simulacrum",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -10696,6 +10975,7 @@
  },
  "slowcast": {
   "doc": "Takes 2 combat rounds to cast.",
+  "docsUrl": "https://musical-pianist.github.io/coe5se-docs/commands/spell-modifiers/#slowcast",
   "group": "CoE5SE",
   "kinds": [
    "coe5se"
@@ -10703,7 +10983,8 @@
   "signature": "slowcast"
  },
  "small": {
-  "doc": "Small, as the game's Goblins and Bakemono soldiers have it: a Soulless made from the unit is a Little Soulless. The unit screen doesn't list it. small 0 takes it off.",
+  "doc": "Small, like the game's Goblins: a Soulless made from it is a Little Soulless. small 0 takes it off.",
+  "docsUrl": "https://musical-pianist.github.io/coe5se-docs/commands/monster-traits/#small",
   "group": "CoE5SE",
   "kinds": [
    "coe5se"
@@ -10729,7 +11010,8 @@
    {
     "context": "Weapons",
     "doc": "dvol -50 = half volume, 100 = double volume.",
-    "signature": "sndvol <dvol>"
+    "signature": "sndvol <dvol>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon modding: start, basic, sound and visuals, chained",
@@ -10804,7 +11086,8 @@
    {
     "context": "Weapons",
     "doc": "Armor is doubled vs this weapon",
-    "signature": "soft"
+    "signature": "soft",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon special attributes",
@@ -10818,7 +11101,8 @@
    {
     "context": "Weapons",
     "doc": "The sound effect when the weapon strikes down. See table Sound Effects.",
-    "signature": "sound <sound>"
+    "signature": "sound <sound>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon modding: start, basic, sound and visuals, chained",
@@ -10835,7 +11119,8 @@
    {
     "context": "Rituals",
     "doc": "Play this sound effect.",
-    "signature": "soundfx <sound>"
+    "signature": "soundfx <sound>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -10947,7 +11232,8 @@
    {
     "context": "Rituals",
     "doc": "Makes a druid summoning, 1=minor, 2=major",
-    "signature": "specpow <value>"
+    "signature": "specpow <value>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -10974,7 +11260,7 @@
   "docs": [
    {
     "context": "Monsters",
-    "doc": "Equips the monster with a Cast Spell weapon in the magic path specified. This spell weapon only has a 25% chance of being successfully used in melee combat.",
+    "doc": "A Cast Spell weapon in that path; in melee it works 25% of the time.",
     "signature": "spellweapon <path> <level>"
    }
   ],
@@ -11030,7 +11316,7 @@
   "docs": [
    {
     "context": "Monsters",
-    "doc": "Equips the monster with a limited Cast Spell Weapon. Only one of the single spell weapons will be used per combat round if the monster has several.",
+    "doc": "A limited Cast Spell weapon: one of these a round.",
     "signature": "spellweaponsingle <path> <level>"
    }
   ],
@@ -11077,7 +11363,7 @@
   "docs": [
    {
     "context": "Items",
-    "doc": "Sets the sprite for the magic item. It should be centered in a 32x32 or 64x64 pixel large image. The drawn item should not be larger than 40x40 pixels however, so if put in a 64x64 image it should be surrounded by black.",
+    "doc": "The item's picture, 32 x 32 or 64 x 64, the drawing at most 40 x 40.",
     "signature": "spr \"image.tga\""
    },
    {
@@ -11096,7 +11382,7 @@
   "docs": [
    {
     "context": "Monsters",
-    "doc": "The file name of the normal image for the monster. This command sets the attack sprite to this image as well. The image should be 32x32 or 64x64 for normal sized monsters and 128x128 for huge monsters. A human being should be about 34 pixels tall and there should be 2 pixels of free space between his feet and the bottom of the image.",
+    "doc": "The monster's picture, also its attack picture: 32 x 32 or 64 x 64, 128 x 128 for huge ones.",
     "signature": "spr1 \"image.tga\""
    }
   ],
@@ -11110,7 +11396,7 @@
   "docs": [
    {
     "context": "Monsters",
-    "doc": "The file name of the attack image for the monster. If this is not set, then spr1 will be used for this image too. This command must come after the spr1 command.",
+    "doc": "The monster's attack picture. After spr1.",
     "signature": "spr2 \"image.tga\""
    }
   ],
@@ -11167,7 +11453,8 @@
    {
     "context": "Rituals",
     "doc": "Puts an enchantment at target location.",
-    "signature": "squareench <ench nbr>"
+    "signature": "squareench <ench nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -11223,7 +11510,8 @@
    {
     "context": "Rituals",
     "doc": "Adds special square flags to target location. The only useful values are 2^14 (16384) converted to El, 2^16 (65536) poison fog, 2^17 (131072) strange mist.",
-    "signature": "squarespec <ss bitmask>"
+    "signature": "squarespec <ss bitmask>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -11237,7 +11525,8 @@
    {
     "context": "Rituals",
     "doc": "will start with this ritual(s), no others",
-    "signature": "start"
+    "signature": "start",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual learning difficulty",
@@ -11278,7 +11567,7 @@
   "docs": [
    {
     "context": "Classes",
-    "doc": "Starting citadel should be on this plane. If you use this command you should also use the \"createcit\" command and the terrain set as hometerr should be set to a gateway/pit/spire terrain. The hometerr terrain will be created in Elysium as a portal to the other plane.",
+    "doc": "The plane the citadel starts on. Needs createcit and a portal terrain as hometerr.",
     "signature": "startplane <plane>"
    }
   ],
@@ -11354,7 +11643,8 @@
    {
     "context": "Weapons",
     "doc": "Stone beings are immune to the weapon.",
-    "signature": "stone"
+    "signature": "stone",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon special attributes",
@@ -11382,7 +11672,8 @@
    {
     "context": "Weapons",
     "doc": "x2 dmg vs stone beings and stone walls",
-    "signature": "stonekill"
+    "signature": "stonekill",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon special attributes",
@@ -11400,7 +11691,7 @@
    },
    {
     "context": "Monsters",
-    "doc": "The strength of the monster. A normal human soldier has a strength of 4, an elite human soldier has 5, a troll has 8 or 9 and giants and dragons have 10 to 12.",
+    "doc": "Strength: 4 a human soldier, 8 a troll, 10 to 12 giants and dragons.",
     "signature": "str <nbr>"
    }
   ],
@@ -11429,7 +11720,8 @@
    {
     "context": "Weapons",
     "doc": "The effects of this weapon can be resisted by a successful strength check.",
-    "signature": "strresist"
+    "signature": "strresist",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon special attributes",
@@ -11457,7 +11749,8 @@
    {
     "context": "Rituals",
     "doc": "decreases the value of this event variable by 1",
-    "signature": "subeventvar <var>"
+    "signature": "subeventvar <var>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -11471,7 +11764,8 @@
    {
     "context": "Rituals",
     "doc": "Use with summonings. Percent = chance of first \"string\" to be used instead of a random string among the others.",
-    "signature": "sum0chance <percent>"
+    "signature": "sum0chance <percent>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -11485,7 +11779,8 @@
    {
     "context": "Rituals",
     "doc": "Works like sum0chance, but it can only succeed if there is snow at the target location.",
-    "signature": "sum0snow <percent>"
+    "signature": "sum0snow <percent>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -11499,7 +11794,8 @@
    {
     "context": "Rituals",
     "doc": "Use with summonings. Percent = chance of second \"string\" to be used instead of a random string among the third and later.",
-    "signature": "sum1chance <percent>"
+    "signature": "sum1chance <percent>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -11513,7 +11809,8 @@
    {
     "context": "Rituals",
     "doc": "Same but one higher.",
-    "signature": "sum2chance <percent>"
+    "signature": "sum2chance <percent>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -11527,7 +11824,8 @@
    {
     "context": "Rituals",
     "doc": "Same but one higher.",
-    "signature": "sum3chance <percent>"
+    "signature": "sum3chance <percent>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -11541,7 +11839,8 @@
    {
     "context": "Rituals",
     "doc": "Same but one higher.",
-    "signature": "sum4chance <percent>"
+    "signature": "sum4chance <percent>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -11554,8 +11853,9 @@
   "docs": [
    {
     "context": "Rituals",
-    "doc": "The ritual will summon the monsters specified in a random \"string\". Use addstring to add up to 15 strings with monsters. The string should be written like these examples: \"1d6\\*Goblin\", \"c\\*Captain & 2d6\\*spearman & 2d4+2\\*Archer\", \"Purple Worm\". The c\\* indicates a commander and 2d6 means two 6-sided dice will determine the number of monsters summoned. Dice cannot be combined with commanders.",
-    "signature": "summoning"
+    "doc": "Summons one of the ritual's addstring strings, at random: \"1d6*Goblin\", \"c*Captain & 2d6*Spearman\".",
+    "signature": "summoning",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -11635,7 +11935,8 @@
    {
     "context": "Weapons",
     "doc": "The weapon can continue to kill multiple targets.",
-    "signature": "sweep"
+    "signature": "sweep",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon special attributes",
@@ -11677,7 +11978,8 @@
    {
     "context": "Weapons",
     "doc": "Weapon can target terrain",
-    "signature": "targterr"
+    "signature": "targterr",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon special attributes",
@@ -11704,8 +12006,9 @@
   "docs": [
    {
     "context": "Rituals",
-    "doc": "1 = Teleport target unit to target location. 2 = the caster's entire army is teleported to the target location. 3 = the target unit and his entire army is teleported to target location.",
-    "signature": "teleportloc <1-3>"
+    "doc": "Teleports to the target square: 1 the target, 2 the caster's army, 3 the target and its army.",
+    "signature": "teleportloc <1-3>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -11803,7 +12106,8 @@
    {
     "context": "Rituals",
     "doc": "Restrict ritual to this terrain only. Negative numbers can be used for special terrain combinations.",
-    "signature": "terr <terrain nbr>"
+    "signature": "terr <terrain nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual modding: start, basic, clear and copy",
@@ -11869,7 +12173,7 @@
   "signature": "+terrain <terr nbr>"
  },
  "terraindecor": {
-  "doc": "The terrain's squares get that game terrain's decorations, exactly as the game draws them: the same sprites, counts, sizes, places, shading and sway, and on snow or cold ground the same snow and winter versions.",
+  "doc": "The terrain's squares get that game terrain's decorations, as the game draws them.",
   "group": "CoE5SE",
   "kinds": [
    "coe5se"
@@ -11877,7 +12181,7 @@
   "signature": "terraindecor <terrain>"
  },
  "terrainground": {
-  "doc": "The terrain's squares get that game terrain's ground (Cave Wall's, Swamp's) wherever the game sets ground: the plane's rules, the temperature's and that terrain's own, so its place in the blend and its edges against every neighbour are that terrain's. With a picture, the picture is drawn instead of that ground's on this terrain's squares only; the game's squares of the same ground keep the game's picture. The picture is a .tga whose width and height are powers of two (256, 512, 1024), like the game's own map*.tga ground pictures, and it tiles across the map the same way.",
+  "doc": "The terrain's squares get that game terrain's ground, or your picture in its place.",
   "group": "CoE5SE",
   "kinds": [
    "coe5se"
@@ -11893,7 +12197,7 @@
   "signature": "terrainlooks <terrain>"
  },
  "terrainsprite": {
-  "doc": "In the decorations terraindecor gives, tree.trs sprite <sprite> (0 to 942) is drawn as the picture, on this terrain only. It keeps the sprite's place, height and sway, and takes the picture's own width for that height. A .tga or .png, with transparency as the game reads a spr picture. Up to 64 lines a block.",
+  "doc": "Draws your picture in place of one tree.trs sprite of terraindecor's decorations, on this terrain only.",
   "group": "CoE5SE",
   "kinds": [
    "coe5se"
@@ -11905,7 +12209,8 @@
    {
     "context": "Rituals",
     "doc": "Adds 1 to number of summoned monsters when done in this terrain",
-    "signature": "terrboost <terrain nbr>"
+    "signature": "terrboost <terrain nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -11919,7 +12224,8 @@
    {
     "context": "Rituals",
     "doc": "+50% number of summoned monster when done in this terrain",
-    "signature": "terrscale50 <terrain nbr>"
+    "signature": "terrscale50 <terrain nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -12062,7 +12368,7 @@
   "docs": [
    {
     "context": "Classes",
-    "doc": "Percentage bonus to trade income. For example, a bonus of 50 means that the class will have a 50% bonus on all trade income like the Senator.",
+    "doc": "Percent bonus to trade income, like the Senator's 50.",
     "signature": "tradebonus <percent>"
    },
    {
@@ -12123,13 +12429,15 @@
   "docs": [
    {
     "context": "Rituals",
-    "doc": "Will transform target into the unit type set by addstring. Value 1 = standard (use this), 2 = transform into following unit if level is high enough.",
-    "signature": "transformtarg <1-2>"
+    "doc": "Transforms the target into the addstring monster. Use 1; 2 picks a higher one for a skilled caster.",
+    "signature": "transformtarg <1-2>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    },
    {
     "context": "Rituals",
-    "doc": "Target unit will be transformed into one of the monsters added by addstring. Normally you want to use mode 1. Mode 2 will transform the units into higher monsters if they have higher skill level than necessary to cast the ritual.",
-    "signature": "transformtarg <mode>"
+    "doc": "Transforms the target into the addstring monster. Use 1; 2 picks a higher one for a skilled caster.",
+    "signature": "transformtarg <mode>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -12171,7 +12479,8 @@
    {
     "context": "Weapons",
     "doc": "Tree/bushes/fungus are immune to this weapon",
-    "signature": "tree"
+    "signature": "tree",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon special attributes",
@@ -12204,7 +12513,8 @@
    {
     "context": "Weapons",
     "doc": "Sets the battlefield row where the weapon hits. See the table Target Ranks for the possible values. The default value is 1.",
-    "signature": "trgrank <nbr>"
+    "signature": "trgrank <nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon modding: start, basic, sound and visuals, chained",
@@ -12235,7 +12545,8 @@
    {
     "context": "Rituals",
     "doc": "Transform forest at target location into a troll forest.",
-    "signature": "trollifyloc"
+    "signature": "trollifyloc",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -12277,7 +12588,8 @@
    {
     "context": "Rituals",
     "doc": "Automatically reduce nbr of times this ritual has been cast by this player by this amount per turn",
-    "signature": "turncastcount <value>"
+    "signature": "turncastcount <value>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -12290,7 +12602,7 @@
   "docs": [
    {
     "context": "Events",
-    "doc": "True if the current turn number is this turn nbr. Games start at turn 0 and any turn 0 events are executed before each player can player their first turn. But events are also run once before the game has started for anyone at turn -1.",
+    "doc": "True on this turn. Turn 0 runs before the first player's turn, turn -1 before the game starts.",
     "signature": "+turnnbr <turn nbr>"
    }
   ],
@@ -12374,7 +12686,8 @@
    {
     "context": "Weapons",
     "doc": "The weapon does not affect Undead units.",
-    "signature": "undead"
+    "signature": "undead",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    },
    {
     "context": "With 0 after it (CoE5SE)",
@@ -12393,7 +12706,8 @@
    {
     "context": "Weapons",
     "doc": "The weapon causes double damage against undead only",
-    "signature": "undkill"
+    "signature": "undkill",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon special attributes",
@@ -12407,7 +12721,8 @@
    {
     "context": "Rituals",
     "doc": "Removes all followers from the target, should he be a commander that is commanding any units.",
-    "signature": "unfollowtarg"
+    "signature": "unfollowtarg",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -12459,7 +12774,8 @@
    {
     "context": "Rituals",
     "doc": "Updates home for target unit to where he stands. This is used to make some immortals resurrect in the correct place.",
-    "signature": "updatehome"
+    "signature": "updatehome",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -12473,7 +12789,8 @@
    {
     "context": "Rituals",
     "doc": "Like previous command, but will only update if target unit is on this terrain.",
-    "signature": "updhomeifterr <terrain nbr>"
+    "signature": "updhomeifterr <terrain nbr>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -12501,7 +12818,8 @@
    {
     "context": "Rituals",
     "doc": "Set variable sacrifice amount (50=50-150%, 100=0-150%)",
-    "signature": "varcost <percent>"
+    "signature": "varcost <percent>",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=33"
    }
   ],
   "group": "Ritual effects, restrictions, targeting, AI hints",
@@ -12632,7 +12950,7 @@
   "docs": [
    {
     "context": "Terrain",
-    "doc": "Makes sure that the sprite is drawn as terrain and nothing else. Necessary to modify the look of procedurally drawn terrains like forests, mountains and villages.",
+    "doc": "Draws the sprite as terrain, for changing forests, mountains and villages.",
     "signature": "visible"
    }
   ],
@@ -12745,7 +13063,8 @@
    {
     "context": "Weapons",
     "doc": "x5 dmg vs walls and boats",
-    "signature": "wallkill"
+    "signature": "wallkill",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon special attributes",
@@ -12875,7 +13194,8 @@
   "signature": "watershape <value>"
  },
  "weapon": {
-  "doc": "What the spell does, like a monster's meleeweapon <dmg> \"weapon\": the weapon, and the damage (or special damage value) it is used with. The weapon must exist when the line is read: one of the game's, or one this mod or an earlier mod made with newweapon. The first weapon with the name counts. Needed.",
+  "doc": "The spell's weapon and the damage it is used with, as in a monster's meleeweapon.",
+  "docsUrl": "https://musical-pianist.github.io/coe5se-docs/commands/spells/#weapon",
   "group": "CoE5SE",
   "kinds": [
    "coe5se"
@@ -12967,7 +13287,8 @@
    {
     "context": "Weapons",
     "doc": "Set color of damage numbers",
-    "signature": "yellow"
+    "signature": "yellow",
+    "url": "https://www.illwinter.com/coe5/coe5modding.pdf#page=4"
    }
   ],
   "group": "Weapon special attributes",
