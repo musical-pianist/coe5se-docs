@@ -9,7 +9,7 @@ The game alone can't read the name: put these lines in the .c5se or on `#!@` lin
 !!! info "More in the game's manual"
     These commands are in Illwinter's official modding manual. The monster ones are under ["Monster Modding"](https://www.illwinter.com/coe5/coe5modding.pdf#page=14), and `gainrit` under ["Ritual Modding"](https://www.illwinter.com/coe5/coe5modding.pdf#page=33).
 
-### spawnoffs "&lt;monster&gt;" { #spawnoffs data-toc-label="spawnoffs and the rest" }
+### spawnoffs "&lt;monster&gt;" { #spawnoffs .command data-toc-label="spawnoffs and the rest" }
 
 Points the command at the first monster with that name, capitals ignored. The same works in `growoffs`, `lookslike`, `landshape`, `watershape`, `elysiumshape`, `celestialshape`, `skyshape`, `agarthashape`, `infernoshape`, `hadesshape`, `aztlanshape`, `primalshape`, `elementalshape` and `voidshape`.
 
@@ -43,7 +43,7 @@ Points the command at the first monster with that name, capitals ignored. The sa
     #!@growoffs 1:"Longdead"
     ```
 
-### gainrit "&lt;ritual&gt;" [n] { #gainrit data-toc-label="gainrit" }
+### gainrit "&lt;ritual&gt;" [n] { #gainrit .command data-toc-label="gainrit" }
 
 Teaches the ritual with that name, capitals ignored. Goes after `newritual` or `selectritual`.
 

@@ -9,7 +9,7 @@ A name list is `newnametype`, then its `addname` lines, then `end`. Give it to a
 !!! info "More in the game's manual"
     `nametype` and the game's other monster commands are in Illwinter's official modding manual, under ["Monster Modding"](https://www.illwinter.com/coe5/coe5modding.pdf#page=14).
 
-### newnametype "&lt;list&gt;" { #newnametype data-toc-label="newnametype" }
+### newnametype "&lt;list&gt;" { #newnametype .command data-toc-label="newnametype" }
 
 Creates a list of commander names. Using a list's name again adds to that list, from this mod or another.
 
@@ -27,7 +27,7 @@ Creates a list of commander names. Using a list's name again adds to that list, 
     #!@newnametype "Dwarf Names"
     ```
 
-### addname "&lt;name&gt;" { #addname data-toc-label="addname" }
+### addname "&lt;name&gt;" { #addname .command data-toc-label="addname" }
 
 Adds a name to the list.
 
@@ -43,7 +43,7 @@ Adds a name to the list.
     #!@addname "Gimli"
     ```
 
-### fixedname "&lt;name&gt;" { #fixedname data-toc-label="fixedname" }
+### fixedname "&lt;name&gt;" { #fixedname .command data-toc-label="fixedname" }
 
 Gives every commander of this monster this name. Goes after `newmonster` or `selectmonster`.
 

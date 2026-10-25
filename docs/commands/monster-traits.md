@@ -13,7 +13,7 @@ These go after `newmonster`, `selectmonster`, `newitem` or `selectitem`. A `0` a
 !!! info "More in the game's manual"
     The game's own monster and item commands are in Illwinter's official modding manual, under ["Monster Modding"](https://www.illwinter.com/coe5/coe5modding.pdf#page=14) and ["Magic Item Modding"](https://www.illwinter.com/coe5/coe5modding.pdf#page=10).
 
-### small { #small data-toc-label="small" }
+### small { #small .command data-toc-label="small" }
 
 Makes the unit small, like the game's Goblins: raised as a Soulless, it rises as a Little Soulless.
 
@@ -45,7 +45,7 @@ Makes the unit small, like the game's Goblins: raised as a Soulless, it rises as
     #!@small 0
     ```
 
-### combatcaster { #combatcaster data-toc-label="combatcaster" }
+### combatcaster { #combatcaster .command data-toc-label="combatcaster" }
 
 Makes the unit a Combat Caster, like the game's Paladins.
 

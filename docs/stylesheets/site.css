@@ -8,6 +8,7 @@
   --md-primary-fg-color--dark: #000;
   --md-accent-fg-color: #b0714f;
   --md-typeset-a-color: #7a3f2c;
+  --coe5se-command: #6a3d9a;
 }
 
 [data-md-color-scheme="slate"] {
@@ -15,6 +16,7 @@
   --md-default-bg-color: #121212;
   --md-code-bg-color: #1c1c1c;
   --md-typeset-a-color: #d08c66;
+  --coe5se-command: #b48ee0;
 }
 
 /* The banner is the header's logo, as tall as the header allows. */
@@ -165,3 +167,9 @@
 .md-typeset .highlight .k-Branch-If { color: #00c853; font-weight: bold; }
 .md-typeset .highlight .k-Branch-Elseif { color: #ff9f1c; font-weight: bold; }
 .md-typeset .highlight .k-Branch-Else { color: #e040fb; font-weight: bold; }
+
+/* A command's line in the page's table of contents, in purple, apart from the examples and other headings
+   (hooks/command_toc.py marks it). The line you are on and the one under the pointer keep the theme's colour. */
+.md-nav--secondary .md-nav__link.command-link:not(.md-nav__link--active):not(:hover) {
+  color: var(--coe5se-command);
+}

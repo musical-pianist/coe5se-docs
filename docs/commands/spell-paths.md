@@ -6,7 +6,7 @@ Add your own magic paths, and share them with other mods by name.
 
 A new path's number changes as players add or remove mods, so name it in double quotes instead: in a spell's [`path`](spells.md#path), and in [`spellweapon` and the rest](#spellweapon).
 
-### newspellpath "&lt;name&gt;" { #newspellpath data-toc-label="newspellpath" }
+### newspellpath "&lt;name&gt;" { #newspellpath .command data-toc-label="newspellpath" }
 
 Creates a magic path. If a path already has the name, the game's or another mod's, the mods share that path.
 
@@ -24,7 +24,7 @@ Creates a magic path. If a path already has the name, the game's or another mod'
     #!@newspellpath "Lore of the Istari"
     ```
 
-### selectspellpath "&lt;name&gt;" | &lt;nbr&gt; { #selectspellpath data-toc-label="selectspellpath" }
+### selectspellpath "&lt;name&gt;" | &lt;nbr&gt; { #selectspellpath .command data-toc-label="selectspellpath" }
 
 Selects a path to rename, for every mod. Follow it with the game's `name` line.
 
@@ -63,7 +63,7 @@ Selects a path to rename, for every mod. Follow it with the game's `name` line.
     #!@name "Manwe's Storm Magic"
     ```
 
-### spellweapon "&lt;path&gt;" &lt;level&gt; { #spellweapon data-toc-label="spellweapon and the rest" }
+### spellweapon "&lt;path&gt;" &lt;level&gt; { #spellweapon .command data-toc-label="spellweapon and the rest" }
 
 Takes a path's name in double quotes where the game takes its number. The same works in `spellweaponbonus`, `spellweapon50`, `spellweapon50s`, `spellweaponsingle`, `pathboost`, `newspell1`, `newspell2` and `newspell3`. The game alone can't read the name: put these lines in the .c5se or on `#!@` lines.
 

@@ -4,11 +4,11 @@
 import re
 
 NEW_LABEL = '<span class="new-badge">New</span>'
-NEW_HEADING = re.compile(r'<h3 id="([^"]+)">[^<]*' + re.escape(NEW_LABEL))
+NEW_HEADING = re.compile(r'<h3 [^>]*\bid="([^"]+)"[^>]*>[^<]*' + re.escape(NEW_LABEL))   # an entry heading also has class="command"
 
 
 def on_post_page(output, page, config):
     for anchor in set(NEW_HEADING.findall(output)):
-        link = re.compile(r'(<a href="#' + re.escape(anchor) + r'" class="md-nav__link">\s*<span class="md-ellipsis">\s*)([^<]*?)(\s*</span>)')
+        link = re.compile(r'(<a href="#' + re.escape(anchor) + r'" class="md-nav__link[^"]*">\s*<span class="md-ellipsis">\s*)([^<]*?)(\s*</span>)')
         output = link.sub(lambda m: f"{m.group(1)}{m.group(2)} {NEW_LABEL}{m.group(3)}", output)
     return output
