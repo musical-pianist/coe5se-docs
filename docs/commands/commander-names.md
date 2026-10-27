@@ -4,7 +4,7 @@
 
 Write your own lists of commander names, so your Dwarf Captains go by Gimli and Balin.
 
-A name list is `newnametype`, then its `addname` lines, then `end`. Give it to a monster with the game's `nametype "<list>"`, and the game names its commanders from the list at random. The list must exist before that line, in this mod or an earlier one. Put that `nametype` line in the .c5se or on a `#!@` line: the game alone can't read a list's name.
+A name list is `newnametype`, followed by its `addname` commands, then `end`. Give it to a monster with the game's `nametype "<list>"`, and the game names its commanders from the list at random. The list must exist before that line, in this mod or an earlier one. Put that `nametype` line in the .c5se or on a `#!@` line: the game alone can't read a list's name.
 
 !!! info "More in the game's manual"
     `nametype` and the game's other monster commands are in Illwinter's official modding manual, under ["Monster Modding"](https://www.illwinter.com/coe5/coe5modding.pdf#page=14).

@@ -1,7 +1,8 @@
 # Each command word in a code block gets the VS Code extension's hover text as its title, which the
 # theme's improved tooltips (content.tooltips) shows as a hover box, and so does each number the
 # manual's number tables explain (newunits 28: Inferno). words.json and tables.json are copies of the
-# extension's data/words.json and data/tables.json. On a noexplode line each part number gets the part
+# extension's data/words.json and data/tables.json. A number no table explains gets what its form says the
+# argument does (words.json "args": templerec 4 3's amount and cap). On a noexplode line each part number gets the part
 # of the addstring above it, read back as the extension reads it, and start and end their form.
 import html
 import json
@@ -56,23 +57,33 @@ def argument_names(signature, word):
     return names
 
 
-def number_meaning(word, index, value):
+def line_form(entry, bare, count):
+    """The form a line's `count` values fit, as the extension's lineForm picks it: a CoE5SE word's first form
+    that takes them; a game word's first meaning, or the first that takes as many values as the line has
+    (a CoE5SE form of a game word, templerec <amount> [<cap>])."""
+    coe5se = entry.get("group") == "CoE5SE" or any(k.startswith("coe5se") for k in entry.get("kinds", []))
+    forms = (entry.get("forms") or [entry]) if coe5se else (entry.get("docs") or [entry])
+    return next((f for f in forms if len(argument_names(f.get("signature", ""), bare)) >= count), forms[0])
+
+
+def number_meaning(word, index, value, count):
     """What the number at argument `index` of `word` means, by the extension's rules: the argument's
-    name picks the table, or the word's own table for its first argument; a flags table adds up."""
+    name picks the table, or the word's own table for its first argument; a flags table adds up. Without
+    a table, what the form says the argument does (words.json "args")."""
     bare = word.lstrip("+-")
     entry = WORDS.get(word) or WORDS.get(bare)
     if not entry:
         return None
-    docs = entry.get("docs") or []
-    coe5se = entry.get("group") == "CoE5SE" or any(k.startswith("coe5se") for k in entry.get("kinds", []))
-    signature = entry.get("signature") if coe5se or not docs else docs[0].get("signature")
-    names = argument_names(signature or "", bare)
+    form = line_form(entry, bare, count)
+    names = argument_names(form.get("signature") or "", bare)
     if index >= len(names):
         return None
     key = TABLES["args"].get(names[index].lower()) or (TABLES["words"].get(bare) if index == 0 else None)
     table = TABLES["tables"].get(key)
     if not table:
-        return None
+        doc = (form.get("args") or {}).get(names[index])
+        title_case = re.sub(r"\b[a-z]", lambda c: c.group(0).upper(), names[index])
+        return f"{title_case} {value}: {doc}" if doc else None
     if table["flags"]:
         parts = [text for v, text in table["rows"] if int(value) & int(v)]
         meaning = " + ".join(parts)
@@ -93,12 +104,13 @@ def titled_numbers(line):
     if not first:
         return line
     word = first.group(1).removeprefix("#!@")
-    starts = [m.start() for m in VALUE.finditer(plain, first.end())]
+    code = re.sub(r'\s#.*$', "", plain)   # a comment after the values isn't a value
+    starts = [m.start() for m in VALUE.finditer(code, first.end())]
     out, pos, offset = [], 0, 0
     for m in NUMBER.finditer(line):
         offset += len(html.unescape(TAG.sub("", line[pos:m.start()])))
         index = next((i for i, s in enumerate(starts) if s == offset), None)
-        text = number_meaning(word, index, m.group(2)) if index is not None else None
+        text = number_meaning(word, index, m.group(2), len(starts)) if index is not None else None
         out.append(line[pos:m.start()])
         out.append(f'<span class="{m.group(1)}" title="{title_attribute(text)}">{m.group(2)}</span>'
                    if text else m.group(0))

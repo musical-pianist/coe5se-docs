@@ -5,9 +5,9 @@ status: new
 
 # Events
 
-Give your events if-then logic, so a single event can react to each situation in its own way.
+Give your events if-then logic, so a single event can have multiple decision trees or checks within the game.
 
-Each word stands alone on its line, inside a `playerevent` or `squareevent`.
+Each word is declared inside a `playerevent` or `squareevent`.
 
 !!! info "More in the game's manual"
     The game's own event triggers and actions are in Illwinter's official modding manual, under ["Events"](https://www.illwinter.com/coe5/coe5modding.pdf#page=38).

@@ -64,13 +64,17 @@ nav:
           - Monster Traits: commands/monster-traits.md
           - Commander Names: commands/commander-names.md
           - Monster and Ritual Names: commands/monster-names.md
+      - Recruitment Bonuses: commands/recruitment.md
       - Ritual Effects: commands/ritual-effects.md
+      - Corpses: commands/corpses.md
       - Planes: commands/planes.md
+      - Factions: commands/factions.md
       - Events: commands/events.md
       - Mod Setup:
           - Mod Settings: commands/mod-settings.md
           - Mod Loading: commands/mod-loading.md
           - Other Commands: commands/other-commands.md
+      - Limits: commands/limits.md
 
 hooks:
   - hooks/tooltips.py

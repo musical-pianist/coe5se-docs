@@ -10,7 +10,7 @@ A new path's number changes as players add or remove mods, so name it in double 
 
 Creates a magic path. If a path already has the name, the game's or another mod's, the mods share that path.
 
-- **name:** The path's name, in double quotes, up to 32 characters.
+- **name:** The path's name, in double quotes ([length limit](limits.md#spell-paths)).
 
 === ".c5se"
 

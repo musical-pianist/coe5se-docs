@@ -13,7 +13,7 @@ Each spell needs [`newspell`](#newspell), [`path`](#path), [`level`](#level) and
 
 Creates a spell.
 
-- **name:** The spell's name, in double quotes, up to 47 characters.
+- **name:** The spell's name, in double quotes ([length limit](limits.md#spells)).
 
 === ".c5se"
 
@@ -74,9 +74,11 @@ Sets the spell's magic path.
     #!@path "Lore of the Istari"
     ```
 
-### level &lt;1-3&gt; { #level .command data-toc-label="level" }
+### level &lt;level&gt; { #level .command data-toc-label="level" }
 
 Sets the spell's level. Inside a spell only; elsewhere `level` is the game's ritual level.
+
+- **level:** The spell's level, 1 to 3.
 
 === ".c5se"
 

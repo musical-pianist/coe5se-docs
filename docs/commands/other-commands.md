@@ -9,7 +9,7 @@ status: new
 
 Sets the room for the data files your mod's Lua script saves. Goes in the .c5se or on a `#!@` line, once.
 
-- **megabytes:** 1 to 100. Without the line, 10. A save that would go past it fails, and CoE5SE deletes nothing to make room.
+- **megabytes:** The room your script's data files may take, 1 to 100. Without the line, 10. A save that would go past it fails, and CoE5SE deletes nothing to make room.
 
 === ".c5se"
 
@@ -80,6 +80,50 @@ level 1
 weapon 4 "Heal"
 ```
 
+### selectclass "&lt;class&gt;" <span class="new-badge">New</span> { #selectclass .command data-toc-label="selectclass" }
+
+Picks a class by string, as a mod's class number changes with the mods a player has on, since CoE5SE gives mods 50 more class slots.
+
+- **class:** The class's name in double quotes, as `setclassname` gave it, capitals included. When two classes share a name, the game's class comes first, then the earliest mod's.
+
+A name no class has stops the game with its Mod Error at that line, naming the class. Turn on the mod with the class, and make it load before yours.
+
+=== ".c5se"
+
+    ```c5se
+    selectclass "Stewards of Gondor"
+    ```
+
+=== ".c5m"
+
+    ```c5m
+    #!@selectclass "Stewards of Gondor"
+    ```
+
+### aiclass 2 <span class="new-badge">New</span> { #aiclass .command data-toc-label="aiclass" }
+
+Takes the class away from every player, human and AI: Choose Class leaves it out, and no Random player gets it. Goes after `newclass` or `selectclass`. Clear the game's classes out of a total rework with it, so no Baron or Senator turns up in Middle-earth.
+
+Leave enough classes for every Random player. With "unique random players" on and more AIs than classes left to them, the extra AIs get your `aiclass 2` classes. The game can't start a Random player with no class to pick.
+
+=== ".c5se"
+
+    ```c5se
+    aiclass 2
+    ```
+
+=== ".c5m"
+
+    ```c5m
+    aiclass 2
+    ```
+
+!!! tip "For players without CoE5SE"
+    Their game reads `aiclass 2` as `aiclass 1`: only AI players get the class.
+
+!!! info "More in the game's manual"
+    `aiclass` and the game's other class commands are in Illwinter's official modding manual, under ["Class Modding"](https://www.illwinter.com/coe5/coe5modding.pdf#page=27).
+
 ### Example { #example }
 
 === ".c5se"
@@ -92,6 +136,13 @@ weapon 4 "Heal"
     include "gondor/minas_tirith/guard.c5se"
     include "mordor/orcs.c5se"
     include "mordor/barad_dur/rituals.c5se"
+
+    selectclass "Baron"
+    aiclass 2
+    selectclass "Senator"
+    aiclass 2
+    selectclass "Monkey Maharaja"
+    aiclass 2
     ```
 
 === ".c5m"
@@ -104,6 +155,13 @@ weapon 4 "Heal"
     #!@include "gondor/minas_tirith/guard.c5se"
     #!@include "mordor/orcs.c5se"
     #!@include "mordor/barad_dur/rituals.c5se"
+
+    #!@selectclass "Baron"
+    aiclass 2
+    #!@selectclass "Senator"
+    aiclass 2
+    #!@selectclass "Monkey Maharaja"
+    aiclass 2
     ```
 
 Your mod's folder with those files:

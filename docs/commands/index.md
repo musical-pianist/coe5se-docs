@@ -22,6 +22,7 @@ Examples have a .c5se tab and a .c5m tab. The few commands that work in one file
 | Monsters | [Monster Traits](monster-traits.md) | Traits on a monster or item |
 | | [Commander Names](commander-names.md) | Lists of commander names |
 | | [Monster and Ritual Names](monster-names.md) | Names in place of offsets |
+| Classes | [Recruitment Bonuses](recruitment.md) | What temples, libraries, villages and units add to a recruitment offer |
 | Rituals | [Ritual Effects](ritual-effects.md) | Effects only the game's own rituals had |
 | Planes | [Planes](planes.md) | New planes, and planes by name |
 | Events | [Events](events.md) | Events that choose between groups of triggers and branches |

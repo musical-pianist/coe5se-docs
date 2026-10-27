@@ -23,13 +23,13 @@ A setting takes two steps. Declare it, so it shows on that page. Then read it in
 
 ## Declaring settings
 
-Declare settings in the .c5se, or on `#!@` lines of the .c5m. Each setting is `newsetting`, one kind ([`onoff`](#onoff), [`choice`](#choice) or [`key`](#key)), a `default` and a `label`, in any order.
+Declare settings in the .c5se, or on `#!@` lines of the .c5m. Each setting is `newsetting`, one kind ([`onoff`](#onoff), [`choice`](#choice) or [`key`](#key)), a `default` and a `label`, in any order. Text lengths and the number of options: [Limits](limits.md#mod-settings).
 
 ### newsetting &lt;name&gt; { #newsetting .command data-toc-label="newsetting" }
 
 Creates a setting.
 
-- **name:** The word your events and scripts read the setting by: 1 to 32 letters, digits and `_`, starting with a letter. Each name once per mod; capitals don't count.
+- **name:** The word your events and scripts read the setting by: letters, digits and `_`, starting with a letter. Each name once per mod; capitals don't count.
 
 === ".c5se"
 
@@ -133,7 +133,7 @@ Sets the setting's starting value.
 
 ### label "&lt;text&gt;" { #label .command data-toc-label="label" }
 
-Sets the setting's text on the page, or a sub-page's name after `newsettingpage`. Up to 56 characters.
+Sets the setting's text on the page, or a sub-page's name after `newsettingpage`.
 
 === ".c5se"
 
@@ -151,8 +151,8 @@ Sets the setting's text on the page, or a sub-page's name after `newsettingpage`
 
 Adds an option to a `choice`.
 
-- **number:** 0 to 7, with no gaps.
-- **text:** Up to 56 characters.
+- **number:** The option's number, from 0, with no gaps.
+- **text:** The option's text.
 
 === ".c5se"
 
@@ -168,7 +168,9 @@ Adds an option to a `choice`.
 
 ### optiontip &lt;number&gt; "&lt;text&gt;" { #optiontip .command data-toc-label="optiontip" }
 
-Sets an option's hover text, up to 255 characters.
+Sets an option's hover text.
+
+- **number:** The number of the `option` it describes.
 
 === ".c5se"
 
@@ -184,7 +186,7 @@ Sets an option's hover text, up to 255 characters.
 
 ### tip "&lt;text&gt;" { #tip .command data-toc-label="tip" }
 
-Sets the hover text of an `onoff` or `key` setting, up to 255 characters.
+Sets the hover text of an `onoff` or `key` setting.
 
 === ".c5se"
 
@@ -248,7 +250,7 @@ Stops the player changing a `key` setting.
 
 ### newsettingheader "&lt;title&gt;" { #newsettingheader .command data-toc-label="newsettingheader" }
 
-Puts the `onoff` and `key` settings after it in a box with this title, up to the next `newsettingheader` or `choice`. Follow it with an `onoff` or `key` setting. The title is up to 56 characters.
+Puts the `onoff` and `key` settings after it in a box with this title, up to the next `newsettingheader` or `choice`. Follow it with an `onoff` or `key` setting.
 
 === ".c5se"
 
@@ -265,6 +267,8 @@ Puts the `onoff` and `key` settings after it in a box with this title, up to the
 ### newsettingpage &lt;name&gt; { #newsettingpage .command data-toc-label="newsettingpage" }
 
 Puts the settings after it on a sub-page, up to the next `newsettingpage`. Give it a `label`.
+
+- **name:** The page's name: 1 to 32 letters, digits and `_`, starting with a letter. Players see its `label` instead.
 
 === ".c5se"
 
@@ -391,6 +395,7 @@ Events read a setting with [`+setting`](#setting), with no script needed. A Lua 
 
 Makes an event happen only while the setting is on, or while a `key` setting has a key. `-setting` is the opposite. Goes in an event, in the .c5se or the .c5m.
 
+- **name:** The name on the setting's `newsetting` line.
 - **index:** For a `choice`, the option the player picked; for a `key`, the key it holds.
 
 === ".c5se"
