@@ -21,7 +21,7 @@ Each word is declared inside a `playerevent` or `squareevent`.
 - `or` splits one branch's triggers into groups. The branch holds if every trigger in any one group holds.
 - The game tries the branches from the top. The first branch whose triggers hold runs its actions, and the rest of the event is skipped, so one branch runs for each player each turn.
 
-### if <span class="new-badge">New</span> { #if .command data-toc-label="if" }
+### if <span class="new-badge">New</span> { #if .command data-toc-label="if" data-added="2.8" }
 
 Starts the branches. The triggers above it hold for every branch below it: when they hold, each branch starts from there; when they fail, no branch runs, `else` included. At most one `if`, before the first branch's actions.
 
@@ -43,7 +43,7 @@ Starts the branches. The triggers above it hold for every branch below it: when 
     #!@if
     ```
 
-### or { #or .command data-toc-label="or" }
+### or { #or .command data-toc-label="or" data-added="2.4" }
 
 Starts another group of triggers. The event holds when every trigger in any one group holds. It goes between triggers, before the branch's first action. In a `playerevent`, the first group that holds sets the event's target: a `+hasunithere` in a later group doesn't change it.
 
@@ -67,7 +67,7 @@ Starts another group of triggers. The event holds when every trigger in any one 
     +hasitem -2 "Ring of Shadows"
     ```
 
-### elseif { #elseif .command data-toc-label="elseif" }
+### elseif { #elseif .command data-toc-label="elseif" data-added="2.4" }
 
 Starts another branch: its own triggers, then its own actions. It runs only if no branch before it ran.
 
@@ -89,7 +89,7 @@ Starts another branch: its own triggers, then its own actions. It runs only if n
     +hasitem -2 "Eye of the Night"
     ```
 
-### else { #else .command data-toc-label="else" }
+### else { #else .command data-toc-label="else" data-added="2.4" }
 
 Starts the last branch, with no triggers: its actions run whenever no branch before it ran, on every turn the event checks. Use it in an event meant to act every turn, not in a one-time event. Put only its actions after it: another `elseif` or `else` after it stops the rest of the event.
 

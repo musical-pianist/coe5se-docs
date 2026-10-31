@@ -14,6 +14,3 @@ c5se = "coe5_lexers:C5seLexer"
 
 [tool.setuptools]
 packages = ["coe5_lexers"]
-
-[tool.setuptools.package-data]
-coe5_lexers = ["*.json"]

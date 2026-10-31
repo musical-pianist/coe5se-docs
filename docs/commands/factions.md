@@ -17,7 +17,7 @@ A faction is `newfaction`, followed by the commands on this page that shape the 
 
 ## The faction
 
-### newfaction "&lt;name&gt;" { #newfaction .command data-toc-label="newfaction" }
+### newfaction "&lt;name&gt;" <span class="new-badge">New</span> { #newfaction .command data-toc-label="newfaction" data-added="2.10" }
 
 Creates a faction. Its name shows wherever the game names a player.
 
@@ -35,7 +35,7 @@ Creates a faction. Its name shows wherever the game names a player.
     #!@newfaction "Host of Mordor"
     ```
 
-### factionlike "&lt;faction&gt;" { #factionlike .command data-toc-label="factionlike" }
+### factionlike "&lt;faction&gt;" <span class="new-badge">New</span> { #factionlike .command data-toc-label="factionlike" data-added="2.10" }
 
 Clones a vanilla faction's rules, so each line your block leaves out keeps the vanilla faction's setting. Your faction stays a faction of its own, apart from the faction it clones.
 
@@ -53,7 +53,7 @@ Clones a vanilla faction's rules, so each line your block leaves out keeps the v
     #!@factionlike "Inferno"
     ```
 
-### factioncolor &lt;red&gt; &lt;green&gt; &lt;blue&gt; { #factioncolor .command data-toc-label="factioncolor" }
+### factioncolor &lt;red&gt; &lt;green&gt; &lt;blue&gt; <span class="new-badge">New</span> { #factioncolor .command data-toc-label="factioncolor" data-added="2.10" }
 
 Sets the faction's colour.
 
@@ -71,7 +71,7 @@ Sets the faction's colour.
     #!@factioncolor 150 30 10
     ```
 
-### factionhome "&lt;plane&gt;" { #factionhome .command data-toc-label="factionhome" }
+### factionhome "&lt;plane&gt;" <span class="new-badge">New</span> { #factionhome .command data-toc-label="factionhome" data-added="2.10" }
 
 Sets the faction's home plane: where its citadel spawns, its gateway's exit and its waiting wanderers are.
 
@@ -91,7 +91,7 @@ Sets the faction's home plane: where its citadel spawns, its gateway's exit and 
 
 ## World generation
 
-### factionpopulate on|off { #factionpopulate .command data-toc-label="factionpopulate" }
+### factionpopulate on|off <span class="new-badge">New</span> { #factionpopulate .command data-toc-label="factionpopulate" data-added="2.10" }
 
 Makes the independents owned by the faction. You usually want this.
 
@@ -107,7 +107,7 @@ Makes the independents owned by the faction. You usually want this.
     #!@factionpopulate on
     ```
 
-### factionunits "&lt;monster&gt;" &lt;count&gt; &lt;chance&gt; [&lt;terrain&gt;] ["&lt;plane&gt;"] { #factionunits .command data-toc-label="factionunits" }
+### factionunits "&lt;monster&gt;" &lt;count&gt; &lt;chance&gt; [&lt;terrain&gt;] ["&lt;plane&gt;"] <span class="new-badge">New</span> { #factionunits .command data-toc-label="factionunits" data-added="2.10" }
 
 The faction places owned units on a plane at world generation, and owns each square it places them on.
 
@@ -129,7 +129,7 @@ The faction places owned units on a plane at world generation, and owns each squ
     #!@factionunits "Ghost" 1 3 -1 "Elysium"
     ```
 
-### factionpopulateterrain &lt;terrain&gt; ["&lt;plane&gt;"] { #factionpopulateterrain .command data-toc-label="factionpopulateterrain" }
+### factionpopulateterrain &lt;terrain&gt; ["&lt;plane&gt;"] <span class="new-badge">New</span> { #factionpopulateterrain .command data-toc-label="factionpopulateterrain" data-added="2.10" }
 
 Independents already placed during world generation (a previous step) are then owned by the faction, along with their squares.
 
@@ -150,7 +150,7 @@ Independents already placed during world generation (a previous step) are then o
 
 ## Spawns
 
-### factionactive always|never|portals &lt;n&gt; { #factionactive .command data-toc-label="factionactive" }
+### factionactive always|never|portals &lt;n&gt; <span class="new-badge">New</span> { #factionactive .command data-toc-label="factionactive" data-added="2.10" }
 
 Sets when the faction is active, which its citadel spawns and waiting wanderers need: always, never, or by the Inferno's rule (`portals`). By that rule the faction is active while that many gateways to its home are open. It is also active while a player's army or a citadel someone else owns stands on its home.
 
@@ -168,7 +168,7 @@ Sets when the faction is active, which its citadel spawns and waiting wanderers 
     #!@factionactive portals 1
     ```
 
-### factionspawnsite owncitadel|monument ["&lt;plane&gt;"]|none { #factionspawnsite .command data-toc-label="factionspawnsite" }
+### factionspawnsite owncitadel|monument ["&lt;plane&gt;"]|none <span class="new-badge">New</span> { #factionspawnsite .command data-toc-label="factionspawnsite" data-added="2.10" }
 
 Sets where the faction spawns its units: at a citadel it owns on its home, as the Inferno does; at its monuments, as Hades does; or nowhere.
 
@@ -186,7 +186,7 @@ Sets where the faction spawns its units: at a citadel it owns on its home, as th
     #!@factionspawnsite owncitadel
     ```
 
-### factionfuel "&lt;monster&gt;" { #factionfuel .command data-toc-label="factionfuel" }
+### factionfuel "&lt;monster&gt;" <span class="new-badge">New</span> { #factionfuel .command data-toc-label="factionfuel" data-added="2.10" }
 
 Sets the monster the faction uses up to spawn units, as the Inferno uses Sinners.
 
@@ -202,7 +202,7 @@ Sets the monster the faction uses up to spawn units, as the Inferno uses Sinners
     #!@factionfuel "Sinner"
     ```
 
-### factionspawn &lt;min&gt; &lt;use&gt; &lt;chance&gt; "&lt;group&gt;" [magma|ice|waste] { #factionspawn .command data-toc-label="factionspawn" }
+### factionspawn &lt;min&gt; &lt;use&gt; &lt;chance&gt; "&lt;group&gt;" [magma|ice|waste] <span class="new-badge">New</span> { #factionspawn .command data-toc-label="factionspawn" data-added="2.10" }
 
 Adds a spawn the faction tries on its turn. At each site the faction sends out only the first spawn whose fuel, terrain and chance pass, so declare the biggest first. The block's first `factionspawn` replaces the cloned faction's spawns.
 
@@ -226,7 +226,7 @@ Adds a spawn the faction tries on its turn. At each site the faction sends out o
 
 ## Wanderers
 
-### factionwander "&lt;word&gt;" { #factionwander .command data-toc-label="factionwander" }
+### factionwander "&lt;word&gt;" <span class="new-badge">New</span> { #factionwander .command data-toc-label="factionwander" data-added="2.10" }
 
 Sets the wander command the faction's commanders follow.
 
@@ -244,7 +244,7 @@ Sets the wander command the faction's commanders follow.
     #!@factionwander "infwander"
     ```
 
-### factionwandergate on|off { #factionwandergate .command data-toc-label="factionwandergate" }
+### factionwandergate on|off <span class="new-badge">New</span> { #factionwandergate .command data-toc-label="factionwandergate" data-added="2.10" }
 
 Makes the faction's wanderers wait on its home until the faction is active, as the Inferno's wanderers do. It works with `factionwander` "infwander" or "celwander"; with "indwander" the Independents' own gate rule applies instead.
 
@@ -262,7 +262,7 @@ Makes the faction's wanderers wait on its home until the faction is active, as t
 
 ## Monuments, like Hades
 
-### factionmonument "&lt;monster&gt;"|none { #factionmonument .command data-toc-label="factionmonument" }
+### factionmonument "&lt;monster&gt;"|none <span class="new-badge">New</span> { #factionmonument .command data-toc-label="factionmonument" data-added="2.10" }
 
 Sets the monster the faction uses as its monument, like Hades' Monument of Hades.
 
@@ -278,7 +278,7 @@ Sets the monster the faction uses as its monument, like Hades' Monument of Hades
     #!@factionmonument "Monument of Hades"
     ```
 
-### factionmonumentrule on|off { #factionmonumentrule .command data-toc-label="factionmonumentrule" }
+### factionmonumentrule on|off <span class="new-badge">New</span> { #factionmonumentrule .command data-toc-label="factionmonumentrule" data-added="2.10" }
 
 Lets the faction's monument on Elysium stop a player from ruling Elysium, as the Monument of Hades does.
 
@@ -294,7 +294,7 @@ Lets the faction's monument on Elysium stop a player from ruling Elysium, as the
     #!@factionmonumentrule on
     ```
 
-### factionmonumentevent &lt;month&gt; &lt;chance&gt; "&lt;plane&gt;" &lt;terrain&gt; "&lt;monster&gt;" ["&lt;news&gt;"]|none { #factionmonumentevent .command data-toc-label="factionmonumentevent" }
+### factionmonumentevent &lt;month&gt; &lt;chance&gt; "&lt;plane&gt;" &lt;terrain&gt; "&lt;monster&gt;" ["&lt;news&gt;"]|none <span class="new-badge">New</span> { #factionmonumentevent .command data-toc-label="factionmonumentevent" data-added="2.10" }
 
 Lets the faction found its monument on a square the Independents own, as Hades founds the Monument of Hades. The Independents' units on the square become owned by the faction.
 
@@ -316,7 +316,7 @@ Lets the faction found its monument on a square the Independents own, as Hades f
     #!@factionmonumentevent 24 8 "Elysium" 38 "Unfinished Monument" "%s has raised the Stone of Erech. The Dead gather to it."
     ```
 
-### factionplaneshift "&lt;monster&gt;" &lt;percent&gt; &lt;each&gt;|none { #factionplaneshift .command data-toc-label="factionplaneshift" }
+### factionplaneshift "&lt;monster&gt;" &lt;percent&gt; &lt;each&gt;|none <span class="new-badge">New</span> { #factionplaneshift .command data-toc-label="factionplaneshift" data-added="2.10" }
 
 Moves the monster from the faction's home to the matching square on Elysium while the faction's monument stands, as Hades moves Dispossessed Spirits.
 
@@ -335,7 +335,7 @@ Moves the monster from the faction's home to the matching square on Elysium whil
     #!@factionplaneshift "Dispossessed Spirit" 8 50
     ```
 
-### factionloyalty "&lt;monster&gt;"|none { #factionloyalty .command data-toc-label="factionloyalty" }
+### factionloyalty "&lt;monster&gt;"|none <span class="new-badge">New</span> { #factionloyalty .command data-toc-label="factionloyalty" data-added="2.10" }
 
 Makes every unit of the monster on the monument's plane owned by the faction while its monument stands, as Hades does with Dispossessed Spirits.
 
@@ -353,7 +353,7 @@ Makes every unit of the monster on the monument's plane owned by the faction whi
 
 ## Gateways, like the Inferno
 
-### factiongather &lt;ability&gt;|none { #factiongather .command data-toc-label="factiongather" }
+### factiongather &lt;ability&gt;|none <span class="new-badge">New</span> { #factiongather .command data-toc-label="factiongather" data-added="2.10" }
 
 Makes the faction's units with the ability gather its fuel from Elysium's settlements and bring it home.
 
@@ -371,7 +371,7 @@ Makes the faction's units with the ability gather its fuel from Elysium's settle
     #!@factiongather 1224
     ```
 
-### factiongateway &lt;fuel&gt; &lt;ruin&gt; &lt;gate&gt; &lt;exit&gt; ["&lt;news&gt;"]|none { #factiongateway .command data-toc-label="factiongateway" }
+### factiongateway &lt;fuel&gt; &lt;ruin&gt; &lt;gate&gt; &lt;exit&gt; ["&lt;news&gt;"]|none <span class="new-badge">New</span> { #factiongateway .command data-toc-label="factiongateway" data-added="2.10" }
 
 Sets the ruined gateway on Elysium the faction's carriers restore, and where it leads on the faction's home.
 
@@ -393,7 +393,7 @@ Sets the ruined gateway on Elysium the faction's carriers restore, and where it 
 
 ## The faction in the world
 
-### factiontithe on|off { #factiontithe .command data-toc-label="factiontithe" }
+### factiontithe on|off <span class="new-badge">New</span> { #factiontithe .command data-toc-label="factiontithe" data-added="2.10" }
 
 Sends the gold of the faction's squares to the Tithe of El. You usually want this.
 
@@ -409,7 +409,7 @@ Sends the gold of the faction's squares to the Tithe of El. You usually want thi
     #!@factiontithe on
     ```
 
-### factionworldevents on|off { #factionworldevents .command data-toc-label="factionworldevents" }
+### factionworldevents on|off <span class="new-badge">New</span> { #factionworldevents .command data-toc-label="factionworldevents" data-added="2.10" }
 
 Lets the world events that act on the Independents' squares and armies, like the Bandit King and the brigands' lair, act on the faction's squares and armies too.
 
@@ -425,7 +425,7 @@ Lets the world events that act on the Independents' squares and armies, like the
     #!@factionworldevents off
     ```
 
-### factionconquest independent|normal { #factionconquest .command data-toc-label="factionconquest" }
+### factionconquest independent|normal <span class="new-badge">New</span> { #factionconquest .command data-toc-label="factionconquest" data-added="2.10" }
 
 Sets how players conquer the faction's squares: `independent` as they conquer the Independents' squares, `normal` as they conquer any other faction's.
 
@@ -441,7 +441,7 @@ Sets how players conquer the faction's squares: `independent` as they conquer th
     #!@factionconquest normal
     ```
 
-### factionstatue on|off { #factionstatue .command data-toc-label="factionstatue" }
+### factionstatue on|off <span class="new-badge">New</span> { #factionstatue .command data-toc-label="factionstatue" data-added="2.10" }
 
 Makes the faction a faction of cities like the Empire: the Imperial Statue and the wanderers that seek cities count its squares.
 
@@ -457,7 +457,7 @@ Makes the faction a faction of cities like the Empire: the Imperial Statue and t
     #!@factionstatue off
     ```
 
-### factionhorrors on|off { #factionhorrors .command data-toc-label="factionhorrors" }
+### factionhorrors on|off <span class="new-badge">New</span> { #factionhorrors .command data-toc-label="factionhorrors" data-added="2.10" }
 
 Gives the faction a share of the Horrors' spawns, making it a second Horrors.
 
@@ -473,7 +473,7 @@ Gives the faction a share of the Horrors' spawns, making it a second Horrors.
     #!@factionhorrors off
     ```
 
-### factionavoid "&lt;faction&gt;" &lt;percent&gt;|none { #factionavoid .command data-toc-label="factionavoid" }
+### factionavoid "&lt;faction&gt;" &lt;percent&gt;|none <span class="new-badge">New</span> { #factionavoid .command data-toc-label="factionavoid" data-added="2.10" }
 
 Makes the faction's armies avoid another faction's armies. The block's first `factionavoid` replaces the cloned faction's list.
 
@@ -492,7 +492,7 @@ Makes the faction's armies avoid another faction's armies. The block's first `fa
     #!@factionavoid "Empire" 25
     ```
 
-### factioncaravan &lt;month&gt; &lt;chance&gt; "&lt;plane&gt;" &lt;terrain&gt; ["&lt;group&gt;"] ["&lt;news&gt;"]|none { #factioncaravan .command data-toc-label="factioncaravan" }
+### factioncaravan &lt;month&gt; &lt;chance&gt; "&lt;plane&gt;" &lt;terrain&gt; ["&lt;group&gt;"] ["&lt;news&gt;"]|none <span class="new-badge">New</span> { #factioncaravan .command data-toc-label="factioncaravan" data-added="2.10" }
 
 Gives the faction a caravan, beside the vanilla game's caravan.
 

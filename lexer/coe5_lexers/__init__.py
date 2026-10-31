@@ -1,13 +1,14 @@
 """Pygments lexers for CoE5 .c5m and CoE5SE .c5se files.
 
-They read the TextMate grammars from the CoE5 Modding VS Code extension (the two
-.tmLanguage.json files next to this one), so the docs colour code the same way
-the editor does. To update them, copy the extension's syntaxes/*.tmLanguage.json
-over these.
+They read the TextMate grammars out of the CoE5 Modding VS Code extension itself,
+coe5-modding.vsix in the folder MkDocs builds from (the site's root), so the docs
+colour code the same way the editor does. gen_docs_commands.py in the CoE5SE
+sources packs that .vsix there.
 """
 
 import json
 import re
+import zipfile
 from pathlib import Path
 
 from pygments.lexer import Lexer
@@ -116,7 +117,8 @@ class TextMateGrammarLexer(Lexer):
 
     def __init__(self, **options):
         super().__init__(**options)
-        grammar = json.loads((Path(__file__).parent / self.grammar_file).read_text(encoding="utf-8"))
+        with zipfile.ZipFile(Path.cwd() / "coe5-modding.vsix") as vsix:
+            grammar = json.loads(vsix.read("extension/syntaxes/" + self.grammar_file))
         self.rules = compile_rules(grammar["patterns"])
 
     def get_tokens_unprocessed(self, text):

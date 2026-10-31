@@ -12,7 +12,7 @@ These go after `newritual` or `selectritual`.
 !!! info "More in the game's manual"
     The game's own ritual commands are in Illwinter's official modding manual, under ["Ritual Modding"](https://www.illwinter.com/coe5/coe5modding.pdf#page=33).
 
-### randomequip <span class="new-badge">New</span> { #randomequip .command data-toc-label="randomequip" }
+### randomequip <span class="new-badge">New</span> { #randomequip .command data-toc-label="randomequip" data-added="2.7" }
 
 Gives the caster one item, picked at random from the ritual's `addstring "|<item>"` lines, like the game's Enter Soul Contract.
 
@@ -35,7 +35,7 @@ Gives the caster one item, picked at random from the ritual's `addstring "|<item
 !!! warning "Put the `|` lines first"
     If another `addstring` line comes before them, the ritual gives no item.
 
-### randartifact [group] <span class="new-badge">New</span> { #randartifact .command data-toc-label="randartifact" }
+### randartifact [group] <span class="new-badge">New</span> { #randartifact .command data-toc-label="randartifact" data-added="2.7" }
 
 Gives the caster a random magic item, like the game's Create Artifact.
 
@@ -69,7 +69,7 @@ Gives the caster a random magic item, like the game's Create Artifact.
     #!@randartifact fire
     ```
 
-### noexplode [parts | start | end] <span class="new-badge">New</span> { #noexplode .command data-toc-label="noexplode" }
+### noexplode [parts | start | end] <span class="new-badge">New</span> { #noexplode .command data-toc-label="noexplode" data-added="2.8" }
 
 Keeps the dice in the `addstring` above it from exploding, for `summoning` and `farsummon`. A die that lands on its highest face stops there instead of rolling again, so `1d6` gives 1 to 6.
 

@@ -4,7 +4,7 @@
 
 Give your spells the limits and effects the game's own spells have: a slow cast, no casting at sea, a bonus for the army of whoever knows it. Each goes on its own line in a [spell](spells.md).
 
-### slowcast { #slowcast .command data-toc-label="slowcast" }
+### slowcast { #slowcast .command data-toc-label="slowcast" data-added="1.2" }
 
 Makes the spell take 2 combat rounds to cast.
 
@@ -20,7 +20,7 @@ Makes the spell take 2 combat rounds to cast.
     #!@slowcast
     ```
 
-### notsea { #notsea .command data-toc-label="notsea" }
+### notsea { #notsea .command data-toc-label="notsea" data-added="1.2" }
 
 Stops units casting the spell at sea.
 
@@ -36,7 +36,7 @@ Stops units casting the spell at sea.
     #!@notsea
     ```
 
-### notunderground { #notunderground .command data-toc-label="notunderground" }
+### notunderground { #notunderground .command data-toc-label="notunderground" data-added="1.2" }
 
 Stops units casting the spell underground.
 
@@ -52,7 +52,7 @@ Stops units casting the spell underground.
     #!@notunderground
     ```
 
-### prioritylearn { #prioritylearn .command data-toc-label="prioritylearn" }
+### prioritylearn { #prioritylearn .command data-toc-label="prioritylearn" data-added="1.2" }
 
 Makes a unit that starts with spells learn this one before the others of its path and level.
 
@@ -68,7 +68,7 @@ Makes a unit that starts with spells learn this one before the others of its pat
     #!@prioritylearn
     ```
 
-### heallivingarmy { #heallivingarmy .command data-toc-label="heallivingarmy" }
+### heallivingarmy { #heallivingarmy .command data-toc-label="heallivingarmy" data-added="1.2" }
 
 Makes every living unit in the caster's army heal faster while the caster knows the spell. The caster doesn't need to cast it.
 
@@ -84,7 +84,7 @@ Makes every living unit in the caster's army heal faster while the caster knows 
     #!@heallivingarmy
     ```
 
-### healhumanarmy { #healhumanarmy .command data-toc-label="healhumanarmy" }
+### healhumanarmy { #healhumanarmy .command data-toc-label="healhumanarmy" data-added="1.2" }
 
 Makes the humans and hoburghers in the caster's army heal faster while the caster knows the spell. The caster doesn't need to cast it.
 
@@ -100,7 +100,7 @@ Makes the humans and hoburghers in the caster's army heal faster while the caste
     #!@healhumanarmy
     ```
 
-### burnforest { #burnforest .command data-toc-label="burnforest" }
+### burnforest { #burnforest .command data-toc-label="burnforest" data-added="1.2" }
 
 Gives the caster Burn Forest while it knows the spell. Inside a spell only; elsewhere `burnforest` is the game's monster ability.
 

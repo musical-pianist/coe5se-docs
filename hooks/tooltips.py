@@ -1,16 +1,25 @@
 # Each command word in a code block gets the VS Code extension's hover text as its title, which the
 # theme's improved tooltips (content.tooltips) shows as a hover box, and so does each number the
-# manual's number tables explain (newunits 28: Inferno). words.json and tables.json are copies of the
-# extension's data/words.json and data/tables.json. A number no table explains gets what its form says the
+# manual's number tables explain (newunits 28: Inferno). words.json and tables.json are read out of the
+# extension itself, coe5-modding.vsix at the site's root, so the site and the extension never differ. A number no table explains gets what its form says the
 # argument does (words.json "args": templerec 4 3's amount and cap). On a noexplode line each part number gets the part
 # of the addstring above it, read back as the extension reads it, and start and end their form.
 import html
 import json
 import re
+import zipfile
 from pathlib import Path
 
-WORDS = json.loads((Path(__file__).parent / "words.json").read_text(encoding="utf-8"))
-TABLES = json.loads((Path(__file__).parent / "tables.json").read_text(encoding="utf-8"))
+with zipfile.ZipFile(Path(__file__).parent.parent / "coe5-modding.vsix") as _vsix:
+    WORDS = json.loads(_vsix.read("extension/data/words.json"))
+    TABLES = json.loads(_vsix.read("extension/data/tables.json"))
+    EXTENSION_VERSION = json.loads(_vsix.read("extension/package.json"))["version"]
+
+
+def on_config(config):
+    """The footer names the extension version the site's hovers and code colours come from."""
+    config["copyright"] = f"Hovers and code colours: CoE5 Modding extension {EXTENSION_VERSION}"
+    return config
 SPAN = re.compile(r'<span class="([^"]*)">([+\-]?[a-z_][a-z_0-9.]*)</span>')
 NUMBER = re.compile(r'<span class="(m[a-z]*)">(-?\d+)</span>')
 BLOCK = re.compile(r'<div class="([^"]*)highlight"><pre>.*?</pre></div>', re.S)
@@ -80,9 +89,9 @@ def number_meaning(word, index, value, count):
         return None
     key = TABLES["args"].get(names[index].lower()) or (TABLES["words"].get(bare) if index == 0 else None)
     table = TABLES["tables"].get(key)
+    title_case = re.sub(r"\b[a-z]", lambda c: c.group(0).upper(), names[index])
+    doc = (form.get("args") or {}).get(names[index])
     if not table:
-        doc = (form.get("args") or {}).get(names[index])
-        title_case = re.sub(r"\b[a-z]", lambda c: c.group(0).upper(), names[index])
         return f"{title_case} {value}: {doc}" if doc else None
     if table["flags"]:
         parts = [text for v, text in table["rows"] if int(value) & int(v)]
@@ -92,8 +101,9 @@ def number_meaning(word, index, value, count):
         meaning = next((text for v, text in table["rows"]
                         if (lambda r: int(r.group(1)) <= n <= int(r.group(2)) if r else int(v) == n)(
                             re.fullmatch(r"(-?\d+)-(\d+)", v))), None)
-    title_case = re.sub(r"\b[a-z]", lambda c: c.group(0).upper(), names[index])
-    return f"{title_case} {value}: {meaning}\n{table['title']}" if meaning else None
+    if not meaning:   # a number the table has no row for gets the argument's text, as the extension does
+        return f"{title_case} {value}: {doc}" if doc else None
+    return f"{title_case} {value}: {meaning}\n{table['title']}"
 
 
 def titled_numbers(line):

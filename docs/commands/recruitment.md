@@ -12,7 +12,7 @@ They go right after the `addunitrec`, `addmercrec` or `addcomrec` they change. A
 !!! info "More in the game's manual"
     The game's own recruitment commands are in Illwinter's official modding manual, under ["Class Modding"](https://www.illwinter.com/coe5/coe5modding.pdf#page=27).
 
-### templerec &lt;amount&gt; [&lt;cap&gt;] <span class="new-badge">New</span> { #templerec .command data-toc-label="templerec" }
+### templerec &lt;amount&gt; [&lt;cap&gt;] <span class="new-badge">New</span> { #templerec .command data-toc-label="templerec" data-added="2.10" }
 
 The game's `templerec` adds a fixed amount for each temple the player owns, set by the offer's own chance, up to 5 temples:
 
@@ -59,7 +59,7 @@ With CoE5SE you set the amount, and every temple counts.
     templerec 4    # 8 temples at 38%
     ```
 
-### libraryrec &lt;amount&gt; [&lt;cap&gt;] <span class="new-badge">New</span> { #libraryrec .command data-toc-label="libraryrec" }
+### libraryrec &lt;amount&gt; [&lt;cap&gt;] <span class="new-badge">New</span> { #libraryrec .command data-toc-label="libraryrec" data-added="2.10" }
 
 The game's `libraryrec` adds a fixed amount for each library level on the squares the player owns, up to 10 levels:
 
@@ -106,7 +106,7 @@ With CoE5SE you set the amount, and every level counts.
     libraryrec 3 15    # 20 library levels at 48%
     ```
 
-### atavirec &lt;amount&gt; [&lt;cap&gt;] <span class="new-badge">New</span> { #atavirec .command data-toc-label="atavirec" }
+### atavirec &lt;amount&gt; [&lt;cap&gt;] <span class="new-badge">New</span> { #atavirec .command data-toc-label="atavirec" data-added="2.10" }
 
 The game's `atavirec` adds a fixed amount for each Atavi Tribe Village the player owns, with no limit:
 
@@ -153,7 +153,7 @@ With CoE5SE you set the amount.
     atavirec 6    # 4 Atavi villages at 34%
     ```
 
-### reclimiter "$&lt;monster&gt;" &lt;amount&gt; [&lt;cap&gt;] <span class="new-badge">New</span> { #reclimiter .command data-toc-label="reclimiter" }
+### reclimiter "$&lt;monster&gt;" &lt;amount&gt; [&lt;cap&gt;] <span class="new-badge">New</span> { #reclimiter .command data-toc-label="reclimiter" data-added="2.10" }
 
 The game's `reclimiter` with a `$` adds a fixed amount for each unit of that monster the player has, anywhere, with no limit:
 

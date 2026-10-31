@@ -5,7 +5,7 @@ status: new
 
 # Other Commands
 
-### maxdata &lt;megabytes&gt; { #maxdata .command data-toc-label="maxdata" }
+### maxdata &lt;megabytes&gt; { #maxdata .command data-toc-label="maxdata" data-added="2.4" }
 
 Sets the room for the data files your mod's Lua script saves. Goes in the .c5se or on a `#!@` line, once.
 
@@ -23,7 +23,7 @@ Sets the room for the data files your mod's Lua script saves. Goes in the .c5se 
     #!@maxdata 20
     ```
 
-### include "&lt;file&gt;" <span class="new-badge">New</span> { #include .command data-toc-label="include" }
+### include "&lt;file&gt;" <span class="new-badge">New</span> { #include .command data-toc-label="include" data-added="2.10" }
 
 Lets you arrange your mod in as many .c5se files and folders as you wish, for your own organization: by faction, by region, or by units, spells, and events. Put the `include` lines only in your mod's ROOT files: [its .c5se](index.md), or `#!@` lines of its .c5m.
 
@@ -80,7 +80,7 @@ level 1
 weapon 4 "Heal"
 ```
 
-### selectclass "&lt;class&gt;" <span class="new-badge">New</span> { #selectclass .command data-toc-label="selectclass" }
+### selectclass "&lt;class&gt;" <span class="new-badge">New</span> { #selectclass .command data-toc-label="selectclass" data-added="2.10" }
 
 Picks a class by string, as a mod's class number changes with the mods a player has on, since CoE5SE gives mods 50 more class slots.
 
@@ -100,7 +100,7 @@ A name no class has stops the game with its Mod Error at that line, naming the c
     #!@selectclass "Stewards of Gondor"
     ```
 
-### aiclass 2 <span class="new-badge">New</span> { #aiclass .command data-toc-label="aiclass" }
+### aiclass 2 <span class="new-badge">New</span> { #aiclass .command data-toc-label="aiclass" data-added="2.10" }
 
 Takes the class away from every player, human and AI: Choose Class leaves it out, and no Random player gets it. Goes after `newclass` or `selectclass`. Clear the game's classes out of a total rework with it, so no Baron or Senator turns up in Middle-earth.
 

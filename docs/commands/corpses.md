@@ -12,7 +12,7 @@ Every corpse in the game is one of eight ["kinds"](#corpse-kinds). Each command 
 !!! info "More in the game's manual"
     The game's own corpse commands are in Illwinter's official modding manual, under ["Ritual Modding"](https://www.illwinter.com/coe5/coe5modding.pdf#page=33) and ["Events"](https://www.illwinter.com/coe5/coe5modding.pdf#page=38).
 
-### corpsekind &lt;kind&gt; { #corpsekind .command data-toc-label="corpsekind" }
+### corpsekind &lt;kind&gt; <span class="new-badge">New</span> { #corpsekind .command data-toc-label="corpsekind" data-added="2.10" }
 
 Sets the corpse your monster leaves when it dies, whatever its traits. Goes after `newmonster` or `selectmonster`.
 
@@ -42,7 +42,7 @@ Sets the corpse your monster leaves when it dies, whatever its traits. Goes afte
     #!@corpsekind none
     ```
 
-### raisecorpses &lt;kind&gt; "&lt;monster&gt;" { #raisecorpses .command data-toc-label="raisecorpses" }
+### raisecorpses &lt;kind&gt; "&lt;monster&gt;" <span class="new-badge">New</span> { #raisecorpses .command data-toc-label="raisecorpses" data-added="2.10" }
 
 Raises that monster from the corpses of that kind on the caster's square, after the ritual's other effects. It works like Raise Dead: a random number up to the corpses there, using them up, with Raise Dead's insanity. With none of those corpses there, the ritual fails.
 
@@ -58,7 +58,7 @@ Raises that monster from the corpses of that kind on the caster's square, after 
     #!@raisecorpses largeanimal "Fell Beast"
     ```
 
-### raisedead &lt;kind&gt; { #raisedead .command data-toc-label="raisedead and raiseanimals" }
+### raisedead &lt;kind&gt; <span class="new-badge">New</span> { #raisedead .command data-toc-label="raisedead and raiseanimals" data-added="2.10" }
 
 Makes the game's Raise Dead use only that kind. `raiseanimals` does the same for Raise Animals. The game still picks what rises (the table above).
 
@@ -88,7 +88,7 @@ Makes the game's Raise Dead use only that kind. `raiseanimals` does the same for
     raiseanimals largeanimal
     ```
 
-### putcorpses &lt;amount&gt; &lt;kind&gt; { #putcorpses .command data-toc-label="putcorpses" }
+### putcorpses &lt;amount&gt; &lt;kind&gt; <span class="new-badge">New</span> { #putcorpses .command data-toc-label="putcorpses" data-added="2.10" }
 
 Puts that kind on the caster's square instead of human corpses. 10000 and up still scales with the sacrifice.
 
@@ -110,7 +110,7 @@ Puts that kind on the caster's square instead of human corpses. 10000 and up sti
 !!! warning "The AI ignores kind(for now)"
     An AI player's cast ignores kind. Its `putcorpses` adds human corpses, its raises take every corpse they can use. Events and `corpsekind` work the same for everyone. This is a temporary limitation as it has AI implications not yet built out.
 
-### +mincorpses &lt;amount&gt; &lt;kind&gt; { #mincorpses .command data-toc-label="+mincorpses and removecorpses" }
+### +mincorpses &lt;amount&gt; &lt;kind&gt; <span class="new-badge">New</span> { #mincorpses .command data-toc-label="+mincorpses and removecorpses" data-added="2.10" }
 
 Makes the game's `+mincorpses`, `-mincorpses` and `removecorpses` count and take only that kind.
 

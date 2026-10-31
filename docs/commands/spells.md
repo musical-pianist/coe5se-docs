@@ -9,7 +9,7 @@ Each spell needs [`newspell`](#newspell), [`path`](#path), [`level`](#level) and
 !!! warning "Add new spells at the end of your file"
     A spell added above your existing ones jumbles the spells units know in your players' old saves.
 
-### newspell "&lt;name&gt;" { #newspell .command data-toc-label="newspell" }
+### newspell "&lt;name&gt;" { #newspell .command data-toc-label="newspell" data-added="1.2" }
 
 Creates a spell.
 
@@ -27,7 +27,7 @@ Creates a spell.
     #!@newspell "Gandalf's Light"
     ```
 
-### path "&lt;name&gt;" | &lt;nbr&gt; { #path .command data-toc-label="path" }
+### path "&lt;name&gt;" | &lt;nbr&gt; { #path .command data-toc-label="path" data-added="1.2" }
 
 Sets the spell's magic path.
 
@@ -74,7 +74,7 @@ Sets the spell's magic path.
     #!@path "Lore of the Istari"
     ```
 
-### level &lt;level&gt; { #level .command data-toc-label="level" }
+### level &lt;level&gt; { #level .command data-toc-label="level" data-added="1.2" }
 
 Sets the spell's level. Inside a spell only; elsewhere `level` is the game's ritual level.
 
@@ -92,7 +92,7 @@ Sets the spell's level. Inside a spell only; elsewhere `level` is the game's rit
     #!@level 2
     ```
 
-### weapon &lt;dmg&gt; "&lt;weapon&gt;" | &lt;nbr&gt; { #weapon .command data-toc-label="weapon" }
+### weapon &lt;dmg&gt; "&lt;weapon&gt;" | &lt;nbr&gt; { #weapon .command data-toc-label="weapon" data-added="1.2" }
 
 Sets the weapon the spell casts and its damage, as `meleeweapon` does for a monster.
 

@@ -8,7 +8,7 @@ These go in the .c5m right at the biginning along with the other usual mod opene
 !!! info "More in the game's manual"
     `icon`, `description`, `modprio` and the game's other mod info commands are in Illwinter's official modding manual, under ["Mod Info"](https://www.illwinter.com/coe5/coe5modding.pdf#page=4).
 
-### needs_script_extender { #needs-script-extender .command data-toc-label="needs_script_extender" }
+### needs_script_extender { #needs-script-extender .command data-toc-label="needs_script_extender" data-added="2.10" }
 
 This is ignored by the Script Extender yet would be seen by the vanilla game and fail to load the mod. You can put it anywhere, but I suggest right after `icon` and `description` in every mod that needs CoE5SE.
 
@@ -18,9 +18,9 @@ This is ignored by the Script Extender yet would be seen by the vanilla game and
     needs_script_extender
     ```
 
-### requires &lt;ModName&gt; { #requires .command data-toc-label="requires" }
+### requires &lt;ModName&gt; { #requires .command data-toc-label="requires" data-added="1.0" }
 
-Ensure another mod's DLLs and Lua scripts load before yours. This is useful when you are making a mod on top of another mod or as a "core" and various additions mod strategy.  If that mod isn't enabled, your mod still loads without it. Write it on a plain .c5m line: CoE5SE doesn't read `#!@requires`.
+Ensure another mod's DLLs and Lua scripts load before yours. This is useful when you are making a mod on top of another mod or as a "core" and various additions mod strategy. If that mod isn't enabled, your mod still loads without it. Write it on a plain .c5m line: CoE5SE doesn't read `#!@requires`.
 
 - **ModName:** The other mod's .c5m file name without `.c5m`, capitals included.
 

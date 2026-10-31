@@ -173,3 +173,9 @@
 .md-nav--secondary .md-nav__link.command-link:not(.md-nav__link--active):not(:hover) {
   color: var(--coe5se-command);
 }
+
+/* A command or value in a table cell stays on one line ("corpsekind largeanimal", `smallanimal`); the
+   cell's other text wraps as usual. */
+.md-typeset table:not([class]) td code {
+  white-space: nowrap;
+}

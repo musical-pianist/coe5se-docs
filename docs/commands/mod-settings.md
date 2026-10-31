@@ -25,7 +25,7 @@ A setting takes two steps. Declare it, so it shows on that page. Then read it in
 
 Declare settings in the .c5se, or on `#!@` lines of the .c5m. Each setting is `newsetting`, one kind ([`onoff`](#onoff), [`choice`](#choice) or [`key`](#key)), a `default` and a `label`, in any order. Text lengths and the number of options: [Limits](limits.md#mod-settings).
 
-### newsetting &lt;name&gt; { #newsetting .command data-toc-label="newsetting" }
+### newsetting &lt;name&gt; { #newsetting .command data-toc-label="newsetting" data-added="2.0" }
 
 Creates a setting.
 
@@ -43,7 +43,7 @@ Creates a setting.
     #!@newsetting eye_awakens
     ```
 
-### onoff { #onoff .command data-toc-label="onoff" }
+### onoff { #onoff .command data-toc-label="onoff" data-added="2.0" }
 
 Adds a single on/off checkmark. An event with `+setting <name>` happens only while it's checked, and a script reads true or false.
 
@@ -59,7 +59,7 @@ Adds a single on/off checkmark. An event with `+setting <name>` happens only whi
     #!@onoff
     ```
 
-### choice { #choice .command data-toc-label="choice" }
+### choice { #choice .command data-toc-label="choice" data-added="2.0" }
 
 Adds a list of 2 to 8 options, where the player picks one. An event with `+setting <name> <option>` happens only while the player has that option picked, and a script reads the option's number.
 
@@ -75,7 +75,7 @@ Adds a list of 2 to 8 options, where the player picks one. An event with `+setti
     #!@choice
     ```
 
-### key { #key .command data-toc-label="key" }
+### key { #key .command data-toc-label="key" data-added="2.0" }
 
 Adds a hotkey, where the player picks which keyboard key does something in your mod. Your Lua script reads the key with `coe5.setting` and gives it its job, such as a shortcut for one of the game's actions (`coe5.rebindKey`).
 
@@ -91,7 +91,7 @@ Adds a hotkey, where the player picks which keyboard key does something in your 
     #!@key
     ```
 
-### default &lt;value&gt; { #default .command data-toc-label="default" }
+### default &lt;value&gt; { #default .command data-toc-label="default" data-added="2.0" }
 
 Sets the setting's starting value.
 
@@ -131,7 +131,7 @@ Sets the setting's starting value.
     #!@default "p"
     ```
 
-### label "&lt;text&gt;" { #label .command data-toc-label="label" }
+### label "&lt;text&gt;" { #label .command data-toc-label="label" data-added="2.0" }
 
 Sets the setting's text on the page, or a sub-page's name after `newsettingpage`.
 
@@ -147,7 +147,7 @@ Sets the setting's text on the page, or a sub-page's name after `newsettingpage`
     #!@label "The Eye of Sauron awakens"
     ```
 
-### option &lt;number&gt; "&lt;text&gt;" { #option .command data-toc-label="option" }
+### option &lt;number&gt; "&lt;text&gt;" { #option .command data-toc-label="option" data-added="2.0" }
 
 Adds an option to a `choice`.
 
@@ -166,7 +166,7 @@ Adds an option to a `choice`.
     #!@option 1 "On turn 100"
     ```
 
-### optiontip &lt;number&gt; "&lt;text&gt;" { #optiontip .command data-toc-label="optiontip" }
+### optiontip &lt;number&gt; "&lt;text&gt;" { #optiontip .command data-toc-label="optiontip" data-added="2.0" }
 
 Sets an option's hover text.
 
@@ -184,7 +184,7 @@ Sets an option's hover text.
     #!@optiontip 2 "A short game: Mordor marches early."
     ```
 
-### tip "&lt;text&gt;" { #tip .command data-toc-label="tip" }
+### tip "&lt;text&gt;" { #tip .command data-toc-label="tip" data-added="2.0" }
 
 Sets the hover text of an `onoff` or `key` setting.
 
@@ -200,7 +200,7 @@ Sets the hover text of an `onoff` or `key` setting.
     #!@tip "Every turn of spring, every player gains 5 fire."
     ```
 
-### restart { #restart .command data-toc-label="restart" }
+### restart { #restart .command data-toc-label="restart" data-added="2.0" }
 
 Asks the player to restart the game when they leave your page with the setting changed.
 
@@ -216,7 +216,7 @@ Asks the player to restart the game when they leave your page with the setting c
     #!@restart
     ```
 
-### group "&lt;word&gt;" { #group .command data-toc-label="group" }
+### group "&lt;word&gt;" { #group .command data-toc-label="group" data-added="2.0" }
 
 Stops the `key` settings of one group in your mod from holding the same key.
 
@@ -232,7 +232,7 @@ Stops the `key` settings of one group in your mod from holding the same key.
     #!@group "ring"
     ```
 
-### fixed { #fixed .command data-toc-label="fixed" }
+### fixed { #fixed .command data-toc-label="fixed" data-added="2.0" }
 
 Stops the player changing a `key` setting.
 
@@ -248,7 +248,7 @@ Stops the player changing a `key` setting.
     #!@fixed
     ```
 
-### newsettingheader "&lt;title&gt;" { #newsettingheader .command data-toc-label="newsettingheader" }
+### newsettingheader "&lt;title&gt;" { #newsettingheader .command data-toc-label="newsettingheader" data-added="2.0" }
 
 Puts the `onoff` and `key` settings after it in a box with this title, up to the next `newsettingheader` or `choice`. Follow it with an `onoff` or `key` setting.
 
@@ -264,7 +264,7 @@ Puts the `onoff` and `key` settings after it in a box with this title, up to the
     #!@newsettingheader "Sorcery and Speed"
     ```
 
-### newsettingpage &lt;name&gt; { #newsettingpage .command data-toc-label="newsettingpage" }
+### newsettingpage &lt;name&gt; { #newsettingpage .command data-toc-label="newsettingpage" data-added="2.0" }
 
 Puts the settings after it on a sub-page, up to the next `newsettingpage`. Give it a `label`.
 
@@ -391,7 +391,7 @@ Events read a setting with [`+setting`](#setting), with no script needed. A Lua 
 !!! warning
     In network games, no event with `+setting` or `-setting` happens.
 
-### +setting &lt;name&gt; [index] { #setting .command data-toc-label="+setting" }
+### +setting &lt;name&gt; [index] { #setting .command data-toc-label="+setting" data-added="1.0" }
 
 Makes an event happen only while the setting is on, or while a `key` setting has a key. `-setting` is the opposite. Goes in an event, in the .c5se or the .c5m.
 

@@ -22,7 +22,7 @@ A plane is `newplane`, followed by the commands on this page that shape the plan
 !!! info "More in the game's manual"
     The game's plane commands are in Illwinter's official modding manual, under ["Ritual Modding"](https://www.illwinter.com/coe5/coe5modding.pdf#page=33), ["Class Modding"](https://www.illwinter.com/coe5/coe5modding.pdf#page=27) and ["Events"](https://www.illwinter.com/coe5/coe5modding.pdf#page=38).
 
-### newplane "&lt;name&gt;" <span class="new-badge">New</span> { #newplane .command data-toc-label="newplane" }
+### newplane "&lt;name&gt;" <span class="new-badge">New</span> { #newplane .command data-toc-label="newplane" data-added="2.5" }
 
 Creates a plane. Follow it with [`planesize`](#planesize) and [`planefill`](#planefill), [`planelike`](#planelike), or [`planefile`](#planefile).
 
@@ -40,7 +40,7 @@ Creates a plane. Follow it with [`planesize`](#planesize) and [`planefill`](#pla
     #!@newplane "Mordor"
     ```
 
-### planesize &lt;w&gt; &lt;h&gt; <span class="new-badge">New</span> { #planesize .command data-toc-label="planesize" }
+### planesize &lt;w&gt; &lt;h&gt; <span class="new-badge">New</span> { #planesize .command data-toc-label="planesize" data-added="2.5" }
 
 Sets the plane's width and height in squares. Needed, unless `planefile` gives the size, or `planelike` is "Sky", "Agartha", "Hades" or "Inferno", which take the size the game gives that plane.
 
@@ -59,7 +59,7 @@ Sets the plane's width and height in squares. Needed, unless `planefile` gives t
     #!@planesize 40 30
     ```
 
-### planefill &lt;terrain&gt; <span class="new-badge">New</span> { #planefill .command data-toc-label="planefill" }
+### planefill &lt;terrain&gt; <span class="new-badge">New</span> { #planefill .command data-toc-label="planefill" data-added="2.5" }
 
 Sets the terrain every square starts as. Needed, unless the plane has `planelike` or `planefile`.
 
@@ -93,7 +93,7 @@ Sets the terrain every square starts as. Needed, unless the plane has `planelike
     #!@planefill 0
     ```
 
-### planelike "&lt;plane&gt;" <span class="new-badge">New</span> { #planelike .command data-toc-label="planelike" }
+### planelike "&lt;plane&gt;" <span class="new-badge">New</span> { #planelike .command data-toc-label="planelike" data-added="2.5" }
 
 Builds the plane the way the game builds that plane: its map, its ground pictures, and its independents. CoE5SE skips any step the plane is too small for.
 
@@ -111,15 +111,15 @@ Builds the plane the way the game builds that plane: its map, its ground picture
     #!@planelike "Agartha"
     ```
 
-### planepopulate "&lt;plane&gt;" <span class="new-badge">New</span> { #planepopulate .command data-toc-label="planepopulate" }
+### planepopulate "&lt;plane&gt;" <span class="new-badge">New</span> { #planepopulate .command data-toc-label="planepopulate" data-added="2.5" }
 
-Places that game plane's independents on the plane. Without it, the plane gets the independents of its `planelike` plane.
+Places that vanilla plane's independents on the plane. Without it, the plane gets the independents of its `planelike` plane.
 
-- **plane:** A game plane's name, or `off` for none.
+- **plane:** A vanilla plane's name, or `off` for none.
 
 === ".c5se"
 
-    A game plane's independents:
+    A vanilla plane's independents:
 
     ```c5se
     planepopulate "Agartha"
@@ -133,7 +133,7 @@ Places that game plane's independents on the plane. Without it, the plane gets t
 
 === ".c5m"
 
-    A game plane's independents:
+    A vanilla plane's independents:
 
     ```c5m
     #!@planepopulate "Agartha"
@@ -145,7 +145,7 @@ Places that game plane's independents on the plane. Without it, the plane gets t
     #!@planepopulate off
     ```
 
-### planeicon "./&lt;file&gt;" <span class="new-badge">New</span> { #planeicon .command data-toc-label="planeicon" }
+### planeicon "./&lt;file&gt;" <span class="new-badge">New</span> { #planeicon .command data-toc-label="planeicon" data-added="2.5" }
 
 Sets the picture on the plane's map button: a .tga or .png, 64 x 64 like the game's plane icons. Without it, the button shows the `planelike` plane's icon, or a coloured square.
 
@@ -161,7 +161,7 @@ Sets the picture on the plane's map button: a .tga or .png, 64 x 64 like the gam
     #!@planeicon "./mordor.tga"
     ```
 
-### planefile "./&lt;file&gt;.coem" <span class="new-badge">New</span> { #planefile .command data-toc-label="planefile" }
+### planefile "./&lt;file&gt;.coem" <span class="new-badge">New</span> { #planefile .command data-toc-label="planefile" data-added="2.5" }
 
 Reads the plane's squares from a map file.
 
@@ -180,7 +180,7 @@ Reads the plane's squares from a map file.
     #!@planefile "./tol_eressea.coem"
     ```
 
-### planepiece "./&lt;file&gt;.coem" &lt;place&gt; <span class="new-badge">New</span> { #planepiece .command data-toc-label="planepiece" }
+### planepiece "./&lt;file&gt;.coem" &lt;place&gt; <span class="new-badge">New</span> { #planepiece .command data-toc-label="planepiece" data-added="2.5" }
 
 Stamps a map file into the built plane.
 
@@ -238,7 +238,7 @@ Stamps a map file into the built plane.
     #!@planepiece "./orc_camp.coem" nearportal
     ```
 
-### planezone "&lt;name&gt;" around "./&lt;file&gt;.coem" &lt;radius&gt; <span class="new-badge">New</span> { #planezone .command data-toc-label="planezone" }
+### planezone "&lt;name&gt;" around "./&lt;file&gt;.coem" &lt;radius&gt; <span class="new-badge">New</span> { #planezone .command data-toc-label="planezone" data-added="2.5" }
 
 Creates a zone: every square within the radius of each copy of that `planepiece` file. The zone lines below it apply to the last `planezone` above them.
 
@@ -256,7 +256,7 @@ Creates a zone: every square within the radius of each copy of that `planepiece`
     #!@planezone "Shadow of Mordor" around "./barad_dur.coem" 3
     ```
 
-### planezoneswap &lt;terrain&gt; &lt;terrain&gt; <span class="new-badge">New</span> { #planezoneswap .command data-toc-label="planezoneswap" }
+### planezoneswap &lt;terrain&gt; &lt;terrain&gt; <span class="new-badge">New</span> { #planezoneswap .command data-toc-label="planezoneswap" data-added="2.5" }
 
 Turns each square of the first terrain in the zone into the second.
 
@@ -274,7 +274,7 @@ Turns each square of the first terrain in the zone into the second.
     #!@planezoneswap "Rock Ground" "Ash Field"
     ```
 
-### planezoneunits "&lt;monster&gt;" &lt;count&gt; &lt;chance&gt; <span class="new-badge">New</span> { #planezoneunits .command data-toc-label="planezoneunits" }
+### planezoneunits "&lt;monster&gt;" &lt;count&gt; &lt;chance&gt; <span class="new-badge">New</span> { #planezoneunits .command data-toc-label="planezoneunits" data-added="2.5" }
 
 Gives the zone only these monsters instead of its independents.
 
@@ -293,7 +293,7 @@ Gives the zone only these monsters instead of its independents.
     #!@planezoneunits "Giant Spider" 3 25
     ```
 
-### planezonepopulate off <span class="new-badge">New</span> { #planezonepopulate .command data-toc-label="planezonepopulate" }
+### planezonepopulate off <span class="new-badge">New</span> { #planezonepopulate .command data-toc-label="planezonepopulate" data-added="2.5" }
 
 Places no independents in the zone.
 
@@ -309,7 +309,7 @@ Places no independents in the zone.
     #!@planezonepopulate off
     ```
 
-### planeunits "&lt;monster&gt;" &lt;count&gt; &lt;chance&gt; <span class="new-badge">New</span> { #planeunits .command data-toc-label="planeunits" }
+### planeunits "&lt;monster&gt;" &lt;count&gt; &lt;chance&gt; <span class="new-badge">New</span> { #planeunits .command data-toc-label="planeunits" data-added="2.5" }
 
 Gives the plane only these monsters, outside zones with their own. Replaces the independents of `planelike` and `planepopulate`.
 
@@ -328,7 +328,7 @@ Gives the plane only these monsters, outside zones with their own. Replaces the 
     #!@planeunits "Troglodyte" 2 10
     ```
 
-### planeswap &lt;terrain&gt; &lt;terrain&gt; <span class="new-badge">New</span> { #planeswap .command data-toc-label="planeswap" }
+### planeswap &lt;terrain&gt; &lt;terrain&gt; <span class="new-badge">New</span> { #planeswap .command data-toc-label="planeswap" data-added="2.5" }
 
 Turns each square of the first terrain on the plane into the second, after CoE5SE places the independents. Inside a `newplane` block only; elsewhere `planeswap` is the game's ritual command.
 
@@ -346,7 +346,7 @@ Turns each square of the first terrain on the plane into the second, after CoE5S
     #!@planeswap "Rock Ground" "Ash Field"
     ```
 
-### planereq "&lt;plane&gt;" { #planereq .command data-toc-label="planereq and the rest" }
+### planereq "&lt;plane&gt;" <span class="new-badge">New</span> { #planereq .command data-toc-label="planereq and the rest" data-added="2.5" }
 
 Takes a plane's name in double quotes where the game takes a plane number, for a mod's plane or a game plane. The same works in:
 
@@ -396,7 +396,7 @@ The game alone can't read the name: put these lines in the .c5se or on `#!@` lin
     #!@+plane "Mordor"
     ```
 
-### planeshape "&lt;plane&gt;" "&lt;monster&gt;" <span class="new-badge">New</span> { #planeshape .command data-toc-label="planeshape" }
+### planeshape "&lt;plane&gt;" "&lt;monster&gt;" <span class="new-badge">New</span> { #planeshape .command data-toc-label="planeshape" data-added="2.5" }
 
 Makes the monster turn into another on a mod's plane, as `elysiumshape` to `voidshape` do on the game's planes. Goes after `newmonster` or `selectmonster`.
 
