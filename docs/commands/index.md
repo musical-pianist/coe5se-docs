@@ -20,12 +20,18 @@ Examples have a .c5se tab and a .c5m tab. The few commands that work in one file
 | | [Spell Modifiers](spell-modifiers.md) | Limits and effects on a spell |
 | | [Spell Paths](spell-paths.md) | New magic paths, and paths by name |
 | Monsters | [Monster Traits](monster-traits.md) | Traits on a monster or item |
+| | [Immunities](immunities.md) | Monsters immune to instant death, polymorph, petrification or Feeblemind |
 | | [Commander Names](commander-names.md) | Lists of commander names |
 | | [Monster and Ritual Names](monster-names.md) | Names in place of offsets |
 | Classes | [Recruitment Bonuses](recruitment.md) | What temples, libraries, villages and units add to a recruitment offer |
 | Rituals | [Ritual Effects](ritual-effects.md) | Effects only the game's own rituals had |
+| Weapons | [Weapon Traits](weapon-traits.md) | Weapons aimed at any trait or tag |
+| | [Exploding Variables and Dice](noexplode.md) | Capping a die at its highest roll, for weapons and ritual summons |
+| Corpses | [Corpses](corpses.md) | Which corpse a monster leaves, and what raises it |
 | Planes | [Planes](planes.md) | New planes, and planes by name |
+| Factions | [Factions](factions.md) | New independent factions |
 | Events | [Events](events.md) | Events that choose between groups of triggers and branches |
 | Mod Setup | [Mod Settings](mod-settings.md) | Settings players change |
 | | [Mod Loading](mod-loading.md) | Needing CoE5SE, and loading after another mod |
 | | [Other Commands](other-commands.md) | The rest |
+| Reference | [Limits](limits.md) | Every cap CoE5SE sets |

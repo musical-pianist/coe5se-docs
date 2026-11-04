@@ -15,7 +15,7 @@ A faction is `newfaction`, followed by the commands on this page that shape the 
 | Terrain numbers and groups | ctrl+i on a square in the game; "Terrain Data" in the [CoE5 Data thread](https://steamcommunity.com/app/1606340/discussions/1/3198114142283463845/) |
 | Group strings | `sitepop` in ["Terrain Modding"](https://www.illwinter.com/coe5/coe5modding.pdf#page=30) of the official modding manual |
 
-## The faction
+## Declaring a faction
 
 ### newfaction "&lt;name&gt;" <span class="new-badge">New</span> { #newfaction .command data-toc-label="newfaction" data-added="2.10" }
 
@@ -89,7 +89,7 @@ Sets the faction's home plane: where its citadel spawns, its gateway's exit and 
     #!@factionhome "Mordor"
     ```
 
-## World generation
+## Faction world generation
 
 ### factionpopulate on|off <span class="new-badge">New</span> { #factionpopulate .command data-toc-label="factionpopulate" data-added="2.10" }
 
@@ -391,7 +391,7 @@ Sets the ruined gateway on Elysium the faction's carriers restore, and where it 
     #!@factiongateway 99 200 201 203 "The Black Gate opens."
     ```
 
-## The faction in the world
+## Game rules
 
 ### factiontithe on|off <span class="new-badge">New</span> { #factiontithe .command data-toc-label="factiontithe" data-added="2.10" }
 

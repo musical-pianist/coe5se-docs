@@ -13,7 +13,7 @@ Every cap CoE5SE sets, in one place. It covers what all enabled mods can add tog
 | --- | --- | --- |
 | Rituals | 2,250 | 10,000 |
 | [Spells](spells.md) | none | 3,000 |
-| [Magic paths](spell-paths.md) | none | 58 |
+| [Magic paths](spell-paths.md) | none | 400 |
 | [Planes](planes.md) | none | 8 |
 | [Factions](factions.md) | none | 16 |
 | Weapons | 3,799 | 5,799 |
@@ -31,11 +31,17 @@ All enabled mods together can add 3,000 spells.
 
 ## Spell Paths { #spell-paths }
 
-All enabled mods together can add 58 magic paths.
+All enabled mods together can add 400 magic paths.
 
 | Command | Limit |
 | --- | --- |
 | [`newspellpath`](spell-paths.md#newspellpath) | 32 characters in a path's name |
+
+## Monster Traits { #monster-traits }
+
+| Command | Limit |
+| --- | --- |
+| [`tag`](monster-traits.md#tag) | 31 characters in a tag's name |
 
 ## Planes { #planes }
 

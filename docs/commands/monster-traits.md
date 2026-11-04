@@ -167,6 +167,44 @@ Makes the unit hated as a kind, so a unit on its team that hates that kind may k
     #!@hated 1
     ```
 
+### tag "&lt;name&gt;" <span class="new-badge">New</span> { #tag .command data-toc-label="tag" data-added="2.12" }
+
+Tags the monster for a weapon's [`onlyaffects`](weapon-traits.md#onlyaffects), [`doesntaffect`](weapon-traits.md#doesntaffect) or [`doubledmgvs`](weapon-traits.md#doubledmgvs) `tag "<name>"`. A monster can have several. `copystats` copies none. Monsters only.
+
+- **name:** In double quotes ([length limit](limits.md#monster-traits)), shared by every mod. Case counts. A `0` after it takes the tag off.
+
+=== ".c5se"
+
+    A boss and its kin, tagged:
+
+    ```c5se
+    selectmonster "Witch-king of Angmar"
+    tag "Nazgul"
+    ```
+
+    A blade that passes through them:
+
+    ```c5se
+    selectweapon "Morgul Blade"
+    doesntaffect tag "Nazgul"
+    ```
+
+=== ".c5m"
+
+    A boss and its kin, tagged:
+
+    ```c5m
+    selectmonster "Witch-king of Angmar"
+    #!@tag "Nazgul"
+    ```
+
+    A blade that passes through them:
+
+    ```c5m
+    selectweapon "Morgul Blade"
+    #!@doesntaffect tag "Nazgul"
+    ```
+
 ### Example monsters { #example }
 
 === ".c5se"
@@ -185,6 +223,11 @@ Makes the unit hated as a kind, so a unit on its team that hates that kind may k
     copystats "Giant Spider"
     copyspr "Giant Spider"
     hated "snake beings"
+
+    newmonster "Witch-king of Angmar"
+    copystats "Ghost King"
+    copyspr "Ghost King"
+    tag "Nazgul"
     ```
 
 === ".c5m"
@@ -203,6 +246,11 @@ Makes the unit hated as a kind, so a unit on its team that hates that kind may k
     copystats "Giant Spider"
     copyspr "Giant Spider"
     #!@hated "snake beings"
+
+    newmonster "Witch-king of Angmar"
+    copystats "Ghost King"
+    copyspr "Ghost King"
+    #!@tag "Nazgul"
     ```
 
 ### Hated kinds { #hated-kinds }

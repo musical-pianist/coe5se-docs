@@ -34,6 +34,8 @@ extra:
     new: Recently added
 extra_css:
   - stylesheets/site.css
+extra_javascript:
+  - javascripts/collapse_toc_sections.js
 validation:
   anchors: warn
 markdown_extensions:
@@ -54,6 +56,7 @@ markdown_extensions:
       alternate_style: true
 nav:
   - Home: index.md
+  - What's New: whats-new.md
   - CoE5SE Commands:
       - commands/index.md
       - Spells:
@@ -62,10 +65,13 @@ nav:
           - Spell Paths: commands/spell-paths.md
       - Monsters:
           - Monster Traits: commands/monster-traits.md
+          - Immunities: commands/immunities.md
           - Commander Names: commands/commander-names.md
           - Monster and Ritual Names: commands/monster-names.md
       - Recruitment Bonuses: commands/recruitment.md
       - Ritual Effects: commands/ritual-effects.md
+      - Weapon Traits: commands/weapon-traits.md
+      - Exploding Variables and Dice: commands/noexplode.md
       - Corpses: commands/corpses.md
       - Planes: commands/planes.md
       - Factions: commands/factions.md

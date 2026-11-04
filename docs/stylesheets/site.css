@@ -179,3 +179,47 @@
 .md-typeset table:not([class]) td code {
   white-space: nowrap;
 }
+
+/* A line of the page's table of contents with lines under it, opened or closed with its arrow
+   (javascripts/collapse_toc_sections.js). */
+.md-sidebar--secondary .toc-section {
+  position: relative;
+}
+
+.md-sidebar--secondary .toc-section > .md-nav__link {
+  padding-right: 1.4em;
+}
+
+.md-sidebar--secondary .toc-section:not(.toc-section--open) > .md-nav {
+  display: none;
+}
+
+.toc-section-toggle {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1.4em;
+  height: 1.6em;
+  cursor: pointer;
+  color: var(--md-default-fg-color--light);
+}
+
+.toc-section-toggle:hover {
+  color: var(--md-accent-fg-color);
+}
+
+.toc-section-toggle::before {
+  content: "";
+  display: block;
+  width: 0.4em;
+  height: 0.4em;
+  margin: auto;
+  border-right: 0.1em solid currentColor;
+  border-bottom: 0.1em solid currentColor;
+  transform: rotate(-45deg);
+  transition: transform 125ms;
+}
+
+.toc-section--open > .toc-section-toggle::before {
+  transform: rotate(45deg);
+}
