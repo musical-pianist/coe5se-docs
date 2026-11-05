@@ -15,6 +15,8 @@ Points the command at the first monster with that name, capitals ignored. The sa
 
 - **monster:** The monster's name. It must exist before the line: the game's, this mod's, or an earlier mod's. `1:"<monster>"` is the second monster with that name, up to `99:`.
 
+`copystats` points these at a different monster, so write them again below the `copystats` line.
+
 === ".c5se"
 
     The first monster with the name:

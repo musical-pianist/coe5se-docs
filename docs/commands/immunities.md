@@ -7,7 +7,7 @@ status: new
 
 Make any monster immune to instant death, polymorph, petrification or Feeblemind, as vanilla `charmres` does for charm.
 
-These go after `newmonster` or `selectmonster`. A `0` after a command takes that immunity off: `killres 0`. `copystats` copies none of them (for now).
+These go after `newmonster` or `selectmonster`. A `0` after a command takes that immunity off: `killres 0`. `copystats` and `clearspec` affect these.
 
 ### killres, polymorphres, petrifyres, feebleres <span class="new-badge">New</span> { #immunities .command data-toc-label="Immunities" data-added="2.12" data-toc-rows="killres polymorphres petrifyres feebleres" }
 
