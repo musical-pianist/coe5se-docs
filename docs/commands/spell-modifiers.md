@@ -2,7 +2,7 @@
 
 # Spell Modifiers
 
-Give your spells the limits and effects the game's own spells have: a slow cast, no casting at sea, a bonus for the army of whoever knows it. Each goes on its own line in a [spell](spells.md).
+Give your spells the limits and effects vanilla spells have: a slow cast, no casting at sea, Burn Forest for whoever knows it. Each modifier goes on its own line in a [spell](spells.md). Spells that make the army of whoever knows them heal faster are on [Army Healing](army-healing.md).
 
 ### slowcast { #slowcast .command data-toc-label="slowcast" data-added="1.2" }
 
@@ -68,38 +68,6 @@ Makes a unit that starts with spells learn this one before the others of its pat
     #!@prioritylearn
     ```
 
-### heallivingarmy { #heallivingarmy .command data-toc-label="heallivingarmy" data-added="1.2" }
-
-Makes every living unit in the caster's army heal faster while the caster knows the spell. The caster doesn't need to cast it.
-
-=== ".c5se"
-
-    ```c5se
-    heallivingarmy
-    ```
-
-=== ".c5m"
-
-    ```c5m
-    #!@heallivingarmy
-    ```
-
-### healhumanarmy { #healhumanarmy .command data-toc-label="healhumanarmy" data-added="1.2" }
-
-Makes the humans and hoburghers in the caster's army heal faster while the caster knows the spell. The caster doesn't need to cast it.
-
-=== ".c5se"
-
-    ```c5se
-    healhumanarmy
-    ```
-
-=== ".c5m"
-
-    ```c5m
-    #!@healhumanarmy
-    ```
-
 ### burnforest { #burnforest .command data-toc-label="burnforest" data-added="1.2" }
 
 Gives the caster Burn Forest while it knows the spell. Inside a spell only; elsewhere `burnforest` is the game's monster ability.
@@ -135,8 +103,6 @@ Gives the caster Burn Forest while it knows the spell. Inside a spell only; else
     level 1
     weapon 4 "Heal"
     prioritylearn
-    heallivingarmy
-    healhumanarmy
     ```
 
 === ".c5m"
@@ -156,6 +122,4 @@ Gives the caster Burn Forest while it knows the spell. Inside a spell only; else
     #!@level 1
     #!@weapon 4 "Heal"
     #!@prioritylearn
-    #!@heallivingarmy
-    #!@healhumanarmy
     ```

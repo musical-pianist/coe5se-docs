@@ -25,7 +25,6 @@ theme:
     - content.tooltips
     - content.action.edit
     - content.code.copy
-    - navigation.indexes
     - navigation.sections
     - search.highlight
     - toc.follow
@@ -58,10 +57,11 @@ nav:
   - Home: index.md
   - What's New: whats-new.md
   - CoE5SE Commands:
-      - commands/index.md
+      - Overview: commands/index.md
       - Spells:
           - New Spells: commands/spells.md
           - Spell Modifiers: commands/spell-modifiers.md
+          - Army Healing: commands/army-healing.md
           - Spell Paths: commands/spell-paths.md
       - Monsters:
           - Monster Traits: commands/monster-traits.md
@@ -81,6 +81,9 @@ nav:
           - Mod Loading: commands/mod-loading.md
           - Other Commands: commands/other-commands.md
       - Limits: commands/limits.md
+  - Lua:
+      - Overview: lua/index.md
+      - LAN Games: lua/lan-games.md
 
 hooks:
   - hooks/tooltips.py

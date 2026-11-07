@@ -216,7 +216,7 @@ Makes the game's `+mincorpses`, `-mincorpses` and `removecorpses` count and take
 
 ### Corpse kinds { #corpse-kinds }
 
-??? note "The eight corpse “kinds”"
+??? note "The eight corpse “kinds” <span class="new-badge">New</span>"
 
     | Kind | Left by | Raises as |
     | --- | --- | --- |

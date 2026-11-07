@@ -10,6 +10,6 @@ To get started, please consider the following pages below:
 
 - [Commands](commands/index.md): every mod command CoE5SE adds to .c5m and .c5se files.
 - [Limits](commands/limits.md): CoE5SE's limits compared to vanilla.
-- Lua: coming soon. For now, see [`coe5.lua`](https://github.com/musical-pianist/coe5se/blob/main/coe5.lua) on GitHub.
+- [Lua](lua/index.md): what Lua scripts do in LAN games, and where every function is listed.
 
 If something here is wrong or missing, open an issue on [GitHub](https://github.com/musical-pianist/coe5se-docs/issues).

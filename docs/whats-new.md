@@ -4,6 +4,12 @@
 
 The commands and pages each CoE5SE release added, newest first.
 
+## CoE5SE 3.0 { #v3-0 }
+
+- **[Army Healing](commands/army-healing.md) (new page)**: [`heal<trait>army`](commands/army-healing.md#heal-trait-army), [`healarmy`](commands/army-healing.md#healarmy)
+- **[Weapon Traits](commands/weapon-traits.md)**: [`beamwidth`](commands/weapon-traits.md#beamwidth)
+- **[Mod Loading](commands/mod-loading.md)**: [`personalmod`](commands/mod-loading.md#personalmod), [`nomultiplayer`](commands/mod-loading.md#nomultiplayer)
+
 ## CoE5SE 2.12 { #v2-12 }
 
 [Release notes on GitHub](https://github.com/musical-pianist/coe5se/releases/tag/CoE5SE-v2.12.0)
@@ -60,7 +66,7 @@ The commands and pages each CoE5SE release added, newest first.
 ## CoE5SE 1.2 { #v1-2 }
 
 - **[Spells](commands/spells.md)**: [`newspell`](commands/spells.md#newspell), [`path`](commands/spells.md#path), [`level`](commands/spells.md#level), [`weapon`](commands/spells.md#weapon)
-- **[Spell Modifiers](commands/spell-modifiers.md)**: [`slowcast`](commands/spell-modifiers.md#slowcast), [`notsea`](commands/spell-modifiers.md#notsea), [`notunderground`](commands/spell-modifiers.md#notunderground), [`prioritylearn`](commands/spell-modifiers.md#prioritylearn), [`heallivingarmy`](commands/spell-modifiers.md#heallivingarmy), [`healhumanarmy`](commands/spell-modifiers.md#healhumanarmy), [`burnforest`](commands/spell-modifiers.md#burnforest)
+- **[Spell Modifiers](commands/spell-modifiers.md)**: [`slowcast`](commands/spell-modifiers.md#slowcast), [`notsea`](commands/spell-modifiers.md#notsea), [`notunderground`](commands/spell-modifiers.md#notunderground), [`prioritylearn`](commands/spell-modifiers.md#prioritylearn), [`burnforest`](commands/spell-modifiers.md#burnforest)
 
 ## CoE5SE 1.0 { #v1-0 }
 

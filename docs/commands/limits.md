@@ -49,10 +49,7 @@ All enabled mods together can add 8 planes.
 
 | Command | Limit |
 | --- | --- |
-| [`planepiece`](planes.md#planepiece) | 16 per plane |
 | [`planezone`](planes.md#planezone) | 8 per plane |
-| [`planeunits`](planes.md#planeunits) | 16 per plane |
-| [`planezoneunits`](planes.md#planezoneunits) | 16 per zone |
 
 ## Factions { #factions }
 
@@ -61,14 +58,12 @@ All enabled mods together can add 16 factions.
 | Command | Limit |
 | --- | --- |
 | [`newfaction`](factions.md#newfaction) | 31 characters in a faction's name |
-| [`factionspawn`](factions.md#factionspawn) | 8 per faction |
 | [`factionspawn`](factions.md#factionspawn) | 159 characters in its group |
 | [`factionmonumentevent`](factions.md#factionmonumentevent) | 399 characters in its news |
 | [`factiongateway`](factions.md#factiongateway) | 399 characters in its news |
 | [`factioncaravan`](factions.md#factioncaravan) | 159 characters in its group |
 | [`factioncaravan`](factions.md#factioncaravan) | 399 characters in its news |
 | [`factionavoid`](factions.md#factionavoid) | 8 per faction |
-| [`factionunits`](factions.md#factionunits) | 16 per faction |
 | [`factionpopulateterrain`](factions.md#factionpopulateterrain) | 8 per faction |
 
 ## Mod Settings { #mod-settings }
