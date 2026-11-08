@@ -4,7 +4,13 @@
 
 The commands and pages each CoE5SE release added, newest first.
 
+## CoE5SE 3.1 { #v3-1 }
+
+- **[Corpses](commands/corpses.md)**: [`newcorpsekind`](commands/corpses.md#newcorpsekind)
+
 ## CoE5SE 3.0 { #v3-0 }
+
+[Release notes on GitHub](https://github.com/musical-pianist/coe5se/releases/tag/CoE5SE-v3.0.0)
 
 - **[Army Healing](commands/army-healing.md) (new page)**: [`heal<trait>army`](commands/army-healing.md#heal-trait-army), [`healarmy`](commands/army-healing.md#healarmy)
 - **[Weapon Traits](commands/weapon-traits.md)**: [`beamwidth`](commands/weapon-traits.md#beamwidth)

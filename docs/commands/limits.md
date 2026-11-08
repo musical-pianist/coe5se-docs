@@ -20,6 +20,7 @@ Every cap CoE5SE sets, in one place. It covers what all enabled mods can add tog
 | Monsters | 3,999 | 4,999 |
 | Magic items | 699 | 1,699 |
 | Classes | 169 | 219 |
+| [Corpse kinds](corpses.md) | none | 200 |
 
 ## Spells { #spells }
 
@@ -42,6 +43,14 @@ All enabled mods together can add 400 magic paths.
 | Command | Limit |
 | --- | --- |
 | [`tag`](monster-traits.md#tag) | 31 characters in a tag's name |
+
+## Corpses { #corpses }
+
+All enabled mods together can add 200 corpse kinds.
+
+| Command | Limit |
+| --- | --- |
+| [`newcorpsekind`](corpses.md#newcorpsekind) | 63 characters in a kind's name |
 
 ## Planes { #planes }
 

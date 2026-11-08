@@ -7,21 +7,58 @@ status: new
 
 Decide which corpse each monster leaves, and what your rituals and events raise from the dead.
 
-Every corpse in the game is one of eight ["kinds"](#corpse-kinds). Each command takes a kind, and all but `corpsekind` and `putcorpses` also take a group: `humanoid`, `animal` or `all`. Leave the kind off and it's the game's own command.
+Every corpse has a ["kind"](#corpse-kinds): a vanilla one, or one your mod declares. Each command takes a kind, and all but `corpsekind`, `putcorpses` and `newcorpsekind` also take a group: `humanoid`, `animal` or `all`. Leave the kind off and it's the game's own command.
 
 !!! info "More in the game's manual"
     The game's own corpse commands are in Illwinter's official modding manual, under ["Ritual Modding"](https://www.illwinter.com/coe5/coe5modding.pdf#page=33) and ["Events"](https://www.illwinter.com/coe5/coe5modding.pdf#page=38).
 
+### newcorpsekind "&lt;name&gt;" &lt;kind&gt;|bypassvanillacorpse <span class="new-badge">New</span> { #newcorpsekind .command data-toc-label="newcorpsekind" data-added="3.1" }
+
+Declares a corpse type for your monsters to leave or to target with rituals and events ([Limits](limits.md#corpses)).
+
+- **name:** In double quotes. Make it plural, since Sense Dead reads "Most of the dead seem to be Uruk-hai." Mods with the same corpse name share the corpse.
+- **kind:** A required vanilla assignment to your custom corpse, like `human` ([the list](#corpse-kinds)), or `bypassvanillacorpse` to break that rule.
+
+=== ".c5se"
+
+    ```c5se
+    newcorpsekind "Uruk-hai" human
+    ```
+
+    Or hidden from vanilla:
+
+    ```c5se
+    newcorpsekind "Oathbreakers" bypassvanillacorpse
+    ```
+
+=== ".c5m"
+
+    ```c5m
+    #!@newcorpsekind "Uruk-hai" human
+    ```
+
+    Or hidden from vanilla:
+
+    ```c5m
+    #!@newcorpsekind "Oathbreakers" bypassvanillacorpse
+    ```
+
 ### corpsekind &lt;kind&gt; <span class="new-badge">New</span> { #corpsekind .command data-toc-label="corpsekind" data-added="2.10" }
 
-Sets the corpse your monster leaves when it dies, whatever its traits. Goes after `newmonster` or `selectmonster`.
+Sets the corpse the active monster leaves when it dies. Goes after `newmonster` or `selectmonster`.
 
-- **kind:** One kind, or `none` for no corpse at all.
+- **kind:** One vanilla [kind](#corpse-kinds), your mod's kind in double quotes, or `none` for no corpse at all.
 
 === ".c5se"
 
     ```c5se
     corpsekind largeanimal
+    ```
+
+    Or your mod's kind:
+
+    ```c5se
+    corpsekind "Uruk-hai"
     ```
 
     Or no corpse:
@@ -36,6 +73,12 @@ Sets the corpse your monster leaves when it dies, whatever its traits. Goes afte
     #!@corpsekind largeanimal
     ```
 
+    Or your mod's kind:
+
+    ```c5m
+    #!@corpsekind "Uruk-hai"
+    ```
+
     Or no corpse:
 
     ```c5m
@@ -44,7 +87,7 @@ Sets the corpse your monster leaves when it dies, whatever its traits. Goes afte
 
 ### raisecorpses &lt;kind&gt; "&lt;monster&gt;" <span class="new-badge">New</span> { #raisecorpses .command data-toc-label="raisecorpses" data-added="2.10" }
 
-Raises that monster from the corpses of that kind on the caster's square, after the ritual's other effects. It works like Raise Dead: a random number up to the corpses there, using them up, with Raise Dead's insanity. With none of those corpses there, the ritual fails.
+Raises the monster from the corpses type on the caster's square. The kind is a vanilla tpye, or you can use a tag. Common raise dead rules apply.
 
 === ".c5se"
 
@@ -52,10 +95,22 @@ Raises that monster from the corpses of that kind on the caster's square, after 
     raisecorpses largeanimal "Fell Beast"
     ```
 
+    Or from your mod's kind:
+
+    ```c5se
+    raisecorpses "Uruk-hai" "Wight"
+    ```
+
 === ".c5m"
 
     ```c5m
     #!@raisecorpses largeanimal "Fell Beast"
+    ```
+
+    Or from your mod's kind:
+
+    ```c5m
+    #!@raisecorpses "Uruk-hai" "Wight"
     ```
 
 ### raisedead &lt;kind&gt; <span class="new-badge">New</span> { #raisedead .command data-toc-label="raisedead and raiseanimals" data-added="2.10" }
@@ -90,10 +145,10 @@ Makes the game's Raise Dead use only that kind. `raiseanimals` does the same for
 
 ### putcorpses &lt;amount&gt; &lt;kind&gt; <span class="new-badge">New</span> { #putcorpses .command data-toc-label="putcorpses" data-added="2.10" }
 
-Puts that kind on the caster's square instead of human corpses. 10000 and up still scales with the sacrifice.
+Puts corpses of a kind on the caster's square instead of human corpses.
 
-- **amount:** The number of corpses, as the game's `putcorpses` takes it.
-- **kind:** One kind.
+- **amount:** The number of corpses, as the game's `putcorpses` takes it: 10000 and up still scales with the sacrifice.
+- **kind:** One vanilla [kind](#corpse-kinds), or your mod's kind in double quotes.
 
 === ".c5se"
 
@@ -101,10 +156,22 @@ Puts that kind on the caster's square instead of human corpses. 10000 and up sti
     putcorpses 10 giant
     ```
 
+    Or your mod's kind:
+
+    ```c5se
+    putcorpses 10 "Oathbreakers"
+    ```
+
 === ".c5m"
 
     ```c5m
     putcorpses 10 giant
+    ```
+
+    Or your mod's kind:
+
+    ```c5m
+    putcorpses 10 "Oathbreakers"
     ```
 
 !!! warning "The AI ignores kind(for now)"
@@ -112,7 +179,9 @@ Puts that kind on the caster's square instead of human corpses. 10000 and up sti
 
 ### +mincorpses &lt;amount&gt; &lt;kind&gt; <span class="new-badge">New</span> { #mincorpses .command data-toc-label="+mincorpses and removecorpses" data-added="2.10" }
 
-Makes the game's `+mincorpses`, `-mincorpses` and `removecorpses` count and take only that kind.
+Makes the game's `+mincorpses`, `-mincorpses` and `removecorpses` count and take only the corpses of a kind.
+
+- **kind:** A vanilla [kind](#corpse-kinds) or group, or your mod's kind in double quotes.
 
 === ".c5se"
 
@@ -124,6 +193,12 @@ Makes the game's `+mincorpses`, `-mincorpses` and `removecorpses` count and take
 
     ```c5se
     removecorpses 20 human
+    ```
+
+    Or your mod's kind:
+
+    ```c5se
+    +mincorpses 20 "Uruk-hai"
     ```
 
 === ".c5m"
@@ -138,11 +213,25 @@ Makes the game's `+mincorpses`, `-mincorpses` and `removecorpses` count and take
     removecorpses 20 human
     ```
 
+    Or your mod's kind:
+
+    ```c5m
+    +mincorpses 20 "Uruk-hai"
+    ```
+
 ### Example corpses { #example }
 
 === ".c5se"
 
     ```c5se
+    newcorpsekind "Uruk-hai" human
+    newcorpsekind "Oathbreakers" bypassvanillacorpse
+
+    newmonster "Uruk-hai"
+    copystats "Heavy Infantry"
+    copyspr "Heavy Infantry"
+    corpsekind "Uruk-hai"
+
     newmonster "Fell Beast"
     copystats "Longdead Beast"
     copyspr "Longdead Beast"
@@ -169,6 +258,12 @@ Makes the game's `+mincorpses`, `-mincorpses` and `removecorpses` count and take
     level 1
     raiseanimals largeanimal
 
+    newritual "Paths of the Dead"
+    descr "The heir of Isildur calls the Oathbreakers out of the Dwimorberg to fulfil their oath."
+    level 3
+    putcorpses 30 "Oathbreakers"
+    raisecorpses "Oathbreakers" "Ghost Warrior"
+
     playerevent
     +mincorpses 20 human
     message -2 "Dunlending dead lie thick on the field. The Barrow-downs stir."
@@ -180,6 +275,14 @@ Makes the game's `+mincorpses`, `-mincorpses` and `removecorpses` count and take
 === ".c5m"
 
     ```c5m
+    #!@newcorpsekind "Uruk-hai" human
+    #!@newcorpsekind "Oathbreakers" bypassvanillacorpse
+
+    newmonster "Uruk-hai"
+    copystats "Heavy Infantry"
+    copyspr "Heavy Infantry"
+    #!@corpsekind "Uruk-hai"
+
     newmonster "Fell Beast"
     copystats "Longdead Beast"
     copyspr "Longdead Beast"
@@ -206,6 +309,12 @@ Makes the game's `+mincorpses`, `-mincorpses` and `removecorpses` count and take
     level 1
     raiseanimals largeanimal
 
+    newritual "Paths of the Dead"
+    descr "The heir of Isildur calls the Oathbreakers out of the Dwimorberg to fulfil their oath."
+    level 3
+    putcorpses 30 "Oathbreakers"
+    #!@raisecorpses "Oathbreakers" "Ghost Warrior"
+
     playerevent
     +mincorpses 20 human
     message -2 "Dunlending dead lie thick on the field. The Barrow-downs stir."
@@ -216,7 +325,7 @@ Makes the game's `+mincorpses`, `-mincorpses` and `removecorpses` count and take
 
 ### Corpse kinds { #corpse-kinds }
 
-??? note "The eight corpse “kinds” <span class="new-badge">New</span>"
+??? note "The vanilla corpse “kinds” <span class="new-badge">New</span>"
 
     | Kind | Left by | Raises as |
     | --- | --- | --- |
