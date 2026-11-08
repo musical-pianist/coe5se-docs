@@ -4,11 +4,15 @@
 
 The commands and pages each CoE5SE release added, newest first.
 
+## CoE5SE 3.2 { #v3-2 }
+
+- **[Corpses](commands/corpses.md)**: [`needcorpses`](commands/corpses.md#needcorpses), [`excludecorpses`](commands/corpses.md#excludecorpses)
+
 ## CoE5SE 3.1 { #v3-1 }
 
 [Release notes on GitHub](https://github.com/musical-pianist/coe5se/releases/tag/CoE5SE-v3.1.0)
 
-- **[Corpses](commands/corpses.md)**: [`newcorpsekind`](commands/corpses.md#newcorpsekind)
+- **[Corpses](commands/corpses.md)**: [`newcorpsetype`](commands/corpses.md#newcorpsekind)
 
 ## CoE5SE 3.0 { #v3-0 }
 
@@ -36,7 +40,7 @@ The commands and pages each CoE5SE release added, newest first.
 [Release notes on GitHub](https://github.com/musical-pianist/coe5se/releases/tag/CoE5SE-v2.10.1)
 
 - **[Recruitment Bonuses](commands/recruitment.md) (new page)**: [`templerec`](commands/recruitment.md#templerec), [`libraryrec`](commands/recruitment.md#libraryrec), [`atavirec`](commands/recruitment.md#atavirec), [`reclimiter`](commands/recruitment.md#reclimiter)
-- **[Corpses](commands/corpses.md) (new page)**: [`corpsekind`](commands/corpses.md#corpsekind), [`raisecorpses`](commands/corpses.md#raisecorpses), [`raisedead`](commands/corpses.md#raisedead), [`raiseanimals`](commands/corpses.md#raisedead), [`putcorpses`](commands/corpses.md#putcorpses), [`+mincorpses`](commands/corpses.md#mincorpses), [`removecorpses`](commands/corpses.md#mincorpses)
+- **[Corpses](commands/corpses.md) (new page)**: [`corpsetype`](commands/corpses.md#corpsekind), [`raisecorpses`](commands/corpses.md#raisecorpses), [`raisedead`](commands/corpses.md#raisedead), [`raiseanimals`](commands/corpses.md#raisedead), [`putcorpses`](commands/corpses.md#putcorpses), [`+mincorpses`](commands/corpses.md#mincorpses), [`removecorpses`](commands/corpses.md#mincorpses)
 - **[Factions](commands/factions.md) (new page)**: [`newfaction`](commands/factions.md#newfaction), [`factionlike`](commands/factions.md#factionlike), [`factioncolor`](commands/factions.md#factioncolor), [`factionhome`](commands/factions.md#factionhome), [`factionpopulate`](commands/factions.md#factionpopulate), [`factionunits`](commands/factions.md#factionunits), [`factionpopulateterrain`](commands/factions.md#factionpopulateterrain), [`factionactive`](commands/factions.md#factionactive), [`factionspawnsite`](commands/factions.md#factionspawnsite), [`factionfuel`](commands/factions.md#factionfuel), [`factionspawn`](commands/factions.md#factionspawn), [`factionwander`](commands/factions.md#factionwander), [`factionwandergate`](commands/factions.md#factionwandergate), [`factionmonument`](commands/factions.md#factionmonument), [`factionmonumentrule`](commands/factions.md#factionmonumentrule), [`factionmonumentevent`](commands/factions.md#factionmonumentevent), [`factionplaneshift`](commands/factions.md#factionplaneshift), [`factionloyalty`](commands/factions.md#factionloyalty), [`factiongather`](commands/factions.md#factiongather), [`factiongateway`](commands/factions.md#factiongateway), [`factiontithe`](commands/factions.md#factiontithe), [`factionworldevents`](commands/factions.md#factionworldevents), [`factionconquest`](commands/factions.md#factionconquest), [`factionstatue`](commands/factions.md#factionstatue), [`factionhorrors`](commands/factions.md#factionhorrors), [`factionavoid`](commands/factions.md#factionavoid), [`factioncaravan`](commands/factions.md#factioncaravan)
 - **[Other Commands](commands/other-commands.md)**: [`include`](commands/other-commands.md#include), [`selectclass`](commands/other-commands.md#selectclass), [`aiclass`](commands/other-commands.md#aiclass)
 - **[Limits](commands/limits.md) (new page)**

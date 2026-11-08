@@ -5,89 +5,94 @@ status: new
 
 # Corpses
 
-Decide which corpse each monster leaves, and what your rituals and events raise from the dead.
+Sets which corpse a monster leaves, and which corpses rituals and events use.
 
-Every corpse has a ["kind"](#corpse-kinds): a vanilla one, or one your mod declares. Each command takes a kind, and all but `corpsekind`, `putcorpses` and `newcorpsekind` also take a group: `humanoid`, `animal` or `all`. Leave the kind off and it's the game's own command.
+Every corpse has a [type](#corpse-kinds), either vanilla or declared by a mod. Most commands here take a type, some also a group: `humanoid`, `animal` or `all`. Without a type the line is the game's own command.
 
 !!! info "More in the game's manual"
     The game's own corpse commands are in Illwinter's official modding manual, under ["Ritual Modding"](https://www.illwinter.com/coe5/coe5modding.pdf#page=33) and ["Events"](https://www.illwinter.com/coe5/coe5modding.pdf#page=38).
 
-### newcorpsekind "&lt;name&gt;" &lt;kind&gt;|bypassvanillacorpse <span class="new-badge">New</span> { #newcorpsekind .command data-toc-label="newcorpsekind" data-added="3.1" }
+### newcorpsetype "&lt;name&gt;" &lt;type&gt;|bypassvanillacorpse <span class="new-badge">New</span> { #newcorpsekind .command data-toc-label="newcorpsetype" data-added="3.1" }
 
-Declares a corpse type for your monsters to leave or to target with rituals and events ([Limits](limits.md#corpses)).
+Declares a new corpse type ([Limits](limits.md#corpses)).
 
-- **name:** In double quotes. Make it plural, since Sense Dead reads "Most of the dead seem to be Uruk-hai." Mods with the same corpse name share the corpse.
-- **kind:** A required vanilla assignment to your custom corpse, like `human` ([the list](#corpse-kinds)), or `bypassvanillacorpse` to break that rule.
+- **name:** In double quotes. Use a plural, Sense Dead shows "Most of the dead seem to be Uruk-hai." Mods using the same name share the type.
+<!-- vale CoE5SE.Reports = NO -->
+- **type:** Required. One of the vanilla types ([the list](#corpse-kinds)), which vanilla treats these corpses as, or `bypassvanillacorpse` to hide them from vanilla. Without it the line is ignored and the type doesn't exist, so every line naming it does nothing (logged in `coe5mod.log`).
+<!-- vale CoE5SE.Reports = YES -->
 
 === ".c5se"
 
     ```c5se
-    newcorpsekind "Uruk-hai" human
+    newcorpsetype "Uruk-hai" human
     ```
 
-    Or to bypass the required vanilla corpse assignment:
+    Or hidden from vanilla:
 
     ```c5se
-    newcorpsekind "Oathbreakers" bypassvanillacorpse
+    newcorpsetype "Oathbreakers" bypassvanillacorpse
     ```
 
 === ".c5m"
 
     ```c5m
-    #!@newcorpsekind "Uruk-hai" human
+    #!@newcorpsetype "Uruk-hai" human
     ```
 
-    Or to bypass the required vanilla corpse assignment:
+    Or hidden from vanilla:
 
     ```c5m
-    #!@newcorpsekind "Oathbreakers" bypassvanillacorpse
+    #!@newcorpsetype "Oathbreakers" bypassvanillacorpse
     ```
 
-### corpsekind &lt;kind&gt; <span class="new-badge">New</span> { #corpsekind .command data-toc-label="corpsekind" data-added="2.10" }
+### corpsetype &lt;type&gt; <span class="new-badge">New</span> { #corpsekind .command data-toc-label="corpsetype" data-added="2.10" }
 
-Sets the corpse the active monster leaves when it dies. Goes after `newmonster` or `selectmonster`.
+Sets the corpse the active monster leaves when it dies. Use after `newmonster` or `selectmonster`.
 
-- **kind:** One vanilla [kind](#corpse-kinds), your mod's kind in double quotes, or `none` for no corpse at all.
+- **type:** One vanilla [type](#corpse-kinds), a mod's corpse type in double quotes, or `none` for no corpse.
 
 === ".c5se"
 
     ```c5se
-    corpsekind largeanimal
+    corpsetype largeanimal
     ```
 
-    Or your mod's kind:
+    Or a mod's corpse type:
 
     ```c5se
-    corpsekind "Uruk-hai"
+    corpsetype "Uruk-hai"
     ```
 
     Or no corpse:
 
     ```c5se
-    corpsekind none
+    corpsetype none
     ```
 
 === ".c5m"
 
     ```c5m
-    #!@corpsekind largeanimal
+    #!@corpsetype largeanimal
     ```
 
-    Or your mod's kind:
+    Or a mod's corpse type:
 
     ```c5m
-    #!@corpsekind "Uruk-hai"
+    #!@corpsetype "Uruk-hai"
     ```
 
     Or no corpse:
 
     ```c5m
-    #!@corpsekind none
+    #!@corpsetype none
     ```
 
-### raisecorpses &lt;kind&gt; "&lt;monster&gt;" <span class="new-badge">New</span> { #raisecorpses .command data-toc-label="raisecorpses" data-added="2.10" }
+### raisecorpses &lt;type&gt; "&lt;monster&gt;" [&lt;cap&gt;] <span class="new-badge">New</span> { #raisecorpses .command data-toc-label="raisecorpses" data-added="2.10" }
 
-Raises the monster from the corpses type on the caster's square. The kind is a vanilla tpye, or you can use a tag. Common raise dead rules apply.
+Like `raisedead`, but turns the corpses on the caster's square into this monster. The type is a vanilla type or group, or a mod's corpse type in double quotes. Corpse commands in a ritual are processed in order, so earlier lines use corpses first.
+
+- **monster:** In double quotes. `"c*Wight"` makes each one a commander, like in `summoning` strings.
+- **cap:** Optional. Max number of units created.
 
 === ".c5se"
 
@@ -95,10 +100,16 @@ Raises the monster from the corpses type on the caster's square. The kind is a v
     raisecorpses largeanimal "Fell Beast"
     ```
 
-    Or from your mod's kind:
+    Or a mod's corpse type:
 
     ```c5se
     raisecorpses "Uruk-hai" "Wight"
+    ```
+
+    Or one commander at most:
+
+    ```c5se
+    raisecorpses "Uruk-hai" "c*Wight" 1
     ```
 
 === ".c5m"
@@ -107,17 +118,24 @@ Raises the monster from the corpses type on the caster's square. The kind is a v
     #!@raisecorpses largeanimal "Fell Beast"
     ```
 
-    Or from your mod's kind:
+    Or a mod's corpse type:
 
     ```c5m
     #!@raisecorpses "Uruk-hai" "Wight"
     ```
 
-### raisedead &lt;kind&gt; <span class="new-badge">New</span> { #raisedead .command data-toc-label="raisedead and raiseanimals" data-added="2.10" }
+    Or one commander at most:
 
-Makes the game's Raise Dead use only that kind. `raiseanimals` does the same for Raise Animals. The game still picks what rises (the table above).
+    ```c5m
+    #!@raisecorpses "Uruk-hai" "c*Wight" 1
+    ```
 
-- **kind:** A humanoid kind or `humanoid` for `raisedead`; an animal kind or `animal` for `raiseanimals`.
+### raisedead &lt;type&gt; [&lt;cap&gt;] <span class="new-badge">New</span> { #raisedead .command data-toc-label="raisedead and raiseanimals" data-added="2.10" }
+
+Raise Dead will only use corpses of this type. Same for `raiseanimals` and animal corpses. The units created are the normal ones for each type (see the [corpse types](#corpse-kinds) table).
+
+- **type:** A humanoid type or `humanoid` for `raisedead`, an animal type or `animal` for `raiseanimals`.
+- **cap:** Optional. Max number of corpses used. Use the group, like `raisedead humanoid 3`, to set a max without restricting the type.
 
 === ".c5se"
 
@@ -129,6 +147,12 @@ Makes the game's Raise Dead use only that kind. `raiseanimals` does the same for
 
     ```c5se
     raiseanimals largeanimal
+    ```
+
+    Or at most 3, of any humanoid type:
+
+    ```c5se
+    raisedead humanoid 3
     ```
 
 === ".c5m"
@@ -143,12 +167,52 @@ Makes the game's Raise Dead use only that kind. `raiseanimals` does the same for
     raiseanimals largeanimal
     ```
 
-### putcorpses &lt;amount&gt; &lt;kind&gt; <span class="new-badge">New</span> { #putcorpses .command data-toc-label="putcorpses" data-added="2.10" }
+    Or at most 3, of any humanoid type:
 
-Puts corpses of a kind on the caster's square instead of human corpses.
+    ```c5m
+    raisedead humanoid 3
+    ```
 
-- **amount:** The number of corpses, as the game's `putcorpses` takes it: 10000 and up still scales with the sacrifice.
-- **kind:** One vanilla [kind](#corpse-kinds), or your mod's kind in double quotes.
+### needcorpses <span class="new-badge">New</span> { #needcorpses .command data-toc-label="needcorpses" data-added="3.2" }
+
+Ritual cannot be cast unless the caster's square has a corpse its `raisedead`, `raiseanimals` or `raisecorpses` commands can use. The ritual is greyed out with the game's normal "Not possible to cast this ritual now" text. Does not affect AI players (for now).
+
+=== ".c5se"
+
+    ```c5se
+    needcorpses
+    ```
+
+=== ".c5m"
+
+    ```c5m
+    #!@needcorpses
+    ```
+
+### excludecorpses "&lt;type&gt;" <span class="new-badge">New</span> { #excludecorpses .command data-toc-label="excludecorpses" data-added="3.2" }
+
+`raisedead`, `raiseanimals` and `raisecorpses` in this ritual will not use corpses of this type, except a `raisecorpses` that names it. Useful for a corpse type that counts as `human` but should only be used by its own `raisecorpses`. Does not affect AI players (for now).
+
+- **type:** A corpse type in double quotes, declared with [`newcorpsetype`](#newcorpsekind).
+
+=== ".c5se"
+
+    ```c5se
+    excludecorpses "Uruk-hai"
+    ```
+
+=== ".c5m"
+
+    ```c5m
+    #!@excludecorpses "Uruk-hai"
+    ```
+
+### putcorpses &lt;amount&gt; &lt;type&gt; <span class="new-badge">New</span> { #putcorpses .command data-toc-label="putcorpses" data-added="2.10" }
+
+Creates corpses of this type in the target square instead of human corpses. Can also be used in events, where it puts the corpses in the target square, or in every square of a `squareevent`.
+
+- **amount:** Add 10000 to scale with the sacrifice amount, as in the game's `putcorpses`. In events 1 to 9999.
+- **type:** A vanilla [type](#corpse-kinds), or a mod's corpse type in double quotes. Leave it out in events to create human corpses.
 
 === ".c5se"
 
@@ -156,10 +220,21 @@ Puts corpses of a kind on the caster's square instead of human corpses.
     putcorpses 10 giant
     ```
 
-    Or your mod's kind:
+    Or a mod's corpse type:
 
     ```c5se
     putcorpses 10 "Oathbreakers"
+    ```
+
+    Or in an event, on a square your map names:
+
+    ```c5se
+    squareevent
+    +turnnbr 1
+    +player 0
+    +squarename "The Dead Marshes"
+    putcorpses 40 human
+    endevent
     ```
 
 === ".c5m"
@@ -168,20 +243,31 @@ Puts corpses of a kind on the caster's square instead of human corpses.
     putcorpses 10 giant
     ```
 
-    Or your mod's kind:
+    Or a mod's corpse type:
 
     ```c5m
     putcorpses 10 "Oathbreakers"
     ```
 
-!!! warning "The AI ignores kind(for now)"
-    An AI player's cast ignores kind. Its `putcorpses` adds human corpses, its raises take every corpse they can use. Events and `corpsekind` work the same for everyone. This is a temporary limitation as it has AI implications not yet built out.
+    Or in an event, on a square your map names:
 
-### +mincorpses &lt;amount&gt; &lt;kind&gt; <span class="new-badge">New</span> { #mincorpses .command data-toc-label="+mincorpses and removecorpses" data-added="2.10" }
+    ```c5m
+    squareevent
+    +turnnbr 1
+    +player 0
+    +squarename "The Dead Marshes"
+    putcorpses 40 human
+    endevent
+    ```
 
-Makes the game's `+mincorpses`, `-mincorpses` and `removecorpses` count and take only the corpses of a kind.
+!!! warning "The AI ignores corpse types (for now)"
+    AI players ignore corpse types in rituals: `putcorpses` creates human corpses, and `raisedead`, `raiseanimals` and `raisecorpses` use every corpse they can. Caps still apply. Events and `corpsetype` work the same for everyone. This is a temporary limitation as it has AI implications not yet built out.
 
-- **kind:** A vanilla [kind](#corpse-kinds) or group, or your mod's kind in double quotes.
+### +mincorpses &lt;amount&gt; &lt;type&gt; <span class="new-badge">New</span> { #mincorpses .command data-toc-label="+mincorpses and removecorpses" data-added="2.10" }
+
+The game's `+mincorpses`, `-mincorpses` and `removecorpses` will only count or remove corpses of this type.
+
+- **type:** A vanilla [type](#corpse-kinds) or group, or a mod's corpse type in double quotes.
 
 === ".c5se"
 
@@ -195,7 +281,7 @@ Makes the game's `+mincorpses`, `-mincorpses` and `removecorpses` count and take
     removecorpses 20 human
     ```
 
-    Or your mod's kind:
+    Or a mod's corpse type:
 
     ```c5se
     +mincorpses 20 "Uruk-hai"
@@ -213,7 +299,7 @@ Makes the game's `+mincorpses`, `-mincorpses` and `removecorpses` count and take
     removecorpses 20 human
     ```
 
-    Or your mod's kind:
+    Or a mod's corpse type:
 
     ```c5m
     +mincorpses 20 "Uruk-hai"
@@ -224,110 +310,136 @@ Makes the game's `+mincorpses`, `-mincorpses` and `removecorpses` count and take
 === ".c5se"
 
     ```c5se
-    newcorpsekind "Uruk-hai" human
-    newcorpsekind "Oathbreakers" bypassvanillacorpse
+    newcorpsetype "Dunedain" human
+    newcorpsetype "Elves" bypassvanillacorpse
 
-    newmonster "Uruk-hai"
-    copystats "Heavy Infantry"
-    copyspr "Heavy Infantry"
-    corpsekind "Uruk-hai"
+    newmonster "Ranger of the North"
+    copystats "Archer"
+    copyspr "Archer"
+    corpsetype "Dunedain"
+
+    newmonster "Galadhrim"
+    copystats "Archer"
+    copyspr "Archer"
+    corpsetype "Elves"
 
     newmonster "Fell Beast"
     copystats "Longdead Beast"
     copyspr "Longdead Beast"
 
     selectmonster "Troll"
-    corpsekind giant
+    corpsetype giant
 
-    selectmonster "Wolf"
-    corpsekind largeanimal
+    newritual "Barrow of Cardolan"
+    descr "The dead of the field rise for the Witch-king. Where a Dunadan fell, a Barrow-wight takes his bones and leads them."
+    level 3
+    needcorpses
+    raisecorpses "Dunedain" "c*Wight" 1
+    raisedead human 12
+
+    newritual "Host of Angmar"
+    descr "The dead of the field rise for Angmar. The Dunedain are left for the barrow-wights."
+    level 2
+    needcorpses
+    excludecorpses "Dunedain"
+    raisedead humanoid
 
     newritual "Wings of the Nazgul"
-    descr "The Witch-king raises the great beasts slain on the field as steeds for his riders."
+    descr "Where great beasts fell, the Witch-king gives his riders new steeds, one for each of the Nine."
     level 2
-    raisecorpses largeanimal "Fell Beast"
+    needcorpses
+    raisecorpses largeanimal "Fell Beast" 9
 
-    newritual "Graves of the Ettenmoors"
-    descr "The trolls who fell in the Ettenmoors rise again at the Witch-king's call."
+    newritual "Stones of the Ettenmoors"
+    descr "Trolls slain in the Ettenmoors rise again."
     level 2
-    putcorpses 5 giant
+    needcorpses
     raisedead giant
 
-    newritual "Hounds of Sauron"
-    descr "The wargs that fell hunting the Fellowship rise to hunt again."
-    level 1
-    raiseanimals largeanimal
-
-    newritual "Paths of the Dead"
-    descr "The heir of Isildur calls the Oathbreakers out of the Dwimorberg to fulfil their oath."
-    level 3
-    putcorpses 30 "Oathbreakers"
-    raisecorpses "Oathbreakers" "Ghost Warrior"
-
     playerevent
-    +mincorpses 20 human
-    message -2 "Dunlending dead lie thick on the field. The Barrow-downs stir."
-    removecorpses 20 human
-    newunits 28 "c*Wight & 10*Longdead"
+    +season 2
+    +chance 10
+    putcorpses 6 human
+    endevent
+
+    squareevent
+    +player 0
+    +season 0
+    +chance 20
+    +mincorpses 1 human
+    removecorpses 1 human
     endevent
     ```
 
 === ".c5m"
 
     ```c5m
-    #!@newcorpsekind "Uruk-hai" human
-    #!@newcorpsekind "Oathbreakers" bypassvanillacorpse
+    #!@newcorpsetype "Dunedain" human
+    #!@newcorpsetype "Elves" bypassvanillacorpse
 
-    newmonster "Uruk-hai"
-    copystats "Heavy Infantry"
-    copyspr "Heavy Infantry"
-    #!@corpsekind "Uruk-hai"
+    newmonster "Ranger of the North"
+    copystats "Archer"
+    copyspr "Archer"
+    #!@corpsetype "Dunedain"
+
+    newmonster "Galadhrim"
+    copystats "Archer"
+    copyspr "Archer"
+    #!@corpsetype "Elves"
 
     newmonster "Fell Beast"
     copystats "Longdead Beast"
     copyspr "Longdead Beast"
 
     selectmonster "Troll"
-    #!@corpsekind giant
+    #!@corpsetype giant
 
-    selectmonster "Wolf"
-    #!@corpsekind largeanimal
+    newritual "Barrow of Cardolan"
+    descr "The dead of the field rise for the Witch-king. Where a Dunadan fell, a Barrow-wight takes his bones and leads them."
+    level 3
+    #!@needcorpses
+    #!@raisecorpses "Dunedain" "c*Wight" 1
+    raisedead human 12
+
+    newritual "Host of Angmar"
+    descr "The dead of the field rise for Angmar. The Dunedain are left for the barrow-wights."
+    level 2
+    #!@needcorpses
+    #!@excludecorpses "Dunedain"
+    raisedead humanoid
 
     newritual "Wings of the Nazgul"
-    descr "The Witch-king raises the great beasts slain on the field as steeds for his riders."
+    descr "Where great beasts fell, the Witch-king gives his riders new steeds, one for each of the Nine."
     level 2
-    #!@raisecorpses largeanimal "Fell Beast"
+    #!@needcorpses
+    #!@raisecorpses largeanimal "Fell Beast" 9
 
-    newritual "Graves of the Ettenmoors"
-    descr "The trolls who fell in the Ettenmoors rise again at the Witch-king's call."
+    newritual "Stones of the Ettenmoors"
+    descr "Trolls slain in the Ettenmoors rise again."
     level 2
-    putcorpses 5 giant
+    #!@needcorpses
     raisedead giant
 
-    newritual "Hounds of Sauron"
-    descr "The wargs that fell hunting the Fellowship rise to hunt again."
-    level 1
-    raiseanimals largeanimal
-
-    newritual "Paths of the Dead"
-    descr "The heir of Isildur calls the Oathbreakers out of the Dwimorberg to fulfil their oath."
-    level 3
-    putcorpses 30 "Oathbreakers"
-    #!@raisecorpses "Oathbreakers" "Ghost Warrior"
-
     playerevent
-    +mincorpses 20 human
-    message -2 "Dunlending dead lie thick on the field. The Barrow-downs stir."
-    removecorpses 20 human
-    newunits 28 "c*Wight & 10*Longdead"
+    +season 2
+    +chance 10
+    putcorpses 6 human
+    endevent
+
+    squareevent
+    +player 0
+    +season 0
+    +chance 20
+    +mincorpses 1 human
+    removecorpses 1 human
     endevent
     ```
 
-### Corpse kinds { #corpse-kinds }
+### Corpse types { #corpse-kinds }
 
-??? note "The vanilla corpse “kinds” <span class="new-badge">New</span>"
+??? note "The vanilla corpse types <span class="new-badge">New</span>"
 
-    | Kind | Left by | Raises as |
+    | Type | Left by | Raises as |
     | --- | --- | --- |
     | `small` | Humanoids with `small`, like the Goblins | Little Longdead, Little Soulless |
     | `human` | Other humanoids | Longdead, Soulless |
