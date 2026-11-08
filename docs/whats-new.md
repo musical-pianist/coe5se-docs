@@ -6,6 +6,8 @@ The commands and pages each CoE5SE release added, newest first.
 
 ## CoE5SE 3.1 { #v3-1 }
 
+[Release notes on GitHub](https://github.com/musical-pianist/coe5se/releases/tag/CoE5SE-v3.1.0)
+
 - **[Corpses](commands/corpses.md)**: [`newcorpsekind`](commands/corpses.md#newcorpsekind)
 
 ## CoE5SE 3.0 { #v3-0 }

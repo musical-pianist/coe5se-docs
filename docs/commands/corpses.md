@@ -25,7 +25,7 @@ Declares a corpse type for your monsters to leave or to target with rituals and 
     newcorpsekind "Uruk-hai" human
     ```
 
-    Or hidden from vanilla:
+    Or to bypass the required vanilla corpse assignment:
 
     ```c5se
     newcorpsekind "Oathbreakers" bypassvanillacorpse
@@ -37,7 +37,7 @@ Declares a corpse type for your monsters to leave or to target with rituals and 
     #!@newcorpsekind "Uruk-hai" human
     ```
 
-    Or hidden from vanilla:
+    Or to bypass the required vanilla corpse assignment:
 
     ```c5m
     #!@newcorpsekind "Oathbreakers" bypassvanillacorpse
