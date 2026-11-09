@@ -45,7 +45,7 @@ Declares a new corpse type ([Limits](limits.md#corpses)).
     #!@newcorpsetype "Oathbreakers" bypassvanillacorpse
     ```
 
-### corpsetype &lt;type&gt; <span class="new-badge">New</span> { #corpsekind .command data-toc-label="corpsetype" data-added="2.10" }
+### corpsetype &lt;type&gt; { #corpsekind .command data-toc-label="corpsetype" data-added="2.10" }
 
 Sets the corpse the active monster leaves when it dies. Use after `newmonster` or `selectmonster`.
 
@@ -87,7 +87,7 @@ Sets the corpse the active monster leaves when it dies. Use after `newmonster` o
     #!@corpsetype none
     ```
 
-### raisecorpses &lt;type&gt; "&lt;monster&gt;" [&lt;cap&gt;] <span class="new-badge">New</span> { #raisecorpses .command data-toc-label="raisecorpses" data-added="2.10" }
+### raisecorpses &lt;type&gt; "&lt;monster&gt;" [&lt;cap&gt;] { #raisecorpses .command data-toc-label="raisecorpses" data-added="2.10" }
 
 Like `raisedead`, but turns the corpses on the caster's square into this monster. The type is a vanilla type or group, or a mod's corpse type in double quotes. Corpse commands in a ritual are processed in order, so earlier lines use corpses first.
 
@@ -130,7 +130,7 @@ Like `raisedead`, but turns the corpses on the caster's square into this monster
     #!@raisecorpses "Uruk-hai" "c*Wight" 1
     ```
 
-### raisedead &lt;type&gt; [&lt;cap&gt;] <span class="new-badge">New</span> { #raisedead .command data-toc-label="raisedead and raiseanimals" data-added="2.10" }
+### raisedead &lt;type&gt; [&lt;cap&gt;] { #raisedead .command data-toc-label="raisedead and raiseanimals" data-added="2.10" }
 
 Raise Dead will only use corpses of this type. Same for `raiseanimals` and animal corpses. The units created are the normal ones for each type (see the [corpse types](#corpse-kinds) table).
 
@@ -173,6 +173,24 @@ Raise Dead will only use corpses of this type. Same for `raiseanimals` and anima
     raisedead humanoid 3
     ```
 
+### maxraise &lt;amount&gt; <span class="new-badge">New</span> { #maxraise .command data-toc-label="maxraise" data-added="3.2" }
+
+Ritual cannot create more than this number of units in one cast, from all its `raisedead`, `raiseanimals` and `raisecorpses` commands together. The commands are processed in order, so once the maximum is reached the later ones create none. A cap on one line still applies to that line. Also applies to AI players.
+
+- **amount:** 1 or more.
+
+=== ".c5se"
+
+    ```c5se
+    maxraise 1
+    ```
+
+=== ".c5m"
+
+    ```c5m
+    #!@maxraise 1
+    ```
+
 ### needcorpses <span class="new-badge">New</span> { #needcorpses .command data-toc-label="needcorpses" data-added="3.2" }
 
 Ritual cannot be cast unless the caster's square has a corpse its `raisedead`, `raiseanimals` or `raisecorpses` commands can use. The ritual is greyed out with the game's normal "Not possible to cast this ritual now" text. Does not affect AI players (for now).
@@ -207,7 +225,7 @@ Ritual cannot be cast unless the caster's square has a corpse its `raisedead`, `
     #!@excludecorpses "Uruk-hai"
     ```
 
-### putcorpses &lt;amount&gt; &lt;type&gt; <span class="new-badge">New</span> { #putcorpses .command data-toc-label="putcorpses" data-added="2.10" }
+### putcorpses &lt;amount&gt; &lt;type&gt; { #putcorpses .command data-toc-label="putcorpses" data-added="2.10" }
 
 Creates corpses of this type in the target square instead of human corpses. Can also be used in events, where it puts the corpses in the target square, or in every square of a `squareevent`.
 
@@ -261,9 +279,9 @@ Creates corpses of this type in the target square instead of human corpses. Can 
     ```
 
 !!! warning "The AI ignores corpse types (for now)"
-    AI players ignore corpse types in rituals: `putcorpses` creates human corpses, and `raisedead`, `raiseanimals` and `raisecorpses` use every corpse they can. Caps still apply. Events and `corpsetype` work the same for everyone. This is a temporary limitation as it has AI implications not yet built out.
+    AI players ignore corpse types in rituals: `putcorpses` creates human corpses, and `raisedead`, `raiseanimals` and `raisecorpses` use every corpse they can. Caps and `maxraise` still apply. Events and `corpsetype` work the same for everyone. This is a temporary limitation as it has AI implications not yet built out.
 
-### +mincorpses &lt;amount&gt; &lt;type&gt; <span class="new-badge">New</span> { #mincorpses .command data-toc-label="+mincorpses and removecorpses" data-added="2.10" }
+### +mincorpses &lt;amount&gt; &lt;type&gt; { #mincorpses .command data-toc-label="+mincorpses and removecorpses" data-added="2.10" }
 
 The game's `+mincorpses`, `-mincorpses` and `removecorpses` will only count or remove corpses of this type.
 
@@ -337,6 +355,14 @@ The game's `+mincorpses`, `-mincorpses` and `removecorpses` will only count or r
     raisecorpses "Dunedain" "c*Wight" 1
     raisedead human 12
 
+    newritual "Lord of the Barrow-downs"
+    descr "Where the noble dead lie, the Witch-king calls a single Barrow-wight lord from the greatest of them, a Dunadan or an Elf."
+    level 4
+    needcorpses
+    maxraise 1
+    raisecorpses "Dunedain" "c*Wight"
+    raisecorpses "Elves" "c*Wight"
+
     newritual "Host of Angmar"
     descr "The dead of the field rise for Angmar. The Dunedain are left for the barrow-wights."
     level 2
@@ -401,6 +427,14 @@ The game's `+mincorpses`, `-mincorpses` and `removecorpses` will only count or r
     #!@raisecorpses "Dunedain" "c*Wight" 1
     raisedead human 12
 
+    newritual "Lord of the Barrow-downs"
+    descr "Where the noble dead lie, the Witch-king calls a single Barrow-wight lord from the greatest of them, a Dunadan or an Elf."
+    level 4
+    #!@needcorpses
+    #!@maxraise 1
+    #!@raisecorpses "Dunedain" "c*Wight"
+    #!@raisecorpses "Elves" "c*Wight"
+
     newritual "Host of Angmar"
     descr "The dead of the field rise for Angmar. The Dunedain are left for the barrow-wights."
     level 2
@@ -437,7 +471,7 @@ The game's `+mincorpses`, `-mincorpses` and `removecorpses` will only count or r
 
 ### Corpse types { #corpse-kinds }
 
-??? note "The vanilla corpse types <span class="new-badge">New</span>"
+??? note "The vanilla corpse types"
 
     | Type | Left by | Raises as |
     | --- | --- | --- |

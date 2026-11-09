@@ -5,7 +5,7 @@ status: new
 
 # Weapon Traits
 
-Aim your weapons and spells at any trait, or at a tag you give your monsters, where vanilla has only fixed commands like `affectundead` and `undkill`. A weapon can affect only those units, leave them unaffected, or double its damage against them. To cap a weapon's damage die at its highest roll, use [`noexplode`](noexplode.md).
+Aim your weapons and spells at any trait, or at a tag you give your monsters, where vanilla has only fixed commands like `affectundead` and `undkill`. A weapon can affect only those units, leave them unaffected, or double its damage against them. A weapon can also turn the units it kills into a monster you name. To cap a weapon's damage die at its highest roll, use [`noexplode`](noexplode.md).
 
 These are declared in a weapon's block, after `newweapon` or `selectweapon`. A spell gets them through its weapon. A `clearwspec` below them takes them off. A trait is a vanilla trait, movement or ability command, spelled and cased as in ["Monster Modding"](https://www.illwinter.com/coe5/coe5modding.pdf#page=14) (`undead`, `inanimate`, `immortal`, `human`, `flying`, `stonebeing`, `troll`), CoE5SE's [`small`](monster-traits.md#small) or [`combatcaster`](monster-traits.md#combatcaster), or `tag "<name>"` for a [tag](monster-traits.md#tag) your monsters carry. A unit has a trait from its monster or an item it holds, and an ability from a temporary value too. A tag comes only from its monster. `flying` doesn't count `float`, so name both.
 
@@ -15,7 +15,7 @@ These are declared in a weapon's block, after `newweapon` or `selectweapon`. A s
 <!-- vale CoE5SE.Reports = YES -->
 
 !!! tip "For players without CoE5SE"
-    In the .c5m, the vanilla game skips the `#!@` lines, so these weapons hit every unit at normal damage.
+    In the .c5m, the vanilla game skips the `#!@` lines, so these weapons hit every unit at normal damage. Their victims are neither reanimated nor mutated.
 
 !!! info "More in the CoE5 manual"
     Vanilla weapon commands are in Illwinter's official modding manual, under ["Weapon Modding"](https://www.illwinter.com/coe5/coe5modding.pdf#page=4).
@@ -141,6 +141,45 @@ Makes the weapon's beam as many squares wide as you choose, where vanilla's beam
     #!@beamwidth 3 lines
     ```
 
+### reanimate [&lt;type&gt;] "&lt;monster&gt;" <span class="new-badge">New</span> { #reanimate .command data-toc-label="reanimate" data-added="3.2" }
+
+A victim killed by the weapon becomes this monster instead of a Soulless. Like vanilla `reanimate`, it does not affect undead, tiny, ethereal or inanimate victims, and the victim leaves its corpse.
+
+- **type:** Optional. Only victims that leave this type of corpse: a vanilla [corpse type](corpses.md) or group, or a mod's corpse type in double quotes. A line with a type is used before the line without one. Other victims become a Soulless.
+- **monster:** The monster's name, in double quotes.
+
+=== ".c5se"
+
+    ```c5se
+    reanimate "Wight"
+    reanimate human "Wraith"
+    ```
+
+=== ".c5m"
+
+    ```c5m
+    reanimate "Wight"
+    reanimate human "Wraith"
+    ```
+
+### mutate "&lt;monster&gt;" <span class="new-badge">New</span> { #mutate .command data-toc-label="mutate" data-added="3.2" }
+
+A victim killed by the weapon becomes this monster, instead of the monster that follows the killer in the monster list. Like vanilla `mutate`, it does not affect inanimate or ethereal victims.
+
+- **monster:** The monster's name, in double quotes.
+
+=== ".c5se"
+
+    ```c5se
+    mutate "Goblin"
+    ```
+
+=== ".c5m"
+
+    ```c5m
+    mutate "Goblin"
+    ```
+
 ### Example weapons { #example }
 
 === ".c5se"
@@ -170,6 +209,15 @@ Makes the weapon's beam as many squares wide as you choose, where vanilla's beam
     look 68
     beamwidth 15
     onlyenemy
+
+    newweapon "Blade of the Witch-king"
+    dmg 8
+    reanimate "Wight"
+    reanimate human "Wraith"
+
+    newweapon "Torment of Angband"
+    dmg 10
+    mutate "Goblin"
 
     newweapon "Light of Earendil"
     range 8
@@ -210,6 +258,15 @@ Makes the weapon's beam as many squares wide as you choose, where vanilla's beam
     look 68
     #!@beamwidth 15
     onlyenemy
+
+    newweapon "Blade of the Witch-king"
+    dmg 8
+    reanimate "Wight"
+    reanimate human "Wraith"
+
+    newweapon "Torment of Angband"
+    dmg 10
+    mutate "Goblin"
 
     newweapon "Light of Earendil"
     range 8

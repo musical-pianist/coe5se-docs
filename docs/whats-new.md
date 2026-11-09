@@ -6,7 +6,10 @@ The commands and pages each CoE5SE release added, newest first.
 
 ## CoE5SE 3.2 { #v3-2 }
 
-- **[Corpses](commands/corpses.md)**: [`needcorpses`](commands/corpses.md#needcorpses), [`excludecorpses`](commands/corpses.md#excludecorpses)
+[Release notes on GitHub](https://github.com/musical-pianist/coe5se/releases/tag/CoE5SE-v3.2.0)
+
+- **[Weapon Traits](commands/weapon-traits.md)**: [`reanimate`](commands/weapon-traits.md#reanimate), [`mutate`](commands/weapon-traits.md#mutate)
+- **[Corpses](commands/corpses.md)**: [`maxraise`](commands/corpses.md#maxraise), [`needcorpses`](commands/corpses.md#needcorpses), [`excludecorpses`](commands/corpses.md#excludecorpses)
 
 ## CoE5SE 3.1 { #v3-1 }
 
