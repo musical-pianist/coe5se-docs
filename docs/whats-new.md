@@ -4,6 +4,11 @@
 
 The commands and pages each CoE5SE release added, newest first.
 
+## CoE5SE 3.3 { #v3-3 }
+
+- **[Magic Items](commands/magic-items.md) (new page)**: [`clearspec`](commands/magic-items.md#clearspec), [`clearmove`](commands/magic-items.md#clearmove), [`clearweapons`](commands/magic-items.md#clearweapons), [`makeaff`](commands/magic-items.md#makeaff), [`makeben`](commands/magic-items.md#makeben), [`consumableitem`](commands/magic-items.md#consumableitem), [`useableitem`](commands/magic-items.md#useableitem), [`useonlyin`](commands/magic-items.md#useonlyin), [`cureoneaff`](commands/magic-items.md#cureoneaff), [`newspell1, newspell2, newspell3`](commands/magic-items.md#newspell1), [`usereveal`](commands/magic-items.md#usereveal), [`useteleport`](commands/magic-items.md#useteleport), [`useplanetravel`](commands/magic-items.md#useplanetravel), [`usebeanstalk`](commands/magic-items.md#usebeanstalk), [`usepit`](commands/magic-items.md#usepit), [`usebreakseal`](commands/magic-items.md#usebreakseal), [`extralife`](commands/magic-items.md#extralife), [`eyeitem`](commands/magic-items.md#eyeitem), [`heartitem`](commands/magic-items.md#heartitem)
+- **[Classes](commands/classes.md) (new page)**
+
 ## CoE5SE 3.2 { #v3-2 }
 
 [Release notes on GitHub](https://github.com/musical-pianist/coe5se/releases/tag/CoE5SE-v3.2.0)
@@ -21,9 +26,9 @@ The commands and pages each CoE5SE release added, newest first.
 
 [Release notes on GitHub](https://github.com/musical-pianist/coe5se/releases/tag/CoE5SE-v3.0.0)
 
-- **[Army Healing](commands/army-healing.md) (new page)**: [`heal<trait>army`](commands/army-healing.md#heal-trait-army), [`healarmy`](commands/army-healing.md#healarmy)
-- **[Weapon Traits](commands/weapon-traits.md)**: [`beamwidth`](commands/weapon-traits.md#beamwidth)
 - **[Mod Loading](commands/mod-loading.md)**: [`personalmod`](commands/mod-loading.md#personalmod), [`nomultiplayer`](commands/mod-loading.md#nomultiplayer)
+- **[Weapon Traits](commands/weapon-traits.md)**: [`beamwidth`](commands/weapon-traits.md#beamwidth)
+- **[Army Healing](commands/army-healing.md) (new page)**: [`heal<trait>army`](commands/army-healing.md#heal-trait-army), [`healarmy`](commands/army-healing.md#healarmy)
 
 ## CoE5SE 2.12 { #v2-12 }
 
@@ -42,16 +47,17 @@ The commands and pages each CoE5SE release added, newest first.
 
 [Release notes on GitHub](https://github.com/musical-pianist/coe5se/releases/tag/CoE5SE-v2.10.1)
 
+- **[Mod Files](commands/other-commands.md)**: [`include`](commands/other-commands.md#include)
+- **[Classes](commands/classes.md)**: [`selectclass`](commands/classes.md#selectclass), [`aiclass`](commands/classes.md#aiclass)
 - **[Recruitment Bonuses](commands/recruitment.md) (new page)**: [`templerec`](commands/recruitment.md#templerec), [`libraryrec`](commands/recruitment.md#libraryrec), [`atavirec`](commands/recruitment.md#atavirec), [`reclimiter`](commands/recruitment.md#reclimiter)
-- **[Corpses](commands/corpses.md) (new page)**: [`corpsetype`](commands/corpses.md#corpsekind), [`raisecorpses`](commands/corpses.md#raisecorpses), [`raisedead`](commands/corpses.md#raisedead), [`raiseanimals`](commands/corpses.md#raisedead), [`putcorpses`](commands/corpses.md#putcorpses), [`+mincorpses`](commands/corpses.md#mincorpses), [`removecorpses`](commands/corpses.md#mincorpses)
 - **[Factions](commands/factions.md) (new page)**: [`newfaction`](commands/factions.md#newfaction), [`factionlike`](commands/factions.md#factionlike), [`factioncolor`](commands/factions.md#factioncolor), [`factionhome`](commands/factions.md#factionhome), [`factionpopulate`](commands/factions.md#factionpopulate), [`factionunits`](commands/factions.md#factionunits), [`factionpopulateterrain`](commands/factions.md#factionpopulateterrain), [`factionactive`](commands/factions.md#factionactive), [`factionspawnsite`](commands/factions.md#factionspawnsite), [`factionfuel`](commands/factions.md#factionfuel), [`factionspawn`](commands/factions.md#factionspawn), [`factionwander`](commands/factions.md#factionwander), [`factionwandergate`](commands/factions.md#factionwandergate), [`factionmonument`](commands/factions.md#factionmonument), [`factionmonumentrule`](commands/factions.md#factionmonumentrule), [`factionmonumentevent`](commands/factions.md#factionmonumentevent), [`factionplaneshift`](commands/factions.md#factionplaneshift), [`factionloyalty`](commands/factions.md#factionloyalty), [`factiongather`](commands/factions.md#factiongather), [`factiongateway`](commands/factions.md#factiongateway), [`factiontithe`](commands/factions.md#factiontithe), [`factionworldevents`](commands/factions.md#factionworldevents), [`factionconquest`](commands/factions.md#factionconquest), [`factionstatue`](commands/factions.md#factionstatue), [`factionhorrors`](commands/factions.md#factionhorrors), [`factionavoid`](commands/factions.md#factionavoid), [`factioncaravan`](commands/factions.md#factioncaravan)
-- **[Other Commands](commands/other-commands.md)**: [`include`](commands/other-commands.md#include), [`selectclass`](commands/other-commands.md#selectclass), [`aiclass`](commands/other-commands.md#aiclass)
+- **[Corpses](commands/corpses.md) (new page)**: [`corpsetype`](commands/corpses.md#corpsekind), [`raisecorpses`](commands/corpses.md#raisecorpses), [`raisedead`](commands/corpses.md#raisedead), [`raiseanimals`](commands/corpses.md#raisedead), [`putcorpses`](commands/corpses.md#putcorpses), [`+mincorpses`](commands/corpses.md#mincorpses), [`removecorpses`](commands/corpses.md#mincorpses)
 - **[Limits](commands/limits.md) (new page)**
 
 ## CoE5SE 2.8 { #v2-8 }
 
-- **[Exploding Variables and Dice](commands/noexplode.md) (new page)**: [`noexplode`](commands/noexplode.md#noexplode)
-- **[Events](commands/events.md)**: [`if`](commands/events.md#if)
+- **[Event Logic](commands/events.md)**: [`if`](commands/events.md#if)
+- **[Exploding Dice](commands/noexplode.md) (new page)**: [`noexplode`](commands/noexplode.md#noexplode)
 
 ## CoE5SE 2.7 { #v2-7 }
 
@@ -64,19 +70,19 @@ The commands and pages each CoE5SE release added, newest first.
 
 ## CoE5SE 2.4 { #v2-4 }
 
+- **[Mod Files](commands/other-commands.md)**: [`maxdata`](commands/other-commands.md#maxdata)
 - **[Commander Names](commands/commander-names.md)**: [`newnametype`](commands/commander-names.md#newnametype), [`addname`](commands/commander-names.md#addname), [`fixedname`](commands/commander-names.md#fixedname)
-- **[Events](commands/events.md)**: [`or`](commands/events.md#or), [`elseif`](commands/events.md#elseif), [`else`](commands/events.md#else)
-- **[Other Commands](commands/other-commands.md)**: [`maxdata`](commands/other-commands.md#maxdata)
+- **[Event Logic](commands/events.md)**: [`or`](commands/events.md#or), [`elseif`](commands/events.md#elseif), [`else`](commands/events.md#else)
 
 ## CoE5SE 2.3 { #v2-3 }
 
 - **[Monster Traits](commands/monster-traits.md)**: [`small`](commands/monster-traits.md#small), [`combatcaster`](commands/monster-traits.md#combatcaster)
-- **[Monster and Ritual Names](commands/monster-names.md)**: [`spawnoffs`](commands/monster-names.md#spawnoffs), [`gainrit`](commands/monster-names.md#gainrit)
+- **[Monsters and Rituals by Name](commands/monster-names.md)**: [`spawnoffs`](commands/monster-names.md#spawnoffs), [`gainrit`](commands/monster-names.md#gainrit)
 
 ## CoE5SE 2.0 { #v2-0 }
 
-- **[Spell Paths](commands/spell-paths.md)**: [`newspellpath`](commands/spell-paths.md#newspellpath), [`selectspellpath`](commands/spell-paths.md#selectspellpath), [`spellweapon`](commands/spell-paths.md#spellweapon)
 - **[Mod Settings](commands/mod-settings.md)**: [`newsetting`](commands/mod-settings.md#newsetting), [`onoff`](commands/mod-settings.md#onoff), [`choice`](commands/mod-settings.md#choice), [`key`](commands/mod-settings.md#key), [`default`](commands/mod-settings.md#default), [`label`](commands/mod-settings.md#label), [`option`](commands/mod-settings.md#option), [`optiontip`](commands/mod-settings.md#optiontip), [`tip`](commands/mod-settings.md#tip), [`restart`](commands/mod-settings.md#restart), [`group`](commands/mod-settings.md#group), [`fixed`](commands/mod-settings.md#fixed), [`newsettingheader`](commands/mod-settings.md#newsettingheader), [`newsettingpage`](commands/mod-settings.md#newsettingpage)
+- **[Spell Paths](commands/spell-paths.md)**: [`newspellpath`](commands/spell-paths.md#newspellpath), [`selectspellpath`](commands/spell-paths.md#selectspellpath), [`spellweapon`](commands/spell-paths.md#spellweapon)
 
 ## CoE5SE 1.2 { #v1-2 }
 
@@ -85,5 +91,5 @@ The commands and pages each CoE5SE release added, newest first.
 
 ## CoE5SE 1.0 { #v1-0 }
 
-- **[Mod Settings](commands/mod-settings.md)**: [`+setting`](commands/mod-settings.md#setting)
 - **[Mod Loading](commands/mod-loading.md)**: [`requires`](commands/mod-loading.md#requires)
+- **[Mod Settings](commands/mod-settings.md)**: [`+setting`](commands/mod-settings.md#setting)

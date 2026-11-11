@@ -4,7 +4,7 @@
 
 Give your rituals additional effects not supported by the base game.
 
-These go after `newritual` or `selectritual`. To cap a summoning string's dice at their highest roll, use [`noexplode`](noexplode.md).
+These go after `newritual` or `selectritual`. To cap a summoning string's dice at their highest roll, use [`noexplode`](noexplode.md). To raise only the corpses of a type, use the ritual commands on [Corpses](corpses.md). To teach a ritual by its name, use [`gainrit`](monster-names.md#gainrit).
 
 !!! info "More in the game's manual"
     The game's own ritual commands are in Illwinter's official modding manual, under ["Ritual Modding"](https://www.illwinter.com/coe5/coe5modding.pdf#page=33).

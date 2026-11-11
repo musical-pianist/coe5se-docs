@@ -13,6 +13,8 @@ These go after `newmonster`, `selectmonster`, `newitem` or `selectitem`. A `0` a
 
     `acutesenses`, `allitemslots`, `animal`, `badsight`, `banishsurv`, `berserker`, `bluntres`, `charmres`, `clumsy`, `coldblood`, `curseditem`, `demonic`, `desertstealth`, `diseaseres`, `ethereal`, `fastheal`, `female`, `foreststealth`, `frontpos`, `holy`, `human`, `immortal`, `inanimate`, `invisible`, `invul`, `largeshield`, `lucky`, `magicshield`, `nobootslots`, `nocombat`, `noheal`, `noleader`, `nonmaginvul`, `noslots`, `nozoc`, `pierceres`, `rearpos`, `regeneration`, `shield`, `size1x1`, `size2x2`, `slashres`, `sleepres`, `snowstealth`, `spiritsight`, `stealth`, `swallowres`, `tiny`, `treelook`, `unaging`, `undead`, `unimportant`, `weaponslots`
 
+To set the corpse a monster leaves, use `corpsetype` on [Corpses](corpses.md). To name the monster it grows into or spawns, use the commands on [Monsters and Rituals by Name](monster-names.md).
+
 !!! info "More in the CoE5 manual"
     Vanilla monster and item commands are in Illwinter's official modding manual, under ["Monster Modding"](https://www.illwinter.com/coe5/coe5modding.pdf#page=14) and ["Magic Item Modding"](https://www.illwinter.com/coe5/coe5modding.pdf#page=10).
 

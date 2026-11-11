@@ -19,35 +19,23 @@ Every cap CoE5SE sets, in one place. It covers what all enabled mods can add tog
 | Classes | 169 | 219 |
 | [Corpse kinds](corpses.md) | none | 200 |
 
-## Spells { #spells }
-
-All enabled mods together can add 3,000 spells.
+## Mod Settings { #mod-settings }
 
 | Command | Limit |
 | --- | --- |
-| [`newspell`](spells.md#newspell) | 47 characters in a spell's name |
-
-## Spell Paths { #spell-paths }
-
-All enabled mods together can add 400 magic paths.
-
-| Command | Limit |
-| --- | --- |
-| [`newspellpath`](spell-paths.md#newspellpath) | 32 characters in a path's name |
+| [`newsetting`](mod-settings.md#newsetting) | 32 characters in a setting's name |
+| [`label`](mod-settings.md#label) | 56 characters |
+| [`option`](mod-settings.md#option) | 8 options in one choice |
+| [`option`](mod-settings.md#option) | 56 characters in an option |
+| [`optiontip`](mod-settings.md#optiontip) | 255 characters |
+| [`tip`](mod-settings.md#tip) | 255 characters |
+| [`newsettingheader`](mod-settings.md#newsettingheader) | 56 characters in its title |
 
 ## Monster Traits { #monster-traits }
 
 | Command | Limit |
 | --- | --- |
 | [`tag`](monster-traits.md#tag) | 31 characters in a tag's name |
-
-## Corpses { #corpses }
-
-All enabled mods together can add 200 corpse kinds.
-
-| Command | Limit |
-| --- | --- |
-| [`newcorpsekind`](corpses.md#newcorpsekind) | 63 characters in a kind's name |
 
 ## Planes { #planes }
 
@@ -72,14 +60,26 @@ All enabled mods together can add 16 factions.
 | [`factionavoid`](factions.md#factionavoid) | 8 per faction |
 | [`factionpopulateterrain`](factions.md#factionpopulateterrain) | 8 per faction |
 
-## Mod Settings { #mod-settings }
+## Spells { #spells }
+
+All enabled mods together can add 3,000 spells.
 
 | Command | Limit |
 | --- | --- |
-| [`newsetting`](mod-settings.md#newsetting) | 32 characters in a setting's name |
-| [`label`](mod-settings.md#label) | 56 characters |
-| [`option`](mod-settings.md#option) | 8 options in one choice |
-| [`option`](mod-settings.md#option) | 56 characters in an option |
-| [`optiontip`](mod-settings.md#optiontip) | 255 characters |
-| [`tip`](mod-settings.md#tip) | 255 characters |
-| [`newsettingheader`](mod-settings.md#newsettingheader) | 56 characters in its title |
+| [`newspell`](spells.md#newspell) | 47 characters in a spell's name |
+
+## Spell Paths { #spell-paths }
+
+All enabled mods together can add 400 magic paths.
+
+| Command | Limit |
+| --- | --- |
+| [`newspellpath`](spell-paths.md#newspellpath) | 32 characters in a path's name |
+
+## Corpses { #corpses }
+
+All enabled mods together can add 200 corpse kinds.
+
+| Command | Limit |
+| --- | --- |
+| [`newcorpsekind`](corpses.md#newcorpsekind) | 63 characters in a kind's name |

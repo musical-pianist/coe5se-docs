@@ -16,22 +16,25 @@ Examples have a .c5se tab and a .c5m tab. The few commands that work in one file
 
 | Section | Page | For |
 | --- | --- | --- |
-| Spells | [New Spells](spells.md) | New spells |
-| | [Spell Modifiers](spell-modifiers.md) | Limits and effects on a spell |
-| | [Spell Paths](spell-paths.md) | New magic paths, and paths by name |
-| Monsters | [Monster Traits](monster-traits.md) | Traits on a monster or item |
+| Mod Info | [Mod Loading](mod-loading.md) | Needing CoE5SE, and loading after another mod |
+| | [Mod Files](other-commands.md) | Your mod in many files, and room for its Lua script's data |
+| | [Mod Settings](mod-settings.md) | Settings players change |
+| Weapon Modding | [Weapon Traits](weapon-traits.md) | Weapons aimed at any trait or tag |
+| Magic Item Modding | [Magic Items](magic-items.md) | What the game's scrolls, tomes, maps, hearts and eyes have |
+| Monster Modding | [Monster Traits](monster-traits.md) | Traits on a monster or item |
 | | [Immunities](immunities.md) | Monsters immune to instant death, polymorph, petrification or Feeblemind |
 | | [Commander Names](commander-names.md) | Lists of commander names |
-| | [Monster and Ritual Names](monster-names.md) | Names in place of offsets |
-| Classes | [Recruitment Bonuses](recruitment.md) | What temples, libraries, villages and units add to a recruitment offer |
-| Rituals | [Ritual Effects](ritual-effects.md) | Effects only the game's own rituals had |
-| Weapons | [Weapon Traits](weapon-traits.md) | Weapons aimed at any trait or tag |
-| | [Exploding Variables and Dice](noexplode.md) | Capping a die at its highest roll, for weapons and ritual summons |
-| Corpses | [Corpses](corpses.md) | Which corpse a monster leaves, and what raises it |
-| Planes | [Planes](planes.md) | New planes, and planes by name |
-| Factions | [Factions](factions.md) | New independent factions |
-| Events | [Events](events.md) | Events that choose between groups of triggers and branches |
-| Mod Setup | [Mod Settings](mod-settings.md) | Settings players change |
-| | [Mod Loading](mod-loading.md) | Needing CoE5SE, and loading after another mod |
-| | [Other Commands](other-commands.md) | The rest |
+| Class Modding | [Classes](classes.md) | Classes by name, and classes no player gets |
+| | [Recruitment Bonuses](recruitment.md) | What temples, libraries, villages and units add to a recruitment offer |
+| World Modding | [Planes](planes.md) | New planes, and planes by name |
+| | [Factions](factions.md) | New independent factions |
+| Ritual Modding | [Ritual Effects](ritual-effects.md) | Effects only the game's own rituals had |
+| Spell Modding | [Spells](spells.md) | New spells |
+| | [Spell Modifiers](spell-modifiers.md) | Limits and effects on a spell |
+| | [Army Healing](army-healing.md) | An army that heals faster while one of its units knows a spell |
+| | [Spell Paths](spell-paths.md) | New magic paths, and paths by name |
+| Event Modding | [Event Logic](events.md) | Events that choose between groups of triggers and branches |
+| Across Sections | [Corpses](corpses.md) | Corpse types, the corpse a monster leaves, and the rituals and events that use them |
+| | [Exploding Dice](noexplode.md) | Capping a die at its highest roll, for weapons and ritual summons |
+| | [Monsters and Rituals by Name](monster-names.md) | Another monster or ritual by its name, where the game takes a number |
 | Reference | [Limits](limits.md) | Every cap CoE5SE sets |

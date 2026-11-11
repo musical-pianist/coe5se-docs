@@ -58,28 +58,37 @@ nav:
   - What's New: whats-new.md
   - CoE5SE Commands:
       - Overview: commands/index.md
-      - Spells:
-          - New Spells: commands/spells.md
-          - Spell Modifiers: commands/spell-modifiers.md
-          - Army Healing: commands/army-healing.md
-          - Spell Paths: commands/spell-paths.md
-      - Monsters:
+      - Mod Info:
+          - Mod Loading: commands/mod-loading.md
+          - Mod Files: commands/other-commands.md
+          - Mod Settings: commands/mod-settings.md
+      - Weapon Modding:
+          - Weapon Traits: commands/weapon-traits.md
+      - Magic Item Modding:
+          - Magic Items: commands/magic-items.md
+      - Monster Modding:
           - Monster Traits: commands/monster-traits.md
           - Immunities: commands/immunities.md
           - Commander Names: commands/commander-names.md
-          - Monster and Ritual Names: commands/monster-names.md
-      - Recruitment Bonuses: commands/recruitment.md
-      - Ritual Effects: commands/ritual-effects.md
-      - Weapon Traits: commands/weapon-traits.md
-      - Exploding Variables and Dice: commands/noexplode.md
-      - Corpses: commands/corpses.md
-      - Planes: commands/planes.md
-      - Factions: commands/factions.md
-      - Events: commands/events.md
-      - Mod Setup:
-          - Mod Settings: commands/mod-settings.md
-          - Mod Loading: commands/mod-loading.md
-          - Other Commands: commands/other-commands.md
+      - Class Modding:
+          - Classes: commands/classes.md
+          - Recruitment Bonuses: commands/recruitment.md
+      - World Modding:
+          - Planes: commands/planes.md
+          - Factions: commands/factions.md
+      - Ritual Modding:
+          - Ritual Effects: commands/ritual-effects.md
+      - Spell Modding:
+          - Spells: commands/spells.md
+          - Spell Modifiers: commands/spell-modifiers.md
+          - Army Healing: commands/army-healing.md
+          - Spell Paths: commands/spell-paths.md
+      - Event Modding:
+          - Event Logic: commands/events.md
+      - Across Sections:
+          - Corpses: commands/corpses.md
+          - Exploding Dice: commands/noexplode.md
+          - Monsters and Rituals by Name: commands/monster-names.md
       - Limits: commands/limits.md
   - Lua:
       - Overview: lua/index.md
