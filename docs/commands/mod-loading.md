@@ -43,16 +43,16 @@ Keep content out of a personal mod. A monster, a spell, an event or any other co
 Write it in your .c5se or on a `#!@` line, on its own line. On a plain .c5m line, CoE5SE ignores it and your mod stays a content mod (logged in `coe5mod.log`).
 <!-- vale CoE5SE.Reports = YES -->
 
-=== ".c5se"
-
-    ```c5se
-    personalmod
-    ```
-
 === ".c5m"
 
     ```c5m
     #!@personalmod
+    ```
+
+=== ".c5se"
+
+    ```c5se
+    personalmod
     ```
 
 ### nomultiplayer <span class="new-badge">New</span> { #nomultiplayer .command data-toc-label="nomultiplayer" data-added="3.0" }
@@ -65,16 +65,16 @@ A single player save that holds your mod's content can't be hosted as a LAN game
 Write it in your .c5se or on a `#!@` line, on its own line. On a plain .c5m line, CoE5SE ignores it and your mod stays in LAN games (logged in `coe5mod.log`).
 <!-- vale CoE5SE.Reports = YES -->
 
-=== ".c5se"
-
-    ```c5se
-    nomultiplayer
-    ```
-
 === ".c5m"
 
     ```c5m
     #!@nomultiplayer
+    ```
+
+=== ".c5se"
+
+    ```c5se
+    nomultiplayer
     ```
 
 ### Example .c5m { #example }

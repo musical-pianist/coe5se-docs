@@ -22,6 +22,8 @@ theme:
         icon: material/weather-sunny
         name: Light mode
   features:
+    - content.code.annotate
+    - content.tabs.link
     - content.tooltips
     - content.action.edit
     - content.code.copy
@@ -35,6 +37,7 @@ extra_css:
   - stylesheets/site.css
 extra_javascript:
   - javascripts/collapse_toc_sections.js
+  - javascripts/mod_explorer.js
 validation:
   anchors: warn
 markdown_extensions:
@@ -54,7 +57,8 @@ markdown_extensions:
   - pymdownx.tabbed:
       alternate_style: true
 nav:
-  - Home: index.md
+  - Overview: index.md
+  - Getting Started: getting-started.md
   - What's New: whats-new.md
   - CoE5SE Commands:
       - Overview: commands/index.md

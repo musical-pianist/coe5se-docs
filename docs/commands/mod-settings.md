@@ -31,27 +31,21 @@ Creates a setting.
 
 - **name:** The word your events and scripts read the setting by: letters, digits and `_`, starting with a letter. Each name once per mod; capitals don't count.
 
-=== ".c5se"
-
-    ```c5se
-    newsetting eye_awakens
-    ```
-
 === ".c5m"
 
     ```c5m
     #!@newsetting eye_awakens
     ```
 
-### onoff { #onoff .command data-toc-label="onoff" data-added="2.0" }
-
-Adds a single on/off checkmark. An event with `+setting <name>` happens only while it's checked, and a script reads true or false.
-
 === ".c5se"
 
     ```c5se
-    onoff
+    newsetting eye_awakens
     ```
+
+### onoff { #onoff .command data-toc-label="onoff" data-added="2.0" }
+
+Adds a single on/off checkmark. An event with `+setting <name>` happens only while it's checked, and a script reads true or false.
 
 === ".c5m"
 
@@ -59,15 +53,15 @@ Adds a single on/off checkmark. An event with `+setting <name>` happens only whi
     #!@onoff
     ```
 
-### choice { #choice .command data-toc-label="choice" data-added="2.0" }
-
-Adds a list of 2 to 8 options, where the player picks one. An event with `+setting <name> <option>` happens only while the player has that option picked, and a script reads the option's number.
-
 === ".c5se"
 
     ```c5se
-    choice
+    onoff
     ```
+
+### choice { #choice .command data-toc-label="choice" data-added="2.0" }
+
+Adds a list of 2 to 8 options, where the player picks one. An event with `+setting <name> <option>` happens only while the player has that option picked, and a script reads the option's number.
 
 === ".c5m"
 
@@ -75,20 +69,26 @@ Adds a list of 2 to 8 options, where the player picks one. An event with `+setti
     #!@choice
     ```
 
-### key { #key .command data-toc-label="key" data-added="2.0" }
-
-Adds a hotkey, where the player picks which keyboard key does something in your mod. Your Lua script reads the key with `coe5.setting` and gives it its job, such as a shortcut for one of the game's actions (`coe5.rebindKey`).
-
 === ".c5se"
 
     ```c5se
-    key
+    choice
     ```
+
+### key { #key .command data-toc-label="key" data-added="2.0" }
+
+Adds a hotkey, where the player picks which keyboard key does something in your mod. Your Lua script reads the key with `coe5.setting` and gives it its job, such as a shortcut for one of the game's actions (`coe5.rebindKey`).
 
 === ".c5m"
 
     ```c5m
     #!@key
+    ```
+
+=== ".c5se"
+
+    ```c5se
+    key
     ```
 
 ### default &lt;value&gt; { #default .command data-toc-label="default" data-added="2.0" }
@@ -102,20 +102,6 @@ Sets the setting's starting value.
     - A letter, digit or punctuation key is its character: `"y"`, `"7"`, `"?"`. Capitals count: `"B"` is shift+b.
     - Named keys: Space, Tab, Enter, Esc, Backspace, Delete, Home, End, PgUp, PgDn, Up, Down, Left, Right, F1 to F12.
     - Combinations: `ctrl+`, `alt+` or `ctrl+shift+` and a key: `"ctrl+i"`, `"alt+s"`, `"ctrl+F5"`.
-
-=== ".c5se"
-
-    On:
-
-    ```c5se
-    default 1
-    ```
-
-    Or a key:
-
-    ```c5se
-    default "p"
-    ```
 
 === ".c5m"
 
@@ -131,20 +117,34 @@ Sets the setting's starting value.
     #!@default "p"
     ```
 
+=== ".c5se"
+
+    On:
+
+    ```c5se
+    default 1
+    ```
+
+    Or a key:
+
+    ```c5se
+    default "p"
+    ```
+
 ### label "&lt;text&gt;" { #label .command data-toc-label="label" data-added="2.0" }
 
 Sets the setting's text on the page, or a sub-page's name after `newsettingpage`.
-
-=== ".c5se"
-
-    ```c5se
-    label "The Eye of Sauron awakens"
-    ```
 
 === ".c5m"
 
     ```c5m
     #!@label "The Eye of Sauron awakens"
+    ```
+
+=== ".c5se"
+
+    ```c5se
+    label "The Eye of Sauron awakens"
     ```
 
 ### option &lt;number&gt; "&lt;text&gt;" { #option .command data-toc-label="option" data-added="2.0" }
@@ -154,16 +154,16 @@ Adds an option to a `choice`.
 - **number:** The option's number, from 0, with no gaps.
 - **text:** The option's text.
 
-=== ".c5se"
-
-    ```c5se
-    option 1 "On turn 100"
-    ```
-
 === ".c5m"
 
     ```c5m
     #!@option 1 "On turn 100"
+    ```
+
+=== ".c5se"
+
+    ```c5se
+    option 1 "On turn 100"
     ```
 
 ### optiontip &lt;number&gt; "&lt;text&gt;" { #optiontip .command data-toc-label="optiontip" data-added="2.0" }
@@ -172,27 +172,21 @@ Sets an option's hover text.
 
 - **number:** The number of the `option` it describes.
 
-=== ".c5se"
-
-    ```c5se
-    optiontip 2 "A short game: Mordor marches early."
-    ```
-
 === ".c5m"
 
     ```c5m
     #!@optiontip 2 "A short game: Mordor marches early."
     ```
 
-### tip "&lt;text&gt;" { #tip .command data-toc-label="tip" data-added="2.0" }
-
-Sets the hover text of an `onoff` or `key` setting.
-
 === ".c5se"
 
     ```c5se
-    tip "Every turn of spring, every player gains 5 fire."
+    optiontip 2 "A short game: Mordor marches early."
     ```
+
+### tip "&lt;text&gt;" { #tip .command data-toc-label="tip" data-added="2.0" }
+
+Sets the hover text of an `onoff` or `key` setting.
 
 === ".c5m"
 
@@ -200,15 +194,15 @@ Sets the hover text of an `onoff` or `key` setting.
     #!@tip "Every turn of spring, every player gains 5 fire."
     ```
 
-### restart { #restart .command data-toc-label="restart" data-added="2.0" }
-
-Asks the player to restart the game when they leave your page with the setting changed.
-
 === ".c5se"
 
     ```c5se
-    restart
+    tip "Every turn of spring, every player gains 5 fire."
     ```
+
+### restart { #restart .command data-toc-label="restart" data-added="2.0" }
+
+Asks the player to restart the game when they leave your page with the setting changed.
 
 === ".c5m"
 
@@ -216,15 +210,15 @@ Asks the player to restart the game when they leave your page with the setting c
     #!@restart
     ```
 
-### group "&lt;word&gt;" { #group .command data-toc-label="group" data-added="2.0" }
-
-Stops the `key` settings of one group in your mod from holding the same key.
-
 === ".c5se"
 
     ```c5se
-    group "ring"
+    restart
     ```
+
+### group "&lt;word&gt;" { #group .command data-toc-label="group" data-added="2.0" }
+
+Stops the `key` settings of one group in your mod from holding the same key.
 
 === ".c5m"
 
@@ -232,15 +226,15 @@ Stops the `key` settings of one group in your mod from holding the same key.
     #!@group "ring"
     ```
 
-### fixed { #fixed .command data-toc-label="fixed" data-added="2.0" }
-
-Stops the player changing a `key` setting.
-
 === ".c5se"
 
     ```c5se
-    fixed
+    group "ring"
     ```
+
+### fixed { #fixed .command data-toc-label="fixed" data-added="2.0" }
+
+Stops the player changing a `key` setting.
 
 === ".c5m"
 
@@ -248,20 +242,26 @@ Stops the player changing a `key` setting.
     #!@fixed
     ```
 
-### newsettingheader "&lt;title&gt;" { #newsettingheader .command data-toc-label="newsettingheader" data-added="2.0" }
-
-Puts the `onoff` and `key` settings after it in a box with this title, up to the next `newsettingheader` or `choice`. Follow it with an `onoff` or `key` setting.
-
 === ".c5se"
 
     ```c5se
-    newsettingheader "Sorcery and Speed"
+    fixed
     ```
+
+### newsettingheader "&lt;title&gt;" { #newsettingheader .command data-toc-label="newsettingheader" data-added="2.0" }
+
+Puts the `onoff` and `key` settings after it in a box with this title, up to the next `newsettingheader` or `choice`. Follow it with an `onoff` or `key` setting.
 
 === ".c5m"
 
     ```c5m
     #!@newsettingheader "Sorcery and Speed"
+    ```
+
+=== ".c5se"
+
+    ```c5se
+    newsettingheader "Sorcery and Speed"
     ```
 
 ### newsettingpage &lt;name&gt; { #newsettingpage .command data-toc-label="newsettingpage" data-added="2.0" }
@@ -270,13 +270,6 @@ Puts the settings after it on a sub-page, up to the next `newsettingpage`. Give 
 
 - **name:** The page's name: 1 to 32 letters, digits and `_`, starting with a letter. Players see its `label` instead.
 
-=== ".c5se"
-
-    ```c5se
-    newsettingpage keys
-    label "Keys"
-    ```
-
 === ".c5m"
 
     ```c5m
@@ -284,56 +277,14 @@ Puts the settings after it on a sub-page, up to the next `newsettingpage`. Give 
     #!@label "Keys"
     ```
 
-### Example settings { #example }
-
 === ".c5se"
 
     ```c5se
-    newsetting eye_awakens
-    choice
-    default 1
-    label "The Eye of Sauron awakens"
-    option 0 "Never"
-    optiontip 0 "Sauron sleeps: no endgame."
-    option 1 "On turn 100"
-    option 2 "On turn 60"
-    optiontip 2 "A short game: Mordor marches early."
-
-    newsettingheader "Sorcery and Speed"
-
-    newsetting istari_sorcery
-    onoff
-    default 1
-    label "Istari sorcery"
-    tip "Every turn of spring, every player gains 5 fire."
-
-    newsetting swift_cavalry
-    onoff
-    default 0
-    label "Rohirrim move 1 square further"
-    restart
-
     newsettingpage keys
     label "Keys"
-
-    newsetting ring_next
-    key
-    default "n"
-    label "Next Ring-bearer"
-    group "ring"
-
-    newsetting ring_previous
-    key
-    default "b"
-    label "Previous Ring-bearer"
-    group "ring"
-
-    newsetting close_map
-    key
-    default "x"
-    label "Close the map of Middle-earth"
-    fixed
     ```
+
+### Example settings { #example }
 
 === ".c5m"
 
@@ -384,6 +335,55 @@ Puts the settings after it on a sub-page, up to the next `newsettingpage`. Give 
     #!@fixed
     ```
 
+=== ".c5se"
+
+    ```c5se
+    newsetting eye_awakens
+    choice
+    default 1
+    label "The Eye of Sauron awakens"
+    option 0 "Never"
+    optiontip 0 "Sauron sleeps: no endgame."
+    option 1 "On turn 100"
+    option 2 "On turn 60"
+    optiontip 2 "A short game: Mordor marches early."
+
+    newsettingheader "Sorcery and Speed"
+
+    newsetting istari_sorcery
+    onoff
+    default 1
+    label "Istari sorcery"
+    tip "Every turn of spring, every player gains 5 fire."
+
+    newsetting swift_cavalry
+    onoff
+    default 0
+    label "Rohirrim move 1 square further"
+    restart
+
+    newsettingpage keys
+    label "Keys"
+
+    newsetting ring_next
+    key
+    default "n"
+    label "Next Ring-bearer"
+    group "ring"
+
+    newsetting ring_previous
+    key
+    default "b"
+    label "Previous Ring-bearer"
+    group "ring"
+
+    newsetting close_map
+    key
+    default "x"
+    label "Close the map of Middle-earth"
+    fixed
+    ```
+
 ## Reading settings
 
 Events read a setting with [`+setting`](#setting), with no script needed. A Lua script reads one with `coe5.setting("<name>")`.
@@ -397,20 +397,6 @@ Makes an event happen only while the setting is on, or while a `key` setting has
 
 - **name:** The name on the setting's `newsetting` line.
 - **index:** For a `choice`, the option the player picked; for a `key`, the key it holds.
-
-=== ".c5se"
-
-    While it is on:
-
-    ```c5se
-    +setting istari_sorcery
-    ```
-
-    Or while a choice has option 1:
-
-    ```c5se
-    +setting eye_awakens 1
-    ```
 
 === ".c5m"
 
@@ -426,31 +412,23 @@ Makes an event happen only while the setting is on, or while a `key` setting has
     #!@+setting eye_awakens 1
     ```
 
+=== ".c5se"
+
+    While it is on:
+
+    ```c5se
+    +setting istari_sorcery
+    ```
+
+    Or while a choice has option 1:
+
+    ```c5se
+    +setting eye_awakens 1
+    ```
+
 ### Example events { #example-events }
 
 The events that read the example settings above:
-
-=== ".c5se"
-
-    ```c5se
-    playerevent
-    +turnnbr 100
-    +setting eye_awakens 1
-    message -2 "The Eye of Sauron opens. Mordor marches on the free peoples."
-    endevent
-
-    playerevent
-    +turnnbr 60
-    +setting eye_awakens 2
-    message -2 "The Eye of Sauron opens. Mordor marches on the free peoples."
-    endevent
-
-    playerevent
-    +season 3
-    +setting istari_sorcery
-    addresources -2 7 5
-    endevent
-    ```
 
 === ".c5m"
 
@@ -470,6 +448,28 @@ The events that read the example settings above:
     playerevent
     +season 3
     #!@+setting istari_sorcery
+    addresources -2 7 5
+    endevent
+    ```
+
+=== ".c5se"
+
+    ```c5se
+    playerevent
+    +turnnbr 100
+    +setting eye_awakens 1
+    message -2 "The Eye of Sauron opens. Mordor marches on the free peoples."
+    endevent
+
+    playerevent
+    +turnnbr 60
+    +setting eye_awakens 2
+    message -2 "The Eye of Sauron opens. Mordor marches on the free peoples."
+    endevent
+
+    playerevent
+    +season 3
+    +setting istari_sorcery
     addresources -2 7 5
     endevent
     ```

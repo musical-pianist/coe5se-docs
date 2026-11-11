@@ -21,18 +21,6 @@ Declares a new corpse type ([Limits](limits.md#corpses)).
 - **type:** Required. One of the vanilla types ([the list](#corpse-kinds)), which vanilla treats these corpses as, or `bypassvanillacorpse` to hide them from vanilla. Without it the line is ignored and the type doesn't exist, so every line naming it does nothing (logged in `coe5mod.log`).
 <!-- vale CoE5SE.Reports = YES -->
 
-=== ".c5se"
-
-    ```c5se
-    newcorpsetype "Uruk-hai" human
-    ```
-
-    Or hidden from vanilla:
-
-    ```c5se
-    newcorpsetype "Oathbreakers" bypassvanillacorpse
-    ```
-
 === ".c5m"
 
     ```c5m
@@ -45,29 +33,23 @@ Declares a new corpse type ([Limits](limits.md#corpses)).
     #!@newcorpsetype "Oathbreakers" bypassvanillacorpse
     ```
 
+=== ".c5se"
+
+    ```c5se
+    newcorpsetype "Uruk-hai" human
+    ```
+
+    Or hidden from vanilla:
+
+    ```c5se
+    newcorpsetype "Oathbreakers" bypassvanillacorpse
+    ```
+
 ### corpsetype &lt;type&gt; { #corpsekind .command data-toc-label="corpsetype" data-added="2.10" }
 
 Sets the corpse the active monster leaves when it dies. Use after `newmonster` or `selectmonster`.
 
 - **type:** One vanilla [type](#corpse-kinds), a mod's corpse type in double quotes, or `none` for no corpse.
-
-=== ".c5se"
-
-    ```c5se
-    corpsetype largeanimal
-    ```
-
-    Or a mod's corpse type:
-
-    ```c5se
-    corpsetype "Uruk-hai"
-    ```
-
-    Or no corpse:
-
-    ```c5se
-    corpsetype none
-    ```
 
 === ".c5m"
 
@@ -87,30 +69,30 @@ Sets the corpse the active monster leaves when it dies. Use after `newmonster` o
     #!@corpsetype none
     ```
 
+=== ".c5se"
+
+    ```c5se
+    corpsetype largeanimal
+    ```
+
+    Or a mod's corpse type:
+
+    ```c5se
+    corpsetype "Uruk-hai"
+    ```
+
+    Or no corpse:
+
+    ```c5se
+    corpsetype none
+    ```
+
 ### raisecorpses &lt;type&gt; "&lt;monster&gt;" [&lt;cap&gt;] { #raisecorpses .command data-toc-label="raisecorpses" data-added="2.10" }
 
 Like `raisedead`, but turns the corpses on the caster's square into this monster. The type is a vanilla type or group, or a mod's corpse type in double quotes. Corpse commands in a ritual are processed in order, so earlier lines use corpses first.
 
 - **monster:** In double quotes. `"c*Wight"` makes each one a commander, like in `summoning` strings.
 - **cap:** Optional. Max number of units created.
-
-=== ".c5se"
-
-    ```c5se
-    raisecorpses largeanimal "Fell Beast"
-    ```
-
-    Or a mod's corpse type:
-
-    ```c5se
-    raisecorpses "Uruk-hai" "Wight"
-    ```
-
-    Or one commander at most:
-
-    ```c5se
-    raisecorpses "Uruk-hai" "c*Wight" 1
-    ```
 
 === ".c5m"
 
@@ -130,30 +112,30 @@ Like `raisedead`, but turns the corpses on the caster's square into this monster
     #!@raisecorpses "Uruk-hai" "c*Wight" 1
     ```
 
+=== ".c5se"
+
+    ```c5se
+    raisecorpses largeanimal "Fell Beast"
+    ```
+
+    Or a mod's corpse type:
+
+    ```c5se
+    raisecorpses "Uruk-hai" "Wight"
+    ```
+
+    Or one commander at most:
+
+    ```c5se
+    raisecorpses "Uruk-hai" "c*Wight" 1
+    ```
+
 ### raisedead &lt;type&gt; [&lt;cap&gt;] { #raisedead .command data-toc-label="raisedead and raiseanimals" data-added="2.10" }
 
 Raise Dead will only use corpses of this type. Same for `raiseanimals` and animal corpses. The units created are the normal ones for each type (see the [corpse types](#corpse-kinds) table).
 
 - **type:** A humanoid type or `humanoid` for `raisedead`, an animal type or `animal` for `raiseanimals`.
 - **cap:** Optional. Max number of corpses used. Use the group, like `raisedead humanoid 3`, to set a max without restricting the type.
-
-=== ".c5se"
-
-    ```c5se
-    raisedead giant
-    ```
-
-    Or raiseanimals:
-
-    ```c5se
-    raiseanimals largeanimal
-    ```
-
-    Or at most 3, of any humanoid type:
-
-    ```c5se
-    raisedead humanoid 3
-    ```
 
 === ".c5m"
 
@@ -170,6 +152,24 @@ Raise Dead will only use corpses of this type. Same for `raiseanimals` and anima
     Or at most 3, of any humanoid type:
 
     ```c5m
+    raisedead humanoid 3
+    ```
+
+=== ".c5se"
+
+    ```c5se
+    raisedead giant
+    ```
+
+    Or raiseanimals:
+
+    ```c5se
+    raiseanimals largeanimal
+    ```
+
+    Or at most 3, of any humanoid type:
+
+    ```c5se
     raisedead humanoid 3
     ```
 
@@ -179,32 +179,32 @@ Ritual cannot create more than this number of units in one cast, from all its `r
 
 - **amount:** 1 or more.
 
-=== ".c5se"
-
-    ```c5se
-    maxraise 1
-    ```
-
 === ".c5m"
 
     ```c5m
     #!@maxraise 1
     ```
 
-### needcorpses <span class="new-badge">New</span> { #needcorpses .command data-toc-label="needcorpses" data-added="3.2" }
-
-Ritual cannot be cast unless the caster's square has a corpse its `raisedead`, `raiseanimals` or `raisecorpses` commands can use. The ritual is greyed out with the game's normal "Not possible to cast this ritual now" text. Does not affect AI players (for now).
-
 === ".c5se"
 
     ```c5se
-    needcorpses
+    maxraise 1
     ```
+
+### needcorpses <span class="new-badge">New</span> { #needcorpses .command data-toc-label="needcorpses" data-added="3.2" }
+
+Ritual cannot be cast unless the caster's square has a corpse its `raisedead`, `raiseanimals` or `raisecorpses` commands can use. The ritual is greyed out with the game's normal "Not possible to cast this ritual now" text. Does not affect AI players (for now).
 
 === ".c5m"
 
     ```c5m
     #!@needcorpses
+    ```
+
+=== ".c5se"
+
+    ```c5se
+    needcorpses
     ```
 
 ### excludecorpses "&lt;type&gt;" <span class="new-badge">New</span> { #excludecorpses .command data-toc-label="excludecorpses" data-added="3.2" }
@@ -213,16 +213,16 @@ Ritual cannot be cast unless the caster's square has a corpse its `raisedead`, `
 
 - **type:** A corpse type in double quotes, declared with [`newcorpsetype`](#newcorpsekind).
 
-=== ".c5se"
-
-    ```c5se
-    excludecorpses "Uruk-hai"
-    ```
-
 === ".c5m"
 
     ```c5m
     #!@excludecorpses "Uruk-hai"
+    ```
+
+=== ".c5se"
+
+    ```c5se
+    excludecorpses "Uruk-hai"
     ```
 
 ### putcorpses &lt;amount&gt; &lt;type&gt; { #putcorpses .command data-toc-label="putcorpses" data-added="2.10" }
@@ -232,29 +232,6 @@ Creates corpses of this type in the target square instead of human corpses. Can 
 - **amount:** Add 10000 to scale with the sacrifice amount, as in the game's `putcorpses`. In events 1 to 9999.
 - **type:** A vanilla [type](#corpse-kinds), or a mod's corpse type in double quotes. Leave it out in events to create human corpses.
 
-=== ".c5se"
-
-    ```c5se
-    putcorpses 10 giant
-    ```
-
-    Or a mod's corpse type:
-
-    ```c5se
-    putcorpses 10 "Oathbreakers"
-    ```
-
-    Or in an event, on a square your map names:
-
-    ```c5se
-    squareevent
-    +turnnbr 1
-    +player 0
-    +squarename "The Dead Marshes"
-    putcorpses 40 human
-    endevent
-    ```
-
 === ".c5m"
 
     ```c5m
@@ -270,6 +247,29 @@ Creates corpses of this type in the target square instead of human corpses. Can 
     Or in an event, on a square your map names:
 
     ```c5m
+    squareevent
+    +turnnbr 1
+    +player 0
+    +squarename "The Dead Marshes"
+    putcorpses 40 human
+    endevent
+    ```
+
+=== ".c5se"
+
+    ```c5se
+    putcorpses 10 giant
+    ```
+
+    Or a mod's corpse type:
+
+    ```c5se
+    putcorpses 10 "Oathbreakers"
+    ```
+
+    Or in an event, on a square your map names:
+
+    ```c5se
     squareevent
     +turnnbr 1
     +player 0
@@ -287,24 +287,6 @@ The game's `+mincorpses`, `-mincorpses` and `removecorpses` will only count or r
 
 - **type:** A vanilla [type](#corpse-kinds) or group, or a mod's corpse type in double quotes.
 
-=== ".c5se"
-
-    ```c5se
-    +mincorpses 20 human
-    ```
-
-    Or removecorpses:
-
-    ```c5se
-    removecorpses 20 human
-    ```
-
-    Or a mod's corpse type:
-
-    ```c5se
-    +mincorpses 20 "Uruk-hai"
-    ```
-
 === ".c5m"
 
     ```c5m
@@ -323,79 +305,25 @@ The game's `+mincorpses`, `-mincorpses` and `removecorpses` will only count or r
     +mincorpses 20 "Uruk-hai"
     ```
 
-### Example corpses { #example }
-
 === ".c5se"
 
     ```c5se
-    newcorpsetype "Dunedain" human
-    newcorpsetype "Elves" bypassvanillacorpse
-
-    newmonster "Ranger of the North"
-    copystats "Archer"
-    copyspr "Archer"
-    corpsetype "Dunedain"
-
-    newmonster "Galadhrim"
-    copystats "Archer"
-    copyspr "Archer"
-    corpsetype "Elves"
-
-    newmonster "Fell Beast"
-    copystats "Longdead Beast"
-    copyspr "Longdead Beast"
-
-    selectmonster "Troll"
-    corpsetype giant
-
-    newritual "Barrow of Cardolan"
-    descr "The dead of the field rise for the Witch-king. Where a Dunadan fell, a Barrow-wight takes his bones and leads them."
-    level 3
-    needcorpses
-    raisecorpses "Dunedain" "c*Wight" 1
-    raisedead human 12
-
-    newritual "Lord of the Barrow-downs"
-    descr "Where the noble dead lie, the Witch-king calls a single Barrow-wight lord from the greatest of them, a Dunadan or an Elf."
-    level 4
-    needcorpses
-    maxraise 1
-    raisecorpses "Dunedain" "c*Wight"
-    raisecorpses "Elves" "c*Wight"
-
-    newritual "Host of Angmar"
-    descr "The dead of the field rise for Angmar. The Dunedain are left for the barrow-wights."
-    level 2
-    needcorpses
-    excludecorpses "Dunedain"
-    raisedead humanoid
-
-    newritual "Wings of the Nazgul"
-    descr "Where great beasts fell, the Witch-king gives his riders new steeds, one for each of the Nine."
-    level 2
-    needcorpses
-    raisecorpses largeanimal "Fell Beast" 9
-
-    newritual "Stones of the Ettenmoors"
-    descr "Trolls slain in the Ettenmoors rise again."
-    level 2
-    needcorpses
-    raisedead giant
-
-    playerevent
-    +season 2
-    +chance 10
-    putcorpses 6 human
-    endevent
-
-    squareevent
-    +player 0
-    +season 0
-    +chance 20
-    +mincorpses 1 human
-    removecorpses 1 human
-    endevent
+    +mincorpses 20 human
     ```
+
+    Or removecorpses:
+
+    ```c5se
+    removecorpses 20 human
+    ```
+
+    Or a mod's corpse type:
+
+    ```c5se
+    +mincorpses 20 "Uruk-hai"
+    ```
+
+### Example corpses { #example }
 
 === ".c5m"
 
@@ -452,6 +380,78 @@ The game's `+mincorpses`, `-mincorpses` and `removecorpses` will only count or r
     descr "Trolls slain in the Ettenmoors rise again."
     level 2
     #!@needcorpses
+    raisedead giant
+
+    playerevent
+    +season 2
+    +chance 10
+    putcorpses 6 human
+    endevent
+
+    squareevent
+    +player 0
+    +season 0
+    +chance 20
+    +mincorpses 1 human
+    removecorpses 1 human
+    endevent
+    ```
+
+=== ".c5se"
+
+    ```c5se
+    newcorpsetype "Dunedain" human
+    newcorpsetype "Elves" bypassvanillacorpse
+
+    newmonster "Ranger of the North"
+    copystats "Archer"
+    copyspr "Archer"
+    corpsetype "Dunedain"
+
+    newmonster "Galadhrim"
+    copystats "Archer"
+    copyspr "Archer"
+    corpsetype "Elves"
+
+    newmonster "Fell Beast"
+    copystats "Longdead Beast"
+    copyspr "Longdead Beast"
+
+    selectmonster "Troll"
+    corpsetype giant
+
+    newritual "Barrow of Cardolan"
+    descr "The dead of the field rise for the Witch-king. Where a Dunadan fell, a Barrow-wight takes his bones and leads them."
+    level 3
+    needcorpses
+    raisecorpses "Dunedain" "c*Wight" 1
+    raisedead human 12
+
+    newritual "Lord of the Barrow-downs"
+    descr "Where the noble dead lie, the Witch-king calls a single Barrow-wight lord from the greatest of them, a Dunadan or an Elf."
+    level 4
+    needcorpses
+    maxraise 1
+    raisecorpses "Dunedain" "c*Wight"
+    raisecorpses "Elves" "c*Wight"
+
+    newritual "Host of Angmar"
+    descr "The dead of the field rise for Angmar. The Dunedain are left for the barrow-wights."
+    level 2
+    needcorpses
+    excludecorpses "Dunedain"
+    raisedead humanoid
+
+    newritual "Wings of the Nazgul"
+    descr "Where great beasts fell, the Witch-king gives his riders new steeds, one for each of the Nine."
+    level 2
+    needcorpses
+    raisecorpses largeanimal "Fell Beast" 9
+
+    newritual "Stones of the Ettenmoors"
+    descr "Trolls slain in the Ettenmoors rise again."
+    level 2
+    needcorpses
     raisedead giant
 
     playerevent

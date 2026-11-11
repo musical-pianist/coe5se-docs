@@ -16,17 +16,17 @@ These go after `newitem` or `selectitem`. Vanilla items have these abilities, bu
 
 Removes all special abilities from the active magic item, its stats, combat spells, afflictions and special benefits included. The name, sprite, type and rarity stay. This command does not clear movement abilities or the weapon. Use the `clearmove` and `clearweapons` commands for those.
 
-=== ".c5se"
+=== ".c5m"
 
-    ```c5se
+    ```c5m
     copystats "Hydra Skin Armor"
     clearspec
     armor 2
     ```
 
-=== ".c5m"
+=== ".c5se"
 
-    ```c5m
+    ```c5se
     copystats "Hydra Skin Armor"
     clearspec
     armor 2
@@ -36,16 +36,16 @@ Removes all special abilities from the active magic item, its stats, combat spel
 
 Removes all movement abilities from the active magic item, like `flying` and `swamp`.
 
-=== ".c5se"
+=== ".c5m"
 
-    ```c5se
+    ```c5m
     copystats "Boots of the Swamp"
     clearmove
     ```
 
-=== ".c5m"
+=== ".c5se"
 
-    ```c5m
+    ```c5se
     copystats "Boots of the Swamp"
     clearmove
     ```
@@ -54,16 +54,16 @@ Removes all movement abilities from the active magic item, like `flying` and `sw
 
 Removes the `itemwep` weapon from the active magic item. Its holder fights with its own weapons.
 
-=== ".c5se"
+=== ".c5m"
 
-    ```c5se
+    ```c5m
     copystats "Staff of Fire"
     clearweapons
     ```
 
-=== ".c5m"
+=== ".c5se"
 
-    ```c5m
+    ```c5se
     copystats "Staff of Fire"
     clearweapons
     ```
@@ -74,15 +74,15 @@ Gives the holder of the item an affliction for as long as it holds the item, lik
 
 - **aff:** An affliction from the Special Afflictions table under ["Weapon Modding Numbers"](https://www.illwinter.com/coe5/coe5modding.pdf#page=6), or several added together.
 
-=== ".c5se"
-
-    ```c5se
-    makeaff 4194304
-    ```
-
 === ".c5m"
 
     ```c5m
+    makeaff 4194304
+    ```
+
+=== ".c5se"
+
+    ```c5se
     makeaff 4194304
     ```
 
@@ -92,15 +92,15 @@ Gives the holder of the item a special benefit for as long as it holds the item,
 
 - **ben:** A benefit from the Special Benefits table under ["Weapon Modding Numbers"](https://www.illwinter.com/coe5/coe5modding.pdf#page=6), or several added together.
 
-=== ".c5se"
-
-    ```c5se
-    makeben 1073741824
-    ```
-
 === ".c5m"
 
     ```c5m
+    makeben 1073741824
+    ```
+
+=== ".c5se"
+
+    ```c5se
     makeben 1073741824
     ```
 
@@ -108,32 +108,32 @@ Gives the holder of the item a special benefit for as long as it holds the item,
 
 The item can be used by a commander holding it, and is destroyed when used, like the spell scrolls. Give it an effect with one of the commands below.
 
-=== ".c5se"
-
-    ```c5se
-    consumableitem
-    ```
-
 === ".c5m"
 
     ```c5m
     #!@consumableitem
     ```
 
-### useableitem <span class="new-badge">New</span> { #useableitem .command data-toc-label="useableitem" data-added="3.3" }
-
-The item can be used by a commander holding it, and is kept, like the Tome of Afterlife. Give it an effect with one of the commands below.
-
 === ".c5se"
 
     ```c5se
-    useableitem
+    consumableitem
     ```
+
+### useableitem <span class="new-badge">New</span> { #useableitem .command data-toc-label="useableitem" data-added="3.3" }
+
+The item can be used by a commander holding it, and is kept, like the Tome of Afterlife. Give it an effect with one of the commands below.
 
 === ".c5m"
 
     ```c5m
     #!@useableitem
+    ```
+
+=== ".c5se"
+
+    ```c5se
+    useableitem
     ```
 
 ### useonlyin &lt;terrain nbr&gt; <span class="new-badge">New</span> { #useonlyin .command data-toc-label="useonlyin" data-added="3.3" }
@@ -142,16 +142,16 @@ The item can only be used on this terrain, like the Magic Bean.
 
 - **terrain nbr:** A terrain number, or a negative one from the Negative Terrain Numbers table under ["Monster Modding Numbers"](https://www.illwinter.com/coe5/coe5modding.pdf#page=24).
 
-=== ".c5se"
-
-    ```c5se
-    useonlyin -103
-    ```
-
 === ".c5m"
 
     ```c5m
     #!@useonlyin -103
+    ```
+
+=== ".c5se"
+
+    ```c5se
+    useonlyin -103
     ```
 
 ### cureoneaff &lt;chance&gt; <span class="new-badge">New</span> { #cureoneaff .command data-toc-label="cureoneaff" data-added="3.3" }
@@ -160,15 +160,15 @@ Using the item has this chance of curing one affliction on the user, like the El
 
 - **chance:** The chance in percent.
 
-=== ".c5se"
-
-    ```c5se
-    cureoneaff 100
-    ```
-
 === ".c5m"
 
     ```c5m
+    cureoneaff 100
+    ```
+
+=== ".c5se"
+
+    ```c5se
     cureoneaff 100
     ```
 
@@ -178,20 +178,6 @@ Using the item teaches the user this many new level 1 spells from the path of it
 
 - **nbr:** How many spells, not a path as in a ritual.
 
-=== ".c5se"
-
-    ```c5se
-    newspell1 1
-    ```
-
-    Or one of each level, like the Archmage's Spell Scroll:
-
-    ```c5se
-    newspell1 1
-    newspell2 1
-    newspell3 1
-    ```
-
 === ".c5m"
 
     ```c5m
@@ -201,6 +187,20 @@ Using the item teaches the user this many new level 1 spells from the path of it
     Or one of each level, like the Archmage's Spell Scroll:
 
     ```c5m
+    newspell1 1
+    newspell2 1
+    newspell3 1
+    ```
+
+=== ".c5se"
+
+    ```c5se
+    newspell1 1
+    ```
+
+    Or one of each level, like the Archmage's Spell Scroll:
+
+    ```c5se
     newspell1 1
     newspell2 1
     newspell3 1
@@ -212,16 +212,16 @@ Using the item gives almost perfect knowledge of all squares of this terrain, li
 
 - **terrain nbr:** A terrain number, or a negative one from the Negative Terrain Numbers table under ["Monster Modding Numbers"](https://www.illwinter.com/coe5/coe5modding.pdf#page=24).
 
-=== ".c5se"
-
-    ```c5se
-    usereveal -74
-    ```
-
 === ".c5m"
 
     ```c5m
     #!@usereveal -74
+    ```
+
+=== ".c5se"
+
+    ```c5se
+    usereveal -74
     ```
 
 ### useteleport &lt;terrain nbr&gt; <span class="new-badge">New</span> { #useteleport .command data-toc-label="useteleport" data-added="3.3" }
@@ -230,16 +230,16 @@ Using the item teleports the user and its entire army to a random square of this
 
 - **terrain nbr:** A terrain number, or a negative one from the Negative Terrain Numbers table under ["Monster Modding Numbers"](https://www.illwinter.com/coe5/coe5modding.pdf#page=24).
 
-=== ".c5se"
-
-    ```c5se
-    useteleport -78
-    ```
-
 === ".c5m"
 
     ```c5m
     #!@useteleport -78
+    ```
+
+=== ".c5se"
+
+    ```c5se
+    useteleport -78
     ```
 
 ### useplanetravel &lt;terrain nbr&gt; <span class="new-badge">New</span> { #useplanetravel .command data-toc-label="useplanetravel" data-added="3.3" }
@@ -248,27 +248,21 @@ Using the item costs 1 action point, like the Tome of Afterlife. It teleports th
 
 - **terrain nbr:** A terrain number, or a negative one from the Negative Terrain Numbers table under ["Monster Modding Numbers"](https://www.illwinter.com/coe5/coe5modding.pdf#page=24).
 
-=== ".c5se"
-
-    ```c5se
-    useplanetravel -78
-    ```
-
 === ".c5m"
 
     ```c5m
     #!@useplanetravel -78
     ```
 
-### usebeanstalk <span class="new-badge">New</span> { #usebeanstalk .command data-toc-label="usebeanstalk" data-added="3.3" }
-
-Using the item grows a giant beanstalk on the user's square, with a portal to the same spot in the Sky, like the Magic Bean.
-
 === ".c5se"
 
     ```c5se
-    usebeanstalk
+    useplanetravel -78
     ```
+
+### usebeanstalk <span class="new-badge">New</span> { #usebeanstalk .command data-toc-label="usebeanstalk" data-added="3.3" }
+
+Using the item grows a giant beanstalk on the user's square, with a portal to the same spot in the Sky, like the Magic Bean.
 
 === ".c5m"
 
@@ -276,15 +270,15 @@ Using the item grows a giant beanstalk on the user's square, with a portal to th
     #!@usebeanstalk
     ```
 
-### usepit <span class="new-badge">New</span> { #usepit .command data-toc-label="usepit" data-added="3.3" }
-
-Using the item creates a deep pit on the user's square, with a portal to the same spot on a plane below, like the Portable Pit.
-
 === ".c5se"
 
     ```c5se
-    usepit
+    usebeanstalk
     ```
+
+### usepit <span class="new-badge">New</span> { #usepit .command data-toc-label="usepit" data-added="3.3" }
+
+Using the item creates a deep pit on the user's square, with a portal to the same spot on a plane below, like the Portable Pit.
 
 === ".c5m"
 
@@ -292,15 +286,15 @@ Using the item creates a deep pit on the user's square, with a portal to the sam
     #!@usepit
     ```
 
-### usebreakseal <span class="new-badge">New</span> { #usebreakseal .command data-toc-label="usebreakseal" data-added="3.3" }
-
-Using the item breaks one of the seven seals, like the Heavenly Seal.
-
 === ".c5se"
 
     ```c5se
-    usebreakseal
+    usepit
     ```
+
+### usebreakseal <span class="new-badge">New</span> { #usebreakseal .command data-toc-label="usebreakseal" data-added="3.3" }
+
+Using the item breaks one of the seven seals, like the Heavenly Seal.
 
 === ".c5m"
 
@@ -308,15 +302,15 @@ Using the item breaks one of the seven seals, like the Heavenly Seal.
     #!@usebreakseal
     ```
 
-### extralife <span class="new-badge">New</span> { #extralife .command data-toc-label="extralife" data-added="3.3" }
-
-Gives the holder an Extra Life, like the Soul Stone: when it dies, the item is destroyed and the holder lives again.
-
 === ".c5se"
 
     ```c5se
-    extralife
+    usebreakseal
     ```
+
+### extralife <span class="new-badge">New</span> { #extralife .command data-toc-label="extralife" data-added="3.3" }
+
+Gives the holder an Extra Life, like the Soul Stone: when it dies, the item is destroyed and the holder lives again.
 
 === ".c5m"
 
@@ -324,15 +318,15 @@ Gives the holder an Extra Life, like the Soul Stone: when it dies, the item is d
     #!@extralife
     ```
 
-### eyeitem <span class="new-badge">New</span> { #eyeitem .command data-toc-label="eyeitem" data-added="3.3" }
-
-The item is an eye, like the Spirit Eye: a unit with no eye slot cannot hold it. Vanilla eyes also give `makeaff 1048576`, Lost an Eye.
-
 === ".c5se"
 
     ```c5se
-    eyeitem
+    extralife
     ```
+
+### eyeitem <span class="new-badge">New</span> { #eyeitem .command data-toc-label="eyeitem" data-added="3.3" }
+
+The item is an eye, like the Spirit Eye: a unit with no eye slot cannot hold it. Vanilla eyes also give `makeaff 1048576`, Lost an Eye.
 
 === ".c5m"
 
@@ -340,23 +334,17 @@ The item is an eye, like the Spirit Eye: a unit with no eye slot cannot hold it.
     #!@eyeitem
     ```
 
+=== ".c5se"
+
+    ```c5se
+    eyeitem
+    ```
+
 ### heartitem [&lt;nbr&gt;] <span class="new-badge">New</span> { #heartitem .command data-toc-label="heartitem" data-added="3.3" }
 
 The item is a heart, like the Crystal Heart: a lifeless unit cannot hold it. Vanilla hearts also give `makeaff 4194304`, Chest Wound.
 
 - **nbr:** 2 for a heart any unit can hold, like the Heart of Life.
-
-=== ".c5se"
-
-    ```c5se
-    heartitem
-    ```
-
-    Or a heart any unit can hold:
-
-    ```c5se
-    heartitem 2
-    ```
 
 === ".c5m"
 
@@ -370,89 +358,19 @@ The item is a heart, like the Crystal Heart: a lifeless unit cannot hold it. Van
     #!@heartitem 2
     ```
 
-### Example magic items { #example }
-
 === ".c5se"
 
     ```c5se
-    newitem "Athelas"
-    copyspr "Elixir of Health"
-    consumableitem
-    cureoneaff 250
-
-    newitem "The One Ring"
-    copyspr "Ring of Wizardry"
-    rarity 3
-    curseditem
-    invisible
-    stealth
-    unaging
-    magicboost 2
-    awe 2
-
-    newitem "Mithril Coat"
-    type 4
-    copyspr "Hydra Skin Armor"
-    rarity 2
-    armor 6
-    makeben 786432
-
-    newitem "Thror's Map"
-    copyspr "Map of Inferno"
-    consumableitem
-    usereveal -104
-
-    newitem "Scroll of the Paths of the Dead"
-    copyspr "Scroll of Hades Journey"
-    consumableitem
-    useteleport -78
-
-    newitem "Lore of the Istari"
-    copyspr "Archmage's Spell Scroll"
-    consumableitem
-    newspell3 2
-
-    newitem "Evenstar"
-    copyspr "Soul Stone"
-    extralife
-
-    newitem "Eye of Sauron"
-    copyspr "Eye of the Night"
-    eyeitem
-    makeaff 1048576
-    spiritsight
-    acutesenses
-    scry 15
-    fear 2
-
-    newitem "The Arkenstone"
-    copyspr "Crystal Heart"
-    rarity 3
-    heartitem 2
-    makeben 8192
-
-    newitem "Horn of Durin"
-    copyspr "Portable Pit"
-    consumableitem
-    usepit
-    useonlyin -104
-
-    newitem "Seal of Isildur"
-    copyspr "Heavenly Seal"
-    consumableitem
-    usebreakseal
-
-    newitem "Book of Dunharrow"
-    copyspr "Tome of Afterlife"
-    useableitem
-    useplanetravel -78
-
-    newitem "Mallorn Seed"
-    copyspr "Magic Bean"
-    consumableitem
-    usebeanstalk
-    useonlyin -100
+    heartitem
     ```
+
+    Or a heart any unit can hold:
+
+    ```c5se
+    heartitem 2
+    ```
+
+### Example magic items { #example }
 
 === ".c5m"
 
@@ -534,4 +452,86 @@ The item is a heart, like the Crystal Heart: a lifeless unit cannot hold it. Van
     #!@consumableitem
     #!@usebeanstalk
     #!@useonlyin -100
+    ```
+
+=== ".c5se"
+
+    ```c5se
+    newitem "Athelas"
+    copyspr "Elixir of Health"
+    consumableitem
+    cureoneaff 250
+
+    newitem "The One Ring"
+    copyspr "Ring of Wizardry"
+    rarity 3
+    curseditem
+    invisible
+    stealth
+    unaging
+    magicboost 2
+    awe 2
+
+    newitem "Mithril Coat"
+    type 4
+    copyspr "Hydra Skin Armor"
+    rarity 2
+    armor 6
+    makeben 786432
+
+    newitem "Thror's Map"
+    copyspr "Map of Inferno"
+    consumableitem
+    usereveal -104
+
+    newitem "Scroll of the Paths of the Dead"
+    copyspr "Scroll of Hades Journey"
+    consumableitem
+    useteleport -78
+
+    newitem "Lore of the Istari"
+    copyspr "Archmage's Spell Scroll"
+    consumableitem
+    newspell3 2
+
+    newitem "Evenstar"
+    copyspr "Soul Stone"
+    extralife
+
+    newitem "Eye of Sauron"
+    copyspr "Eye of the Night"
+    eyeitem
+    makeaff 1048576
+    spiritsight
+    acutesenses
+    scry 15
+    fear 2
+
+    newitem "The Arkenstone"
+    copyspr "Crystal Heart"
+    rarity 3
+    heartitem 2
+    makeben 8192
+
+    newitem "Horn of Durin"
+    copyspr "Portable Pit"
+    consumableitem
+    usepit
+    useonlyin -104
+
+    newitem "Seal of Isildur"
+    copyspr "Heavenly Seal"
+    consumableitem
+    usebreakseal
+
+    newitem "Book of Dunharrow"
+    copyspr "Tome of Afterlife"
+    useableitem
+    useplanetravel -78
+
+    newitem "Mallorn Seed"
+    copyspr "Magic Bean"
+    consumableitem
+    usebeanstalk
+    useonlyin -100
     ```

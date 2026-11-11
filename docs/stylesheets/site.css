@@ -74,7 +74,6 @@
 }
 
 /* The Commands overview's headings are sections, not commands. */
-.md-typeset h3#where,
 .md-typeset h3#pages {
   font-family: var(--md-text-font-family);
 }
@@ -146,6 +145,165 @@
   margin: 0.4rem 0 0;
   text-align: left;
   font-style: normal;
+}
+
+/* The mod explorer on Getting Started (javascripts/mod_explorer.js): the layouts across the top, a layout's files on the
+   left, the open file on the right. */
+.md-typeset .mod-explorer {
+  border: 0.05rem solid var(--md-default-fg-color--lightest);
+  border-radius: 0.2rem;
+  margin: 1em 0;
+}
+
+.md-typeset .mod-explorer--ready {
+  display: grid;
+  grid-template-columns: minmax(9rem, 12rem) 1fr;
+}
+
+.md-typeset .mod-explorer__layouts {
+  display: flex;
+  flex-wrap: wrap;
+  border-bottom: 0.05rem solid var(--md-default-fg-color--lightest);
+}
+
+.md-typeset .mod-explorer__layout {
+  padding: 0.5rem 0.9rem;
+  font-family: var(--md-code-font-family);
+  font-size: 0.75rem;
+  cursor: pointer;
+  color: var(--md-default-fg-color--light);
+  border-bottom: 0.1rem solid transparent;
+}
+
+.md-typeset .mod-explorer__layout:hover {
+  color: var(--md-accent-fg-color);
+}
+
+.md-typeset .mod-explorer__layout[aria-selected="true"] {
+  color: var(--md-accent-fg-color);
+  border-bottom-color: var(--md-accent-fg-color);
+}
+
+.md-typeset .mod-explorer__caption {
+  margin: 0;
+  padding: 0.5rem 0.8rem;
+  font-size: 0.7rem;
+  color: var(--md-default-fg-color--light);
+}
+
+.md-typeset .mod-explorer__tree {
+  padding: 0.6rem 0;
+  font-family: var(--md-code-font-family);
+  font-size: 0.75rem;
+}
+
+.md-typeset .mod-explorer__folder {
+  display: block;
+  padding: 0.2rem 0.8rem;
+  color: var(--md-default-fg-color--light);
+}
+
+.md-typeset .mod-explorer__file {
+  display: block;
+  width: 100%;
+  padding: 0.2rem 0.8rem 0.2rem 1.6rem;
+  text-align: left;
+  cursor: pointer;
+  color: var(--md-typeset-color);
+}
+
+.md-typeset .mod-explorer__file:hover {
+  color: var(--md-accent-fg-color);
+}
+
+.md-typeset .mod-explorer__file[aria-selected="true"] {
+  background: var(--md-code-bg-color);
+  color: var(--md-accent-fg-color);
+}
+
+.md-typeset .mod-explorer__pane {
+  padding: 0 0.8rem;
+  min-width: 0;
+}
+
+/* Each kind (captions, file lists, panes) in one cell, only the open one visible, and the panes a fixed height:
+   switching never makes the box jump (Jacob: "the box should be fixed and the lua have a scroll window inside"). */
+.md-typeset .mod-explorer--ready .mod-explorer__layouts {
+  grid-column: 1 / -1;
+  grid-row: 1;
+}
+
+.md-typeset .mod-explorer--ready .mod-explorer__caption {
+  grid-column: 1 / -1;
+  grid-row: 2;
+}
+
+.md-typeset .mod-explorer--ready .mod-explorer__tree {
+  grid-column: 1;
+  grid-row: 3;
+  display: grid;
+  align-content: start;
+  border-top: 0.05rem solid var(--md-default-fg-color--lightest);
+  border-right: 0.05rem solid var(--md-default-fg-color--lightest);
+}
+
+.md-typeset .mod-explorer--ready .mod-explorer__folder {
+  grid-row: 1;
+}
+
+.md-typeset .mod-explorer--ready .mod-explorer__files {
+  grid-row: 2;
+  grid-column: 1;
+}
+
+.md-typeset .mod-explorer--ready .mod-explorer__pane {
+  grid-column: 2;
+  grid-row: 3;
+  border-top: 0.05rem solid var(--md-default-fg-color--lightest);
+  height: 32rem;             /* the box's fixed height */
+  display: flex;
+  flex-direction: column;
+}
+
+/* A longer file, such as the Lua script, scrolls inside its own code box, not the pane: a note's popup is placed
+   against the code block, so a scrolling pane would cut it off (Jacob: "the help things are cutoff"). */
+.md-typeset .mod-explorer--ready .mod-explorer__pane > .highlight,
+.md-typeset .mod-explorer--ready .mod-explorer__pane > .highlight > pre {
+  display: flex;
+  flex-direction: column;
+  flex: 0 1 auto;
+  min-height: 0;
+}
+
+.md-typeset .mod-explorer--ready .mod-explorer__pane > .highlight > pre > code {
+  min-height: 0;
+  overflow: auto;
+}
+
+.md-typeset .mod-explorer--ready .mod-explorer__caption,
+.md-typeset .mod-explorer--ready .mod-explorer__files,
+.md-typeset .mod-explorer--ready .mod-explorer__pane {
+  visibility: hidden;
+}
+
+.md-typeset .mod-explorer--ready .mod-explorer__open {
+  visibility: visible;
+}
+
+/* On a phone the files go above the open one. */
+@media screen and (max-width: 44.9375em) {
+  .md-typeset .mod-explorer--ready {
+    grid-template-columns: 1fr;
+  }
+
+  .md-typeset .mod-explorer--ready .mod-explorer__tree {
+    border-right: 0;
+  }
+
+  .md-typeset .mod-explorer--ready .mod-explorer__pane {
+    grid-column: 1;
+    grid-row: 4;
+  }
 }
 
 /* An entry's example sits close to its text; a label reads as a caption over its code. */

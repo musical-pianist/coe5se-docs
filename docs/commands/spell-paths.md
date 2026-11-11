@@ -12,16 +12,16 @@ Creates a magic path. If a path already has the name, the game's or another mod'
 
 - **name:** The path's name, in double quotes ([length limit](limits.md#spell-paths)).
 
-=== ".c5se"
-
-    ```c5se
-    newspellpath "Lore of the Istari"
-    ```
-
 === ".c5m"
 
     ```c5m
     #!@newspellpath "Lore of the Istari"
+    ```
+
+=== ".c5se"
+
+    ```c5se
+    newspellpath "Lore of the Istari"
     ```
 
 ### selectspellpath "&lt;name&gt;" | &lt;nbr&gt; { #selectspellpath .command data-toc-label="selectspellpath" data-added="2.0" }
@@ -30,22 +30,6 @@ Selects a path to rename, for every mod. Follow it with the game's `name` line.
 
 - **name:** The path's name, in double quotes.
 - **nbr:** A path number. Use instead of a name.
-
-=== ".c5se"
-
-    A game path, by name:
-
-    ```c5se
-    selectspellpath "Storm Magic"
-    name "Manwe's Storm Magic"
-    ```
-
-    Or by number:
-
-    ```c5se
-    selectspellpath 5
-    name "Manwe's Storm Magic"
-    ```
 
 === ".c5m"
 
@@ -63,23 +47,25 @@ Selects a path to rename, for every mod. Follow it with the game's `name` line.
     #!@name "Manwe's Storm Magic"
     ```
 
+=== ".c5se"
+
+    A game path, by name:
+
+    ```c5se
+    selectspellpath "Storm Magic"
+    name "Manwe's Storm Magic"
+    ```
+
+    Or by number:
+
+    ```c5se
+    selectspellpath 5
+    name "Manwe's Storm Magic"
+    ```
+
 ### spellweapon "&lt;path&gt;" &lt;level&gt; { #spellweapon .command data-toc-label="spellweapon and the rest" data-added="2.0" }
 
 Takes a path's name in double quotes where the game takes its number. The same works in `spellweaponbonus`, `spellweapon50`, `spellweapon50s`, `spellweaponsingle`, `pathboost`, `newspell1`, `newspell2` and `newspell3`. The game alone can't read the name: put these lines in the .c5se or on `#!@` lines.
-
-=== ".c5se"
-
-    On a monster:
-
-    ```c5se
-    spellweaponbonus "Lore of the Istari" 2
-    ```
-
-    On an item:
-
-    ```c5se
-    pathboost "Lore of the Istari"
-    ```
 
 === ".c5m"
 
@@ -95,24 +81,21 @@ Takes a path's name in double quotes where the game takes its number. The same w
     #!@pathboost "Lore of the Istari"
     ```
 
-### Example spell path { #example }
-
 === ".c5se"
 
+    On a monster:
+
     ```c5se
-    newspellpath "Lore of the Istari"
-
-    newspell "Word of Saruman"
-    path "Lore of the Istari"
-    level 2
-    weapon 10 "Lightning Bolt"
-
-    selectmonster "Grey Wizard"
     spellweaponbonus "Lore of the Istari" 2
-
-    selectspellpath "Storm Magic"
-    name "Manwe's Storm Magic"
     ```
+
+    On an item:
+
+    ```c5se
+    pathboost "Lore of the Istari"
+    ```
+
+### Example spell path { #example }
 
 === ".c5m"
 
@@ -129,4 +112,21 @@ Takes a path's name in double quotes where the game takes its number. The same w
 
     #!@selectspellpath "Storm Magic"
     #!@name "Manwe's Storm Magic"
+    ```
+
+=== ".c5se"
+
+    ```c5se
+    newspellpath "Lore of the Istari"
+
+    newspell "Word of Saruman"
+    path "Lore of the Istari"
+    level 2
+    weapon 10 "Lightning Bolt"
+
+    selectmonster "Grey Wizard"
+    spellweaponbonus "Lore of the Istari" 2
+
+    selectspellpath "Storm Magic"
+    name "Manwe's Storm Magic"
     ```

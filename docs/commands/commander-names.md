@@ -15,27 +15,21 @@ Creates a list of commander names. Using a list's name again adds to that list, 
 
 - **list:** The list's name, in double quotes.
 
-=== ".c5se"
-
-    ```c5se
-    newnametype "Dwarf Names"
-    ```
-
 === ".c5m"
 
     ```c5m
     #!@newnametype "Dwarf Names"
     ```
 
-### addname "&lt;name&gt;" { #addname .command data-toc-label="addname" data-added="2.4" }
-
-Adds a name to the list.
-
 === ".c5se"
 
     ```c5se
-    addname "Gimli"
+    newnametype "Dwarf Names"
     ```
+
+### addname "&lt;name&gt;" { #addname .command data-toc-label="addname" data-added="2.4" }
+
+Adds a name to the list.
 
 === ".c5m"
 
@@ -43,15 +37,15 @@ Adds a name to the list.
     #!@addname "Gimli"
     ```
 
-### fixedname "&lt;name&gt;" { #fixedname .command data-toc-label="fixedname" data-added="2.4" }
-
-Gives every commander of this monster this name. Goes after `newmonster` or `selectmonster`.
-
 === ".c5se"
 
     ```c5se
-    fixedname "Gandalf"
+    addname "Gimli"
     ```
+
+### fixedname "&lt;name&gt;" { #fixedname .command data-toc-label="fixedname" data-added="2.4" }
+
+Gives every commander of this monster this name. Goes after `newmonster` or `selectmonster`.
 
 === ".c5m"
 
@@ -59,22 +53,13 @@ Gives every commander of this monster this name. Goes after `newmonster` or `sel
     #!@fixedname "Gandalf"
     ```
 
-### Example names { #example }
-
 === ".c5se"
 
     ```c5se
-    newnametype "Dwarf Names"
-    addname "Gimli"
-    addname "Balin"
-    end
-
-    selectmonster "Dwarf Captain"
-    nametype "Dwarf Names"
-
-    selectmonster "Grey Wizard"
     fixedname "Gandalf"
     ```
+
+### Example names { #example }
 
 === ".c5m"
 
@@ -89,4 +74,19 @@ Gives every commander of this monster this name. Goes after `newmonster` or `sel
 
     selectmonster "Grey Wizard"
     #!@fixedname "Gandalf"
+    ```
+
+=== ".c5se"
+
+    ```c5se
+    newnametype "Dwarf Names"
+    addname "Gimli"
+    addname "Balin"
+    end
+
+    selectmonster "Dwarf Captain"
+    nametype "Dwarf Names"
+
+    selectmonster "Grey Wizard"
+    fixedname "Gandalf"
     ```

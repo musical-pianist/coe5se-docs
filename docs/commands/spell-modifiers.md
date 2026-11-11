@@ -8,27 +8,21 @@ Give your spells the limits and effects vanilla spells have: a slow cast, no cas
 
 Makes the spell take 2 combat rounds to cast.
 
-=== ".c5se"
-
-    ```c5se
-    slowcast
-    ```
-
 === ".c5m"
 
     ```c5m
     #!@slowcast
     ```
 
-### notsea { #notsea .command data-toc-label="notsea" data-added="1.2" }
-
-Stops units casting the spell at sea.
-
 === ".c5se"
 
     ```c5se
-    notsea
+    slowcast
     ```
+
+### notsea { #notsea .command data-toc-label="notsea" data-added="1.2" }
+
+Stops units casting the spell at sea.
 
 === ".c5m"
 
@@ -36,15 +30,15 @@ Stops units casting the spell at sea.
     #!@notsea
     ```
 
-### notunderground { #notunderground .command data-toc-label="notunderground" data-added="1.2" }
-
-Stops units casting the spell underground.
-
 === ".c5se"
 
     ```c5se
-    notunderground
+    notsea
     ```
+
+### notunderground { #notunderground .command data-toc-label="notunderground" data-added="1.2" }
+
+Stops units casting the spell underground.
 
 === ".c5m"
 
@@ -52,15 +46,15 @@ Stops units casting the spell underground.
     #!@notunderground
     ```
 
-### prioritylearn { #prioritylearn .command data-toc-label="prioritylearn" data-added="1.2" }
-
-Makes a unit that starts with spells learn this one before the others of its path and level.
-
 === ".c5se"
 
     ```c5se
-    prioritylearn
+    notunderground
     ```
+
+### prioritylearn { #prioritylearn .command data-toc-label="prioritylearn" data-added="1.2" }
+
+Makes a unit that starts with spells learn this one before the others of its path and level.
 
 === ".c5m"
 
@@ -68,15 +62,15 @@ Makes a unit that starts with spells learn this one before the others of its pat
     #!@prioritylearn
     ```
 
-### burnforest { #burnforest .command data-toc-label="burnforest" data-added="1.2" }
-
-Gives the caster Burn Forest while it knows the spell. Inside a spell only; elsewhere `burnforest` is the game's monster ability.
-
 === ".c5se"
 
     ```c5se
-    burnforest
+    prioritylearn
     ```
+
+### burnforest { #burnforest .command data-toc-label="burnforest" data-added="1.2" }
+
+Gives the caster Burn Forest while it knows the spell. Inside a spell only; elsewhere `burnforest` is the game's monster ability.
 
 === ".c5m"
 
@@ -84,26 +78,13 @@ Gives the caster Burn Forest while it knows the spell. Inside a spell only; else
     #!@burnforest
     ```
 
-### Example spells { #example }
-
 === ".c5se"
 
     ```c5se
-    newspell "Fire of Udun"
-    path "Pyromancy"
-    level 3
-    weapon 20 "Fireball"
-    slowcast
-    notsea
-    notunderground
     burnforest
-
-    newspell "Athelas"
-    path "White Magic"
-    level 1
-    weapon 4 "Heal"
-    prioritylearn
     ```
+
+### Example spells { #example }
 
 === ".c5m"
 
@@ -122,4 +103,23 @@ Gives the caster Burn Forest while it knows the spell. Inside a spell only; else
     #!@level 1
     #!@weapon 4 "Heal"
     #!@prioritylearn
+    ```
+
+=== ".c5se"
+
+    ```c5se
+    newspell "Fire of Udun"
+    path "Pyromancy"
+    level 3
+    weapon 20 "Fireball"
+    slowcast
+    notsea
+    notunderground
+    burnforest
+
+    newspell "Athelas"
+    path "White Magic"
+    level 1
+    weapon 4 "Heal"
+    prioritylearn
     ```

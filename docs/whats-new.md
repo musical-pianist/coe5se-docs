@@ -6,6 +6,8 @@ The commands and pages each CoE5SE release added, newest first.
 
 ## CoE5SE 3.3 { #v3-3 }
 
+[Release notes on GitHub](https://github.com/musical-pianist/coe5se/releases/tag/CoE5SE-v3.3.0)
+
 - **[Magic Items](commands/magic-items.md) (new page)**: [`clearspec`](commands/magic-items.md#clearspec), [`clearmove`](commands/magic-items.md#clearmove), [`clearweapons`](commands/magic-items.md#clearweapons), [`makeaff`](commands/magic-items.md#makeaff), [`makeben`](commands/magic-items.md#makeben), [`consumableitem`](commands/magic-items.md#consumableitem), [`useableitem`](commands/magic-items.md#useableitem), [`useonlyin`](commands/magic-items.md#useonlyin), [`cureoneaff`](commands/magic-items.md#cureoneaff), [`newspell1, newspell2, newspell3`](commands/magic-items.md#newspell1), [`usereveal`](commands/magic-items.md#usereveal), [`useteleport`](commands/magic-items.md#useteleport), [`useplanetravel`](commands/magic-items.md#useplanetravel), [`usebeanstalk`](commands/magic-items.md#usebeanstalk), [`usepit`](commands/magic-items.md#usepit), [`usebreakseal`](commands/magic-items.md#usebreakseal), [`extralife`](commands/magic-items.md#extralife), [`eyeitem`](commands/magic-items.md#eyeitem), [`heartitem`](commands/magic-items.md#heartitem)
 - **[Classes](commands/classes.md) (new page)**
 

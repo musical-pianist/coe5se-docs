@@ -25,16 +25,16 @@ Creates a plane. Follow it with [`planesize`](#planesize) and [`planefill`](#pla
 
 - **name:** The plane's name, in double quotes. No other plane may have it, including a game plane's full or short name ("Celestial Plane", "Celestial"). Other lines must spell it with the same capitals.
 
-=== ".c5se"
-
-    ```c5se
-    newplane "Mordor"
-    ```
-
 === ".c5m"
 
     ```c5m
     #!@newplane "Mordor"
+    ```
+
+=== ".c5se"
+
+    ```c5se
+    newplane "Mordor"
     ```
 
 ### planesize &lt;w&gt; &lt;h&gt; { #planesize .command data-toc-label="planesize" data-added="2.5" }
@@ -44,16 +44,16 @@ Sets the plane's width and height in squares. Needed, unless `planefile` gives t
 - **w:** The plane's width in squares, 1 to 999.
 - **h:** The plane's height in squares, 1 to 159.
 
-=== ".c5se"
-
-    ```c5se
-    planesize 40 30
-    ```
-
 === ".c5m"
 
     ```c5m
     #!@planesize 40 30
+    ```
+
+=== ".c5se"
+
+    ```c5se
+    planesize 40 30
     ```
 
 ### planefill &lt;terrain&gt; { #planefill .command data-toc-label="planefill" data-added="2.5" }
@@ -61,20 +61,6 @@ Sets the plane's width and height in squares. Needed, unless `planefile` gives t
 Sets the terrain every square starts as. Needed, unless the plane has `planelike` or `planefile`.
 
 - **terrain:** A terrain by number, 0 to 32767, or its name in double quotes.
-
-=== ".c5se"
-
-    A terrain by name:
-
-    ```c5se
-    planefill "Tundra"
-    ```
-
-    Or by number:
-
-    ```c5se
-    planefill 0
-    ```
 
 === ".c5m"
 
@@ -90,17 +76,25 @@ Sets the terrain every square starts as. Needed, unless the plane has `planelike
     #!@planefill 0
     ```
 
+=== ".c5se"
+
+    A terrain by name:
+
+    ```c5se
+    planefill "Tundra"
+    ```
+
+    Or by number:
+
+    ```c5se
+    planefill 0
+    ```
+
 ### planelike "&lt;plane&gt;" { #planelike .command data-toc-label="planelike" data-added="2.5" }
 
 Builds the plane the way the game builds that plane: its map, its ground pictures, and its independents. CoE5SE skips any step the plane is too small for.
 
 - **plane:** "Celestial", "Sky", "Agartha", "Inferno", "Hades", "Elemental" or "Void".
-
-=== ".c5se"
-
-    ```c5se
-    planelike "Agartha"
-    ```
 
 === ".c5m"
 
@@ -108,25 +102,17 @@ Builds the plane the way the game builds that plane: its map, its ground picture
     #!@planelike "Agartha"
     ```
 
+=== ".c5se"
+
+    ```c5se
+    planelike "Agartha"
+    ```
+
 ### planepopulate "&lt;plane&gt;" { #planepopulate .command data-toc-label="planepopulate" data-added="2.5" }
 
 Places that vanilla plane's independents on the plane. Without it, the plane gets the independents of its `planelike` plane.
 
 - **plane:** A vanilla plane's name, or `off` for none.
-
-=== ".c5se"
-
-    A vanilla plane's independents:
-
-    ```c5se
-    planepopulate "Agartha"
-    ```
-
-    Or none:
-
-    ```c5se
-    planepopulate off
-    ```
 
 === ".c5m"
 
@@ -142,20 +128,34 @@ Places that vanilla plane's independents on the plane. Without it, the plane get
     #!@planepopulate off
     ```
 
+=== ".c5se"
+
+    A vanilla plane's independents:
+
+    ```c5se
+    planepopulate "Agartha"
+    ```
+
+    Or none:
+
+    ```c5se
+    planepopulate off
+    ```
+
 ### planeicon "./&lt;file&gt;" { #planeicon .command data-toc-label="planeicon" data-added="2.5" }
 
 Sets the picture on the plane's map button: a .tga or .png, 64 x 64 like the game's plane icons. Without it, the button shows the `planelike` plane's icon, or a coloured square.
-
-=== ".c5se"
-
-    ```c5se
-    planeicon "./mordor.tga"
-    ```
 
 === ".c5m"
 
     ```c5m
     #!@planeicon "./mordor.tga"
+    ```
+
+=== ".c5se"
+
+    ```c5se
+    planeicon "./mordor.tga"
     ```
 
 ### planefile "./&lt;file&gt;.coem" { #planefile .command data-toc-label="planefile" data-added="2.5" }
@@ -165,16 +165,16 @@ Reads the plane's squares from a map file.
 !!! warning
     With `planelike` too, the built terrain replaces the file's. Only square names and portals stay.
 
-=== ".c5se"
-
-    ```c5se
-    planefile "./tol_eressea.coem"
-    ```
-
 === ".c5m"
 
     ```c5m
     #!@planefile "./tol_eressea.coem"
+    ```
+
+=== ".c5se"
+
+    ```c5se
+    planefile "./tol_eressea.coem"
     ```
 
 ### planepiece "./&lt;file&gt;.coem" &lt;place&gt; { #planepiece .command data-toc-label="planepiece" data-added="2.5" }
@@ -182,32 +182,6 @@ Reads the plane's squares from a map file.
 Stamps a map file into the built plane.
 
 - **place:** `center`, `random [count]` (once without a count), `at <x> <y>`, or `nearportal`.
-
-=== ".c5se"
-
-    In the middle:
-
-    ```c5se
-    planepiece "./barad_dur.coem" center
-    ```
-
-    Or in random places, 3 times:
-
-    ```c5se
-    planepiece "./orc_camp.coem" random 3
-    ```
-
-    Or at a square:
-
-    ```c5se
-    planepiece "./orc_camp.coem" at 12 8
-    ```
-
-    Or next to a portal:
-
-    ```c5se
-    planepiece "./orc_camp.coem" nearportal
-    ```
 
 === ".c5m"
 
@@ -235,22 +209,48 @@ Stamps a map file into the built plane.
     #!@planepiece "./orc_camp.coem" nearportal
     ```
 
+=== ".c5se"
+
+    In the middle:
+
+    ```c5se
+    planepiece "./barad_dur.coem" center
+    ```
+
+    Or in random places, 3 times:
+
+    ```c5se
+    planepiece "./orc_camp.coem" random 3
+    ```
+
+    Or at a square:
+
+    ```c5se
+    planepiece "./orc_camp.coem" at 12 8
+    ```
+
+    Or next to a portal:
+
+    ```c5se
+    planepiece "./orc_camp.coem" nearportal
+    ```
+
 ### planezone "&lt;name&gt;" around "./&lt;file&gt;.coem" &lt;radius&gt; { #planezone .command data-toc-label="planezone" data-added="2.5" }
 
 Creates a zone: every square within the radius of each copy of that `planepiece` file. The zone lines below it apply to the last `planezone` above them.
 
 - **radius:** The distance in squares.
 
-=== ".c5se"
-
-    ```c5se
-    planezone "Shadow of Mordor" around "./barad_dur.coem" 3
-    ```
-
 === ".c5m"
 
     ```c5m
     #!@planezone "Shadow of Mordor" around "./barad_dur.coem" 3
+    ```
+
+=== ".c5se"
+
+    ```c5se
+    planezone "Shadow of Mordor" around "./barad_dur.coem" 3
     ```
 
 ### planezoneswap &lt;terrain&gt; &lt;terrain&gt; { #planezoneswap .command data-toc-label="planezoneswap" data-added="2.5" }
@@ -259,16 +259,16 @@ Turns each square of the first terrain in the zone into the second.
 
 - **terrain:** The terrain to replace, then the terrain it becomes, each by number or its name in double quotes.
 
-=== ".c5se"
-
-    ```c5se
-    planezoneswap "Rock Ground" "Ash Field"
-    ```
-
 === ".c5m"
 
     ```c5m
     #!@planezoneswap "Rock Ground" "Ash Field"
+    ```
+
+=== ".c5se"
+
+    ```c5se
+    planezoneswap "Rock Ground" "Ash Field"
     ```
 
 ### planezoneunits "&lt;monster&gt;" &lt;count&gt; &lt;chance&gt; { #planezoneunits .command data-toc-label="planezoneunits" data-added="2.5" }
@@ -278,32 +278,32 @@ Gives the zone only these monsters instead of its independents.
 - **count:** How many on a square.
 - **chance:** The percent chance on each square.
 
-=== ".c5se"
-
-    ```c5se
-    planezoneunits "Giant Spider" 3 25
-    ```
-
 === ".c5m"
 
     ```c5m
     #!@planezoneunits "Giant Spider" 3 25
     ```
 
-### planezonepopulate off { #planezonepopulate .command data-toc-label="planezonepopulate" data-added="2.5" }
-
-Places no independents in the zone.
-
 === ".c5se"
 
     ```c5se
-    planezonepopulate off
+    planezoneunits "Giant Spider" 3 25
     ```
+
+### planezonepopulate off { #planezonepopulate .command data-toc-label="planezonepopulate" data-added="2.5" }
+
+Places no independents in the zone.
 
 === ".c5m"
 
     ```c5m
     #!@planezonepopulate off
+    ```
+
+=== ".c5se"
+
+    ```c5se
+    planezonepopulate off
     ```
 
 ### planeunits "&lt;monster&gt;" &lt;count&gt; &lt;chance&gt; { #planeunits .command data-toc-label="planeunits" data-added="2.5" }
@@ -313,16 +313,16 @@ Gives the plane only these monsters, outside zones with their own. Replaces the 
 - **count:** How many on a square.
 - **chance:** The percent chance on each square.
 
-=== ".c5se"
-
-    ```c5se
-    planeunits "Troglodyte" 2 10
-    ```
-
 === ".c5m"
 
     ```c5m
     #!@planeunits "Troglodyte" 2 10
+    ```
+
+=== ".c5se"
+
+    ```c5se
+    planeunits "Troglodyte" 2 10
     ```
 
 ### planeswap &lt;terrain&gt; &lt;terrain&gt; { #planeswap .command data-toc-label="planeswap" data-added="2.5" }
@@ -331,16 +331,16 @@ Turns each square of the first terrain on the plane into the second, after CoE5S
 
 - **terrain:** The first is a game terrain; the second, any terrain.
 
-=== ".c5se"
-
-    ```c5se
-    planeswap "Rock Ground" "Ash Field"
-    ```
-
 === ".c5m"
 
     ```c5m
     #!@planeswap "Rock Ground" "Ash Field"
+    ```
+
+=== ".c5se"
+
+    ```c5se
+    planeswap "Rock Ground" "Ash Field"
     ```
 
 ### planereq "&lt;plane&gt;" { #planereq .command data-toc-label="planereq and the rest" data-added="2.5" }
@@ -352,26 +352,6 @@ Takes a plane's name in double quotes where the game takes a plane number, for a
 - an event's `+plane`, `-plane`, `randloc`, `+minterrains`, `-minterrains`, `+minunits` and `-minunits`.
 
 The game alone can't read the name: put these lines in the .c5se or on `#!@` lines.
-
-=== ".c5se"
-
-    In a ritual:
-
-    ```c5se
-    planereq "Mordor"
-    ```
-
-    In a class:
-
-    ```c5se
-    startplane "Mordor"
-    ```
-
-    In an event:
-
-    ```c5se
-    +plane "Mordor"
-    ```
 
 === ".c5m"
 
@@ -393,23 +373,29 @@ The game alone can't read the name: put these lines in the .c5se or on `#!@` lin
     #!@+plane "Mordor"
     ```
 
+=== ".c5se"
+
+    In a ritual:
+
+    ```c5se
+    planereq "Mordor"
+    ```
+
+    In a class:
+
+    ```c5se
+    startplane "Mordor"
+    ```
+
+    In an event:
+
+    ```c5se
+    +plane "Mordor"
+    ```
+
 ### planeshape "&lt;plane&gt;" "&lt;monster&gt;" { #planeshape .command data-toc-label="planeshape" data-added="2.5" }
 
 Makes the monster turn into another on a mod's plane, as `elysiumshape` to `voidshape` do on the game's planes. Goes after `newmonster` or `selectmonster`.
-
-=== ".c5se"
-
-    Turns into a Dire Wolf on Mordor:
-
-    ```c5se
-    planeshape "Mordor" "Dire Wolf"
-    ```
-
-    Or no shape there:
-
-    ```c5se
-    planeshape "Mordor" ""
-    ```
 
 === ".c5m"
 
@@ -425,39 +411,21 @@ Makes the monster turn into another on a mod's plane, as `elysiumshape` to `void
     #!@planeshape "Mordor" ""
     ```
 
-### Example planes { #example }
-
 === ".c5se"
 
+    Turns into a Dire Wolf on Mordor:
+
     ```c5se
-    newplane "Mordor"
-    planesize 40 30
-    planelike "Agartha"
-    planeicon "./mordor.tga"
-    planepiece "./barad_dur.coem" center
-    planepiece "./orc_camp.coem" random 3
-    planezone "Shadow of Mordor" around "./barad_dur.coem" 3
-    planezoneswap "Rock Ground" "Ash Field"
-    planezoneunits "Giant Spider" 3 25
-    planezone "Orc Camps" around "./orc_camp.coem" 1
-    planezonepopulate off
-    planeunits "Troglodyte" 2 10
-    planeswap "Cave Wall" "Rock Ground"
-
-    newplane "Forodwaith"
-    planesize 20 20
-    planefill "Tundra"
-    planepopulate "Agartha"
-
-    newplane "Tol Eressea"
-    planefile "./tol_eressea.coem"
-
-    selectmonster "Wolf"
     planeshape "Mordor" "Dire Wolf"
-
-    selectritual "Messenger Crows"
-    planereq "Mordor"
     ```
+
+    Or no shape there:
+
+    ```c5se
+    planeshape "Mordor" ""
+    ```
+
+### Example planes { #example }
 
 === ".c5m"
 
@@ -489,4 +457,36 @@ Makes the monster turn into another on a mod's plane, as `elysiumshape` to `void
 
     selectritual "Messenger Crows"
     #!@planereq "Mordor"
+    ```
+
+=== ".c5se"
+
+    ```c5se
+    newplane "Mordor"
+    planesize 40 30
+    planelike "Agartha"
+    planeicon "./mordor.tga"
+    planepiece "./barad_dur.coem" center
+    planepiece "./orc_camp.coem" random 3
+    planezone "Shadow of Mordor" around "./barad_dur.coem" 3
+    planezoneswap "Rock Ground" "Ash Field"
+    planezoneunits "Giant Spider" 3 25
+    planezone "Orc Camps" around "./orc_camp.coem" 1
+    planezonepopulate off
+    planeunits "Troglodyte" 2 10
+    planeswap "Cave Wall" "Rock Ground"
+
+    newplane "Forodwaith"
+    planesize 20 20
+    planefill "Tundra"
+    planepopulate "Agartha"
+
+    newplane "Tol Eressea"
+    planefile "./tol_eressea.coem"
+
+    selectmonster "Wolf"
+    planeshape "Mordor" "Dire Wolf"
+
+    selectritual "Messenger Crows"
+    planereq "Mordor"
     ```

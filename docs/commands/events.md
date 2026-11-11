@@ -22,15 +22,6 @@ Each word is declared inside a `playerevent` or `squareevent`. To make an event 
 
 Starts the branches. The triggers above it hold for every branch below it: when they hold, each branch starts from there; when they fail, no branch runs, `else` included. At most one `if`, before the first branch's actions.
 
-=== ".c5se"
-
-    A trigger every branch needs:
-
-    ```c5se
-    +turnnbr 150
-    if
-    ```
-
 === ".c5m"
 
     A trigger every branch needs:
@@ -40,19 +31,18 @@ Starts the branches. The triggers above it hold for every branch below it: when 
     #!@if
     ```
 
+=== ".c5se"
+
+    A trigger every branch needs:
+
+    ```c5se
+    +turnnbr 150
+    if
+    ```
+
 ### or { #or .command data-toc-label="or" data-added="2.4" }
 
 Starts another group of triggers. The event holds when every trigger in any one group holds. It goes between triggers, before the branch's first action. In a `playerevent`, the first group that holds sets the event's target: a `+hasunithere` in a later group doesn't change it.
-
-=== ".c5se"
-
-    Either of two items:
-
-    ```c5se
-    +hasitem -2 "Ring of Invisibility"
-    or
-    +hasitem -2 "Ring of Shadows"
-    ```
 
 === ".c5m"
 
@@ -64,18 +54,19 @@ Starts another group of triggers. The event holds when every trigger in any one 
     +hasitem -2 "Ring of Shadows"
     ```
 
+=== ".c5se"
+
+    Either of two items:
+
+    ```c5se
+    +hasitem -2 "Ring of Invisibility"
+    or
+    +hasitem -2 "Ring of Shadows"
+    ```
+
 ### elseif { #elseif .command data-toc-label="elseif" data-added="2.4" }
 
 Starts another branch: its own triggers, then its own actions. It runs only if no branch before it ran.
-
-=== ".c5se"
-
-    Or the player holds another item:
-
-    ```c5se
-    elseif
-    +hasitem -2 "Eye of the Night"
-    ```
 
 === ".c5m"
 
@@ -86,19 +77,18 @@ Starts another branch: its own triggers, then its own actions. It runs only if n
     +hasitem -2 "Eye of the Night"
     ```
 
+=== ".c5se"
+
+    Or the player holds another item:
+
+    ```c5se
+    elseif
+    +hasitem -2 "Eye of the Night"
+    ```
+
 ### else { #else .command data-toc-label="else" data-added="2.4" }
 
 Starts the last branch, with no triggers: its actions run whenever no branch before it ran, on every turn the event checks. Use it in an event meant to act every turn, not in a one-time event. Put only its actions after it: another `elseif` or `else` after it stops the rest of the event.
-
-=== ".c5se"
-
-    Otherwise:
-
-    ```c5se
-    else
-    message -2 "A Demon Lord and his host climb out of the dark."
-    newunits 28 "c*Demon Lord & 6*Greater Demon & 60*Lesser Demon"
-    ```
 
 === ".c5m"
 
@@ -106,6 +96,16 @@ Starts the last branch, with no triggers: its actions run whenever no branch bef
 
     ```c5m
     #!@else
+    message -2 "A Demon Lord and his host climb out of the dark."
+    newunits 28 "c*Demon Lord & 6*Greater Demon & 60*Lesser Demon"
+    ```
+
+=== ".c5se"
+
+    Otherwise:
+
+    ```c5se
+    else
     message -2 "A Demon Lord and his host climb out of the dark."
     newunits 28 "c*Demon Lord & 6*Greater Demon & 60*Lesser Demon"
     ```
@@ -118,50 +118,6 @@ Starts the last branch, with no triggers: its actions run whenever no branch bef
 
 ### Example event { #example }
 
-=== ".c5se"
-
-    ```c5se
-    playerevent
-    +turnnbr 150
-    if
-    -hasitem -2 "Ring of Invisibility"
-    -hasitem -2 "Ring of Shadows"
-    -hasitem -2 "Eye of the Night"
-    -hasunit -2 "Grey Wizard"
-    message -2 "The fate of the Ring looks bleak. No ring, no stone, no wizard to stand with you, and 48 dragons come down from the north."
-    scatterloc 5
-    newunits 28 "c*Fire Dragon & 47*Fire Dragon"
-    elseif
-    +hasitem -2 "Ring of Invisibility"
-    or
-    +hasitem -2 "Ring of Shadows"
-    message -2 "You kept a Ring of Power. Nine riders and 400 orcs cross the river to take it back."
-    targetunitloc
-    scatterloc 3
-    newunits 28 "c*Ebon Knight & 44*Goblin"
-    newunits 28 "c*Ebon Knight & 44*Goblin"
-    newunits 28 "c*Ebon Knight & 44*Goblin"
-    newunits 28 "c*Ebon Knight & 44*Goblin"
-    newunits 28 "c*Ebon Knight & 44*Goblin"
-    newunits 28 "c*Ebon Knight & 44*Goblin"
-    newunits 28 "c*Ebon Knight & 44*Goblin"
-    newunits 28 "c*Ebon Knight & 44*Goblin"
-    newunits 28 "c*Ebon Knight & 44*Goblin"
-    elseif
-    +hasitem -2 "Eye of the Night"
-    message -2 "Saruman sees you through the stone. Four hosts of Isengard, 280 strong, march on your citadel."
-    scatterloc 4
-    newunits 28 "c*Goblin Chieftain & 60*Goblin Archer & 10*Troll"
-    newunits 28 "c*Goblin Chieftain & 60*Goblin Archer & 10*Troll"
-    newunits 28 "c*Goblin Chieftain & 60*Goblin Archer & 10*Troll"
-    newunits 28 "c*Goblin Chieftain & 60*Goblin Archer & 10*Troll"
-    else
-    message -2 "Gandalf's light wakes something deep below. A Demon Lord and his host climb out of the dark."
-    scatterloc 2
-    newunits 28 "c*Demon Lord & 6*Greater Demon & 60*Lesser Demon"
-    endevent
-    ```
-
 === ".c5m"
 
     ```c5m
@@ -200,6 +156,50 @@ Starts the last branch, with no triggers: its actions run whenever no branch bef
     newunits 28 "c*Goblin Chieftain & 60*Goblin Archer & 10*Troll"
     newunits 28 "c*Goblin Chieftain & 60*Goblin Archer & 10*Troll"
     #!@else
+    message -2 "Gandalf's light wakes something deep below. A Demon Lord and his host climb out of the dark."
+    scatterloc 2
+    newunits 28 "c*Demon Lord & 6*Greater Demon & 60*Lesser Demon"
+    endevent
+    ```
+
+=== ".c5se"
+
+    ```c5se
+    playerevent
+    +turnnbr 150
+    if
+    -hasitem -2 "Ring of Invisibility"
+    -hasitem -2 "Ring of Shadows"
+    -hasitem -2 "Eye of the Night"
+    -hasunit -2 "Grey Wizard"
+    message -2 "The fate of the Ring looks bleak. No ring, no stone, no wizard to stand with you, and 48 dragons come down from the north."
+    scatterloc 5
+    newunits 28 "c*Fire Dragon & 47*Fire Dragon"
+    elseif
+    +hasitem -2 "Ring of Invisibility"
+    or
+    +hasitem -2 "Ring of Shadows"
+    message -2 "You kept a Ring of Power. Nine riders and 400 orcs cross the river to take it back."
+    targetunitloc
+    scatterloc 3
+    newunits 28 "c*Ebon Knight & 44*Goblin"
+    newunits 28 "c*Ebon Knight & 44*Goblin"
+    newunits 28 "c*Ebon Knight & 44*Goblin"
+    newunits 28 "c*Ebon Knight & 44*Goblin"
+    newunits 28 "c*Ebon Knight & 44*Goblin"
+    newunits 28 "c*Ebon Knight & 44*Goblin"
+    newunits 28 "c*Ebon Knight & 44*Goblin"
+    newunits 28 "c*Ebon Knight & 44*Goblin"
+    newunits 28 "c*Ebon Knight & 44*Goblin"
+    elseif
+    +hasitem -2 "Eye of the Night"
+    message -2 "Saruman sees you through the stone. Four hosts of Isengard, 280 strong, march on your citadel."
+    scatterloc 4
+    newunits 28 "c*Goblin Chieftain & 60*Goblin Archer & 10*Troll"
+    newunits 28 "c*Goblin Chieftain & 60*Goblin Archer & 10*Troll"
+    newunits 28 "c*Goblin Chieftain & 60*Goblin Archer & 10*Troll"
+    newunits 28 "c*Goblin Chieftain & 60*Goblin Archer & 10*Troll"
+    else
     message -2 "Gandalf's light wakes something deep below. A Demon Lord and his host climb out of the dark."
     scatterloc 2
     newunits 28 "c*Demon Lord & 6*Greater Demon & 60*Lesser Demon"

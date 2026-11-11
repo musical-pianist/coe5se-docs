@@ -14,18 +14,6 @@ Makes the units with the trait in the caster's army heal half their maximum Hit 
 - **trait:** One of the [vanilla traits](#vanilla-traits), or an ability command (["Monster Modding"](https://www.illwinter.com/coe5/coe5modding.pdf#page=14)), as [`onlyaffects`](weapon-traits.md#onlyaffects) takes it. `heallivingarmy` and `healhumanarmy` are vanilla's and take no `bypassnoheal`: for humans that never heal, write `healarmy human bypassnoheal`.
 - **bypassnoheal:** Also heals the units with the trait that have `noheal`, which otherwise never heal. Half the vanilla undead have `noheal`, the Longdead among them, so `healundeadarmy` heals them only with `bypassnoheal`.
 
-=== ".c5se"
-
-    ```c5se
-    healundeadarmy bypassnoheal
-    ```
-
-    Or another trait, without bypassnoheal:
-
-    ```c5se
-    healanimalarmy
-    ```
-
 === ".c5m"
 
     ```c5m
@@ -38,24 +26,24 @@ Makes the units with the trait in the caster's army heal half their maximum Hit 
     #!@healanimalarmy
     ```
 
+=== ".c5se"
+
+    ```c5se
+    healundeadarmy bypassnoheal
+    ```
+
+    Or another trait, without bypassnoheal:
+
+    ```c5se
+    healanimalarmy
+    ```
+
 ### healarmy &lt;trait&gt; [bypassnoheal] <span class="new-badge">New</span> { #healarmy .command data-toc-label="healarmy" data-added="3.0" }
 
 Does everything [`heal<trait>army`](#heal-trait-army) does, and also takes custom [tags](monster-traits.md#tag).
 
 - **trait:** One of the [vanilla traits](#vanilla-traits), an ability command, or `tag "<name>"`, as [`onlyaffects`](weapon-traits.md#onlyaffects) takes it.
 - **bypassnoheal:** Also heals the units with the trait that have `noheal`, which otherwise never heal.
-
-=== ".c5se"
-
-    ```c5se
-    healarmy undead
-    ```
-
-    Or a tag your monsters carry:
-
-    ```c5se
-    healarmy tag "Nazgul" bypassnoheal
-    ```
 
 === ".c5m"
 
@@ -69,37 +57,19 @@ Does everything [`heal<trait>army`](#heal-trait-army) does, and also takes custo
     #!@healarmy tag "Nazgul" bypassnoheal
     ```
 
-### Example spells { #example }
-
 === ".c5se"
 
     ```c5se
-    newspell "Hands of the King"
-    path "White Magic"
-    level 2
-    weapon 4 "Heal"
-    heallivingarmy
-    healhumanarmy
-
-    newweapon "Shadow of the Necromancer"
-    trgrank -9
-    range 8
-    init 4
-    dmgtype 26
-    aoe 1
-    an
-    affectundead
-    onlyfriend
-    look 38
-    sound 89
-
-    newspell "Sorcery of Dol Guldur"
-    path "Necromancy"
-    level 2
-    weapon 10 "Shadow of the Necromancer"
-    healundeadarmy bypassnoheal
-    healarmy animal
+    healarmy undead
     ```
+
+    Or a tag your monsters carry:
+
+    ```c5se
+    healarmy tag "Nazgul" bypassnoheal
+    ```
+
+### Example spells { #example }
 
 === ".c5m"
 
@@ -129,6 +99,36 @@ Does everything [`heal<trait>army`](#heal-trait-army) does, and also takes custo
     #!@weapon 10 "Shadow of the Necromancer"
     #!@healundeadarmy bypassnoheal
     #!@healarmy animal
+    ```
+
+=== ".c5se"
+
+    ```c5se
+    newspell "Hands of the King"
+    path "White Magic"
+    level 2
+    weapon 4 "Heal"
+    heallivingarmy
+    healhumanarmy
+
+    newweapon "Shadow of the Necromancer"
+    trgrank -9
+    range 8
+    init 4
+    dmgtype 26
+    aoe 1
+    an
+    affectundead
+    onlyfriend
+    look 38
+    sound 89
+
+    newspell "Sorcery of Dol Guldur"
+    path "Necromancy"
+    level 2
+    weapon 10 "Shadow of the Necromancer"
+    healundeadarmy bypassnoheal
+    healarmy animal
     ```
 
 ### Vanilla traits { #vanilla-traits }

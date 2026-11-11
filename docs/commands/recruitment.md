@@ -24,22 +24,6 @@ With CoE5SE you set the amount, and every temple counts.
 - **amount:** The chance added for each temple, 0% to 100%.
 - **cap:** The most temples that count, 0 to 1000. Without it, every temple counts.
 
-=== ".c5se"
-
-    The game's table, on a 6% commander (only 5 temples count):
-
-    ```c5se
-    addcomrec "Elven Mage" 6 120 20 0
-    templerec      # 8 temples at 21%
-    ```
-
-    Or your own, every temple counting:
-
-    ```c5se
-    addcomrec "Elven Mage" 6 120 20 0
-    templerec 4    # 8 temples at 38%
-    ```
-
 === ".c5m"
 
     The game's table, on a 6% commander (only 5 temples count):
@@ -52,6 +36,22 @@ With CoE5SE you set the amount, and every temple counts.
     Or your own, every temple counting:
 
     ```c5m
+    addcomrec "Elven Mage" 6 120 20 0
+    templerec 4    # 8 temples at 38%
+    ```
+
+=== ".c5se"
+
+    The game's table, on a 6% commander (only 5 temples count):
+
+    ```c5se
+    addcomrec "Elven Mage" 6 120 20 0
+    templerec      # 8 temples at 21%
+    ```
+
+    Or your own, every temple counting:
+
+    ```c5se
     addcomrec "Elven Mage" 6 120 20 0
     templerec 4    # 8 temples at 38%
     ```
@@ -71,22 +71,6 @@ With CoE5SE you set the amount, and every level counts.
 - **amount:** The chance added for each library level, 0% to 100%.
 - **cap:** The most library levels that count, 0 to 1000. Without it, every level counts.
 
-=== ".c5se"
-
-    The game's table, on a 3% commander (only 10 levels count):
-
-    ```c5se
-    addcomrec "Grey Wizard" 3 150 20 0
-    libraryrec         # 20 library levels at 23%
-    ```
-
-    Or your own, with a limit of 15:
-
-    ```c5se
-    addcomrec "Grey Wizard" 3 150 20 0
-    libraryrec 3 15    # 20 library levels at 48%
-    ```
-
 === ".c5m"
 
     The game's table, on a 3% commander (only 10 levels count):
@@ -99,6 +83,22 @@ With CoE5SE you set the amount, and every level counts.
     Or your own, with a limit of 15:
 
     ```c5m
+    addcomrec "Grey Wizard" 3 150 20 0
+    libraryrec 3 15    # 20 library levels at 48%
+    ```
+
+=== ".c5se"
+
+    The game's table, on a 3% commander (only 10 levels count):
+
+    ```c5se
+    addcomrec "Grey Wizard" 3 150 20 0
+    libraryrec         # 20 library levels at 23%
+    ```
+
+    Or your own, with a limit of 15:
+
+    ```c5se
     addcomrec "Grey Wizard" 3 150 20 0
     libraryrec 3 15    # 20 library levels at 48%
     ```
@@ -118,22 +118,6 @@ With CoE5SE you set the amount.
 - **amount:** The chance added for each village, 0% to 100%.
 - **cap:** The most villages that count, 0 to 1000. Without it, every village counts.
 
-=== ".c5se"
-
-    The game's table, on a 10% offer:
-
-    ```c5se
-    addunitrec "Hobbit Archer" 10 5 30 5 0
-    atavirec      # 4 Atavi villages at 22%
-    ```
-
-    Or your own:
-
-    ```c5se
-    addunitrec "Hobbit Archer" 10 5 30 5 0
-    atavirec 6    # 4 Atavi villages at 34%
-    ```
-
 === ".c5m"
 
     The game's table, on a 10% offer:
@@ -146,6 +130,22 @@ With CoE5SE you set the amount.
     Or your own:
 
     ```c5m
+    addunitrec "Hobbit Archer" 10 5 30 5 0
+    atavirec 6    # 4 Atavi villages at 34%
+    ```
+
+=== ".c5se"
+
+    The game's table, on a 10% offer:
+
+    ```c5se
+    addunitrec "Hobbit Archer" 10 5 30 5 0
+    atavirec      # 4 Atavi villages at 22%
+    ```
+
+    Or your own:
+
+    ```c5se
     addunitrec "Hobbit Archer" 10 5 30 5 0
     atavirec 6    # 4 Atavi villages at 34%
     ```
@@ -166,22 +166,6 @@ With CoE5SE you set the amount.
 - **amount:** The chance added for each unit, 0% to 100%.
 - **cap:** The most units that count, 0 to 1000. Without it, every unit counts.
 
-=== ".c5se"
-
-    The game's table, on a 2% offer of 5 Rangers:
-
-    ```c5se
-    addunitrec "Ranger of Ithilien" 2 5 60 0 5
-    reclimiter "$Tower Guard of Minas Tirith"     # 20 Tower Guards at 22%
-    ```
-
-    Or your own:
-
-    ```c5se
-    addunitrec "Ranger of Ithilien" 2 5 60 0 5
-    reclimiter "$Tower Guard of Minas Tirith" 3   # 20 Tower Guards at 62%
-    ```
-
 === ".c5m"
 
     The game's table, on a 2% offer of 5 Rangers:
@@ -198,6 +182,22 @@ With CoE5SE you set the amount.
     reclimiter "$Tower Guard of Minas Tirith" 3   # 20 Tower Guards at 62%
     ```
 
+=== ".c5se"
+
+    The game's table, on a 2% offer of 5 Rangers:
+
+    ```c5se
+    addunitrec "Ranger of Ithilien" 2 5 60 0 5
+    reclimiter "$Tower Guard of Minas Tirith"     # 20 Tower Guards at 22%
+    ```
+
+    Or your own:
+
+    ```c5se
+    addunitrec "Ranger of Ithilien" 2 5 60 0 5
+    reclimiter "$Tower Guard of Minas Tirith" 3   # 20 Tower Guards at 62%
+    ```
+
 A `-` limiter, `humancost 999` or a priest level the offer needs sets the chance to 0 after `templerec`, `libraryrec` and `atavirec` count, so it wipes their bonus. A `$` line counts later, in its place among the `reclimiter` lines, so it lifts that 0, unless a `-` line below it sets 0 again.
 
 !!! tip "For players without CoE5SE"
@@ -205,9 +205,9 @@ A `-` limiter, `humancost 999` or a priest level the offer needs sets the chance
 
 ### Example class { #example }
 
-=== ".c5se"
+=== ".c5m"
 
-    ```c5se
+    ```c5m
     newmonster "Tower Guard of Minas Tirith"
     copystats "Heavy Infantry"
     copyspr "Heavy Infantry"
@@ -228,9 +228,9 @@ A `-` limiter, `humancost 999` or a priest level the offer needs sets the chance
     libraryrec 5
     ```
 
-=== ".c5m"
+=== ".c5se"
 
-    ```c5m
+    ```c5se
     newmonster "Tower Guard of Minas Tirith"
     copystats "Heavy Infantry"
     copyspr "Heavy Infantry"

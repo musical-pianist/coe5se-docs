@@ -13,18 +13,18 @@ These go after `newritual` or `selectritual`. To cap a summoning string's dice a
 
 Gives the caster one item, picked at random from the ritual's `addstring "|<item>"` lines, like the game's Enter Soul Contract.
 
-=== ".c5se"
-
-    ```c5se
-    randomequip
-    addstring "|Elven Cloak"
-    addstring "|Ring of Protection"
-    ```
-
 === ".c5m"
 
     ```c5m
     #!@randomequip
+    addstring "|Elven Cloak"
+    addstring "|Ring of Protection"
+    ```
+
+=== ".c5se"
+
+    ```c5se
+    randomequip
     addstring "|Elven Cloak"
     addstring "|Ring of Protection"
     ```
@@ -38,20 +38,6 @@ Gives the caster a random magic item, like the game's Create Artifact.
 
 - **group:** An [item group](#item-groups), by name or number. Items in no group, your mod's new items included, can come too. Each item's group is in "Magic Item Data" in the [CoE5 Data thread](https://steamcommunity.com/app/1606340/discussions/1/3198114142283463845/).
 
-=== ".c5se"
-
-    Any item:
-
-    ```c5se
-    randartifact
-    ```
-
-    Or a fire item:
-
-    ```c5se
-    randartifact fire
-    ```
-
 === ".c5m"
 
     Any item:
@@ -64,6 +50,20 @@ Gives the caster a random magic item, like the game's Create Artifact.
 
     ```c5m
     #!@randartifact fire
+    ```
+
+=== ".c5se"
+
+    Any item:
+
+    ```c5se
+    randartifact
+    ```
+
+    Or a fire item:
+
+    ```c5se
+    randartifact fire
     ```
 
 ### Item groups { #item-groups }
@@ -80,25 +80,6 @@ Gives the caster a random magic item, like the game's Create Artifact.
 
 ### Example rituals { #example }
 
-=== ".c5se"
-
-    ```c5se
-    newritpow
-
-    newritual "Gifts of the Galadhrim"
-    descr "The Lady of the Golden Wood gives a guest one of her people's treasures."
-    level 2
-    randomequip
-    addstring "|Elven Cloak"
-    addstring "|Elven Armor"
-    addstring "|Ring of Protection"
-
-    newritual "Forge of Eregion"
-    descr "The smiths of Eregion forge a treasure as in the old days."
-    level 3
-    randartifact
-    ```
-
 === ".c5m"
 
     ```c5m
@@ -116,4 +97,23 @@ Gives the caster a random magic item, like the game's Create Artifact.
     descr "The smiths of Eregion forge a treasure as in the old days."
     level 3
     #!@randartifact
+    ```
+
+=== ".c5se"
+
+    ```c5se
+    newritpow
+
+    newritual "Gifts of the Galadhrim"
+    descr "The Lady of the Golden Wood gives a guest one of her people's treasures."
+    level 2
+    randomequip
+    addstring "|Elven Cloak"
+    addstring "|Elven Armor"
+    addstring "|Ring of Protection"
+
+    newritual "Forge of Eregion"
+    descr "The smiths of Eregion forge a treasure as in the old days."
+    level 3
+    randartifact
     ```

@@ -22,20 +22,6 @@ To set the corpse a monster leaves, use `corpsetype` on [Corpses](corpses.md). T
 
 Makes the unit small, like vanilla Goblins: a Soulless raised from it is a Little Soulless.
 
-=== ".c5se"
-
-    On:
-
-    ```c5se
-    small
-    ```
-
-    Or off, on a unit that has it:
-
-    ```c5se
-    small 0
-    ```
-
 === ".c5m"
 
     On:
@@ -50,23 +36,23 @@ Makes the unit small, like vanilla Goblins: a Soulless raised from it is a Littl
     #!@small 0
     ```
 
-### combatcaster { #combatcaster .command data-toc-label="combatcaster" data-added="2.3" }
-
-Makes the unit a Combat Caster, like vanilla Paladins.
-
 === ".c5se"
 
     On:
 
     ```c5se
-    combatcaster
+    small
     ```
 
     Or off, on a unit that has it:
 
     ```c5se
-    combatcaster 0
+    small 0
     ```
+
+### combatcaster { #combatcaster .command data-toc-label="combatcaster" data-added="2.3" }
+
+Makes the unit a Combat Caster, like vanilla Paladins.
 
 === ".c5m"
 
@@ -82,7 +68,21 @@ Makes the unit a Combat Caster, like vanilla Paladins.
     #!@combatcaster 0
     ```
 
-### hates "&lt;kind&gt;" <span class="new-badge">New</span> { #hates .command data-toc-label="hates" data-added="2.11" }
+=== ".c5se"
+
+    On:
+
+    ```c5se
+    combatcaster
+    ```
+
+    Or off, on a unit that has it:
+
+    ```c5se
+    combatcaster 0
+    ```
+
+### hates "&lt;kind&gt;" { #hates .command data-toc-label="hates" data-added="2.11" }
 
 Makes the unit hate a kind. Each turn, it has a 15% chance to kill one unit on its square that is `hated` as that kind. Only a unit on its team can die this way, so hates is a drawback on keeping both kinds on one square, not a weapon.
 
@@ -92,27 +92,6 @@ Makes the unit hate a kind. Each turn, it has a 15% chance to kill one unit on i
 !!! warning
     `hates` and `hated` only take the vanilla [kinds](#hated-kinds). Any other, like `hates "tanks"`, silently does nothing (logged in `coe5mod.log`), and the mod still loads.
 <!-- vale CoE5SE.Reports = YES -->
-
-=== ".c5se"
-
-    By name:
-
-    ```c5se
-    hates "witches & cultists"
-    ```
-
-    Or by number:
-
-    ```c5se
-    hates 5
-    ```
-
-    Or off, on a unit where it is already labeled by the game.
-
-    ```c5se
-    selectmonster "Frost Giant"
-    hates 0
-    ```
 
 === ".c5m"
 
@@ -135,25 +114,32 @@ Makes the unit hate a kind. Each turn, it has a 15% chance to kill one unit on i
     #!@hates 0
     ```
 
-### hated "&lt;kind&gt;" <span class="new-badge">New</span> { #hated .command data-toc-label="hated" data-added="2.11" }
-
-Makes the unit hated as a kind, so a unit on its team that hates that kind may kill it. Vanilla Cultists are hated as witches & cultists, and vanilla Fire Elementals are hated as fire beings.
-
-- **kind:** The same [kinds](#hated-kinds) as `hates`, by string or number, or 0 to take it off.
-
 === ".c5se"
 
     By name:
 
     ```c5se
-    hated "fire beings"
+    hates "witches & cultists"
     ```
 
     Or by number:
 
     ```c5se
-    hated 1
+    hates 5
     ```
+
+    Or off, on a unit where it is already labeled by the game.
+
+    ```c5se
+    selectmonster "Frost Giant"
+    hates 0
+    ```
+
+### hated "&lt;kind&gt;" { #hated .command data-toc-label="hated" data-added="2.11" }
+
+Makes the unit hated as a kind, so a unit on its team that hates that kind may kill it. Vanilla Cultists are hated as witches & cultists, and vanilla Fire Elementals are hated as fire beings.
+
+- **kind:** The same [kinds](#hated-kinds) as `hates`, by string or number, or 0 to take it off.
 
 === ".c5m"
 
@@ -169,27 +155,25 @@ Makes the unit hated as a kind, so a unit on its team that hates that kind may k
     #!@hated 1
     ```
 
+=== ".c5se"
+
+    By name:
+
+    ```c5se
+    hated "fire beings"
+    ```
+
+    Or by number:
+
+    ```c5se
+    hated 1
+    ```
+
 ### tag "&lt;name&gt;" <span class="new-badge">New</span> { #tag .command data-toc-label="tag" data-added="2.12" }
 
 Tags the monster for a weapon's [`onlyaffects`](weapon-traits.md#onlyaffects), [`doesntaffect`](weapon-traits.md#doesntaffect) or [`doubledmgvs`](weapon-traits.md#doubledmgvs) `tag "<name>"`. A monster can have several. `copystats` and `clearspec` affect these. Monsters only. Separate from vanilla's numbered `montag`.
 
 - **name:** In double quotes ([length limit](limits.md#monster-traits)), shared by every mod. Case counts. A `0` after it takes the tag off.
-
-=== ".c5se"
-
-    A boss and its kin, tagged:
-
-    ```c5se
-    selectmonster "Witch-king of Angmar"
-    tag "Nazgul"
-    ```
-
-    A blade that passes through them:
-
-    ```c5se
-    selectweapon "Morgul Blade"
-    doesntaffect tag "Nazgul"
-    ```
 
 === ".c5m"
 
@@ -207,30 +191,23 @@ Tags the monster for a weapon's [`onlyaffects`](weapon-traits.md#onlyaffects), [
     #!@doesntaffect tag "Nazgul"
     ```
 
-### Example monsters { #example }
-
 === ".c5se"
 
+    A boss and its kin, tagged:
+
     ```c5se
-    newmonster "Hobbit Archer"
-    copystats "Spearman"
-    copyspr "Spearman"
-    small
-
-    selectmonster "Elven Mage"
-    combatcaster
-    hates 6
-
-    newmonster "Mirkwood Spider"
-    copystats "Giant Spider"
-    copyspr "Giant Spider"
-    hated "snake beings"
-
-    newmonster "Witch-king of Angmar"
-    copystats "Ghost King"
-    copyspr "Ghost King"
+    selectmonster "Witch-king of Angmar"
     tag "Nazgul"
     ```
+
+    A blade that passes through them:
+
+    ```c5se
+    selectweapon "Morgul Blade"
+    doesntaffect tag "Nazgul"
+    ```
+
+### Example monsters { #example }
 
 === ".c5m"
 
@@ -253,6 +230,29 @@ Tags the monster for a weapon's [`onlyaffects`](weapon-traits.md#onlyaffects), [
     copystats "Ghost King"
     copyspr "Ghost King"
     #!@tag "Nazgul"
+    ```
+
+=== ".c5se"
+
+    ```c5se
+    newmonster "Hobbit Archer"
+    copystats "Spearman"
+    copyspr "Spearman"
+    small
+
+    selectmonster "Elven Mage"
+    combatcaster
+    hates 6
+
+    newmonster "Mirkwood Spider"
+    copystats "Giant Spider"
+    copyspr "Giant Spider"
+    hated "snake beings"
+
+    newmonster "Witch-king of Angmar"
+    copystats "Ghost King"
+    copyspr "Ghost King"
+    tag "Nazgul"
     ```
 
 ### Hated kinds { #hated-kinds }

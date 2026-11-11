@@ -26,18 +26,6 @@ Makes the weapon affect only units with the trait, as vanilla `affectundead` doe
 
 - **trait:** A vanilla trait, movement or ability command, `small`, `combatcaster`, or `tag "<name>"`. With more `onlyaffects` lines, the weapon affects units with any of them.
 
-=== ".c5se"
-
-    ```c5se
-    onlyaffects troll
-    ```
-
-    Or a tag your monsters carry:
-
-    ```c5se
-    onlyaffects tag "Nazgul"
-    ```
-
 === ".c5m"
 
     ```c5m
@@ -50,23 +38,23 @@ Makes the weapon affect only units with the trait, as vanilla `affectundead` doe
     #!@onlyaffects tag "Nazgul"
     ```
 
-### doesntaffect &lt;trait&gt; { #doesntaffect .command data-toc-label="doesntaffect" data-added="2.5" }
-
-Makes units with the trait unaffected by the weapon, as vanilla `inanimate` does for lifeless units. A unit that matches both `onlyaffects` and `doesntaffect` is unaffected.
-
-- **trait:** A vanilla trait, movement or ability command, `small`, `combatcaster`, or `tag "<name>"`. With more `doesntaffect` lines, units with any of them are unaffected.
-
 === ".c5se"
 
     ```c5se
-    doesntaffect immortal
+    onlyaffects troll
     ```
 
     Or a tag your monsters carry:
 
     ```c5se
-    doesntaffect tag "Nazgul"
+    onlyaffects tag "Nazgul"
     ```
+
+### doesntaffect &lt;trait&gt; { #doesntaffect .command data-toc-label="doesntaffect" data-added="2.5" }
+
+Makes units with the trait unaffected by the weapon, as vanilla `inanimate` does for lifeless units. A unit that matches both `onlyaffects` and `doesntaffect` is unaffected.
+
+- **trait:** A vanilla trait, movement or ability command, `small`, `combatcaster`, or `tag "<name>"`. With more `doesntaffect` lines, units with any of them are unaffected.
 
 === ".c5m"
 
@@ -80,23 +68,23 @@ Makes units with the trait unaffected by the weapon, as vanilla `inanimate` does
     #!@doesntaffect tag "Nazgul"
     ```
 
-### doubledmgvs &lt;trait&gt; { #doubledmgvs .command data-toc-label="doubledmgvs" data-added="2.5" }
-
-Doubles the weapon's damage against units with the trait, as vanilla `stonekill` does against stone beings. Vanilla `holykill`, `undkill` or `stonekill` on the same weapon doubles it again.
-
-- **trait:** A vanilla trait, movement or ability command, `small`, `combatcaster`, or `tag "<name>"`. With more `doubledmgvs` lines, the damage doubles once when any of them matches.
-
 === ".c5se"
 
     ```c5se
-    doubledmgvs troll
+    doesntaffect immortal
     ```
 
     Or a tag your monsters carry:
 
     ```c5se
-    doubledmgvs tag "Nazgul"
+    doesntaffect tag "Nazgul"
     ```
+
+### doubledmgvs &lt;trait&gt; { #doubledmgvs .command data-toc-label="doubledmgvs" data-added="2.5" }
+
+Doubles the weapon's damage against units with the trait, as vanilla `stonekill` does against stone beings. Vanilla `holykill`, `undkill` or `stonekill` on the same weapon doubles it again.
+
+- **trait:** A vanilla trait, movement or ability command, `small`, `combatcaster`, or `tag "<name>"`. With more `doubledmgvs` lines, the damage doubles once when any of them matches.
 
 === ".c5m"
 
@@ -110,24 +98,24 @@ Doubles the weapon's damage against units with the trait, as vanilla `stonekill`
     #!@doubledmgvs tag "Nazgul"
     ```
 
+=== ".c5se"
+
+    ```c5se
+    doubledmgvs troll
+    ```
+
+    Or a tag your monsters carry:
+
+    ```c5se
+    doubledmgvs tag "Nazgul"
+    ```
+
 ### beamwidth &lt;width&gt; [lines] <span class="new-badge">New</span> { #beamwidth .command data-toc-label="beamwidth" data-added="3.0" }
 
 Makes the weapon's beam as many squares wide as you choose, where vanilla's beams are one square wide. Use it for breaths and beam spells that should hit more than one line of units. It works only on a beam (`aoe` 10xx or 50xx in ["Weapon Modding Numbers"](https://www.illwinter.com/coe5/coe5modding.pdf#page=6)); CoE5SE ignores it on any other `aoe`. Like vanilla's beam on its line, the side lanes hit the attacker's own units too, and vanilla `onlyenemy` keeps them off. In battle, units aim a wide beam as if it were one square wide (for now). `clearwspec` leaves the width as it is, and `beamwidth 1` puts vanilla's one-square beam back. Without CoE5SE, the beam stays one square wide.
 
 - **width:** The beam's width in squares, 1 to 15. Each lane is as long as the beam: the xx of its `aoe`. An odd width is centred on the aim, and an even one has its extra lane on one side.
 - **lines:** Draws a trail for each lane instead of one trail as wide as the beam. With a fire look (`flylook 95`) the lines run together, so use `lines` with a thin look like Energy Beam's (`flylook 214`). Either trail needs a particle fly mode like Fiery Breath's `flymode 4`: a `flymode 1` sprite flies once down the centre at its usual size.
-
-=== ".c5se"
-
-    ```c5se
-    beamwidth 3
-    ```
-
-    Or a trail for each lane:
-
-    ```c5se
-    beamwidth 3 lines
-    ```
 
 === ".c5m"
 
@@ -141,6 +129,18 @@ Makes the weapon's beam as many squares wide as you choose, where vanilla's beam
     #!@beamwidth 3 lines
     ```
 
+=== ".c5se"
+
+    ```c5se
+    beamwidth 3
+    ```
+
+    Or a trail for each lane:
+
+    ```c5se
+    beamwidth 3 lines
+    ```
+
 ### reanimate [&lt;type&gt;] "&lt;monster&gt;" <span class="new-badge">New</span> { #reanimate .command data-toc-label="reanimate" data-added="3.2" }
 
 A victim killed by the weapon becomes this monster instead of a Soulless. Like vanilla `reanimate`, it does not affect undead, tiny, ethereal or inanimate victims, and the victim leaves its corpse.
@@ -148,16 +148,16 @@ A victim killed by the weapon becomes this monster instead of a Soulless. Like v
 - **type:** Optional. Only victims that leave this type of corpse: a vanilla [corpse type](corpses.md) or group, or a mod's corpse type in double quotes. A line with a type is used before the line without one. Other victims become a Soulless.
 - **monster:** The monster's name, in double quotes.
 
-=== ".c5se"
+=== ".c5m"
 
-    ```c5se
+    ```c5m
     reanimate "Wight"
     reanimate human "Wraith"
     ```
 
-=== ".c5m"
+=== ".c5se"
 
-    ```c5m
+    ```c5se
     reanimate "Wight"
     reanimate human "Wraith"
     ```
@@ -168,68 +168,19 @@ A victim killed by the weapon becomes this monster, instead of the monster that 
 
 - **monster:** The monster's name, in double quotes.
 
-=== ".c5se"
-
-    ```c5se
-    mutate "Goblin"
-    ```
-
 === ".c5m"
 
     ```c5m
     mutate "Goblin"
     ```
 
-### Example weapons { #example }
-
 === ".c5se"
 
     ```c5se
-    newweapon "Barrow-blade"
-    dmg 6
-    doubledmgvs troll
-    doubledmgvs immortal
-
-    newweapon "Black Breath"
-    dmg 4
-    doesntaffect tag "Nazgul"
-    doesntaffect demonic
-
-    newweapon "Dawn Light"
-    dmg 20
-    onlyaffects troll
-
-    newweapon "Flame of Udun"
-    range 10
-    dmgtype 4
-    dmg 15
-    aoe 1010
-    flymode 4
-    flylook 95
-    look 68
-    beamwidth 15
-    onlyenemy
-
-    newweapon "Blade of the Witch-king"
-    dmg 8
-    reanimate "Wight"
-    reanimate human "Wraith"
-
-    newweapon "Torment of Angband"
-    dmg 10
     mutate "Goblin"
-
-    newweapon "Light of Earendil"
-    range 8
-    dmgtype 6
-    dmg 10
-    aoe 5008
-    flymode 4
-    flylook 214
-    beamwidth 3 lines
-    doubledmgvs undead
-    onlyenemy
     ```
+
+### Example weapons { #example }
 
 === ".c5m"
 
@@ -277,5 +228,54 @@ A victim killed by the weapon becomes this monster, instead of the monster that 
     flylook 214
     #!@beamwidth 3 lines
     #!@doubledmgvs undead
+    onlyenemy
+    ```
+
+=== ".c5se"
+
+    ```c5se
+    newweapon "Barrow-blade"
+    dmg 6
+    doubledmgvs troll
+    doubledmgvs immortal
+
+    newweapon "Black Breath"
+    dmg 4
+    doesntaffect tag "Nazgul"
+    doesntaffect demonic
+
+    newweapon "Dawn Light"
+    dmg 20
+    onlyaffects troll
+
+    newweapon "Flame of Udun"
+    range 10
+    dmgtype 4
+    dmg 15
+    aoe 1010
+    flymode 4
+    flylook 95
+    look 68
+    beamwidth 15
+    onlyenemy
+
+    newweapon "Blade of the Witch-king"
+    dmg 8
+    reanimate "Wight"
+    reanimate human "Wraith"
+
+    newweapon "Torment of Angband"
+    dmg 10
+    mutate "Goblin"
+
+    newweapon "Light of Earendil"
+    range 8
+    dmgtype 6
+    dmg 10
+    aoe 5008
+    flymode 4
+    flylook 214
+    beamwidth 3 lines
+    doubledmgvs undead
     onlyenemy
     ```

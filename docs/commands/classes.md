@@ -15,16 +15,16 @@ Picks a class by string, as a mod's class number changes with the mods a player 
 
 A name no class has stops the game with its Mod Error at that line, naming the class. Turn on the mod with the class, and make it load before yours.
 
-=== ".c5se"
-
-    ```c5se
-    selectclass "Stewards of Gondor"
-    ```
-
 === ".c5m"
 
     ```c5m
     #!@selectclass "Stewards of Gondor"
+    ```
+
+=== ".c5se"
+
+    ```c5se
+    selectclass "Stewards of Gondor"
     ```
 
 ### aiclass 2 { #aiclass .command data-toc-label="aiclass" data-added="2.10" }
@@ -33,15 +33,15 @@ Takes the class away from every player, human and AI: Choose Class leaves it out
 
 Leave enough classes for every Random player. With "unique random players" on and more AIs than classes left to them, the extra AIs get your `aiclass 2` classes. The game can't start a Random player with no class to pick.
 
-=== ".c5se"
-
-    ```c5se
-    aiclass 2
-    ```
-
 === ".c5m"
 
     ```c5m
+    aiclass 2
+    ```
+
+=== ".c5se"
+
+    ```c5se
     aiclass 2
     ```
 
@@ -53,17 +53,6 @@ Leave enough classes for every Random player. With "unique random players" on an
 
 ### Example { #example }
 
-=== ".c5se"
-
-    ```c5se
-    selectclass "Baron"
-    aiclass 2
-    selectclass "Senator"
-    aiclass 2
-    selectclass "Monkey Maharaja"
-    aiclass 2
-    ```
-
 === ".c5m"
 
     ```c5m
@@ -72,5 +61,16 @@ Leave enough classes for every Random player. With "unique random players" on an
     #!@selectclass "Senator"
     aiclass 2
     #!@selectclass "Monkey Maharaja"
+    aiclass 2
+    ```
+
+=== ".c5se"
+
+    ```c5se
+    selectclass "Baron"
+    aiclass 2
+    selectclass "Senator"
+    aiclass 2
+    selectclass "Monkey Maharaja"
     aiclass 2
     ```

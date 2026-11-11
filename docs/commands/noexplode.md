@@ -13,25 +13,6 @@ Caps the damage die of the weapon whose block it's in, after `newweapon` or `sel
 <!-- vale CoE5SE.Reports = YES -->
 - **start**, **end:** `noexplode start` covers every weapon and every `addstring` down to the `noexplode end` line. It skips the weapon whose block it sits in, so put it above the first `newweapon` or `selectweapon` it's for. Without an `end`, it runs to the end of your mod's files. Inside a range, `clearwspec` doesn't last, as the next line puts `noexplode` back. To leave a weapon out, put `noexplode end` above its block and `noexplode start` inside it.
 
-=== ".c5se"
-
-    ```c5se
-    noexplode
-    ```
-
-    Or one part of the string above, while the others still explode:
-
-    ```c5se
-    noexplode 1
-    ```
-
-    Or every weapon and summoning string between two lines:
-
-    ```c5se
-    noexplode start
-    noexplode end
-    ```
-
 === ".c5m"
 
     ```c5m
@@ -49,6 +30,25 @@ Caps the damage die of the weapon whose block it's in, after `newweapon` or `sel
     ```c5m
     #!@noexplode start
     #!@noexplode end
+    ```
+
+=== ".c5se"
+
+    ```c5se
+    noexplode
+    ```
+
+    Or one part of the string above, while the others still explode:
+
+    ```c5se
+    noexplode 1
+    ```
+
+    Or every weapon and summoning string between two lines:
+
+    ```c5se
+    noexplode start
+    noexplode end
     ```
 
 <!-- vale CoE5SE.Reports = NO -->
@@ -63,33 +63,26 @@ Caps the damage die of the weapon whose block it's in, after `newweapon` or `sel
 
 ### A new weapon { #example-weapon }
 
-=== ".c5se"
-
-    ```c5se
-    newweapon "Morgul Blade"
-    dmg 6
-    noexplode
-    ```
-
 === ".c5m"
 
     ```c5m
     newweapon "Morgul Blade"
     dmg 6
     #!@noexplode
+    ```
+
+=== ".c5se"
+
+    ```c5se
+    newweapon "Morgul Blade"
+    dmg 6
+    noexplode
     ```
 
 ### A vanilla weapon { #example-vanilla-weapon }
 
 Every monster with the weapon gets it. This one is on 145 of the game's monsters.
 
-=== ".c5se"
-
-    ```c5se
-    selectweapon "Bite"
-    noexplode
-    ```
-
 === ".c5m"
 
     ```c5m
@@ -97,13 +90,20 @@ Every monster with the weapon gets it. This one is on 145 of the game's monsters
     #!@noexplode
     ```
 
-### A monster's attack { #example-monster }
-
 === ".c5se"
 
     ```c5se
-    newweapon "Sting of Shelob"
+    selectweapon "Bite"
     noexplode
+    ```
+
+### A monster's attack { #example-monster }
+
+=== ".c5m"
+
+    ```c5m
+    newweapon "Sting of Shelob"
+    #!@noexplode
 
     newmonster "Shelob"
     copystats "Giant Spider"
@@ -112,11 +112,11 @@ Every monster with the weapon gets it. This one is on 145 of the game's monsters
     meleeweapon 18 "Sting of Shelob"
     ```
 
-=== ".c5m"
+=== ".c5se"
 
-    ```c5m
+    ```c5se
     newweapon "Sting of Shelob"
-    #!@noexplode
+    noexplode
 
     newmonster "Shelob"
     copystats "Giant Spider"
@@ -127,18 +127,6 @@ Every monster with the weapon gets it. This one is on 145 of the game's monsters
 
 ### A magic item { #example-item }
 
-=== ".c5se"
-
-    ```c5se
-    newweapon "Anduril"
-    dmg 12
-    noexplode
-
-    newitem "Flame of the West"
-    type 1
-    itemwep "Anduril"
-    ```
-
 === ".c5m"
 
     ```c5m
@@ -151,21 +139,21 @@ Every monster with the weapon gets it. This one is on 145 of the game's monsters
     itemwep "Anduril"
     ```
 
-### A spell { #example-spell }
-
-The spell's number sets the die, and the weapon carries `noexplode`.
-
 === ".c5se"
 
     ```c5se
-    newweapon "Whip of Udun"
+    newweapon "Anduril"
+    dmg 12
     noexplode
 
-    newspell "Wrath of the Balrog"
-    path "Pyromancy"
-    level 3
-    weapon 30 "Whip of Udun"
+    newitem "Flame of the West"
+    type 1
+    itemwep "Anduril"
     ```
+
+### A spell { #example-spell }
+
+The spell's number sets the die, and the weapon carries `noexplode`.
 
 === ".c5m"
 
@@ -179,18 +167,19 @@ The spell's number sets the die, and the weapon carries `noexplode`.
     #!@weapon 30 "Whip of Udun"
     ```
 
-### A summoning ritual { #example-summoning }
-
 === ".c5se"
 
     ```c5se
-    newritual "Muster of the Dead"
-    descr "The Witch-king raises a measured host."
-    level 3
-    summoning
-    addstring "3d6*Soulless"
+    newweapon "Whip of Udun"
     noexplode
+
+    newspell "Wrath of the Balrog"
+    path "Pyromancy"
+    level 3
+    weapon 30 "Whip of Udun"
     ```
+
+### A summoning ritual { #example-summoning }
 
 === ".c5m"
 
@@ -203,18 +192,18 @@ The spell's number sets the die, and the weapon carries `noexplode`.
     #!@noexplode
     ```
 
-### One part of a summon string { #example-part }
-
 === ".c5se"
 
     ```c5se
-    newritual "Barrow Summons"
-    descr "The Witch-king calls up the dead of the Barrow-downs."
-    level 1
+    newritual "Muster of the Dead"
+    descr "The Witch-king raises a measured host."
+    level 3
     summoning
-    addstring "1d3+2*Wight & 3d6*Soulless"
-    noexplode 1
+    addstring "3d6*Soulless"
+    noexplode
     ```
+
+### One part of a summon string { #example-part }
 
 === ".c5m"
 
@@ -227,21 +216,20 @@ The spell's number sets the die, and the weapon carries `noexplode`.
     #!@noexplode 1
     ```
 
-### One string of several { #example-strings }
-
-Each `addstring` keeps its own rule, so one roll of this ritual can stay capped and the other can explode.
-
 === ".c5se"
 
     ```c5se
-    newritual "Horn of Dunharrow"
-    descr "Sometimes a measured company answers, sometimes the whole mountain."
-    level 4
+    newritual "Barrow Summons"
+    descr "The Witch-king calls up the dead of the Barrow-downs."
+    level 1
     summoning
-    addstring "2d6*Longdead"
-    noexplode
-    addstring "2d6*Soulless"
+    addstring "1d3+2*Wight & 3d6*Soulless"
+    noexplode 1
     ```
+
+### One string of several { #example-strings }
+
+Each `addstring` keeps its own rule, so one roll of this ritual can stay capped and the other can explode.
 
 === ".c5m"
 
@@ -255,25 +243,19 @@ Each `addstring` keeps its own rule, so one roll of this ritual can stay capped 
     addstring "2d6*Soulless"
     ```
 
-### A whole armory { #example-range }
-
 === ".c5se"
 
     ```c5se
-    noexplode start
-    newweapon "Blade of Gondolin"
-    dmg 8
-
-    newweapon "Spear of Gil-galad"
-    dmg 10
-
-    newritual "Host of the Last Alliance"
-    descr "Every blade and every banner, counted to the last."
-    level 6
+    newritual "Horn of Dunharrow"
+    descr "Sometimes a measured company answers, sometimes the whole mountain."
+    level 4
     summoning
-    addstring "2d6*Wight"
-    noexplode end
+    addstring "2d6*Longdead"
+    noexplode
+    addstring "2d6*Soulless"
     ```
+
+### A whole armory { #example-range }
 
 === ".c5m"
 
@@ -291,4 +273,22 @@ Each `addstring` keeps its own rule, so one roll of this ritual can stay capped 
     summoning
     addstring "2d6*Wight"
     #!@noexplode end
+    ```
+
+=== ".c5se"
+
+    ```c5se
+    noexplode start
+    newweapon "Blade of Gondolin"
+    dmg 8
+
+    newweapon "Spear of Gil-galad"
+    dmg 10
+
+    newritual "Host of the Last Alliance"
+    descr "Every blade and every banner, counted to the last."
+    level 6
+    summoning
+    addstring "2d6*Wight"
+    noexplode end
     ```

@@ -17,20 +17,6 @@ Points the command at the first monster with that name, capitals ignored. The sa
 
 `copystats` points these at a different monster, so write them again below the `copystats` line.
 
-=== ".c5se"
-
-    The first monster with the name:
-
-    ```c5se
-    spawnoffs "Giant Spider"
-    ```
-
-    Or the second:
-
-    ```c5se
-    growoffs 1:"Longdead"
-    ```
-
 === ".c5m"
 
     The first monster with the name:
@@ -45,6 +31,20 @@ Points the command at the first monster with that name, capitals ignored. The sa
     #!@growoffs 1:"Longdead"
     ```
 
+=== ".c5se"
+
+    The first monster with the name:
+
+    ```c5se
+    spawnoffs "Giant Spider"
+    ```
+
+    Or the second:
+
+    ```c5se
+    growoffs 1:"Longdead"
+    ```
+
 ### gainrit "&lt;ritual&gt;" [n] { #gainrit .command data-toc-label="gainrit" data-added="2.3" }
 
 Teaches the ritual with that name, capitals ignored. Goes after `newritual` or `selectritual`.
@@ -52,31 +52,19 @@ Teaches the ritual with that name, capitals ignored. Goes after `newritual` or `
 - **ritual:** The ritual's name. It must exist before the line.
 - **n:** 0 for the first ritual with that name, 1 for the second. Without it, the first.
 
-=== ".c5se"
-
-    ```c5se
-    gainrit "Ritual of Mastery"
-    ```
-
 === ".c5m"
 
     ```c5m
     #!@gainrit "Ritual of Mastery"
     ```
 
-### Example names { #example }
-
 === ".c5se"
 
     ```c5se
-    newmonster "Mirkwood Spider"
-    copystats "Giant Spider"
-    copyspr "Giant Spider"
-    lookslike "Giant Spider"
-
-    selectritual "Lesser Ritual of Mastery"
     gainrit "Ritual of Mastery"
     ```
+
+### Example names { #example }
 
 === ".c5m"
 
@@ -88,4 +76,16 @@ Teaches the ritual with that name, capitals ignored. Goes after `newritual` or `
 
     selectritual "Lesser Ritual of Mastery"
     #!@gainrit "Ritual of Mastery"
+    ```
+
+=== ".c5se"
+
+    ```c5se
+    newmonster "Mirkwood Spider"
+    copystats "Giant Spider"
+    copyspr "Giant Spider"
+    lookslike "Giant Spider"
+
+    selectritual "Lesser Ritual of Mastery"
+    gainrit "Ritual of Mastery"
     ```

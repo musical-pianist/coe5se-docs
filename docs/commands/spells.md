@@ -15,16 +15,16 @@ Creates a spell.
 
 - **name:** The spell's name, in double quotes ([length limit](limits.md#spells)).
 
-=== ".c5se"
-
-    ```c5se
-    newspell "Gandalf's Light"
-    ```
-
 === ".c5m"
 
     ```c5m
     #!@newspell "Gandalf's Light"
+    ```
+
+=== ".c5se"
+
+    ```c5se
+    newspell "Gandalf's Light"
     ```
 
 ### path "&lt;name&gt;" | &lt;nbr&gt; { #path .command data-toc-label="path" data-added="1.2" }
@@ -33,26 +33,6 @@ Sets the spell's magic path.
 
 - **name:** The name of a game path, or of one made with [`newspellpath`](spell-paths.md#newspellpath).
 - **nbr:** A path number, 1 to 69. Use instead of a name.
-
-=== ".c5se"
-
-    A game path, by name:
-
-    ```c5se
-    path "Pyromancy"
-    ```
-
-    Or the same path, by number:
-
-    ```c5se
-    path 3
-    ```
-
-    Or a path made with `newspellpath`:
-
-    ```c5se
-    path "Lore of the Istari"
-    ```
 
 === ".c5m"
 
@@ -74,22 +54,42 @@ Sets the spell's magic path.
     #!@path "Lore of the Istari"
     ```
 
+=== ".c5se"
+
+    A game path, by name:
+
+    ```c5se
+    path "Pyromancy"
+    ```
+
+    Or the same path, by number:
+
+    ```c5se
+    path 3
+    ```
+
+    Or a path made with `newspellpath`:
+
+    ```c5se
+    path "Lore of the Istari"
+    ```
+
 ### level &lt;level&gt; { #level .command data-toc-label="level" data-added="1.2" }
 
 Sets the spell's level. Inside a spell only; elsewhere `level` is the game's ritual level.
 
 - **level:** The spell's level, 1 to 3.
 
-=== ".c5se"
-
-    ```c5se
-    level 2
-    ```
-
 === ".c5m"
 
     ```c5m
     #!@level 2
+    ```
+
+=== ".c5se"
+
+    ```c5se
+    level 2
     ```
 
 ### weapon &lt;dmg&gt; "&lt;weapon&gt;" | &lt;nbr&gt; { #weapon .command data-toc-label="weapon" data-added="1.2" }
@@ -99,20 +99,6 @@ Sets the weapon the spell casts and its damage, as `meleeweapon` does for a mons
 - **dmg:** The damage.
 - **weapon:** The weapon's name. The weapon must exist before this line: one of the game's, or one made earlier with `newweapon`.
 - **nbr:** A weapon number. Use instead of a name.
-
-=== ".c5se"
-
-    A weapon by name:
-
-    ```c5se
-    weapon 15 "Fireball"
-    ```
-
-    Or the same weapon, by number:
-
-    ```c5se
-    weapon 15 54
-    ```
 
 === ".c5m"
 
@@ -128,16 +114,21 @@ Sets the weapon the spell casts and its damage, as `meleeweapon` does for a mons
     #!@weapon 15 54
     ```
 
-### Example spell { #example }
-
 === ".c5se"
 
+    A weapon by name:
+
     ```c5se
-    newspell "Flame of Anor"
-    path "Pyromancy"
-    level 3
     weapon 15 "Fireball"
     ```
+
+    Or the same weapon, by number:
+
+    ```c5se
+    weapon 15 54
+    ```
+
+### Example spell { #example }
 
 === ".c5m"
 
@@ -146,4 +137,13 @@ Sets the weapon the spell casts and its damage, as `meleeweapon` does for a mons
     #!@path "Pyromancy"
     #!@level 3
     #!@weapon 15 "Fireball"
+    ```
+
+=== ".c5se"
+
+    ```c5se
+    newspell "Flame of Anor"
+    path "Pyromancy"
+    level 3
+    weapon 15 "Fireball"
     ```

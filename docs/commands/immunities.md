@@ -22,16 +22,6 @@ A caster skips the monster for a spell that `killres`, `polymorphres` or `petrif
 
 ### Example monster { #example }
 
-=== ".c5se"
-
-    ```c5se
-    selectmonster "Witch-king of Angmar"
-    killres
-    polymorphres
-    petrifyres
-    feebleres
-    ```
-
 === ".c5m"
 
     ```c5m
@@ -40,4 +30,14 @@ A caster skips the monster for a spell that `killres`, `polymorphres` or `petrif
     #!@polymorphres
     #!@petrifyres
     #!@feebleres
+    ```
+
+=== ".c5se"
+
+    ```c5se
+    selectmonster "Witch-king of Angmar"
+    killres
+    polymorphres
+    petrifyres
+    feebleres
     ```

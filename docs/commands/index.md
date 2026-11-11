@@ -2,15 +2,8 @@
 
 # CoE5SE Commands
 
-The commands CoE5SE adds to a mod's files, and the game's commands it reads its own way.
-
-### Files { #where }
-
-Put CoE5SE's commands in your mod's .c5se: a file next to its .c5m, with the same name. CoE5SE reads it right after the .c5m. Without CoE5SE the game never opens it, so your mod still loads, without those lines.
-
-Or put them in the .c5m, each line starting with `#!@`. The game without CoE5SE skips those lines.
-
-Examples have a .c5se tab and a .c5m tab. The few commands that work in one file only say so.
+The commands CoE5SE adds to a mod's files, and the game's commands it reads its own way. Which file each goes in: [The .c5m and the .c5se](../index.md#files).
+{: #where }
 
 ### Pages { #pages }
 

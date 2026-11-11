@@ -10,21 +10,21 @@ Sets the room for the data files your mod's Lua script saves. Goes in the .c5se 
 
 - **megabytes:** The room your script's data files may take, 1 to 100. Without the line, 10. A save that would go past it fails, and CoE5SE deletes nothing to make room.
 
-=== ".c5se"
-
-    ```c5se
-    maxdata 20
-    ```
-
 === ".c5m"
 
     ```c5m
     #!@maxdata 20
     ```
 
+=== ".c5se"
+
+    ```c5se
+    maxdata 20
+    ```
+
 ### include "&lt;file&gt;" { #include .command data-toc-label="include" data-added="2.10" }
 
-Lets you arrange your mod in as many .c5se files and folders as you wish, for your own organization: by faction, by region, or by units, spells, and events. Put the `include` lines only in your mod's ROOT files: [its .c5se](index.md), or `#!@` lines of its .c5m.
+Lets you arrange your mod in as many .c5se files and folders as you wish, for your own organization: by faction, by region, or by units, spells, and events. Put the `include` lines only in your mod's ROOT files: [its .c5se](../index.md#files), or `#!@` lines of its .c5m.
 
 ```text
 LOTROverhaulMod/
@@ -49,18 +49,18 @@ Ship the folders with your mod. In a network or hotseat game, changing a file af
 
 Including a missing file, or one twice, stops the game with the Mod Error. An `include` inside an event, an included file, or a .c5m line without `#!@` does too. For a mistake inside an included file, the Mod Error gives its path and line.
 
-=== ".c5se"
-
-    ```c5se
-    include "rohan/riders.c5se"
-    include "mordor/orcs.c5se"
-    ```
-
 === ".c5m"
 
     ```c5m
     #!@include "rohan/riders.c5se"
     #!@include "mordor/orcs.c5se"
+    ```
+
+=== ".c5se"
+
+    ```c5se
+    include "rohan/riders.c5se"
+    include "mordor/orcs.c5se"
     ```
 
 ```c5se title="rohan/riders.c5se"
@@ -81,18 +81,6 @@ weapon 4 "Heal"
 
 ### Example { #example }
 
-=== ".c5se"
-
-    ```c5se
-    maxdata 20
-    include "ring_quest.c5se"
-    include "rohan/riders.c5se"
-    include "rohan/edoras/spells.c5se"
-    include "gondor/minas_tirith/guard.c5se"
-    include "mordor/orcs.c5se"
-    include "mordor/barad_dur/rituals.c5se"
-    ```
-
 === ".c5m"
 
     ```c5m
@@ -103,6 +91,18 @@ weapon 4 "Heal"
     #!@include "gondor/minas_tirith/guard.c5se"
     #!@include "mordor/orcs.c5se"
     #!@include "mordor/barad_dur/rituals.c5se"
+    ```
+
+=== ".c5se"
+
+    ```c5se
+    maxdata 20
+    include "ring_quest.c5se"
+    include "rohan/riders.c5se"
+    include "rohan/edoras/spells.c5se"
+    include "gondor/minas_tirith/guard.c5se"
+    include "mordor/orcs.c5se"
+    include "mordor/barad_dur/rituals.c5se"
     ```
 
 Your mod's folder with those files:
