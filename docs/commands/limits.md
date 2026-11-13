@@ -36,6 +36,8 @@ Every cap CoE5SE sets, in one place. It covers what all enabled mods can add tog
 | Command | Limit |
 | --- | --- |
 | [`tag`](monster-traits.md#tag) | 31 characters in a tag's name |
+| [`itemslots`](monster-traits.md#itemslots) | 20 item slots on a monster |
+| [`itemslots`](monster-traits.md#itemslots) | 16 attacks a monster makes, its weapon items' included (the game's) |
 
 ## Planes { #planes }
 

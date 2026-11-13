@@ -4,6 +4,12 @@
 
 The commands and pages each CoE5SE release added, newest first.
 
+## CoE5SE 3.4 { #v3-4 }
+
+- **[Mod Settings](commands/mod-settings.md)**: [`parent`](commands/mod-settings.md#parent)
+- **[Monster Traits](commands/monster-traits.md)**: [`itemslots`](commands/monster-traits.md#itemslots), [`keepweapons`](commands/monster-traits.md#keepweapons)
+- **[Ritual Effects](commands/ritual-effects.md)**: [`castermaxcast`](commands/ritual-effects.md#castermaxcast)
+
 ## CoE5SE 3.3 { #v3-3 }
 
 [Release notes on GitHub](https://github.com/musical-pianist/coe5se/releases/tag/CoE5SE-v3.3.0)

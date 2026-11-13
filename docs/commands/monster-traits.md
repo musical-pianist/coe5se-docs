@@ -5,7 +5,7 @@ status: new
 
 # Monster Traits
 
-Give a monster Small, Combat Caster or Hates, and take off any one trait while keeping the rest.
+Give a monster Small, Combat Caster or Hates, and give a commander the item slots you want, like two weapons and nine misc items. Take off any one trait while keeping the rest.
 
 These go after `newmonster`, `selectmonster`, `newitem` or `selectitem`. A `0` after a trait removes it: `small 0`. With CoE5SE the same works for these vanilla traits:
 
@@ -207,6 +207,81 @@ Tags the monster for a weapon's [`onlyaffects`](weapon-traits.md#onlyaffects), [
     doesntaffect tag "Nazgul"
     ```
 
+### itemslots "&lt;item type&gt;" &lt;count&gt; <span class="new-badge">New</span> { #itemslots .command data-toc-label="itemslots" data-added="3.4" }
+
+Gives the monster this many slots of an item type. Its first `itemslots` line replaces vanilla's slots, so give it a line for every type it should have. `copystats` and `clearspec` affect it. Monsters only.
+
+The first weapon item works as in vanilla. Each one after it goes into another of the monster's damaging melee weapons, then adds an attack once none is left ([attack limit](limits.md#monster-traits)).
+
+- **item type:** An [item type](#item-types) by string or number. Case counts.
+- **count:** How many slots of that type. All its lines together stay within the [slot limit](limits.md#monster-traits). A second line for the same type is ignored <!-- vale CoE5SE.Reports = NO -->(logged in `coe5mod.log`)<!-- vale CoE5SE.Reports = YES -->.
+
+=== ".c5m"
+
+    By name:
+
+    ```c5m
+    #!@itemslots "weapon" 2
+    #!@itemslots "helmet" 1
+    #!@itemslots "body armor" 1
+    #!@itemslots "misc item" 9
+    ```
+
+    Or by number:
+
+    ```c5m
+    #!@itemslots 1 2
+    ```
+
+=== ".c5se"
+
+    By name:
+
+    ```c5se
+    itemslots "weapon" 2
+    itemslots "helmet" 1
+    itemslots "body armor" 1
+    itemslots "misc item" 9
+    ```
+
+    Or by number:
+
+    ```c5se
+    itemslots 1 2
+    ```
+
+### keepweapons <span class="new-badge">New</span> { #keepweapons .command data-toc-label="keepweapons" data-added="3.4" }
+
+Makes each weapon item after the first add an attack, instead of going into another of the monster's damaging melee weapons. `copystats` and `clearspec` affect it. Monsters only.
+
+=== ".c5m"
+
+    On:
+
+    ```c5m
+    #!@keepweapons
+    ```
+
+    Or off, on a monster that has it:
+
+    ```c5m
+    #!@keepweapons 0
+    ```
+
+=== ".c5se"
+
+    On:
+
+    ```c5se
+    keepweapons
+    ```
+
+    Or off, on a monster that has it:
+
+    ```c5se
+    keepweapons 0
+    ```
+
 ### Example monsters { #example }
 
 === ".c5m"
@@ -230,6 +305,23 @@ Tags the monster for a weapon's [`onlyaffects`](weapon-traits.md#onlyaffects), [
     copystats "Ghost King"
     copyspr "Ghost King"
     #!@tag "Nazgul"
+
+    newmonster "Aragorn"
+    copystats "Baron"
+    copyspr "Baron"
+    #!@itemslots "weapon" 2
+    #!@itemslots "helmet" 1
+    #!@itemslots "body armor" 1
+    #!@itemslots "gauntlets" 1
+    #!@itemslots "boots" 1
+    #!@itemslots "misc item" 4
+
+    newmonster "Ranger of the North"
+    copystats "Assassin"
+    copyspr "Assassin"
+    #!@itemslots "weapon" 2
+    #!@itemslots "misc item" 2
+    #!@keepweapons
     ```
 
 === ".c5se"
@@ -253,6 +345,23 @@ Tags the monster for a weapon's [`onlyaffects`](weapon-traits.md#onlyaffects), [
     copystats "Ghost King"
     copyspr "Ghost King"
     tag "Nazgul"
+
+    newmonster "Aragorn"
+    copystats "Baron"
+    copyspr "Baron"
+    itemslots "weapon" 2
+    itemslots "helmet" 1
+    itemslots "body armor" 1
+    itemslots "gauntlets" 1
+    itemslots "boots" 1
+    itemslots "misc item" 4
+
+    newmonster "Ranger of the North"
+    copystats "Assassin"
+    copyspr "Assassin"
+    itemslots "weapon" 2
+    itemslots "misc item" 2
+    keepweapons
     ```
 
 ### Hated kinds { #hated-kinds }
@@ -267,3 +376,16 @@ Tags the monster for a weapon's [`onlyaffects`](weapon-traits.md#onlyaffects), [
     | `"earth beings"` | 4 | Storm Giants |
     | `"witches & cultists"` | 5 | Inquisitors and Paladins |
     | `"snake beings"` | 6 | Garudas |
+
+### Item types { #item-types }
+
+??? info "Names and numbers"
+
+    | Type | Number |
+    | --- | --- |
+    | `"weapon"` | 1 |
+    | `"helmet"` | 3 |
+    | `"body armor"` | 4 |
+    | `"gauntlets"` | 5 |
+    | `"boots"` | 6 |
+    | `"misc item"` | 7 |

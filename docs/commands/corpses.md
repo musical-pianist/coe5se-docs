@@ -229,13 +229,19 @@ Ritual cannot be cast unless the caster's square has a corpse its `raisedead`, `
 
 Creates corpses of this type in the target square instead of human corpses. Can also be used in events, where it puts the corpses in the target square, or in every square of a `squareevent`.
 
-- **amount:** Add 10000 to scale with the sacrifice amount, as in the game's `putcorpses`. In events 1 to 9999.
-- **type:** A vanilla [type](#corpse-kinds), or a mod's corpse type in double quotes. Leave it out in events to create human corpses.
+- **amount:** A number, or open ended dice for a random amount, like `1d6+100`. Add 10000 to scale with the sacrifice amount, as in vanilla. In events 1 to 9999. Dice roll again for each square of a `squareevent`.
+- **type:** A vanilla [type](#corpse-kinds), or a mod's corpse type in double quotes. Leave it out to create human corpses.
 
 === ".c5m"
 
     ```c5m
     putcorpses 10 giant
+    ```
+
+    Or dice:
+
+    ```c5m
+    putcorpses 2d6+10 giant
     ```
 
     Or a mod's corpse type:
@@ -261,6 +267,12 @@ Creates corpses of this type in the target square instead of human corpses. Can 
     putcorpses 10 giant
     ```
 
+    Or dice:
+
+    ```c5se
+    putcorpses 2d6+10 giant
+    ```
+
     Or a mod's corpse type:
 
     ```c5se
@@ -279,7 +291,7 @@ Creates corpses of this type in the target square instead of human corpses. Can 
     ```
 
 !!! warning "The AI ignores corpse types (for now)"
-    AI players ignore corpse types in rituals: `putcorpses` creates human corpses, and `raisedead`, `raiseanimals` and `raisecorpses` use every corpse they can. Caps and `maxraise` still apply. Events and `corpsetype` work the same for everyone. This is a temporary limitation as it has AI implications not yet built out.
+    AI players ignore corpse types in rituals: `putcorpses` creates human corpses, and `raisedead`, `raiseanimals` and `raisecorpses` use every corpse they can. Dice, caps and `maxraise` still apply. Events and `corpsetype` work the same for everyone. This is a temporary limitation as it has AI implications not yet built out.
 
 ### +mincorpses &lt;amount&gt; &lt;type&gt; { #mincorpses .command data-toc-label="+mincorpses and removecorpses" data-added="2.10" }
 
