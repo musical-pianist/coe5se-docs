@@ -173,9 +173,75 @@ Raise Dead will only use corpses of this type. Same for `raiseanimals` and anima
     raisedead humanoid 3
     ```
 
+### farraisedead [&lt;type&gt; [&lt;cap&gt;]] <span class="new-badge">New</span> { #farraisedead .command data-toc-label="farraisedead" data-added="3.5" }
+
+Like `raisedead`, but it will occur at target location instead of at the caster's location, as `farsummon` does for `summoning`. Set the target location with the ritual's targeting commands, like `chooseloc`, and `aitarg` for AI players; without them it is the caster's square. The units go to the caster's player, or to the player a `setplayer` above this line names, and follow no commander.
+
+- **type** and **cap:** Optional, as for `raisedead`.
+
+=== ".c5m"
+
+    ```c5m
+    #!@farraisedead
+    ```
+
+    Or at most 3, of any humanoid type:
+
+    ```c5m
+    #!@farraisedead humanoid 3
+    ```
+
+=== ".c5se"
+
+    ```c5se
+    farraisedead
+    ```
+
+    Or at most 3, of any humanoid type:
+
+    ```c5se
+    farraisedead humanoid 3
+    ```
+
+### farraiseanimals [&lt;type&gt; [&lt;cap&gt;]] <span class="new-badge">New</span> { #farraiseanimals .command data-toc-label="farraiseanimals" data-added="3.5" }
+
+Like `raiseanimals`, but at the target location, as [`farraisedead`](#farraisedead).
+
+- **type** and **cap:** Optional, as for `raiseanimals`.
+
+=== ".c5m"
+
+    ```c5m
+    #!@farraiseanimals largeanimal
+    ```
+
+=== ".c5se"
+
+    ```c5se
+    farraiseanimals largeanimal
+    ```
+
+### farraisecorpses &lt;type&gt; "&lt;monster&gt;" [&lt;cap&gt;] <span class="new-badge">New</span> { #farraisecorpses .command data-toc-label="farraisecorpses" data-added="3.5" }
+
+Like `raisecorpses`, but at the target location, as [`farraisedead`](#farraisedead).
+
+- **type**, **monster** and **cap:** As for `raisecorpses`.
+
+=== ".c5m"
+
+    ```c5m
+    #!@farraisecorpses "Dunedain" "c*Wight" 1
+    ```
+
+=== ".c5se"
+
+    ```c5se
+    farraisecorpses "Dunedain" "c*Wight" 1
+    ```
+
 ### maxraise &lt;amount&gt; <span class="new-badge">New</span> { #maxraise .command data-toc-label="maxraise" data-added="3.2" }
 
-Ritual cannot create more than this number of units in one cast, from all its `raisedead`, `raiseanimals` and `raisecorpses` commands together. The commands are processed in order, so once the maximum is reached the later ones create none. A cap on one line still applies to that line. Also applies to AI players.
+Ritual cannot create more than this number of units in one cast, from all its `raisedead`, `raiseanimals` and `raisecorpses` commands together, their far forms included. The commands are processed in order, so once the maximum is reached the later ones create none. A cap on one line still applies to that line. Also applies to AI players.
 
 - **amount:** 1 or more.
 
@@ -193,7 +259,7 @@ Ritual cannot create more than this number of units in one cast, from all its `r
 
 ### needcorpses <span class="new-badge">New</span> { #needcorpses .command data-toc-label="needcorpses" data-added="3.2" }
 
-Ritual cannot be cast unless the caster's square has a corpse its `raisedead`, `raiseanimals` or `raisecorpses` commands can use. The ritual is greyed out with the game's normal "Not possible to cast this ritual now" text. Does not affect AI players (for now).
+Ritual cannot be cast unless the caster's square has a corpse its `raisedead`, `raiseanimals` or `raisecorpses` commands can use. The ritual is greyed out with the game's normal "Not possible to cast this ritual now" text. Does not affect AI players (for now), or a ritual with `farraisedead`, `farraiseanimals` or `farraisecorpses`, whose target location is chosen only when it is cast.
 
 === ".c5m"
 
@@ -209,7 +275,7 @@ Ritual cannot be cast unless the caster's square has a corpse its `raisedead`, `
 
 ### excludecorpses "&lt;type&gt;" <span class="new-badge">New</span> { #excludecorpses .command data-toc-label="excludecorpses" data-added="3.2" }
 
-`raisedead`, `raiseanimals` and `raisecorpses` in this ritual will not use corpses of this type, except a `raisecorpses` that names it. Useful for a corpse type that counts as `human` but should only be used by its own `raisecorpses`. Does not affect AI players (for now).
+`raisedead`, `raiseanimals` and `raisecorpses` in this ritual, and their far forms, will not use corpses of this type, except a `raisecorpses` or `farraisecorpses` that names it. Useful for a corpse type that counts as `human` but should only be used by its own `raisecorpses`. Does not affect AI players (for now).
 
 - **type:** A corpse type in double quotes, declared with [`newcorpsetype`](#newcorpsekind).
 
@@ -394,6 +460,15 @@ The game's `+mincorpses`, `-mincorpses` and `removecorpses` will only count or r
     #!@needcorpses
     raisedead giant
 
+    newritual "Call of the Dead Marshes"
+    descr "The Witch-king calls the dead of a distant battlefield to rise where they fell, a Barrow-wight among them."
+    level 3
+    chooseloc 2
+    aitarg 2
+    #!@farraisecorpses "Dunedain" "c*Wight" 1
+    #!@farraisedead humanoid
+    #!@farraiseanimals
+
     playerevent
     +season 2
     +chance 10
@@ -465,6 +540,15 @@ The game's `+mincorpses`, `-mincorpses` and `removecorpses` will only count or r
     level 2
     needcorpses
     raisedead giant
+
+    newritual "Call of the Dead Marshes"
+    descr "The Witch-king calls the dead of a distant battlefield to rise where they fell, a Barrow-wight among them."
+    level 3
+    chooseloc 2
+    aitarg 2
+    farraisecorpses "Dunedain" "c*Wight" 1
+    farraisedead humanoid
+    farraiseanimals
 
     playerevent
     +season 2

@@ -169,7 +169,7 @@ Makes the unit hated as a kind, so a unit on its team that hates that kind may k
     hated 1
     ```
 
-### tag "&lt;name&gt;" <span class="new-badge">New</span> { #tag .command data-toc-label="tag" data-added="2.12" }
+### tag "&lt;name&gt;" { #tag .command data-toc-label="tag" data-added="2.12" }
 
 Tags the monster for a weapon's [`onlyaffects`](weapon-traits.md#onlyaffects), [`doesntaffect`](weapon-traits.md#doesntaffect) or [`doubledmgvs`](weapon-traits.md#doubledmgvs) `tag "<name>"`. A monster can have several. `copystats` and `clearspec` affect these. Monsters only. Separate from vanilla's numbered `montag`.
 

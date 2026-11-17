@@ -5,7 +5,7 @@ status: new
 
 # Weapon Traits
 
-Aim your weapons and spells at any trait, or at a tag you give your monsters, where vanilla has only fixed commands like `affectundead` and `undkill`. A weapon can affect only those units, leave them unaffected, or double its damage against them. A weapon can also turn the units it kills into a monster you name. To cap a weapon's damage die at its highest roll, use [`noexplode`](noexplode.md).
+Aim your weapons and spells at any trait, or at a tag you give your monsters, where vanilla has only fixed commands like `affectundead` and `undkill`. A weapon can affect only those units, leave them unaffected, or double its damage against them. A weapon can also strike in a wider beam, color its looks, or turn the units it kills into a monster you name. To cap a weapon's damage die at its highest roll, use [`noexplode`](noexplode.md).
 
 These are declared in a weapon's block, after `newweapon` or `selectweapon`. A spell gets them through its weapon. A `clearwspec` below them takes them off. A trait is a vanilla trait, movement or ability command, spelled and cased as in ["Monster Modding"](https://www.illwinter.com/coe5/coe5modding.pdf#page=14) (`undead`, `inanimate`, `immortal`, `human`, `flying`, `stonebeing`, `troll`), CoE5SE's [`small`](monster-traits.md#small) or [`combatcaster`](monster-traits.md#combatcaster), or `tag "<name>"` for a [tag](monster-traits.md#tag) your monsters carry. A unit has a trait from its monster or an item it holds, and an ability from a temporary value too. A tag comes only from its monster. `flying` doesn't count `float`, so name both.
 
@@ -15,7 +15,7 @@ These are declared in a weapon's block, after `newweapon` or `selectweapon`. A s
 <!-- vale CoE5SE.Reports = YES -->
 
 !!! tip "For players without CoE5SE"
-    In the .c5m, the vanilla game skips the `#!@` lines, so these weapons hit every unit at normal damage. Their victims are neither reanimated nor mutated.
+    In the .c5m, the vanilla game skips the `#!@` lines, so these weapons hit every unit at normal damage. Their victims are neither reanimated nor mutated, and their looks keep vanilla's colors.
 
 !!! info "More in the CoE5 manual"
     Vanilla weapon commands are in Illwinter's official modding manual, under ["Weapon Modding"](https://www.illwinter.com/coe5/coe5modding.pdf#page=4).
@@ -141,6 +141,68 @@ Makes the weapon's beam as many squares wide as you choose, where vanilla's beam
     beamwidth 3 lines
     ```
 
+### lookcolor [smoke] &lt;red&gt; &lt;green&gt; &lt;blue&gt; <span class="new-badge">New</span> { #lookcolor .command data-toc-label="lookcolor" data-added="3.5" }
+
+Sets the color of the weapon's `look`, its smoke included. A dark color hardly shows, except on smoke.
+
+- **smoke:** Optional. Sets the color of the look's smoke alone, in place of the color a `lookcolor` line without `smoke` gives it.
+- **red, green, blue:** Each color value is between 0 and 255, as in `playercolor`.
+
+=== ".c5m"
+
+    ```c5m
+    #!@lookcolor 60 220 60
+    ```
+
+    Or the smoke alone:
+
+    ```c5m
+    #!@lookcolor smoke 70 110 70
+    ```
+
+=== ".c5se"
+
+    ```c5se
+    lookcolor 60 220 60
+    ```
+
+    Or the smoke alone:
+
+    ```c5se
+    lookcolor smoke 70 110 70
+    ```
+
+### flylookcolor [smoke] &lt;red&gt; &lt;green&gt; &lt;blue&gt; <span class="new-badge">New</span> { #flylookcolor .command data-toc-label="flylookcolor" data-added="3.5" }
+
+Like `lookcolor`, but for the weapon's `flylook`. With `flymode 1` the fly sprite keeps its own colors, and its trail takes the color.
+
+- **smoke:** Optional. Sets the color of the flylook's smoke alone, in place of the color a `flylookcolor` line without `smoke` gives it.
+- **red, green, blue:** Each color value is between 0 and 255.
+
+=== ".c5m"
+
+    ```c5m
+    #!@flylookcolor 60 220 60
+    ```
+
+    Or the smoke alone:
+
+    ```c5m
+    #!@flylookcolor smoke 70 110 70
+    ```
+
+=== ".c5se"
+
+    ```c5se
+    flylookcolor 60 220 60
+    ```
+
+    Or the smoke alone:
+
+    ```c5se
+    flylookcolor smoke 70 110 70
+    ```
+
 ### reanimate [&lt;type&gt;] "&lt;monster&gt;" <span class="new-badge">New</span> { #reanimate .command data-toc-label="reanimate" data-added="3.2" }
 
 A victim killed by the weapon becomes this monster instead of a Soulless. Like vanilla `reanimate`, it does not affect undead, tiny, ethereal or inanimate victims, and the victim leaves its corpse.
@@ -206,7 +268,11 @@ A victim killed by the weapon becomes this monster, instead of the monster that 
     aoe 1010
     flymode 4
     flylook 95
+    #!@flylookcolor 255 90 20
+    #!@flylookcolor smoke 110 30 140
     look 68
+    #!@lookcolor 255 90 20
+    #!@lookcolor smoke 110 30 140
     #!@beamwidth 15
     onlyenemy
 
@@ -226,6 +292,7 @@ A victim killed by the weapon becomes this monster, instead of the monster that 
     aoe 5008
     flymode 4
     flylook 214
+    #!@flylookcolor 150 200 255
     #!@beamwidth 3 lines
     #!@doubledmgvs undead
     onlyenemy
@@ -255,7 +322,11 @@ A victim killed by the weapon becomes this monster, instead of the monster that 
     aoe 1010
     flymode 4
     flylook 95
+    flylookcolor 255 90 20
+    flylookcolor smoke 110 30 140
     look 68
+    lookcolor 255 90 20
+    lookcolor smoke 110 30 140
     beamwidth 15
     onlyenemy
 
@@ -275,6 +346,7 @@ A victim killed by the weapon becomes this monster, instead of the monster that 
     aoe 5008
     flymode 4
     flylook 214
+    flylookcolor 150 200 255
     beamwidth 3 lines
     doubledmgvs undead
     onlyenemy

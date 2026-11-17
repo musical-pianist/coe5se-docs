@@ -4,7 +4,14 @@
 
 The commands and pages each CoE5SE release added, newest first.
 
+## CoE5SE 3.5 { #v3-5 }
+
+- **[Weapon Traits](commands/weapon-traits.md)**: [`lookcolor`](commands/weapon-traits.md#lookcolor), [`flylookcolor`](commands/weapon-traits.md#flylookcolor)
+- **[Corpses](commands/corpses.md)**: [`farraisedead`](commands/corpses.md#farraisedead), [`farraiseanimals`](commands/corpses.md#farraiseanimals), [`farraisecorpses`](commands/corpses.md#farraisecorpses)
+
 ## CoE5SE 3.4 { #v3-4 }
+
+[Release notes on GitHub](https://github.com/musical-pianist/coe5se/releases/tag/CoE5SE-v3.4.1)
 
 - **[Mod Settings](commands/mod-settings.md)**: [`parent`](commands/mod-settings.md#parent)
 - **[Monster Traits](commands/monster-traits.md)**: [`itemslots`](commands/monster-traits.md#itemslots), [`keepweapons`](commands/monster-traits.md#keepweapons)
