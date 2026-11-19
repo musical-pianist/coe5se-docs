@@ -253,7 +253,7 @@ Stops the player changing a `key` setting.
 
 ### parent &lt;name&gt; <span class="new-badge">New</span> { #parent .command data-toc-label="parent" data-added="3.4" }
 
-Puts an `onoff` or `key` setting under an `onoff` setting of your mod. Use it when you have multiple options you want attached to a single on/off, like a switch for endgame scenarios with each scenario under it. While the parent is off, the settings under it are greyed out and read as off, a key as no key. The player's own picks come back when the parent is on again.
+Puts an `onoff` or `key` setting under an `onoff` setting of your mod. Use it when you have multiple options you want attached to a single on/off, like a switch for endgame scenarios with each scenario under it. While the parent is off, the settings under it are greyed out and read as off, a key as no key. The player's picks come back when the parent is on again.
 
 - **name:** The parent's name. It comes before this setting, on the same page, and has no `parent` of its own.
 

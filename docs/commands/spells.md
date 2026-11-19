@@ -2,7 +2,7 @@
 
 # Spells
 
-Write your own spells, with their own path, level and effect, and give your units new magic to cast.
+Write spells, each with its path, level and effect, and give your units new magic to cast.
 
 Each spell needs [`newspell`](#newspell), [`path`](#path), [`level`](#level) and [`weapon`](#weapon), in any order.
 

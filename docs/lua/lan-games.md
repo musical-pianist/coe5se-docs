@@ -11,7 +11,7 @@ added: 3.0
 | Your mod | Declare | Script runs on | Every player needs it |
 | --- | --- | --- | --- |
 | Content | Nothing | Every machine | Yes, the same files |
-| Personal | [`personalmod`](../commands/mod-loading.md#personalmod) | Its player's client | No |
+| Personal | [`personalmod`](../commands/mod-loading.md#personalmod) | Its player's client, and a host that has it | No |
 | No multiplayer | [`nomultiplayer`](../commands/mod-loading.md#nomultiplayer) | Nowhere | No |
 
 Single player and hotseat are unchanged. Lua never runs in multiplayer on Illwinter servers. `coe5.netRole()` tells your script which machine it is on.
@@ -52,6 +52,7 @@ end)
 - Reads are fogged to its player's sight: a fogged unit, army or square reads `nil`, and lists skip it. Game Over lifts the fog.
 - `HUMAN_TURN` never fires in a LAN game. Use `CLIENT_TURN`.
 - UI calls fail while its player waits for a turn. A script that errors stays off, and no one else is told.
+- On a host it runs for the host's own screens. Boxes and changes to the game fail there.
 - Players see each other's personal mods on Setup Participants.
 
 ??? info "Sites a personal mod can wrap"
@@ -72,4 +73,4 @@ For single player tools, like a restart button or game presets. The whole mod is
 A content mod's .c5m, .c5se or .lua differing between machines ends the game for everyone with "CoE5SE: Mod files differ". In the .c5m and .c5se, `description`, comments, spacing and settings blocks are ignored. Personal and `nomultiplayer` mods aren't compared.
 
 !!! warning "Ship .lua changes to every player at once"
-    Each .lua in your mod's folder is hashed whole, comments included, loaded or not. One player with an edited copy ends the game.
+    Each .lua in your mod's folder is hashed whole, comments included, loaded or not. One player with an edited copy ends the game. One player who injects lua not hashed immedately crashes the game.

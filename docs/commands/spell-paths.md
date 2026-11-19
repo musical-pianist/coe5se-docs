@@ -2,7 +2,7 @@
 
 # Spell Paths
 
-Add your own magic paths, and share them with other mods by name.
+Add magic paths, and share them with other mods by name.
 
 A new path's number changes as players add or remove mods, so name it in double quotes instead: in a spell's [`path`](spells.md#path), and in [`spellweapon` and the rest](#spellweapon).
 

@@ -33,7 +33,7 @@ With CoE5SE you set the amount, and every temple counts.
     templerec      # 8 temples at 21%
     ```
 
-    Or your own, every temple counting:
+    Or 4 for each temple, every temple counting:
 
     ```c5m
     addcomrec "Elven Mage" 6 120 20 0
@@ -49,7 +49,7 @@ With CoE5SE you set the amount, and every temple counts.
     templerec      # 8 temples at 21%
     ```
 
-    Or your own, every temple counting:
+    Or 4 for each temple, every temple counting:
 
     ```c5se
     addcomrec "Elven Mage" 6 120 20 0
@@ -80,7 +80,7 @@ With CoE5SE you set the amount, and every level counts.
     libraryrec         # 20 library levels at 23%
     ```
 
-    Or your own, with a limit of 15:
+    Or 3 for each library level, with a limit of 15:
 
     ```c5m
     addcomrec "Grey Wizard" 3 150 20 0
@@ -96,7 +96,7 @@ With CoE5SE you set the amount, and every level counts.
     libraryrec         # 20 library levels at 23%
     ```
 
-    Or your own, with a limit of 15:
+    Or 3 for each library level, with a limit of 15:
 
     ```c5se
     addcomrec "Grey Wizard" 3 150 20 0
@@ -127,7 +127,7 @@ With CoE5SE you set the amount.
     atavirec      # 4 Atavi villages at 22%
     ```
 
-    Or your own:
+    Or 6 for each Atavi village:
 
     ```c5m
     addunitrec "Hobbit Archer" 10 5 30 5 0
@@ -143,7 +143,7 @@ With CoE5SE you set the amount.
     atavirec      # 4 Atavi villages at 22%
     ```
 
-    Or your own:
+    Or 6 for each Atavi village:
 
     ```c5se
     addunitrec "Hobbit Archer" 10 5 30 5 0
@@ -175,7 +175,7 @@ With CoE5SE you set the amount.
     reclimiter "$Tower Guard of Minas Tirith"     # 20 Tower Guards at 22%
     ```
 
-    Or your own:
+    Or 3 for each Tower Guard:
 
     ```c5m
     addunitrec "Ranger of Ithilien" 2 5 60 0 5
@@ -191,7 +191,7 @@ With CoE5SE you set the amount.
     reclimiter "$Tower Guard of Minas Tirith"     # 20 Tower Guards at 22%
     ```
 
-    Or your own:
+    Or 3 for each Tower Guard:
 
     ```c5se
     addunitrec "Ranger of Ithilien" 2 5 60 0 5

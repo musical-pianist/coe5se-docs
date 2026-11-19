@@ -4,7 +4,17 @@
 
 The commands and pages each CoE5SE release added, newest first.
 
+## CoE5SE 3.6 { #v3-6 }
+
+- **[Languages](commands/languages.md) (new page)**: [`language`](commands/languages.md#language), [`fallbackfont`](commands/languages.md#fallbackfont)
+- **[Monster Traits](commands/monster-traits.md)**: [`uniquegroup`](commands/monster-traits.md#uniquegroup)
+- **[Growth](commands/growth.md) (new page)**: [`growkills`](commands/growth.md#growkills), [`growxp`](commands/growth.md#growxp), [`growoffs`](commands/growth.md#growoffs)
+- **[Vehicles](commands/vehicles.md) (new page)**: [`transportland`](commands/vehicles.md#transportland), [`transportair`](commands/vehicles.md#transportair), [`transportmap`](commands/vehicles.md#transportmap), [`transportheart`](commands/vehicles.md#transportheart), [`transportterrain`](commands/vehicles.md#transportterrain)
+- **[Afflictions](commands/afflictions.md) (new page)**: [`newaffliction`](commands/afflictions.md#newaffliction), [`battleaff`](commands/afflictions.md#battleaff)
+
 ## CoE5SE 3.5 { #v3-5 }
+
+[Release notes on GitHub](https://github.com/musical-pianist/coe5se/releases/tag/CoE5SE-v3.5.0)
 
 - **[Weapon Traits](commands/weapon-traits.md)**: [`lookcolor`](commands/weapon-traits.md#lookcolor), [`flylookcolor`](commands/weapon-traits.md#flylookcolor)
 - **[Corpses](commands/corpses.md)**: [`farraisedead`](commands/corpses.md#farraisedead), [`farraiseanimals`](commands/corpses.md#farraiseanimals), [`farraisecorpses`](commands/corpses.md#farraisecorpses)

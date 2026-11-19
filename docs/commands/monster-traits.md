@@ -5,7 +5,7 @@ status: new
 
 # Monster Traits
 
-Give a monster Small, Combat Caster or Hates, and give a commander the item slots you want, like two weapons and nine misc items. Take off any one trait while keeping the rest.
+Give a monster Small, Combat Caster or Hates, and give a commander the item slots you want, like two weapons and nine misc items. Let one commander ride different mounts and still be one unique monster. Take off any one trait while keeping the rest.
 
 These go after `newmonster`, `selectmonster`, `newitem` or `selectitem`. A `0` after a trait removes it: `small 0`. With CoE5SE the same works for these vanilla traits:
 
@@ -282,6 +282,34 @@ Makes each weapon item after the first add an attack, instead of going into anot
     keepweapons 0
     ```
 
+### uniquegroup "&lt;name&gt;" <span class="new-badge">New</span> { #uniquegroup .command data-toc-label="uniquegroup" data-added="3.6" }
+
+Like vanilla `unique`, but every monster with the same group name counts as one unique monster: there can only be one of the group in the entire world. The monster needs no `unique` line, but one can stay so the mod still works without CoE5SE, where each monster is its own unique. Change the unit from one of the group's monsters to another with a ritual's `transformtarg` or `promotion`. As with `unique`, getting one of the group while another lives turns the living one into it, and it loses its items and experience. `copystats` and `clearspec` affect it. Monsters only.
+
+- **name:** In double quotes ([length limit](limits.md#monster-traits)), shared by every mod. Case counts.
+
+=== ".c5m"
+
+    One commander, on foot and on a Fell Beast:
+
+    ```c5m
+    selectmonster "Witch-king of Angmar"
+    #!@uniquegroup "Witch-king"
+    selectmonster "Witch-king on Fell Beast"
+    #!@uniquegroup "Witch-king"
+    ```
+
+=== ".c5se"
+
+    One commander, on foot and on a Fell Beast:
+
+    ```c5se
+    selectmonster "Witch-king of Angmar"
+    uniquegroup "Witch-king"
+    selectmonster "Witch-king on Fell Beast"
+    uniquegroup "Witch-king"
+    ```
+
 ### Example monsters { #example }
 
 === ".c5m"
@@ -305,6 +333,14 @@ Makes each weapon item after the first add an attack, instead of going into anot
     copystats "Ghost King"
     copyspr "Ghost King"
     #!@tag "Nazgul"
+    #!@uniquegroup "Witch-king"
+
+    newmonster "Witch-king on Fell Beast"
+    copystats "Ghost King"
+    copyspr "Ghost King"
+    flying
+    #!@tag "Nazgul"
+    #!@uniquegroup "Witch-king"
 
     newmonster "Aragorn"
     copystats "Baron"
@@ -345,6 +381,14 @@ Makes each weapon item after the first add an attack, instead of going into anot
     copystats "Ghost King"
     copyspr "Ghost King"
     tag "Nazgul"
+    uniquegroup "Witch-king"
+
+    newmonster "Witch-king on Fell Beast"
+    copystats "Ghost King"
+    copyspr "Ghost King"
+    flying
+    tag "Nazgul"
+    uniquegroup "Witch-king"
 
     newmonster "Aragorn"
     copystats "Baron"

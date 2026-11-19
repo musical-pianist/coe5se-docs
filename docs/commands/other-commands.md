@@ -24,7 +24,7 @@ Sets the room for the data files your mod's Lua script saves. Goes in the .c5se 
 
 ### include "&lt;file&gt;" { #include .command data-toc-label="include" data-added="2.10" }
 
-Lets you arrange your mod in as many .c5se files and folders as you wish, for your own organization: by faction, by region, or by units, spells, and events. Put the `include` lines only in your mod's ROOT files: [its .c5se](../index.md#files), or `#!@` lines of its .c5m.
+Lets you arrange your mod in as many .c5se files and folders as you wish: by faction, by region, or by units, spells, and events. Put the `include` lines only in your mod's ROOT files: [its .c5se](../index.md#files), or `#!@` lines of its .c5m.
 
 ```text
 LOTROverhaulMod/

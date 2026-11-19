@@ -381,3 +381,12 @@
 .toc-section--open > .toc-section-toggle::before {
   transform: rotate(45deg);
 }
+
+/* A folder inside a mod's folder in the mod explorer, and its files, one step further in (the Languages page's lang/). */
+.md-typeset .mod-explorer__folder--nested {
+  padding-left: 1.6rem;
+}
+
+.md-typeset .mod-explorer__file--nested {
+  padding-left: 2.4rem;
+}

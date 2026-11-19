@@ -2,7 +2,7 @@
 
 # Factions
 
-Make your own independent factions, like the game's Inferno or Hades. These are not playable factions but rather the ones that inhabit terrain and react on events.
+Make independent factions, like the game's Inferno or Hades. These are not playable factions but rather the ones that inhabit terrain and react on events.
 
 A faction is `newfaction`, followed by the commands on this page that shape the faction. `factionlike` clones one of the game's vanilla factions. [Limits](limits.md#factions) has how many factions all enabled mods can add, and the caps on these commands and their texts.
 

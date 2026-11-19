@@ -2,7 +2,7 @@
 
 # Planes
 
-Add your own planes to the world. Build one the way the game builds its planes, read it from your own map file, or fill it with your own terrain and monsters.
+Add planes to the world. Build one the way the game builds its planes, read it from a map file in your mod, or fill it with your mod's terrain and monsters.
 
 A plane is `newplane`, followed by the commands on this page that shape the plane, in any order. Each plane gets a button on the map's top bar. [Limits](limits.md#planes) has how many planes all enabled mods can add, and the caps on these commands.
 

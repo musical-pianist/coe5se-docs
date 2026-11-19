@@ -12,11 +12,14 @@ The commands CoE5SE adds to a mod's files, and the game's commands it reads its 
 | Mod Info | [Mod Loading](mod-loading.md) | Needing CoE5SE, and loading after another mod |
 | | [Mod Files](other-commands.md) | Your mod in many files, and room for its Lua script's data |
 | | [Mod Settings](mod-settings.md) | Settings players change |
+| | [Languages](languages.md) | Your mod's text in other languages, and fonts for the letters the game's fonts lack |
 | Weapon Modding | [Weapon Traits](weapon-traits.md) | Weapons aimed at any trait or tag |
 | Magic Item Modding | [Magic Items](magic-items.md) | What the game's scrolls, tomes, maps, hearts and eyes have |
 | Monster Modding | [Monster Traits](monster-traits.md) | Traits on a monster or item |
 | | [Immunities](immunities.md) | Monsters immune to instant death, polymorph, petrification or Feeblemind |
 | | [Commander Names](commander-names.md) | Lists of commander names |
+| | [Growth](growth.md) | Monsters that grow by kills or XP, into one of several monsters by chance |
+| | [Vehicles](vehicles.md) | Monsters that carry their army by land or air, with a deck in battle and recruiting on the move |
 | Class Modding | [Classes](classes.md) | Classes by name, and classes no player gets |
 | | [Recruitment Bonuses](recruitment.md) | What temples, libraries, villages and units add to a recruitment offer |
 | World Modding | [Planes](planes.md) | New planes, and planes by name |
@@ -28,6 +31,7 @@ The commands CoE5SE adds to a mod's files, and the game's commands it reads its 
 | | [Spell Paths](spell-paths.md) | New magic paths, and paths by name |
 | Event Modding | [Event Logic](events.md) | Events that choose between groups of triggers and branches |
 | Across Sections | [Corpses](corpses.md) | Corpse types, the corpse a monster leaves, and the rituals and events that use them |
+| | [Afflictions](afflictions.md) | New afflictions, and the events, rituals and monsters that give, cure and resist them |
 | | [Exploding Dice](noexplode.md) | Capping a die at its highest roll, for weapons and ritual summons |
 | | [Monsters and Rituals by Name](monster-names.md) | Another monster or ritual by its name, where the game takes a number |
 | Reference | [Limits](limits.md) | Every cap CoE5SE sets |

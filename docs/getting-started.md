@@ -287,7 +287,7 @@ The one CoE5SE command, [`fixedname`](commands/commander-names.md#fixedname), na
 
 ## The Lua script { #lua }
 
-With a Lua script you can add what commands can't, such as an order and a screen of your own. Here Gandalf gets a Call for Aid order, once a game. On its screen the player picks the Dunedain or the Rohirrim, and they appear on his square.
+With a Lua script you can add what commands can't, such as a new order and screen. Here Gandalf gets a Call for Aid order, once a game. On its screen the player picks the Dunedain or the Rohirrim, and they appear on his square.
 
 <div class="coe5se-shots" markdown>
 <figure markdown>

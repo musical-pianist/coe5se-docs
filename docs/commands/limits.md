@@ -31,11 +31,19 @@ Every cap CoE5SE sets, in one place. It covers what all enabled mods can add tog
 | [`tip`](mod-settings.md#tip) | 255 characters |
 | [`newsettingheader`](mod-settings.md#newsettingheader) | 56 characters in its title |
 
+## Languages { #languages }
+
+| Command | Limit |
+| --- | --- |
+| [`language`](languages.md#language) | 200 languages in all enabled mods together |
+| [`fallbackfont`](languages.md#fallbackfont) | 16 fonts in all enabled mods together |
+
 ## Monster Traits { #monster-traits }
 
 | Command | Limit |
 | --- | --- |
 | [`tag`](monster-traits.md#tag) | 31 characters in a tag's name |
+| [`uniquegroup`](monster-traits.md#uniquegroup) | 31 characters in a group's name |
 | [`itemslots`](monster-traits.md#itemslots) | 20 item slots on a monster |
 | [`itemslots`](monster-traits.md#itemslots) | 16 attacks a monster makes, its weapon items' included (the game's) |
 
@@ -85,3 +93,11 @@ All enabled mods together can add 200 corpse kinds.
 | Command | Limit |
 | --- | --- |
 | [`newcorpsekind`](corpses.md#newcorpsekind) | 63 characters in a kind's name |
+
+## Afflictions { #afflictions }
+
+| Command | Limit |
+| --- | --- |
+| [`newaffliction`](afflictions.md#newaffliction) | 200 afflictions in all mods together |
+| [`newaffliction`](afflictions.md#newaffliction) | 63 characters in an affliction's name |
+| [`newaffliction`](afflictions.md#newaffliction) | 511 characters in its descr |

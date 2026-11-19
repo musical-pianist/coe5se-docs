@@ -35,7 +35,7 @@ Ensure another mod's DLLs and Lua scripts load before yours. This is useful when
 
 ### personalmod <span class="new-badge">New</span> { #personalmod .command data-toc-label="personalmod" data-added="3.0" }
 
-Makes your mod a personal mod in LAN games, so each player can run their own copy of it, or none at all. This is what you want for UI or hotkeys each player sets up for themselves. Its script runs only on its player's client, and can do anything that player can do. What it can and can't read and do is on [LAN Games](../lua/lan-games.md#personal-mods).
+Makes your mod a personal mod in LAN games, so each player can run their own copy of it, or none at all. This is what you want for UI or hotkeys each player sets up for themselves, or a [translation mod](languages.md#another-mod). Its script runs only on the machine of each player who has it, and can do anything that player can do. A host that has it runs it for the host's own screens only. What it can and can't read and do is on [LAN Games](../lua/lan-games.md#personal-mods).
 
 Keep content out of a personal mod. A monster, a spell, an event or any other content makes it a content mod even with `personalmod`, since every player needs that content. Put the content in a mod of its own.
 
