@@ -5,20 +5,24 @@ status: new
 
 # Corpses
 
-Sets which corpse a monster leaves, and which corpses rituals and events use.
+Control which corpse type a monster leaves when it dies, define custom corpse types, and target specific corpses in rituals and events.
 
-Every corpse has a [type](#corpse-kinds), either vanilla or declared by a mod. Most commands here take a type, some also a group: `humanoid`, `animal` or `all`. Without a type the line is the game's own command.
+Every corpse has a [type](#corpse-kinds), either one of the eight vanilla types (lowercase, case-sensitive) or a custom type declared by a mod. Most commands on this page accept a single type, and several also accept a group (`humanoid`, `animal`, or `all`). For extended vanilla commands (`raisedead`, `raiseanimals`, `+mincorpses`, `-mincorpses`, `removecorpses`, and whole-number `putcorpses`), omitting the type keeps vanilla behavior.
 
-!!! info "More in the game's manual"
-    The game's own corpse commands are in Illwinter's official modding manual, under ["Ritual Modding"](https://www.illwinter.com/coe5/coe5modding.pdf#page=33) and ["Events"](https://www.illwinter.com/coe5/coe5modding.pdf#page=38).
+!!! info "More in the CoE5 manual"
+    Vanilla corpse commands are documented under ["Ritual Modding"](https://www.illwinter.com/coe5/coe5modding.pdf#page=33) and ["Events"](https://www.illwinter.com/coe5/coe5modding.pdf#page=38).
+
+## Defining and assigning corpse types
 
 ### newcorpsetype "&lt;name&gt;" &lt;type&gt;|bypassvanillacorpse { #newcorpsekind .command data-toc-label="newcorpsetype" data-added="3.1" }
 
-Declares a new corpse type ([Limits](limits.md#corpses)).
+Declares a custom corpse type ([Limits](limits.md#corpses)). Declare it above any command that references it.
 
-- **name:** In double quotes. Use a plural, Sense Dead shows "Most of the dead seem to be Uruk-hai." Mods using the same name share the type.
+Custom corpse types map to a vanilla base type so AI players and other mods blended together can still use those corpses. Use `bypassvanillacorpse` only to hide them from vanilla and other mods.
+
+- **name:** Corpse type name in double quotes, case-insensitive. Use a plural, since Sense Dead displays `"Most of the dead seem to be Uruk-hai."` Cannot reuse a vanilla type, group name, `none`, or `bypassvanillacorpse`. Mods using the same name share the type (the first base type declared wins).
 <!-- vale CoE5SE.Reports = NO -->
-- **type:** Required. One of the vanilla types ([the list](#corpse-kinds)), which vanilla treats these corpses as, or `bypassvanillacorpse` to hide them from vanilla. Without it the line is ignored and the type doesn't exist, so every line naming it does nothing (logged in `coe5mod.log`).
+- **type:** Required: a single [vanilla corpse type](#corpse-kinds) (not a group) that vanilla treats these corpses as, or `bypassvanillacorpse` to hide them from vanilla. Without this argument, the line is ignored and commands naming the type do nothing, or fail as event triggers (logged in `coe5mod.log`).
 <!-- vale CoE5SE.Reports = YES -->
 
 === ".c5m"
@@ -47,9 +51,9 @@ Declares a new corpse type ([Limits](limits.md#corpses)).
 
 ### corpsetype &lt;type&gt; { #corpsekind .command data-toc-label="corpsetype" data-added="2.10" }
 
-Sets the corpse the active monster leaves when it dies. Use after `newmonster` or `selectmonster`.
+Sets the corpse the active monster leaves when it dies. Declare after `newmonster` or `selectmonster`. `copystats` copies it, and `clearspec` resets it to vanilla's default.
 
-- **type:** One vanilla [type](#corpse-kinds), a mod's corpse type in double quotes, or `none` for no corpse.
+- **type:** A vanilla [type](#corpse-kinds), a custom corpse type in double quotes, `none` for no corpse, or `0` to restore vanilla's default.
 
 === ".c5m"
 
@@ -57,7 +61,7 @@ Sets the corpse the active monster leaves when it dies. Use after `newmonster` o
     #!@corpsetype largeanimal
     ```
 
-    Or a mod's corpse type:
+    Or a custom corpse type:
 
     ```c5m
     #!@corpsetype "Uruk-hai"
@@ -75,7 +79,7 @@ Sets the corpse the active monster leaves when it dies. Use after `newmonster` o
     corpsetype largeanimal
     ```
 
-    Or a mod's corpse type:
+    Or a custom corpse type:
 
     ```c5se
     corpsetype "Uruk-hai"
@@ -87,12 +91,20 @@ Sets the corpse the active monster leaves when it dies. Use after `newmonster` o
     corpsetype none
     ```
 
+## Raising corpses in rituals
+
+Corpse commands inside a ritual run in file order, so earlier lines consume corpses first.
+
+!!! warning "The AI ignores corpse types (for now)"
+    AI players ignore corpse types in rituals: `putcorpses` creates human corpses, and `raisedead` and `raiseanimals` stay within their normal groups. `raisecorpses` (including `farraisecorpses`) uses any vanilla corpse and skips `bypassvanillacorpse` types. Dice, per-line caps, and `maxraise` still apply. Events and `corpsetype` work the same for everyone. This is a temporary limitation as it has AI implications not yet built out.
+
 ### raisecorpses &lt;type&gt; "&lt;monster&gt;" [&lt;cap&gt;] { #raisecorpses .command data-toc-label="raisecorpses" data-added="2.10" }
 
-Like `raisedead`, but turns the corpses on the caster's square into this monster. The type is a vanilla type or group, or a mod's corpse type in double quotes. Corpse commands in a ritual are processed in order, so earlier lines use corpses first.
+Like `raisedead`, but turns matching corpses on the caster's square into a monster you choose.
 
-- **monster:** In double quotes. `"c*Wight"` makes each one a commander, like in `summoning` strings.
-- **cap:** Optional. Max number of units created.
+- **type:** A vanilla [type](#corpse-kinds), a group (`humanoid`, `animal`, or `all`), or a custom corpse type in double quotes.
+- **monster:** Target monster name in double quotes. Prefix with `c*` (such as `"c*Wight"`) to raise commanders, as in `summoning` strings.
+- **cap:** Maximum number of units raised by this line (optional).
 
 === ".c5m"
 
@@ -100,13 +112,13 @@ Like `raisedead`, but turns the corpses on the caster's square into this monster
     #!@raisecorpses largeanimal "Fell Beast"
     ```
 
-    Or a mod's corpse type:
+    Or a custom corpse type:
 
     ```c5m
     #!@raisecorpses "Uruk-hai" "Wight"
     ```
 
-    Or one commander at most:
+    Or at most one commander:
 
     ```c5m
     #!@raisecorpses "Uruk-hai" "c*Wight" 1
@@ -118,13 +130,13 @@ Like `raisedead`, but turns the corpses on the caster's square into this monster
     raisecorpses largeanimal "Fell Beast"
     ```
 
-    Or a mod's corpse type:
+    Or a custom corpse type:
 
     ```c5se
     raisecorpses "Uruk-hai" "Wight"
     ```
 
-    Or one commander at most:
+    Or at most one commander:
 
     ```c5se
     raisecorpses "Uruk-hai" "c*Wight" 1
@@ -132,10 +144,10 @@ Like `raisedead`, but turns the corpses on the caster's square into this monster
 
 ### raisedead &lt;type&gt; [&lt;cap&gt;] { #raisedead .command data-toc-label="raisedead and raiseanimals" data-added="2.10" }
 
-Raise Dead will only use corpses of this type. Same for `raiseanimals` and animal corpses. The units created are the normal ones for each type (see the [corpse types](#corpse-kinds) table).
+Restricts `raisedead` to corpses of this type, raising the normal undead for that type (see the [corpse types](#corpse-kinds) table). Works the same way for `raiseanimals` and animal corpses. Use [`raisecorpses`](#raisecorpses) for custom corpse types.
 
-- **type:** A humanoid type or `humanoid` for `raisedead`, an animal type or `animal` for `raiseanimals`.
-- **cap:** Optional. Max number of corpses used. Use the group, like `raisedead humanoid 3`, to set a max without restricting the type.
+- **type:** A vanilla humanoid type or `humanoid` for `raisedead`, or a vanilla animal type or `animal` for `raiseanimals`.
+- **cap:** Maximum number of corpses used (optional). Pass the group (like `raisedead humanoid 3`) to set a cap without narrowing the type.
 
 === ".c5m"
 
@@ -149,7 +161,7 @@ Raise Dead will only use corpses of this type. Same for `raiseanimals` and anima
     raiseanimals largeanimal
     ```
 
-    Or at most 3, of any humanoid type:
+    Or at most 3 of any humanoid type:
 
     ```c5m
     raisedead humanoid 3
@@ -167,7 +179,7 @@ Raise Dead will only use corpses of this type. Same for `raiseanimals` and anima
     raiseanimals largeanimal
     ```
 
-    Or at most 3, of any humanoid type:
+    Or at most 3 of any humanoid type:
 
     ```c5se
     raisedead humanoid 3
@@ -175,9 +187,9 @@ Raise Dead will only use corpses of this type. Same for `raiseanimals` and anima
 
 ### farraisedead [&lt;type&gt; [&lt;cap&gt;]] <span class="new-badge">New</span> { #farraisedead .command data-toc-label="farraisedead" data-added="3.5" }
 
-Like `raisedead`, but it will occur at target location instead of at the caster's location, as `farsummon` does for `summoning`. Set the target location with the ritual's targeting commands, like `chooseloc`, and `aitarg` for AI players; without them it is the caster's square. The units go to the caster's player, or to the player a `setplayer` above this line names, and follow no commander.
+Like `raisedead`, but raises corpses at the ritual's target square instead of the caster's square (as `farsummon` does for `summoning`). Set the target with targeting commands like `chooseloc 1` (plus `aitarg` for AI players). Use `chooseloc 1` rather than `chooseloc 2` to target the exact chosen square, since `chooseloc 2` shifts toward nearby human corpses and misses squares holding only `bypassvanillacorpse` types. Without a targeting command, it targets the caster's square. Raised units belong to the caster's player (or the player named by a `setplayer` above this line) and follow no commander.
 
-- **type** and **cap:** Optional, as for `raisedead`.
+- **type** and **cap:** Both optional, matching [`raisedead`](#raisedead).
 
 === ".c5m"
 
@@ -185,7 +197,7 @@ Like `raisedead`, but it will occur at target location instead of at the caster'
     #!@farraisedead
     ```
 
-    Or at most 3, of any humanoid type:
+    Or at most 3 of any humanoid type:
 
     ```c5m
     #!@farraisedead humanoid 3
@@ -197,7 +209,7 @@ Like `raisedead`, but it will occur at target location instead of at the caster'
     farraisedead
     ```
 
-    Or at most 3, of any humanoid type:
+    Or at most 3 of any humanoid type:
 
     ```c5se
     farraisedead humanoid 3
@@ -205,9 +217,9 @@ Like `raisedead`, but it will occur at target location instead of at the caster'
 
 ### farraiseanimals [&lt;type&gt; [&lt;cap&gt;]] <span class="new-badge">New</span> { #farraiseanimals .command data-toc-label="farraiseanimals" data-added="3.5" }
 
-Like `raiseanimals`, but at the target location, as [`farraisedead`](#farraisedead).
+Like `raiseanimals`, but at the ritual's target square, following the same targeting and ownership rules as [`farraisedead`](#farraisedead).
 
-- **type** and **cap:** Optional, as for `raiseanimals`.
+- **type** and **cap:** Both optional, matching `raiseanimals`.
 
 === ".c5m"
 
@@ -223,9 +235,9 @@ Like `raiseanimals`, but at the target location, as [`farraisedead`](#farraisede
 
 ### farraisecorpses &lt;type&gt; "&lt;monster&gt;" [&lt;cap&gt;] <span class="new-badge">New</span> { #farraisecorpses .command data-toc-label="farraisecorpses" data-added="3.5" }
 
-Like `raisecorpses`, but at the target location, as [`farraisedead`](#farraisedead).
+Like `raisecorpses`, but at the ritual's target square, following the same targeting and ownership rules as [`farraisedead`](#farraisedead).
 
-- **type**, **monster** and **cap:** As for `raisecorpses`.
+- **type**, **monster**, and **cap:** Same as [`raisecorpses`](#raisecorpses).
 
 === ".c5m"
 
@@ -239,11 +251,13 @@ Like `raisecorpses`, but at the target location, as [`farraisedead`](#farraisede
     farraisecorpses "Dunedain" "c*Wight" 1
     ```
 
+## Controlling raise rituals
+
 ### maxraise &lt;amount&gt; { #maxraise .command data-toc-label="maxraise" data-added="3.2" }
 
-Ritual cannot create more than this number of units in one cast, from all its `raisedead`, `raiseanimals` and `raisecorpses` commands together, their far forms included. The commands are processed in order, so once the maximum is reached the later ones create none. A cap on one line still applies to that line. Also applies to AI players.
+Caps the total units a single cast can raise across all `raisedead`, `raiseanimals`, and `raisecorpses` commands in the ritual (including their far forms). Commands run in file order and stop raising once the cap is reached. Per-line caps still apply to individual lines. Also applies to AI players. A second `maxraise` line replaces the first.
 
-- **amount:** 1 or more.
+- **amount:** Maximum total units, 1 or more.
 
 === ".c5m"
 
@@ -259,7 +273,7 @@ Ritual cannot create more than this number of units in one cast, from all its `r
 
 ### needcorpses { #needcorpses .command data-toc-label="needcorpses" data-added="3.2" }
 
-Ritual cannot be cast unless the caster's square has a corpse its `raisedead`, `raiseanimals` or `raisecorpses` commands can use. The ritual is greyed out with the game's normal "Not possible to cast this ritual now" text. Does not affect AI players (for now), or a ritual with `farraisedead`, `farraiseanimals` or `farraisecorpses`, whose target location is chosen only when it is cast.
+Prevents casting unless the caster's square has at least one corpse usable by the ritual's `raisedead`, `raiseanimals`, or `raisecorpses` commands (respecting [`excludecorpses`](#excludecorpses)). When none are available, the ritual is greyed out with the standard `"Not possible to cast this ritual now"` message. Has no effect on rituals with no raise commands, on AI players (for now), or on rituals using `farraisedead`, `farraiseanimals`, or `farraisecorpses` (whose target square is picked on cast).
 
 === ".c5m"
 
@@ -275,9 +289,9 @@ Ritual cannot be cast unless the caster's square has a corpse its `raisedead`, `
 
 ### excludecorpses "&lt;type&gt;" { #excludecorpses .command data-toc-label="excludecorpses" data-added="3.2" }
 
-`raisedead`, `raiseanimals` and `raisecorpses` in this ritual, and their far forms, will not use corpses of this type, except a `raisecorpses` or `farraisecorpses` that names it. Useful for a corpse type that counts as `human` but should only be used by its own `raisecorpses`. Does not affect AI players (for now).
+Prevents `raisedead`, `raiseanimals`, `raisecorpses`, and their far forms in this ritual from consuming corpses of this custom type, unless a `raisecorpses` or `farraisecorpses` line names that type explicitly. Useful when a custom corpse type counts as `human` for vanilla purposes but should be reserved for a dedicated `raisecorpses` line. Does not affect AI players (for now).
 
-- **type:** A corpse type in double quotes, declared with [`newcorpsetype`](#newcorpsekind).
+- **type:** A custom corpse type in double quotes, declared with [`newcorpsetype`](#newcorpsekind).
 
 === ".c5m"
 
@@ -291,12 +305,14 @@ Ritual cannot be cast unless the caster's square has a corpse its `raisedead`, `
     excludecorpses "Uruk-hai"
     ```
 
+## Placing and checking corpses
+
 ### putcorpses &lt;amount&gt; &lt;type&gt; { #putcorpses .command data-toc-label="putcorpses" data-added="2.10" }
 
-Creates corpses of this type in the target square instead of human corpses. Can also be used in events, where it puts the corpses in the target square, or in every square of a `squareevent`.
+Creates corpses of this type on the target square instead of human corpses. Also works in events, placing corpses on the event's target square (or on every matched square of a `squareevent`).
 
-- **amount:** A number, or open ended dice for a random amount, like `1d6+100`. Add 10000 to scale with the sacrifice amount, as in vanilla. In events 1 to 9999. Dice roll again for each square of a `squareevent`.
-- **type:** A vanilla [type](#corpse-kinds), or a mod's corpse type in double quotes. Leave it out to create human corpses.
+- **amount:** A whole number, or open-ended dice with lowercase `d` (such as `1d6+100`). In rituals, add `10000` to scale with sacrifice amount as in vanilla. In events, valid amounts are 1 to 9999 (no sacrifice scaling), and each square of a `squareevent` rolls again.
+- **type:** A vanilla [type](#corpse-kinds) or a custom corpse type in double quotes (optional, defaults to `human`).
 
 === ".c5m"
 
@@ -310,13 +326,13 @@ Creates corpses of this type in the target square instead of human corpses. Can 
     putcorpses 2d6+10 giant
     ```
 
-    Or a mod's corpse type:
+    Or a custom corpse type:
 
     ```c5m
     putcorpses 10 "Oathbreakers"
     ```
 
-    Or in an event, on a square your map names:
+    Or in an event, on a named square:
 
     ```c5m
     squareevent
@@ -339,13 +355,13 @@ Creates corpses of this type in the target square instead of human corpses. Can 
     putcorpses 2d6+10 giant
     ```
 
-    Or a mod's corpse type:
+    Or a custom corpse type:
 
     ```c5se
     putcorpses 10 "Oathbreakers"
     ```
 
-    Or in an event, on a square your map names:
+    Or in an event, on a named square:
 
     ```c5se
     squareevent
@@ -355,15 +371,12 @@ Creates corpses of this type in the target square instead of human corpses. Can 
     putcorpses 40 human
     endevent
     ```
-
-!!! warning "The AI ignores corpse types (for now)"
-    AI players ignore corpse types in rituals: `putcorpses` creates human corpses, and `raisedead`, `raiseanimals` and `raisecorpses` use every corpse they can. Dice, caps and `maxraise` still apply. Events and `corpsetype` work the same for everyone. This is a temporary limitation as it has AI implications not yet built out.
 
 ### +mincorpses &lt;amount&gt; &lt;type&gt; { #mincorpses .command data-toc-label="+mincorpses and removecorpses" data-added="2.10" }
 
-The game's `+mincorpses`, `-mincorpses` and `removecorpses` will only count or remove corpses of this type.
+Restricts `+mincorpses`, `-mincorpses`, and `removecorpses` in events so they count or remove only corpses of this type.
 
-- **type:** A vanilla [type](#corpse-kinds) or group, or a mod's corpse type in double quotes.
+- **type:** A vanilla [type](#corpse-kinds), a group (`humanoid`, `animal`, or `all`), or a custom corpse type in double quotes.
 
 === ".c5m"
 
@@ -377,7 +390,7 @@ The game's `+mincorpses`, `-mincorpses` and `removecorpses` will only count or r
     removecorpses 20 human
     ```
 
-    Or a mod's corpse type:
+    Or a custom corpse type:
 
     ```c5m
     +mincorpses 20 "Uruk-hai"
@@ -395,13 +408,13 @@ The game's `+mincorpses`, `-mincorpses` and `removecorpses` will only count or r
     removecorpses 20 human
     ```
 
-    Or a mod's corpse type:
+    Or a custom corpse type:
 
     ```c5se
     +mincorpses 20 "Uruk-hai"
     ```
 
-### Example corpses { #example }
+## Example corpses { #example }
 
 === ".c5m"
 
@@ -565,17 +578,17 @@ The game's `+mincorpses`, `-mincorpses` and `removecorpses` will only count or r
     endevent
     ```
 
-### Corpse types { #corpse-kinds }
+## Corpse types { #corpse-kinds }
 
 ??? note "The vanilla corpse types"
 
     | Type | Left by | Raises as |
     | --- | --- | --- |
-    | `small` | Humanoids with `small`, like the Goblins | Little Longdead, Little Soulless |
+    | `small` | Humanoids with `small`, like Goblins | Little Longdead, Little Soulless |
     | `human` | Other humanoids | Longdead, Soulless |
     | `giant` | Humanoids with `size2x2`, `huge`, or a sprite 101 pixels tall or more | Longdead Giant, Soulless Giant |
     | `vanara` | `ape 2` | Longdead Vanara, Soulless Vanara |
-    | `bandar` | `ape 3` | Longdead Bandar, Soulless Bandar |
+    | `bandar` | `ape 3` (or any other `ape` value above 2) | Longdead Bandar, Soulless Bandar |
     | `smallanimal` | An `animal` under 20 hp | Longdead Animal, Restless Carcass |
     | `largeanimal` | An `animal` with 20 hp or more | Longdead Beast, Carcass Beast |
     | `markata` | `ape 1` | Longdead Markata, Soulless Markata |

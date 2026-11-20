@@ -5,16 +5,18 @@ status: new
 
 # Magic Items
 
-Give your magic items what the game's scrolls, tomes, maps, hearts, eyes and the Soul Stone have.
+Clear a copied vanilla item's stats and abilities before adding what you want, or build scrolls, tomes, maps, hearts, eyes, and Soul Stone items from scratch.
 
-These go after `newitem` or `selectitem`. Vanilla items have these abilities, but no vanilla command sets one alone. `clearspec` takes them off a copied item, and the commands on this page put back what you want. A `0` after a command without a number takes it off: `extralife 0`.
+Declare these commands after `newitem` or `selectitem`.
 
 !!! info "More in the CoE5 manual"
-    Vanilla item commands are in Illwinter's official modding manual, under ["Magic Item Modding"](https://www.illwinter.com/coe5/coe5modding.pdf#page=10).
+    Vanilla item commands are documented under ["Magic Item Modding"](https://www.illwinter.com/coe5/coe5modding.pdf#page=10).
+
+## Clearing copied items
 
 ### clearspec <span class="new-badge">New</span> { #clearspec .command data-toc-label="clearspec" data-added="3.3" }
 
-Removes all special abilities from the active magic item, its stats, combat spells, afflictions and special benefits included. The name, sprite, type and rarity stay. This command does not clear movement abilities or the weapon. Use the `clearmove` and `clearweapons` commands for those.
+Clears all special abilities from the active magic item: item flags, stat bonuses, combat spells and summons, afflictions, special benefits, `hates` and `hated`, CoE5SE immunities, and `affres`. It also removes every Use and passive ability on this page, so put `clearspec` before anything you add back. The item's name, sprite, slot type, rarity, and item groups are kept. Movement abilities and weapons stay untouched. Use [`clearmove`](#clearmove) and [`clearweapons`](#clearweapons) for those.
 
 === ".c5m"
 
@@ -34,7 +36,7 @@ Removes all special abilities from the active magic item, its stats, combat spel
 
 ### clearmove <span class="new-badge">New</span> { #clearmove .command data-toc-label="clearmove" data-added="3.3" }
 
-Removes all movement abilities from the active magic item, like `flying` and `swamp`.
+Clears all movement abilities from the active magic item, such as `flying` and `swamp`.
 
 === ".c5m"
 
@@ -52,7 +54,7 @@ Removes all movement abilities from the active magic item, like `flying` and `sw
 
 ### clearweapons <span class="new-badge">New</span> { #clearweapons .command data-toc-label="clearweapons" data-added="3.3" }
 
-Removes the `itemwep` weapon from the active magic item. Its holder fights with its own weapons.
+Removes the `itemwep` weapon from the active magic item, leaving the holder to fight with normal attacks.
 
 === ".c5m"
 
@@ -68,11 +70,13 @@ Removes the `itemwep` weapon from the active magic item. Its holder fights with 
     clearweapons
     ```
 
+## Passive effects and special slots
+
 ### makeaff &lt;aff&gt; <span class="new-badge">New</span> { #makeaff .command data-toc-label="makeaff" data-added="3.3" }
 
-Gives the holder of the item an affliction for as long as it holds the item, like the Chest Wound of the Crystal Heart.
+Applies one or more afflictions to the holder while the item is equipped, like the Crystal Heart's Chest Wound. Repeatable to combine afflictions. Always supply a number (omitting it sets every affliction bit). `makeaff 0` removes nothing. Use [`clearspec`](#clearspec) to clear afflictions.
 
-- **aff:** An affliction from the Special Afflictions table under ["Weapon Modding Numbers"](https://www.illwinter.com/coe5/coe5modding.pdf#page=6), or several added together.
+- **aff:** An affliction bitmask from the Special Afflictions table in ["Weapon Modding Numbers"](https://www.illwinter.com/coe5/coe5modding.pdf#page=6), or several values added together.
 
 === ".c5m"
 
@@ -88,9 +92,9 @@ Gives the holder of the item an affliction for as long as it holds the item, lik
 
 ### makeben &lt;ben&gt; <span class="new-badge">New</span> { #makeben .command data-toc-label="makeben" data-added="3.3" }
 
-Gives the holder of the item a special benefit for as long as it holds the item, like the Quickness of the Sword of No Weight.
+Applies one or more special benefits to the holder while the item is equipped, like the Sword of No Weight's Quickness. Repeatable to combine benefits. Always supply a number (omitting it sets every benefit bit). `makeben 0` removes nothing. Use [`clearspec`](#clearspec) to clear benefits.
 
-- **ben:** A benefit from the Special Benefits table under ["Weapon Modding Numbers"](https://www.illwinter.com/coe5/coe5modding.pdf#page=6), or several added together.
+- **ben:** A benefit bitmask from the Special Benefits table in ["Weapon Modding Numbers"](https://www.illwinter.com/coe5/coe5modding.pdf#page=6), or several values added together.
 
 === ".c5m"
 
@@ -104,9 +108,73 @@ Gives the holder of the item a special benefit for as long as it holds the item,
     makeben 1073741824
     ```
 
+### extralife <span class="new-badge">New</span> { #extralife .command data-toc-label="extralife" data-added="3.3" }
+
+Grants Extra Life, like the Soul Stone: when the holder dies, the item is destroyed and the holder revives at full Hit Points. Use `extralife 0` to remove it.
+
+=== ".c5m"
+
+    ```c5m
+    #!@extralife
+    ```
+
+=== ".c5se"
+
+    ```c5se
+    extralife
+    ```
+
+### eyeitem <span class="new-badge">New</span> { #eyeitem .command data-toc-label="eyeitem" data-added="3.3" }
+
+Marks the item as an eye, like the Spirit Eye: a unit with no free eye slot cannot hold it. Vanilla eyes also pair this with `makeaff 1048576` (Lost an Eye). Use `eyeitem 0` to remove it.
+
+=== ".c5m"
+
+    ```c5m
+    #!@eyeitem
+    ```
+
+=== ".c5se"
+
+    ```c5se
+    eyeitem
+    ```
+
+### heartitem [&lt;nbr&gt;] <span class="new-badge">New</span> { #heartitem .command data-toc-label="heartitem" data-added="3.3" }
+
+Marks the item as a heart, like the Crystal Heart: a lifeless unit cannot hold it. Vanilla hearts also pair this with `makeaff 4194304` (Chest Wound).
+
+- **nbr:** Use `2` for a heart any unit can hold (like the Heart of Life), or `0` to remove it. Defaults to `1` when omitted.
+
+=== ".c5m"
+
+    ```c5m
+    #!@heartitem
+    ```
+
+    Or a heart any unit can hold:
+
+    ```c5m
+    #!@heartitem 2
+    ```
+
+=== ".c5se"
+
+    ```c5se
+    heartitem
+    ```
+
+    Or a heart any unit can hold:
+
+    ```c5se
+    heartitem 2
+    ```
+
+## Usable and consumable items
+
 ### consumableitem <span class="new-badge">New</span> { #consumableitem .command data-toc-label="consumableitem" data-added="3.3" }
 
-The item can be used by a commander holding it, and is destroyed when used, like the spell scrolls. Give it an effect with one of the commands below.
+Gives the holding commander a Use button and destroys the item once used, like spell scrolls and maps. Pair with one or more use effects below. Use `consumableitem 0` to remove it.
 
 === ".c5m"
 
@@ -122,7 +190,7 @@ The item can be used by a commander holding it, and is destroyed when used, like
 
 ### useableitem <span class="new-badge">New</span> { #useableitem .command data-toc-label="useableitem" data-added="3.3" }
 
-The item can be used by a commander holding it, and is kept, like the Tome of Afterlife. Give it an effect with one of the commands below.
+Gives the holding commander a Use button and keeps the item after use, like the Tome of Afterlife. Pair with one or more use effects below. Use `useableitem 0` to remove it.
 
 === ".c5m"
 
@@ -138,9 +206,9 @@ The item can be used by a commander holding it, and is kept, like the Tome of Af
 
 ### useonlyin &lt;terrain nbr&gt; <span class="new-badge">New</span> { #useonlyin .command data-toc-label="useonlyin" data-added="3.3" }
 
-The item can only be used on this terrain, like the Magic Bean.
+Restricts the Use button so the item can only be used on this terrain, like the Magic Bean and Portable Pit.
 
-- **terrain nbr:** A terrain number, or a negative one from the Negative Terrain Numbers table under ["Monster Modding Numbers"](https://www.illwinter.com/coe5/coe5modding.pdf#page=24).
+- **terrain nbr:** A terrain number, or a negative number from the Negative Terrain Numbers table in ["Monster Modding Numbers"](https://www.illwinter.com/coe5/coe5modding.pdf#page=24).
 
 === ".c5m"
 
@@ -154,11 +222,15 @@ The item can only be used on this terrain, like the Magic Bean.
     useonlyin -103
     ```
 
+## Use effects
+
+Pair these commands with [`consumableitem`](#consumableitem) or [`useableitem`](#useableitem).
+
 ### cureoneaff &lt;chance&gt; <span class="new-badge">New</span> { #cureoneaff .command data-toc-label="cureoneaff" data-added="3.3" }
 
-Using the item has this chance of curing one affliction on the user, like the Elixir of Health. Each full 100 cures one, and the rest is the chance of one more.
+Cures afflictions on the user when activated, like the Elixir of Health. Every full 100 guarantees one cured affliction, and any remainder is the percent chance to cure one more.
 
-- **chance:** The chance in percent.
+- **chance:** Cure chance in percent (for example, `250` cures 2 afflictions and has a 50% chance to cure a third).
 
 === ".c5m"
 
@@ -174,9 +246,9 @@ Using the item has this chance of curing one affliction on the user, like the El
 
 ### newspell1 &lt;nbr&gt; <span class="new-badge">New</span> { #newspell1 .command data-toc-label="newspell1, newspell2, newspell3" data-added="3.3" }
 
-Using the item teaches the user this many new level 1 spells from the path of its first spell, like Spell Scroll Level 1. `newspell2` and `newspell3` do the same for level 2 and 3 spells. A unit that knows no spells learns nothing.
+Teaches the user random unknown level 1 combat spells from the magic path of the user's first spell, like Spell Scroll Level 1. `newspell2` and `newspell3` do the same for level 2 and level 3 spells. A unit that knows no spells learns nothing.
 
-- **nbr:** How many spells, not a path as in a ritual.
+- **nbr:** Number of spells to teach. Takes a count rather than a magic path, unlike the ritual commands.
 
 === ".c5m"
 
@@ -208,9 +280,9 @@ Using the item teaches the user this many new level 1 spells from the path of it
 
 ### usereveal &lt;terrain nbr&gt; <span class="new-badge">New</span> { #usereveal .command data-toc-label="usereveal" data-added="3.3" }
 
-Using the item gives almost perfect knowledge of all squares of this terrain, like the Map of Inferno.
+Reveals every square of this terrain across the map with almost perfect knowledge, like the Map of Inferno.
 
-- **terrain nbr:** A terrain number, or a negative one from the Negative Terrain Numbers table under ["Monster Modding Numbers"](https://www.illwinter.com/coe5/coe5modding.pdf#page=24).
+- **terrain nbr:** A terrain number, or a negative number from the Negative Terrain Numbers table in ["Monster Modding Numbers"](https://www.illwinter.com/coe5/coe5modding.pdf#page=24).
 
 === ".c5m"
 
@@ -226,9 +298,9 @@ Using the item gives almost perfect knowledge of all squares of this terrain, li
 
 ### useteleport &lt;terrain nbr&gt; <span class="new-badge">New</span> { #useteleport .command data-toc-label="useteleport" data-added="3.3" }
 
-Using the item teleports the user and its entire army to a random square of this terrain, like the Scroll of Hades Journey.
+Teleports the user and the entire army to a random square of this terrain, like the Scroll of Hades Journey.
 
-- **terrain nbr:** A terrain number, or a negative one from the Negative Terrain Numbers table under ["Monster Modding Numbers"](https://www.illwinter.com/coe5/coe5modding.pdf#page=24).
+- **terrain nbr:** A terrain number, or a negative number from the Negative Terrain Numbers table in ["Monster Modding Numbers"](https://www.illwinter.com/coe5/coe5modding.pdf#page=24).
 
 === ".c5m"
 
@@ -244,9 +316,9 @@ Using the item teleports the user and its entire army to a random square of this
 
 ### useplanetravel &lt;terrain nbr&gt; <span class="new-badge">New</span> { #useplanetravel .command data-toc-label="useplanetravel" data-added="3.3" }
 
-Using the item costs 1 action point, like the Tome of Afterlife. It teleports the user and its entire army to this terrain from Elysium, or back to Elysium from any other plane.
+Teleports the user and the entire army to a random square of this terrain from Elysium, or back to Elysium from any other plane, like the Tome of Afterlife. Costs 1 action point.
 
-- **terrain nbr:** A terrain number, or a negative one from the Negative Terrain Numbers table under ["Monster Modding Numbers"](https://www.illwinter.com/coe5/coe5modding.pdf#page=24).
+- **terrain nbr:** A terrain number, or a negative number from the Negative Terrain Numbers table in ["Monster Modding Numbers"](https://www.illwinter.com/coe5/coe5modding.pdf#page=24).
 
 === ".c5m"
 
@@ -262,7 +334,7 @@ Using the item costs 1 action point, like the Tome of Afterlife. It teleports th
 
 ### usebeanstalk <span class="new-badge">New</span> { #usebeanstalk .command data-toc-label="usebeanstalk" data-added="3.3" }
 
-Using the item grows a giant beanstalk on the user's square, with a portal to the same spot in the Sky, like the Magic Bean.
+Grows a giant beanstalk on the user's square, creating a portal to the matching square in the Sky, like the Magic Bean. Fails if the destination square has incompatible terrain. Use `usebeanstalk 0` to remove it.
 
 === ".c5m"
 
@@ -278,7 +350,7 @@ Using the item grows a giant beanstalk on the user's square, with a portal to th
 
 ### usepit <span class="new-badge">New</span> { #usepit .command data-toc-label="usepit" data-added="3.3" }
 
-Using the item creates a deep pit on the user's square, with a portal to the same spot on a plane below, like the Portable Pit.
+Creates a deep pit on the user's square, creating a portal to the matching square on a plane below, like the Portable Pit. Fails if the destination square has incompatible terrain. Use `usepit 0` to remove it.
 
 === ".c5m"
 
@@ -294,7 +366,7 @@ Using the item creates a deep pit on the user's square, with a portal to the sam
 
 ### usebreakseal <span class="new-badge">New</span> { #usebreakseal .command data-toc-label="usebreakseal" data-added="3.3" }
 
-Using the item breaks one of the seven seals, like the Heavenly Seal.
+Breaks one of the seven seals, like the Heavenly Seal. Has no further effect once all seven seals are broken. Use `usebreakseal 0` to remove it.
 
 === ".c5m"
 
@@ -308,69 +380,7 @@ Using the item breaks one of the seven seals, like the Heavenly Seal.
     usebreakseal
     ```
 
-### extralife <span class="new-badge">New</span> { #extralife .command data-toc-label="extralife" data-added="3.3" }
-
-Gives the holder an Extra Life, like the Soul Stone: when it dies, the item is destroyed and the holder lives again.
-
-=== ".c5m"
-
-    ```c5m
-    #!@extralife
-    ```
-
-=== ".c5se"
-
-    ```c5se
-    extralife
-    ```
-
-### eyeitem <span class="new-badge">New</span> { #eyeitem .command data-toc-label="eyeitem" data-added="3.3" }
-
-The item is an eye, like the Spirit Eye: a unit with no eye slot cannot hold it. Vanilla eyes also give `makeaff 1048576`, Lost an Eye.
-
-=== ".c5m"
-
-    ```c5m
-    #!@eyeitem
-    ```
-
-=== ".c5se"
-
-    ```c5se
-    eyeitem
-    ```
-
-### heartitem [&lt;nbr&gt;] <span class="new-badge">New</span> { #heartitem .command data-toc-label="heartitem" data-added="3.3" }
-
-The item is a heart, like the Crystal Heart: a lifeless unit cannot hold it. Vanilla hearts also give `makeaff 4194304`, Chest Wound.
-
-- **nbr:** 2 for a heart any unit can hold, like the Heart of Life.
-
-=== ".c5m"
-
-    ```c5m
-    #!@heartitem
-    ```
-
-    Or a heart any unit can hold:
-
-    ```c5m
-    #!@heartitem 2
-    ```
-
-=== ".c5se"
-
-    ```c5se
-    heartitem
-    ```
-
-    Or a heart any unit can hold:
-
-    ```c5se
-    heartitem 2
-    ```
-
-### Example magic items { #example }
+## Example magic items { #example }
 
 === ".c5m"
 

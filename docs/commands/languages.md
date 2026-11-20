@@ -5,28 +5,32 @@ status: new
 
 # Languages
 
-Translate your mod, or someone else's, into other languages: its names, descriptions, settings and script text. A player picks a language on CoE5SE's page in Mod Settings, and every enabled mod shows its text in that language. A translation mod that holds a single language needs no pick: it applies as soon as a player enables it. Greek, Cyrillic and accented letters draw from the game's own fonts. Chinese, Japanese, Korean, Thai and other letters the game's fonts lack draw from a font your mod adds with [`fallbackfont`](#fallbackfont). [Limits](limits.md#languages) has how many languages and fonts mods can add.
+Translate your mod (or someone else's) into other languages: unit names, descriptions, settings, and Lua script text. Players choose a language on CoE5SE's page in Mod Settings, and every enabled mod switches to that language. A single-language translation mod activates automatically while **Language** is set to **Default** (or to a language no enabled mod declares).
 
-!!! info "More in the game's manual"
-    `translation` and `fontfile` are in Illwinter's official modding manual, under ["Fonts & Translation"](https://www.illwinter.com/coe5/coe5modding.pdf#page=4).
+Greek, Cyrillic, and accented European characters work out of the box with vanilla fonts. For Chinese, Japanese, Korean, Thai, or other scripts the vanilla fonts lack, include a font with [`fallbackfont`](#fallbackfont). See [Limits](limits.md#languages) for language and font caps.
 
-This page walks through two translations of the Istari mod from [Getting Started](../getting-started.md): its author adds German, then another modder adds French.
+!!! info "More in the CoE5 manual"
+    Vanilla `translation` and `fontfile` commands are documented under ["Fonts & Translation"](https://www.illwinter.com/coe5/coe5modding.pdf#page=4).
+
+This page walks through two translations of the Istari mod from [Getting Started](../getting-started.md). First the author adds German inside the mod, then another modder adds French as a standalone translation mod.
 
 ## Add a language to your mod { #your-mod }
 
-### 1. Dump text to a file { #your-mod-text }
+### 1. Dump text to a template { #your-mod-text }
 
-Start the game with the `--dumpstrings` start option (in Steam: the game's Properties, then Launch Options) and your mod enabled. Beside your mods directory, CoE5SE writes `coe5se_translations/Istari.c5se`: every text of your mod as a `translation` line to fill in.
+Launch CoE5 with the `--dumpstrings` command-line option (in Steam: **Properties → Launch Options**) and your mod enabled. Beside your mods directory, CoE5SE writes `coe5se_translations/Istari.c5se`, listing every translatable string from your mod as a commented `translation` line.
 
 ```c5se title="coe5se_translations/Istari.c5se"
 # CoE5SE: translation template for Istari
-# Every text CoE5SE read from the mod's files, once each. A filled line is the translation the game shows now.
-# A line starting with # is not translated yet: the translation goes in its second quotes, then the # comes off.
-# The lines go in a .c5se of a mod, under the language line. Written again at each mods pass: copy before editing.
-# No language picked on CoE5SE's page in Mod Settings. The block starts with a language tag and the language's own name:
+# Every translatable string CoE5SE found in this mod, listed once each.
+# Uncommented lines are currently active translations. Commented lines (#) still need translation:
+# fill in the second quoted string and remove the leading #.
+# Copy this file into your mod before editing (CoE5SE overwrites this template whenever mods reload).
+# No language selected in Mod Settings. Start your file with a language tag and display name:
 # language "fr" "Français"
 
 # Istari.c5m
+# translation "Istari" ""
 # translation "Adds The Istari, a class of wizards with Gandalf among them." ""
 # translation "Istar" ""
 # translation "Grey Wizard" ""
@@ -41,14 +45,15 @@ Start the game with the `--dumpstrings` start option (in Steam: the game's Prope
 # translation "Cancel" ""
 ```
 
-### 2. Fill the file { #your-mod-fill }
+### 2. Fill in the translations { #your-mod-fill }
 
-Copy the file into your mod's folder as `lang/de.c5se`. Start it with a [`language`](#language) line, write each translation in the second quotes, and take the `#` off the line.
+Copy the template into your mod's folder as `lang/de.c5se`. Start it with a [`language`](#language) line, fill in each second quoted string, and remove the leading `#`. Leaving an uncommented line with an empty second string (`""`) blanks that text in-game.
 
 ```c5se title="Istari/lang/de.c5se"
 language "de" "Deutsch"
 
 # Istari.c5m
+translation "Istari" "Istari"
 translation "Adds The Istari, a class of wizards with Gandalf among them." "Fügt die Istari hinzu, eine Klasse von Zauberern, darunter Gandalf."
 translation "Istar" "Istar"
 translation "Grey Wizard" "Grauer Zauberer"
@@ -67,35 +72,35 @@ translation "The Rohirrim" "Die Rohirrim"
 translation "4 Rohirrim Riders" "4 Reiter der Rohirrim"
 ```
 
-1.  The last four lines were added by hand. Istari.lua keeps these texts in a table, and the template lists only text written inside a `coe5` call.
+1.  These four lines were added by hand. `Istari.lua` stores these strings in a table, and the template extracts only literal strings passed directly to supported `coe5` UI and translation calls.
 
 ### 3. Include the file { #your-mod-include }
 
-Add an [`include`](other-commands.md#include) line to your mod. Each language can have a file of its own.
+Add an [`include`](other-commands.md#include) line to your mod. Keep each language in a separate file for clean organization.
 
 ```c5m title="Istari/Istari.c5m"
 #!@include "lang/de.c5se"
 ```
 
-### 4. Pick the language { #your-mod-pick }
+### 4. Select the language { #your-mod-pick }
 
-Start the game again. Language, on CoE5SE's page in Mod Settings, lists every language an enabled mod has. Pick Deutsch and leave the page.
+Start CoE5 again. On CoE5SE's page in Mod Settings, **Language** lists every language declared by enabled mods. Select **Deutsch** and leave the page.
 
 <div class="coe5se-shots" markdown>
 <figure markdown>
 ![The Language box on CoE5SE's page in Mod Settings: Default and Deutsch, with Deutsch picked](../assets/languages/language-pick.png)
-<figcaption>Deutsch, picked in Mod Settings</figcaption>
+<figcaption>Deutsch, selected in Mod Settings</figcaption>
 </figure>
 <figure markdown>
 ![The end of the Choose Class list: Guildmaster, Die Istari and Random](../assets/languages/choose-class-de.png)
-<figcaption>The class, in Choose Class</figcaption>
+<figcaption>The class in Choose Class</figcaption>
 </figure>
 </div>
 
 <div class="coe5se-shots" markdown>
 <figure markdown>
 ![The class's info screen, titled Die Istari, with its description in German under Lore](../assets/languages/class-info-de.png)
-<figcaption>The class's description</figcaption>
+<figcaption>The class description</figcaption>
 </figure>
 </div>
 
@@ -110,38 +115,38 @@ Start the game again. Language, on CoE5SE's page in Mod Settings, lists every la
 </figure>
 </div>
 
-A `translation` line changes its text everywhere the game shows it. With this file, every Cancel button in the game reads Abbrechen.
+A `translation` line replaces matching text everywhere CoE5 displays it. With the file above, every **Cancel** button in the game becomes **Abbrechen**.
 
-### 5. Check it { #your-mod-check }
+### 5. Check the report { #your-mod-check }
 
-With `--dumpstrings` still set, leaving the page with a new pick wrote `coe5se_translations/report.txt`, for German. It counts each mod's translated and missing lines. The Istari mod's part:
+While `--dumpstrings` is enabled, leaving the Mod Settings page with a new language writes `coe5se_translations/report.txt` for that language, counting translated and missing strings per mod. Istari's section:
 
 ```text title="coe5se_translations/report.txt"
-== Istari: 10 texts, 10 translated, 0 missing ==
-Not in any enabled mod: "The Dunedain" (lang/de.c5se line 16)
-Not in any enabled mod: "6 Dunedain Rangers" (lang/de.c5se line 17)
-Not in any enabled mod: "The Rohirrim" (lang/de.c5se line 18)
-Not in any enabled mod: "4 Rohirrim Riders" (lang/de.c5se line 19)
+== Istari: 11 texts, 11 translated, 0 missing ==
+Not in any enabled mod: "The Dunedain" (lang/de.c5se line 17)
+Not in any enabled mod: "6 Dunedain Rangers" (lang/de.c5se line 18)
+Not in any enabled mod: "The Rohirrim" (lang/de.c5se line 19)
+Not in any enabled mod: "4 Rohirrim Riders" (lang/de.c5se line 20)
 ```
 
-The four lines added by hand are listed because the template never had their text. They translate all the same, as the script's screen shows.
+The four hand-added lines appear under `"Not in any enabled mod"` because the template scanner did not see them inside direct `coe5` calls. They still translate normally in-game.
 
 ## Translate someone else's mod { #another-mod }
 
-Here another modder adds French to the Istari mod with a small mod of their own, and the Istari mod's files stay as they are.
+You can also ship a standalone translation mod without touching the original mod's files. Here another modder adds French to Istari.
 
-### 1. Make your mod { #another-mod-make }
+### 1. Create the mod folder { #another-mod-make }
 
-In your mods directory (Open Mods Directory, on the Mods screen), make a folder with a .c5m and a .c5se of the same name. The .c5m holds the mod's banner, a 256x64 .tga or .png in the same folder, and its description.
+In your mods directory (**Open Mods Directory** on the Mods screen), create a folder with a matching `.c5m` and `.c5se`. The `.c5m` holds the mod banner (a 256 x 64 `.tga` or `.png` in the same folder) and description.
 
 ```c5m title="IstariFrench/IstariFrench.c5m"
 icon "banner.png"
 description "The Istari mod in French."
 ```
 
-### 2. Get the mod's text { #another-mod-text }
+### 2. Dump and fill in the text { #another-mod-text }
 
-Start the game with `--dumpstrings` and the Istari mod enabled, as in [step 1 above](#your-mod-text). Copy the lines of `coe5se_translations/Istari.c5se` into your .c5se under a `language` line, and fill them in.
+Launch CoE5 with `--dumpstrings` and Istari enabled, as in [step 1 above](#your-mod-text). Copy the lines from `coe5se_translations/Istari.c5se` into your `.c5se` under a `language` line and fill them in.
 
 ```c5se title="IstariFrench/IstariFrench.c5se"
 personalmod # (1)!
@@ -150,6 +155,7 @@ language "fr" "Français"
 description "Le mod Istari en français." # (2)!
 
 # Istari.c5m
+translation "Istari" "Istari"
 translation "Adds The Istari, a class of wizards with Gandalf among them." "Ajoute les Istari, une classe de magiciens, dont Gandalf."
 translation "Istar" "Istar"
 translation "Grey Wizard" "Magicien gris"
@@ -164,37 +170,37 @@ translation "Call for Aid" "Appel à l'aide"
 translation "Cancel" "Annuler"
 ```
 
-1.  With [`personalmod`](mod-loading.md#personalmod), each player in a LAN game may have their own translation mod, or none.
-2.  IstariFrench's description, in French.
+1.  With [`personalmod`](mod-loading.md#personalmod), each player in a LAN game can use a different translation mod or none.
+2.  `IstariFrench`'s description in French.
 
 ### 3. Enable both mods { #another-mod-enable }
 
-IstariFrench is a [one-language translation mod](#language): with Language at Default, it applies as soon as you enable it.
+Because `IstariFrench` is a [single-language translation mod](#language), it activates automatically while **Language** is set to **Default** (if the player selects another available language like Deutsch, that language overrides it).
 
 <div class="coe5se-shots" markdown>
 <figure markdown>
 ![The Mods screen: Istari and IstariFrench, both Enabled](../assets/languages/mods-fr.png)
-<figcaption>Both mods, on the Mods screen</figcaption>
+<figcaption>Both mods on the Mods screen</figcaption>
 </figure>
 </div>
 
 <div class="coe5se-shots" markdown>
 <figure markdown>
 ![The end of the Choose Class list: Guildmaster, Les Istari and Random](../assets/languages/choose-class-fr.png)
-<figcaption>The class, in Choose Class</figcaption>
+<figcaption>The class in Choose Class</figcaption>
 </figure>
 <figure markdown>
 ![The class's info screen, titled Les Istari, with its description in French under Lore](../assets/languages/class-info-fr.png)
-<figcaption>The class's description</figcaption>
+<figcaption>The class description</figcaption>
 </figure>
 </div>
 
-### 4. See what is left { #another-mod-check }
+### 4. Check what is left { #another-mod-check }
 
-The report is for French. It lists the line still to translate, and after the Istari mod updates, each new text and each line whose text the mod no longer has. Text a script keeps in a table is in neither the template nor the report, so add its lines by hand, as for German.
+Istari's section of the French report highlights untranslated strings. After the original mod updates, it also flags new strings and obsolete translations whose source text no longer exists. Strings stored in Lua tables do not appear in the template or report, so add those by hand as in the German example.
 
 ```text title="coe5se_translations/report.txt"
-== Istari: 10 texts, 9 translated, 1 missing ==
+== Istari: 11 texts, 10 translated, 1 missing ==
 Missing: "Once per game. Dunedain Rangers or Rohirrim Riders join Gandalf." (Istari.lua line 16)
 ```
 
@@ -202,12 +208,12 @@ Missing: "Once per game. Dunedain Rangers or Rohirrim Riders join Gandalf." (Ist
 
 ### language "&lt;tag&gt;" ["&lt;name&gt;"] <span class="new-badge">New</span> { #language .command data-toc-label="language" data-added="3.6" }
 
-Starts the lines for one language. They apply while a player has that language picked in Mod Settings, and end at the next `language` line. A mod that only translates into one language needs no pick: its lines apply with Default too.
+Opens a block of translation lines for one language, ending at the next `language` line or the end of the file. Lines apply whenever a player selects that language in Mod Settings. A content-free translation mod with only one language tag (note that `pt` and `pt-BR` count as two) applies under **Default** as well.
 
-- **tag:** The language's code: `de`, `fr`, `pt-BR`, `zh-Hans`. Capitals don't matter. A text with no `pt-BR` line shows its `pt` line.
-- **name:** The language's name in Mod Settings, written in that language: "Deutsch", "日本語". Without one, the tag shows.
+- **tag:** BCP 47 language code such as `de`, `fr`, `pt-BR`, or `zh-Hans`, case-insensitive. If a string has no `pt-BR` translation, it falls back to `pt`.
+- **name:** Display name shown in Mod Settings, written in that language (for example, `"Deutsch"`, `"日本語"`). Defaults to `tag` when omitted.
 
-Only the lines in [What a block holds](#block) go under it. A text with no translation shows as written. <!-- vale CoE5SE.Reports = NO -->Any other line does nothing (logged in `coe5mod.log`).<!-- vale CoE5SE.Reports = YES -->
+Only lines listed in [What a block holds](#block) are valid inside a language block. Untranslated strings display as written. <!-- vale CoE5SE.Reports = NO -->Any other line does nothing (logged in `coe5mod.log`).<!-- vale CoE5SE.Reports = YES -->
 
 === ".c5m"
 
@@ -225,12 +231,12 @@ Only the lines in [What a block holds](#block) go under it. A text with no trans
 
 ### fallbackfont "&lt;file&gt;" ["&lt;tag&gt;"] <span class="new-badge">New</span> { #fallbackfont .command data-toc-label="fallbackfont" data-added="3.6" }
 
-Adds a font for letters the game's fonts lack, such as Chinese, Japanese, Korean, Thai or emoji. Unlike vanilla `fontfile`, it replaces none of the game's fonts. Under a `language` line, it applies only with that language.
+Adds a fallback font for characters the vanilla fonts lack, such as Chinese, Japanese, Korean, Thai, or emoji. Declare in your `.c5se`, an included file, or on a `#!@` line in your `.c5m`. Unlike vanilla `fontfile`, it leaves all vanilla fonts intact. Inside a `language` block, it applies only to that language.
 
-- **file:** A .ttf or .otf file, its path from your .c5m's folder, as `include` takes it. Letters, digits, `_`, `-`, `.` and `/` only.
-- **tag:** The language the font is for. With that language picked, this font is tried first, so Japanese draws its kanji from a Japanese font even with a Chinese font enabled.
+- **file:** Path to a `.ttf` or `.otf` font relative to your `.c5m`'s folder, case-sensitive, using the same path rules as `include` (letters, digits, `_`, `-`, `.`, and `/`).
+- **tag:** Language tag this font prioritizes (optional). When active, this font is checked first among mod fonts (after vanilla fonts). That way Japanese draws kanji from a Japanese font even with a Chinese font enabled.
 
-Greek, Cyrillic and the accented letters of Western and Central European languages need no `fallbackfont`: the game's fonts have them.
+Greek, Cyrillic, and Western/Central European accented characters are already covered by vanilla fonts and need no `fallbackfont`.
 
 === ".c5m"
 
@@ -246,24 +252,25 @@ Greek, Cyrillic and the accented letters of Western and Central European languag
 
 ## What a block holds { #block }
 
-| Line | In a block |
+| Line | Behavior inside a language block |
 | --- | --- |
-| `translation "from" "to"` | As in vanilla, for that language. A `^` in either text is a line break, for a text of more than one paragraph. A `#` between the quotes is part of the text. |
-| `fontfile`, `fallbackfont` | As outside a block, for that language. |
-| `description "text"` | Your mod's description on the Mods screen. With that language picked, also while the mod is disabled. |
-| `selectmonster`, `selectitem`, `selectritual` or `selectaffliction`, then `descr "text"` | The description of that monster, item, ritual or affliction, found by its name. |
-| `selectclass`, then `classdescr`, `classabdescr`, `libbonusdescr`, `townbonusdescr` or `templebonusdescr` | That class's text. |
+| `translation "from" "to"` | Same as vanilla `translation`, scoped to this language. `^` in either string becomes a line break for multi-paragraph text. `#` inside quotes stays part of the text. |
+| `include "file"` | Includes a `.c5se` or `.c5m` file from your ROOT `.c5se` or `#!@` lines in `.c5m` (optional leading `./`). The included file inherits the active language block. |
+| `fontfile`, `fallbackfont` | Same as outside a block, scoped to this language. |
+| `description "text"` | Translates the mod's description on the Mods screen (applies while off too, when this language is selected). |
+| `selectmonster`, `selectitem`, `selectritual`, or `selectaffliction`, followed by `descr "text"` | Translates that monster, item, ritual, or affliction description (matched by name). |
+| `selectclass`, followed by `classdescr`, `classabdescr`, `libbonusdescr`, `townbonusdescr`, or `templebonusdescr` | Translates that class description field. |
 
-These lines work whatever the load order, so a translation mod may load before the mod it translates. A translation mod can also be a plain .c5m whose first line is `#!@language`, which the game without CoE5SE reads as a comment. A mod whose only lines are in language blocks adds no content, so with `personalmod` each player in a LAN game may have their own.
+Language blocks are independent of load order, so a translation mod can load before the mod it translates. A translation mod can also be a plain `.c5m` starting with `#!@language`, which vanilla ignores as a comment. Because language blocks add no gameplay content, pairing them with `personalmod` lets each player in a LAN game use a different language or none.
 
-Text a Lua script shows translates the same way, and `coe5.translate` gives a script the translation of the text it formats itself.
+Text shown by Lua scripts translates automatically through the same table, and `coe5.translate` lets scripts translate strings they format dynamically.
 
 ## The --dumpstrings files { #translators }
 
-With the `--dumpstrings` start option, CoE5SE writes these beside your mods directory, along with the game's `transtrings.txt`:
+When launched with `--dumpstrings`, CoE5SE writes two outputs beside your mods directory alongside vanilla's `transtrings.txt`:
 
-- `coe5se_translations/<mod>.c5se`: every text of each enabled mod, as `translation` lines to fill in, under a `language` line for the picked language.
-- `coe5se_translations/report.txt`: for that language, each mod's translated and missing lines, and the lines whose text the mod no longer has. It also lists lines the game ignores because their `%` codes differ, and letters no font has.
+- `coe5se_translations/<mod>.c5se`: every translatable string from each enabled mod as `translation` lines, under a `language` header for the active language.
+- `coe5se_translations/report.txt`: per-mod counts of translated and missing lines, obsolete entries whose source text disappeared, entries skipped due to mismatched `%` format codes, and characters missing from all loaded fonts.
 
 ### Example { #example }
 
@@ -298,8 +305,8 @@ descr "Der Hexenkönig ruft ein bemessenes Heer."
 <button class="mod-explorer__layout" data-layout="own" type="button">Istari in German</button>
 <button class="mod-explorer__layout" data-layout="other" type="button">IstariFrench</button>
 </div>
-<p class="mod-explorer__caption" data-layout="own">The Istari mod after <a href="#your-mod">Add a language to your mod</a>: German in <code>lang/de.c5se</code>, which Istari.c5m includes.</p>
-<p class="mod-explorer__caption" data-layout="other">The mods directory after <a href="#another-mod">Translate someone else's mod</a>: IstariFrench beside the Istari mod, whose files stay as they are.</p>
+<p class="mod-explorer__caption" data-layout="own">The Istari mod after <a href="#your-mod">Add a language to your mod</a>: German in <code>lang/de.c5se</code>, included from <code>Istari.c5m</code>.</p>
+<p class="mod-explorer__caption" data-layout="other">The mods directory after <a href="#another-mod">Translate someone else's mod</a>: <code>IstariFrench</code> alongside <code>Istari</code>, leaving Istari's files untouched.</p>
 <div class="mod-explorer__tree">
 <div class="mod-explorer__files" data-layout="own">
 <span class="mod-explorer__folder">Istari/</span>
@@ -357,11 +364,11 @@ stdtroops
 #!@include "lang/de.c5se" # (5)!
 ```
 
-1.  `#!@` makes this a line only CoE5SE reads: [The .c5m and the .c5se](../index.md#files).
-2.  One of the two units Istari.lua puts on Gandalf's square when he calls for aid.
-3.  156 is the Crystal Palace, the class's home citadel.
-4.  The main commander's sprite, istar.tga, is the class's picture in Choose Class.
-5.  The German file, from [step 3](#your-mod-include).
+1.  CoE5SE reads `#!@` lines while vanilla CoE5 ignores them as comments: [The .c5m and the .c5se](../index.md#files).
+2.  One of the two units `Istari.lua` spawns on Gandalf's square when he uses Call for Aid.
+3.  Terrain 156 is the Crystal Palace, the class's home citadel.
+4.  The main commander's sprite (`istar.tga`) also serves as the class icon on the Choose Class screen.
+5.  Includes the German translation file from [step 3](#your-mod-include).
 
 </div>
 <div class="mod-explorer__pane" data-file="de-c5se" markdown>
@@ -370,6 +377,7 @@ stdtroops
 language "de" "Deutsch"
 
 # Istari.c5m
+translation "Istari" "Istari"
 translation "Adds The Istari, a class of wizards with Gandalf among them." "Fügt die Istari hinzu, eine Klasse von Zauberern, darunter Gandalf."
 translation "Istar" "Istar"
 translation "Grey Wizard" "Grauer Zauberer"
@@ -406,6 +414,7 @@ language "fr" "Français"
 description "Le mod Istari en français."
 
 # Istari.c5m
+translation "Istari" "Istari"
 translation "Adds The Istari, a class of wizards with Gandalf among them." "Ajoute les Istari, une classe de magiciens, dont Gandalf."
 translation "Istar" "Istar"
 translation "Grey Wizard" "Magicien gris"
@@ -423,7 +432,7 @@ translation "Cancel" "Annuler"
 </div>
 <div class="mod-explorer__pane" data-file="fr-banner" markdown>
 
-IstariFrench's banner, a 256x64 .tga or .png, as in [step 1](#another-mod-make).
+`IstariFrench`'s banner, a 256 x 64 `.tga` or `.png`, as in [step 1](#another-mod-make).
 
 </div>
 <div class="mod-explorer__pane" data-file="c5m" markdown>
@@ -458,10 +467,10 @@ addstartunits "Archer" 5
 stdtroops
 ```
 
-1.  `#!@` makes this a line only CoE5SE reads: [The .c5m and the .c5se](../index.md#files).
-2.  One of the two units Istari.lua puts on Gandalf's square when he calls for aid.
-3.  156 is the Crystal Palace, the class's home citadel.
-4.  The main commander's sprite, istar.tga, is the class's picture in Choose Class.
+1.  CoE5SE reads `#!@` lines while vanilla CoE5 ignores them as comments: [The .c5m and the .c5se](../index.md#files).
+2.  One of the two units `Istari.lua` spawns on Gandalf's square when he uses Call for Aid.
+3.  Terrain 156 is the Crystal Palace, the class's home citadel.
+4.  The main commander's sprite (`istar.tga`) also serves as the class icon on the Choose Class screen.
 
 </div>
 <div class="mod-explorer__pane" data-file="lua" markdown>
@@ -514,11 +523,11 @@ coe5.addCommanderLine{ -- (1)!
 }
 ```
 
-1.  Adds an order after the game's orders for the selected commander.
-2.  Shows the order while a Grey Wizard is selected, until its owner has called for aid this game. `coe5.playerData` keeps that in the save, for each player.
-3.  A row with the monster's sprite, as the recruit screen draws one.
-4.  Shows the screen for one frame and returns the id the player selected, 0 for none, so the loop draws it again.
-5.  `monsterVariant` picks among the monster's looks, as recruiting does.
+1.  Adds a custom order to the selected commander's orders on the map.
+2.  Shows the order only while a Grey Wizard is selected and that player has not called for aid yet. Values stored in `coe5.playerData` persist in the save file.
+3.  Draws a choice row with the monster's sprite, matching the Recruit screen style.
+4.  Displays the screen and waits for the player to select an option, returning that button's ID.
+5.  `monsterVariant` picks one of the consecutive monster records sharing the same name, just like recruiting does.
 
 </div>
 <div class="mod-explorer__pane" data-file="white" markdown>

@@ -2,11 +2,12 @@
 
 # Mod Loading
 
+Control whether your mod requires CoE5SE, what order scripts load in, and how your mod behaves in LAN games.
 
-These go in the .c5m right at the biginning along with the other usual mod openers.
+These go in the `.c5m` right at the beginning along with the other usual mod openers (`personalmod` and `nomultiplayer` go in `.c5se` or on `#!@` lines).
 
-!!! info "More in the game's manual"
-    `icon`, `description`, `modprio` and the game's other mod info commands are in Illwinter's official modding manual, under ["Mod Info"](https://www.illwinter.com/coe5/coe5modding.pdf#page=4).
+!!! info "More in the CoE5 manual"
+    `icon`, `description`, `modprio`, and vanilla's other mod info commands are documented under ["Mod Info"](https://www.illwinter.com/coe5/coe5modding.pdf#page=4).
 
 ### needs_script_extender { #needs-script-extender .command data-toc-label="needs_script_extender" data-added="2.10" }
 
@@ -20,9 +21,9 @@ This is ignored by the Script Extender yet would be seen by the vanilla game and
 
 ### requires &lt;ModName&gt; { #requires .command data-toc-label="requires" data-added="1.0" }
 
-Ensure another mod's DLLs and Lua scripts load before yours. This is useful when you are making a mod on top of another mod or as a "core" and various additions mod strategy. If that mod isn't enabled, your mod still loads without it. Write it on a plain .c5m line: CoE5SE doesn't read `#!@requires`.
+Ensure another mod's DLLs and Lua scripts load before yours. This is useful when you are making a mod on top of another mod or as a "core" and various additions mod strategy. If that mod is not enabled, yours still loads without it. To control `.c5m` or `.c5se` content load order, use vanilla `modprio` instead. Write `requires` on a plain `.c5m` line, since CoE5SE does not read `#!@requires`.
 
-- **ModName:** The other mod's .c5m file name without `.c5m`, capitals included.
+- **ModName:** The other mod's `.c5m` filename without `.c5m`, case-sensitive (quote names containing spaces).
 
 === ".c5m"
 
@@ -32,12 +33,12 @@ Ensure another mod's DLLs and Lua scripts load before yours. This is useful when
 
 ### personalmod { #personalmod .command data-toc-label="personalmod" data-added="3.0" }
 
-Makes your mod a personal mod in LAN games, so each player can run their own copy of it, or none at all. This is what you want for UI or hotkeys each player sets up for themselves, or a [translation mod](languages.md#another-mod). Its script runs only on the machine of each player who has it, and can do anything that player can do. A host that has it runs it for the host's own screens only. What it can and can't read and do is on [LAN Games](../lua/lan-games.md#personal-mods).
+Marks your mod as a personal mod in LAN games, so each player can enable or skip it independently. Use this for client-side UI, custom hotkeys, or a [translation mod](languages.md#another-mod). Its Lua script runs only for players who have the mod enabled and can perform any action that player could perform manually in-game. If a host has it enabled, it runs for the host's screens only. See [LAN Games](../lua/lan-games.md#personal-mods) for read and write rules.
 
-Keep content out of a personal mod. A monster, a spell, an event or any other content makes it a content mod even with `personalmod`, since every player needs that content. Put the content in a mod of its own.
+Keep gameplay content out of a personal mod. Adding a monster, spell, event, or any other game content turns it into a content mod even with `personalmod`, because every player needs matching content. Put gameplay content in a separate mod. If a mod declares both `personalmod` and `nomultiplayer`, `nomultiplayer` wins.
 
 <!-- vale CoE5SE.Reports = NO -->
-Write it in your .c5se or on a `#!@` line, on its own line. On a plain .c5m line, CoE5SE ignores it and your mod stays a content mod (logged in `coe5mod.log`).
+Declare `personalmod` alone on a line in your `.c5se` or on a `#!@` line in your `.c5m`. On a plain `.c5m` line, CoE5SE ignores it and your mod stays a content mod (logged in `coe5mod.log`).
 <!-- vale CoE5SE.Reports = YES -->
 
 === ".c5m"
@@ -54,12 +55,12 @@ Write it in your .c5se or on a `#!@` line, on its own line. On a plain .c5m line
 
 ### nomultiplayer { #nomultiplayer .command data-toc-label="nomultiplayer" data-added="3.0" }
 
-Keeps your whole mod, scripts and content, out of LAN games on every machine, so no other player needs it. This is useful for a single player tool, like a restart button or game presets. Your mod comes back on when the LAN game ends. More on [LAN Games](../lua/lan-games.md#no-multiplayer-mods).
+Turns off the entire mod (scripts and content) during LAN games on every machine, so other players do not need it installed. Useful for single-player utilities like a restart button or game presets. The mod turns back on once the LAN game ends. See [LAN Games](../lua/lan-games.md#no-multiplayer-mods) for details.
 
-A single player save that holds your mod's content can't be hosted as a LAN game. The host stops with a "CoE5SE: Mod not for network games" box, since your mod is off there.
+A single-player save that uses your mod's content cannot be hosted as a LAN game. The host stops with a `"CoE5SE: Mod not for network games"` message because the mod is off in LAN play.
 
 <!-- vale CoE5SE.Reports = NO -->
-Write it in your .c5se or on a `#!@` line, on its own line. On a plain .c5m line, CoE5SE ignores it and your mod stays in LAN games (logged in `coe5mod.log`).
+Declare `nomultiplayer` alone on a line in your `.c5se` or on a `#!@` line in your `.c5m`. On a plain `.c5m` line, CoE5SE ignores it and your mod remains active in LAN games (logged in `coe5mod.log`).
 <!-- vale CoE5SE.Reports = YES -->
 
 === ".c5m"

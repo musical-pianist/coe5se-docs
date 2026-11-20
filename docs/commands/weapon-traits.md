@@ -5,26 +5,27 @@ status: new
 
 # Weapon Traits
 
-Aim your weapons and spells at any trait, or at a tag you give your monsters, where vanilla has only fixed commands like `affectundead` and `undkill`. A weapon can affect only those units, leave them unaffected, or double its damage against them. A weapon can also strike in a wider beam, color its looks, or turn the units it kills into a monster you name. To cap a weapon's damage die at its highest roll, use [`noexplode`](noexplode.md).
+Target weapons and spells at any monster trait or custom tag, widen beams, tint weapon visuals, or choose what slain victims turn into.
 
-These are declared in a weapon's block, after `newweapon` or `selectweapon`. A spell gets them through its weapon. A `clearwspec` below them takes them off. A trait is a vanilla trait, movement or ability command, spelled and cased as in ["Monster Modding"](https://www.illwinter.com/coe5/coe5modding.pdf#page=14) (`undead`, `inanimate`, `immortal`, `human`, `flying`, `stonebeing`, `troll`), CoE5SE's [`small`](monster-traits.md#small) or [`combatcaster`](monster-traits.md#combatcaster), or `tag "<name>"` for a [tag](monster-traits.md#tag) your monsters carry. A unit has a trait from its monster or an item it holds, and an ability from a temporary value too. A tag comes only from its monster. `flying` doesn't count `float`, so name both.
-
-<!-- vale CoE5SE.Reports = NO -->
-!!! warning "Write the trait as the manual does"
-    Case counts. `onlyaffects trolls` silently does nothing (logged in `coe5mod.log`), so the weapon hits every unit, and the mod still loads.
-<!-- vale CoE5SE.Reports = YES -->
-
-!!! tip "For players without CoE5SE"
-    In the .c5m, the vanilla game skips the `#!@` lines, so these weapons hit every unit at normal damage. Their victims are neither reanimated nor mutated, and their looks keep vanilla's colors.
+Declare these commands after `newweapon` or `selectweapon`. Spells inherit them through their weapon. To stop a weapon's damage die from exploding, see [`noexplode`](noexplode.md).
 
 !!! info "More in the CoE5 manual"
-    Vanilla weapon commands are in Illwinter's official modding manual, under ["Weapon Modding"](https://www.illwinter.com/coe5/coe5modding.pdf#page=4).
+    Vanilla weapon commands are documented under ["Weapon Modding"](https://www.illwinter.com/coe5/coe5modding.pdf#page=4).
+
+## Targeting and damage by trait
+
+These commands match any vanilla monster trait, movement, or ability command (spelled as in ["Monster Modding"](https://www.illwinter.com/coe5/coe5modding.pdf#page=14), such as `undead`, `inanimate`, `immortal`, `human`, `flying`, `stonebeing`, or `troll`), CoE5SE's [`small`](monster-traits.md#small) or [`combatcaster`](monster-traits.md#combatcaster), or `tag "<name>"` for a custom [tag](monster-traits.md#tag). Movement flags come from the monster or held items, traits and abilities also include temporary effects, and tags come from the monster only. `flying` does not include `float`, so list both if needed. A `clearwspec` line below these rules removes them.
+
+<!-- vale CoE5SE.Reports = NO -->
+!!! warning "Match the manual's exact spelling and case"
+    Trait names are case-sensitive. An unrecognized trait (like `onlyaffects trolls`) is ignored and logged in `coe5mod.log`. The mod still loads without error, and the weapon behaves as if that line were not there.
+<!-- vale CoE5SE.Reports = YES -->
 
 ### onlyaffects &lt;trait&gt; { #onlyaffects .command data-toc-label="onlyaffects" data-added="2.5" }
 
-Makes the weapon affect only units with the trait, as vanilla `affectundead` does for the undead. Every other unit takes no damage and no effect.
+Restricts the weapon so it affects only units with this trait, like vanilla `affectundead`. Every other unit takes no damage and no effect.
 
-- **trait:** A vanilla trait, movement or ability command, `small`, `combatcaster`, or `tag "<name>"`. With more `onlyaffects` lines, the weapon affects units with any of them.
+- **trait:** A monster trait, movement or ability command, `small`, `combatcaster`, or `tag "<name>"`. Repeating `onlyaffects` matches units with any listed trait.
 
 === ".c5m"
 
@@ -32,7 +33,7 @@ Makes the weapon affect only units with the trait, as vanilla `affectundead` doe
     #!@onlyaffects troll
     ```
 
-    Or a tag your monsters carry:
+    Or a custom tag:
 
     ```c5m
     #!@onlyaffects tag "Nazgul"
@@ -44,7 +45,7 @@ Makes the weapon affect only units with the trait, as vanilla `affectundead` doe
     onlyaffects troll
     ```
 
-    Or a tag your monsters carry:
+    Or a custom tag:
 
     ```c5se
     onlyaffects tag "Nazgul"
@@ -52,9 +53,9 @@ Makes the weapon affect only units with the trait, as vanilla `affectundead` doe
 
 ### doesntaffect &lt;trait&gt; { #doesntaffect .command data-toc-label="doesntaffect" data-added="2.5" }
 
-Makes units with the trait unaffected by the weapon, as vanilla `inanimate` does for lifeless units. A unit that matches both `onlyaffects` and `doesntaffect` is unaffected.
+Prevents the weapon from affecting units with this trait, like vanilla `inanimate`. If a unit matches both `onlyaffects` and `doesntaffect`, it is unaffected.
 
-- **trait:** A vanilla trait, movement or ability command, `small`, `combatcaster`, or `tag "<name>"`. With more `doesntaffect` lines, units with any of them are unaffected.
+- **trait:** A monster trait, movement or ability command, `small`, `combatcaster`, or `tag "<name>"`. Repeating `doesntaffect` excludes units with any listed trait.
 
 === ".c5m"
 
@@ -62,7 +63,7 @@ Makes units with the trait unaffected by the weapon, as vanilla `inanimate` does
     #!@doesntaffect immortal
     ```
 
-    Or a tag your monsters carry:
+    Or a custom tag:
 
     ```c5m
     #!@doesntaffect tag "Nazgul"
@@ -74,7 +75,7 @@ Makes units with the trait unaffected by the weapon, as vanilla `inanimate` does
     doesntaffect immortal
     ```
 
-    Or a tag your monsters carry:
+    Or a custom tag:
 
     ```c5se
     doesntaffect tag "Nazgul"
@@ -82,9 +83,9 @@ Makes units with the trait unaffected by the weapon, as vanilla `inanimate` does
 
 ### doubledmgvs &lt;trait&gt; { #doubledmgvs .command data-toc-label="doubledmgvs" data-added="2.5" }
 
-Doubles the weapon's damage against units with the trait, as vanilla `stonekill` does against stone beings. Vanilla `holykill`, `undkill` or `stonekill` on the same weapon doubles it again.
+Doubles the weapon's damage against units with this trait, like vanilla `stonekill`. Stacks with vanilla `holykill`, `undkill`, or `stonekill` on the same weapon.
 
-- **trait:** A vanilla trait, movement or ability command, `small`, `combatcaster`, or `tag "<name>"`. With more `doubledmgvs` lines, the damage doubles once when any of them matches.
+- **trait:** A monster trait, movement or ability command, `small`, `combatcaster`, or `tag "<name>"`. Repeating `doubledmgvs` still doubles damage once when any listed trait matches.
 
 === ".c5m"
 
@@ -92,7 +93,7 @@ Doubles the weapon's damage against units with the trait, as vanilla `stonekill`
     #!@doubledmgvs troll
     ```
 
-    Or a tag your monsters carry:
+    Or a custom tag:
 
     ```c5m
     #!@doubledmgvs tag "Nazgul"
@@ -104,18 +105,22 @@ Doubles the weapon's damage against units with the trait, as vanilla `stonekill`
     doubledmgvs troll
     ```
 
-    Or a tag your monsters carry:
+    Or a custom tag:
 
     ```c5se
     doubledmgvs tag "Nazgul"
     ```
 
+## Beam width
+
 ### beamwidth &lt;width&gt; [lines] { #beamwidth .command data-toc-label="beamwidth" data-added="3.0" }
 
-Makes the weapon's beam as many squares wide as you choose, where vanilla's beams are one square wide. Use it for breaths and beam spells that should hit more than one line of units. It works only on a beam (`aoe` 10xx or 50xx in ["Weapon Modding Numbers"](https://www.illwinter.com/coe5/coe5modding.pdf#page=6)); CoE5SE ignores it on any other `aoe`. Like vanilla's beam on its line, the side lanes hit the attacker's own units too, and vanilla `onlyenemy` keeps them off. In battle, units aim a wide beam as if it were one square wide (for now). `clearwspec` leaves the width as it is, and `beamwidth 1` puts vanilla's one-square beam back. Without CoE5SE, the beam stays one square wide.
+Widens a beam weapon beyond vanilla's one-square width, for breaths and beam spells that sweep multiple lanes. Works only on beam areas (`aoe` `10xx` or `50xx` in ["Weapon Modding Numbers"](https://www.illwinter.com/coe5/coe5modding.pdf#page=6)) and has no effect on other `aoe` types.
 
-- **width:** The beam's width in squares, 1 to 15. Each lane is as long as the beam: the xx of its `aoe`. An odd width is centred on the aim, and an even one has its extra lane on one side.
-- **lines:** Draws a trail for each lane instead of one trail as wide as the beam. With a fire look (`flylook 95`) the lines run together, so use `lines` with a thin look like Energy Beam's (`flylook 214`). Either trail needs a particle fly mode like Fiery Breath's `flymode 4`: a `flymode 1` sprite flies once down the centre at its usual size.
+Like vanilla beams, side lanes hit friendly units unless the weapon has `onlyenemy`. Units aim wide beams as if they were one square wide (for now). `clearwspec` does not reset `beamwidth`. Use `beamwidth 1` to restore a single-square beam.
+
+- **width:** Beam width in squares, 1 to 15. Each lane runs the full beam length (`xx` of its `aoe`). Odd widths center on the aim line, and even widths put the extra lane on one side.
+- **lines:** Draws one narrow trail per lane instead of a single wide trail (optional). Best with thin looks like Energy Beam (`flylook 214`), since fire looks (`flylook 95`) blur together. Wide and multi-lane trails require a particle fly mode such as `flymode 4`, while a `flymode 1` sprite flies once down the center at normal size.
 
 === ".c5m"
 
@@ -123,7 +128,7 @@ Makes the weapon's beam as many squares wide as you choose, where vanilla's beam
     #!@beamwidth 3
     ```
 
-    Or a trail for each lane:
+    Or one trail per lane:
 
     ```c5m
     #!@beamwidth 3 lines
@@ -135,18 +140,31 @@ Makes the weapon's beam as many squares wide as you choose, where vanilla's beam
     beamwidth 3
     ```
 
-    Or a trail for each lane:
+    Or one trail per lane:
 
     ```c5se
     beamwidth 3 lines
     ```
 
+<div class="coe5se-shots" markdown>
+<figure markdown>
+![A beamwidth 3 beam firing a single wide trail across three lanes](../assets/weapon-traits/beamwidth-wide.gif)
+<figcaption><code>beamwidth 3</code>: one wide trail</figcaption>
+</figure>
+<figure markdown>
+![A beamwidth 3 lines beam firing three separate narrow streaks](../assets/weapon-traits/beamwidth-lines.gif)
+<figcaption><code>beamwidth 3 lines</code>: one trail per lane</figcaption>
+</figure>
+</div>
+
+## Weapon and spell visuals
+
 ### lookcolor [smoke] &lt;red&gt; &lt;green&gt; &lt;blue&gt; <span class="new-badge">New</span> { #lookcolor .command data-toc-label="lookcolor" data-added="3.5" }
 
-Sets the color of the weapon's `look`, its smoke included. A dark color hardly shows, except on smoke.
+Tints the weapon's strike `look`, including its smoke particles. Dark colors barely show except on smoke. `clearwspec` leaves colors unchanged.
 
-- **smoke:** Optional. Sets the color of the look's smoke alone, in place of the color a `lookcolor` line without `smoke` gives it.
-- **red, green, blue:** Each color value is between 0 and 255, as in `playercolor`.
+- **smoke:** Tints only the smoke particles, overriding the color set by a plain `lookcolor` line (optional).
+- **red, green, blue:** Color channels from 0 to 255, like `playercolor`.
 
 === ".c5m"
 
@@ -154,7 +172,7 @@ Sets the color of the weapon's `look`, its smoke included. A dark color hardly s
     #!@lookcolor 60 220 60
     ```
 
-    Or the smoke alone:
+    Or smoke only:
 
     ```c5m
     #!@lookcolor smoke 70 110 70
@@ -166,7 +184,7 @@ Sets the color of the weapon's `look`, its smoke included. A dark color hardly s
     lookcolor 60 220 60
     ```
 
-    Or the smoke alone:
+    Or smoke only:
 
     ```c5se
     lookcolor smoke 70 110 70
@@ -174,10 +192,10 @@ Sets the color of the weapon's `look`, its smoke included. A dark color hardly s
 
 ### flylookcolor [smoke] &lt;red&gt; &lt;green&gt; &lt;blue&gt; <span class="new-badge">New</span> { #flylookcolor .command data-toc-label="flylookcolor" data-added="3.5" }
 
-Like `lookcolor`, but for the weapon's `flylook`. With `flymode 1` the fly sprite keeps its own colors, and its trail takes the color.
+Tints the weapon's flight `flylook`, including its smoke particles. With `flymode 1`, the flying sprite keeps normal colors while its trail takes the tint. `clearwspec` leaves colors unchanged.
 
-- **smoke:** Optional. Sets the color of the flylook's smoke alone, in place of the color a `flylookcolor` line without `smoke` gives it.
-- **red, green, blue:** Each color value is between 0 and 255.
+- **smoke:** Tints only the flight smoke particles, overriding the color set by a plain `flylookcolor` line (optional).
+- **red, green, blue:** Color channels from 0 to 255.
 
 === ".c5m"
 
@@ -185,7 +203,7 @@ Like `lookcolor`, but for the weapon's `flylook`. With `flymode 1` the fly sprit
     #!@flylookcolor 60 220 60
     ```
 
-    Or the smoke alone:
+    Or smoke only:
 
     ```c5m
     #!@flylookcolor smoke 70 110 70
@@ -197,18 +215,20 @@ Like `lookcolor`, but for the weapon's `flylook`. With `flymode 1` the fly sprit
     flylookcolor 60 220 60
     ```
 
-    Or the smoke alone:
+    Or smoke only:
 
     ```c5se
     flylookcolor smoke 70 110 70
     ```
 
+## Kill transforms
+
 ### reanimate [&lt;type&gt;] "&lt;monster&gt;" { #reanimate .command data-toc-label="reanimate" data-added="3.2" }
 
-A victim killed by the weapon becomes this monster instead of a Soulless. Like vanilla `reanimate`, it does not affect undead, tiny, ethereal or inanimate victims, and the victim leaves its corpse.
+Turns victims killed by the weapon into this monster instead of a Soulless. Like vanilla `reanimate`, it skips undead, tiny, ethereal, and inanimate victims, and the victim still leaves a corpse. A `clearwspec` line below it removes custom `reanimate` rules.
 
-- **type:** Optional. Only victims that leave this type of corpse: a vanilla [corpse type](corpses.md) or group, or a mod's corpse type in double quotes. A line with a type is used before the line without one. Other victims become a Soulless.
-- **monster:** The monster's name, in double quotes.
+- **type:** Restricts this line to victims leaving a specific [corpse type](corpses.md) or group (optional, vanilla or custom in double quotes). Typed lines are checked in order before an untyped fallback, and victims that match no line become Soulless. A second untyped line replaces the first.
+- **monster:** Target monster name in double quotes.
 
 === ".c5m"
 
@@ -226,9 +246,9 @@ A victim killed by the weapon becomes this monster instead of a Soulless. Like v
 
 ### mutate "&lt;monster&gt;" { #mutate .command data-toc-label="mutate" data-added="3.2" }
 
-A victim killed by the weapon becomes this monster, instead of the monster that follows the killer in the monster list. Like vanilla `mutate`, it does not affect inanimate or ethereal victims.
+Turns victims killed by the weapon into this monster instead of the monster after the killer in the monster list. Like vanilla `mutate`, it skips inanimate and ethereal victims. A second `mutate` line replaces the first, and a `clearwspec` line below it removes custom `mutate` rules.
 
-- **monster:** The monster's name, in double quotes.
+- **monster:** Target monster name in double quotes.
 
 === ".c5m"
 
@@ -242,7 +262,7 @@ A victim killed by the weapon becomes this monster, instead of the monster that 
     mutate "Goblin"
     ```
 
-### Example weapons { #example }
+## Example weapons { #example }
 
 === ".c5m"
 

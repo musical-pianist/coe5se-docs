@@ -22,17 +22,17 @@ Tie your mod's variables to settings, and you can craft a more dynamic experienc
 </figure>
 </div>
 
-A setting takes two steps. Declare it, so it shows on that page. Then read it in your events or script, where it changes the game.
+Adding a setting takes two steps: declare it so it appears on your mod's Mod Settings page, then read it in your events or Lua script.
 
-## Declaring settings
+## Setting types
 
-Declare settings in the .c5se, or on `#!@` lines of the .c5m. Each setting is `newsetting`, one kind ([`onoff`](#onoff), [`choice`](#choice) or [`key`](#key)), a `default` and a `label`, in any order. Text lengths and the number of options: [Limits](limits.md#mod-settings).
+Declare settings in your `.c5se`, or on `#!@` lines in your `.c5m`. Each setting block needs `newsetting`, one type ([`onoff`](#onoff), [`choice`](#choice), or [`key`](#key)), a `default`, and a `label`, in any order. See [Limits](limits.md#mod-settings) for text length and option caps.
 
 ### newsetting &lt;name&gt; { #newsetting .command data-toc-label="newsetting" data-added="2.0" }
 
-Creates a setting.
+Declares a new setting.
 
-- **name:** The word your events and scripts read the setting by: letters, digits and `_`, starting with a letter. Each name once per mod; capitals don't count.
+- **name:** Identifier used by events and Lua scripts: letters, digits, and `_`, starting with a letter. Unique per mod, case-insensitive.
 
 === ".c5m"
 
@@ -48,7 +48,7 @@ Creates a setting.
 
 ### onoff { #onoff .command data-toc-label="onoff" data-added="2.0" }
 
-Adds a single on/off checkmark. An event with `+setting <name>` happens only while it's checked, and a script reads true or false.
+Makes the setting an on/off checkbox. Events with `+setting <name>` run only while checked, and Lua reads `true` or `false`.
 
 === ".c5m"
 
@@ -64,7 +64,7 @@ Adds a single on/off checkmark. An event with `+setting <name>` happens only whi
 
 ### choice { #choice .command data-toc-label="choice" data-added="2.0" }
 
-Adds a list of 2 to 8 options, where the player picks one. An event with `+setting <name> <option>` happens only while the player has that option picked, and a script reads the option's number.
+Makes the setting a list of 2 to 8 radio options where the player picks one. Events with `+setting <name> <option>` run only while that option is selected, and Lua reads the option's number.
 
 === ".c5m"
 
@@ -80,7 +80,7 @@ Adds a list of 2 to 8 options, where the player picks one. An event with `+setti
 
 ### key { #key .command data-toc-label="key" data-added="2.0" }
 
-Adds a hotkey, where the player picks which keyboard key does something in your mod. Your Lua script reads the key with `coe5.setting` and gives it its job, such as a shortcut for one of the game's actions (`coe5.rebindKey`).
+Makes the setting a hotkey that players can bind to a keyboard key. Your Lua script reads the bound key with `coe5.setting` and assigns its action (for example, rebinding a game shortcut with `coe5.rebindKey`).
 
 === ".c5m"
 
@@ -94,17 +94,19 @@ Adds a hotkey, where the player picks which keyboard key does something in your 
     key
     ```
 
+## Setting options and behavior
+
 ### default &lt;value&gt; { #default .command data-toc-label="default" data-added="2.0" }
 
-Sets the setting's starting value.
+Sets the setting's default value.
 
-- **value:** 0 or 1 for `onoff`; an option's number for `choice`; a key in double quotes for `key`.
+- **value:** `0` or `1` for `onoff`, an option number for `choice`, or a key name in double quotes for `key` (or `"none"` for unbound).
 
 ??? note "Key names"
 
-    - A letter, digit or punctuation key is its character: `"y"`, `"7"`, `"?"`. Capitals count: `"B"` is shift+b.
-    - Named keys: Space, Tab, Enter, Esc, Backspace, Delete, Home, End, PgUp, PgDn, Up, Down, Left, Right, F1 to F12.
-    - Combinations: `ctrl+`, `alt+` or `ctrl+shift+` and a key: `"ctrl+i"`, `"alt+s"`, `"ctrl+F5"`.
+    - Letters, digits, and punctuation use their character: `"y"`, `"7"`, `"?"`. Case counts: `"B"` is `shift+b`.
+    - Named keys: `Space`, `Tab`, `Enter`, `Esc`, `Backspace`, `Delete`, `Home`, `End`, `PgUp`, `PgDn`, `Up`, `Down`, `Left`, `Right`, `F1` to `F12`, and `none`.
+    - Combinations: `ctrl+`, `alt+`, or `ctrl+shift+` followed by a key: `"ctrl+i"`, `"alt+s"`, `"ctrl+F5"`. (`ctrl+shift+` accepts letters only; `Esc` cannot be combined or bound by players, and defaulting to `"Esc"` automatically makes the setting `fixed`.)
 
 === ".c5m"
 
@@ -136,7 +138,7 @@ Sets the setting's starting value.
 
 ### label "&lt;text&gt;" { #label .command data-toc-label="label" data-added="2.0" }
 
-Sets the setting's text on the page, or a sub-page's name after `newsettingpage`.
+Sets the setting's display text on the page, or the sub-page's name after `newsettingpage`.
 
 === ".c5m"
 
@@ -152,10 +154,10 @@ Sets the setting's text on the page, or a sub-page's name after `newsettingpage`
 
 ### option &lt;number&gt; "&lt;text&gt;" { #option .command data-toc-label="option" data-added="2.0" }
 
-Adds an option to a `choice`.
+Adds an option to a `choice` setting.
 
-- **number:** The option's number, from 0, with no gaps.
-- **text:** The option's text.
+- **number:** Option index starting at `0`, with no gaps.
+- **text:** Option display text in double quotes.
 
 === ".c5m"
 
@@ -171,9 +173,9 @@ Adds an option to a `choice`.
 
 ### optiontip &lt;number&gt; "&lt;text&gt;" { #optiontip .command data-toc-label="optiontip" data-added="2.0" }
 
-Sets an option's hover text.
+Sets the hover tooltip for one option in a `choice` setting.
 
-- **number:** The number of the `option` it describes.
+- **number:** Index of the `option` this tooltip describes.
 
 === ".c5m"
 
@@ -189,7 +191,7 @@ Sets an option's hover text.
 
 ### tip "&lt;text&gt;" { #tip .command data-toc-label="tip" data-added="2.0" }
 
-Sets the hover text of an `onoff` or `key` setting.
+Sets the hover tooltip for an `onoff` or `key` setting. For `choice` settings, use [`optiontip`](#optiontip) on each option instead.
 
 === ".c5m"
 
@@ -205,7 +207,7 @@ Sets the hover text of an `onoff` or `key` setting.
 
 ### restart { #restart .command data-toc-label="restart" data-added="2.0" }
 
-Asks the player to restart the game when they leave your page with the setting changed.
+Prompts the player to restart CoE5 when they leave your settings page after changing this setting. Use this for settings read only once at launch.
 
 === ".c5m"
 
@@ -221,7 +223,7 @@ Asks the player to restart the game when they leave your page with the setting c
 
 ### group "&lt;word&gt;" { #group .command data-toc-label="group" data-added="2.0" }
 
-Stops the `key` settings of one group in your mod from holding the same key.
+Prevents `key` settings in the same group from sharing a key. If a player binds a key already held by another setting in the group, CoE5SE asks whether to reassign it (or shows a reserved notice if the holder is `fixed`).
 
 === ".c5m"
 
@@ -237,7 +239,7 @@ Stops the `key` settings of one group in your mod from holding the same key.
 
 ### fixed { #fixed .command data-toc-label="fixed" data-added="2.0" }
 
-Stops the player changing a `key` setting.
+Locks a `key` setting to its default so players cannot rebind it, while still reserving that key within its `group`.
 
 === ".c5m"
 
@@ -251,11 +253,13 @@ Stops the player changing a `key` setting.
     fixed
     ```
 
+## Layout and grouping
+
 ### parent &lt;name&gt; <span class="new-badge">New</span> { #parent .command data-toc-label="parent" data-added="3.4" }
 
-Puts an `onoff` or `key` setting under an `onoff` setting of your mod. Use it when you have multiple options you want attached to a single on/off, like a switch for endgame scenarios with each scenario under it. While the parent is off, the settings under it are greyed out and read as off, a key as no key. The player's picks come back when the parent is on again.
+Nests an `onoff` or `key` setting under an `onoff` setting in your mod. Use it when you have multiple options you want attached to a single on/off, like a switch for endgame scenarios with each scenario under it. While the parent is off, child settings appear greyed out and read as off (or no key for a `key` setting). Players' saved picks return when the parent is turned back on.
 
-- **name:** The parent's name. It comes before this setting, on the same page, and has no `parent` of its own.
+- **name:** The parent setting's name. It must be an `onoff` setting declared earlier on the same page, with no `parent` itself.
 
 === ".c5m"
 
@@ -275,7 +279,7 @@ Puts an `onoff` or `key` setting under an `onoff` setting of your mod. Use it wh
 
 ### newsettingheader "&lt;title&gt;" { #newsettingheader .command data-toc-label="newsettingheader" data-added="2.0" }
 
-Puts the `onoff` and `key` settings after it in a box with this title, up to the next `newsettingheader` or `choice`. Follow it with an `onoff` or `key` setting that has no `parent`.
+Groups the `onoff` and `key` settings below it inside a titled box, up to the next `newsettingheader`, `choice`, or `newsettingpage`. Follow it with an `onoff` or `key` setting that has no `parent`.
 
 === ".c5m"
 
@@ -291,9 +295,9 @@ Puts the `onoff` and `key` settings after it in a box with this title, up to the
 
 ### newsettingpage &lt;name&gt; { #newsettingpage .command data-toc-label="newsettingpage" data-added="2.0" }
 
-Puts the settings after it on a sub-page, up to the next `newsettingpage`. Give it a `label`.
+Places the settings below it on a sub-page, up to the next `newsettingpage` or the end of the file. Pair with a `label` for the button text. Sub-pages do not nest.
 
-- **name:** The page's name: 1 to 32 letters, digits and `_`, starting with a letter. Players see its `label` instead.
+- **name:** Sub-page identifier: 1 to 32 letters, digits, and `_`, starting with a letter (unique per mod, case-insensitive). Players see its `label` instead.
 
 === ".c5m"
 
@@ -523,17 +527,14 @@ Puts the settings after it on a sub-page, up to the next `newsettingpage`. Give 
 
 ## Reading settings
 
-Events read a setting with [`+setting`](#setting), with no script needed. A Lua script reads one with `coe5.setting("<name>")`.
-
-!!! warning
-    In network games, no event with `+setting` or `-setting` happens.
+Events read a setting with [`+setting`](#setting), with no Lua required. Lua scripts read settings with `coe5.setting("<name>")`. In LAN games, [content mods](../lua/lan-games.md#content-mods) use the host's picks (so `+setting` and `-setting` evaluate on the host), while [personal mods](../lua/lan-games.md#personal-mods) use each player's picks.
 
 ### +setting &lt;name&gt; [index] { #setting .command data-toc-label="+setting" data-added="1.0" }
 
-Makes an event happen only while the setting is on, or while a `key` setting has a key. `-setting` is the opposite. Goes in an event, in the .c5se or the .c5m.
+Requires the setting to be enabled (or bound to a key, for a `key` setting) for the event to run. `-setting` checks the opposite. Declare inside an event in your `.c5se` or `.c5m`. Naming an undeclared setting fails the event.
 
-- **name:** The name on the setting's `newsetting` line.
-- **index:** For a `choice`, the option the player picked; for a `key`, the key it holds.
+- **name:** The setting name from `newsetting`, case-insensitive.
+- **index:** Option number for a `choice`, or key value for a `key` setting (optional).
 
 === ".c5m"
 

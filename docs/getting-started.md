@@ -3,11 +3,11 @@ added: 3.4
 ---
 # Getting Started
 
-A CoE5SE mod is a vanilla mod folder that can also hold a .c5se and a Lua script. These files are optional, and when included they need exactly the same name as your .c5m.
+A CoE5SE mod starts as a standard vanilla mod folder containing a `.c5m` file. You can add CoE5SE commands directly inside the `.c5m` with `#!@` lines, place them in an optional `.c5se` file, and add an optional `.lua` script. When included, the `.c5se` and `.lua` files must share the exact same base filename as your `.c5m` (for example, `Istari.c5m`, `Istari.c5se`, and `Istari.lua`).
 
 ## CoE5SE on the main menu { #main-menu }
 
-Install CoE5SE from [GitHub](https://github.com/musical-pianist/coe5se#install) or [Nexus Mods](https://www.nexusmods.com/conquestofelysium5/mods/1). While it runs, the main menu shows its banner at the top right and Mod Settings after Mods.
+Install CoE5SE from [GitHub](https://github.com/musical-pianist/coe5se#install) or [Nexus Mods](https://www.nexusmods.com/conquestofelysium5/mods/1). Once it is running, the main menu displays the CoE5SE banner in the top right and adds **Mod Settings** after **Mods**.
 
 <div class="coe5se-shots" markdown>
 <figure markdown>
@@ -22,7 +22,7 @@ Install CoE5SE from [GitHub](https://github.com/musical-pianist/coe5se#install) 
 
 ## The Istari mod { #build }
 
-The rest of this page shows a working visual example of a CoE5SE mod, and a few different ways to lay out your mod folder. Please note this mod was created as an example only, and is in poor taste.
+The rest of this page walks through a working example mod and three ways to organize its files. Please note this mod was created as an example only, and is in poor taste.
 
 <div class="mod-explorer" markdown>
 <div class="mod-explorer__layouts">
@@ -30,9 +30,9 @@ The rest of this page shows a working visual example of a CoE5SE mod, and a few 
 <button class="mod-explorer__layout" data-layout="c5se" type="button">.c5se</button>
 <button class="mod-explorer__layout" data-layout="split" type="button">.c5m and .c5se</button>
 </div>
-<p class="mod-explorer__caption" data-layout="c5m">In this example the modder chose to keep one .c5m and extend it with <code>#!@</code> lines. This is a great fit for a mod that works with CoE5 and works even better with CoE5SE.</p>
-<p class="mod-explorer__caption" data-layout="c5se">In this example the modder chose to do the bulk of their mod creation in the .c5se.</p>
-<p class="mod-explorer__caption" data-layout="split">In this example the modder chose to “sidecar” every CoE5SE edit into a separate file, the .c5se. We pretend the modder really doesn’t want the mod to work in stock CoE5, and needs the script extender because they really want the wizard to be named “Gandalf”. As such, the modder put <code>needs_script_extender</code> in the .c5m, which makes vanilla CoE5 stop with a Mod Error.</p>
+<p class="mod-explorer__caption" data-layout="c5m">Everything lives in a single <code>.c5m</code>, with CoE5SE commands prefixed by <code>#!@</code>. This is a great fit for a mod that works in vanilla CoE5 and gains extra features when CoE5SE is installed.</p>
+<p class="mod-explorer__caption" data-layout="c5se">The <code>.c5m</code> holds only the mod info (<code>icon</code> and <code>description</code>), while all units, classes, and CoE5SE commands live cleanly in the <code>.c5se</code> without <code>#!@</code> prefixes.</p>
+<p class="mod-explorer__caption" data-layout="split">Vanilla content stays in the <code>.c5m</code>, while CoE5SE edits live in a sidecar <code>.c5se</code>. Here we pretend the modder does not want the mod running in stock CoE5 because they insist the wizard be named “Gandalf”. Adding <code>needs_script_extender</code> to the <code>.c5m</code> makes vanilla CoE5 stop with a Mod Error.</p>
 <div class="mod-explorer__tree">
 <span class="mod-explorer__folder">Istari/</span>
 <div class="mod-explorer__files" data-layout="c5m">
@@ -91,10 +91,10 @@ addstartunits "Archer" 5
 stdtroops
 ```
 
-1.  `#!@` makes this a line only CoE5SE reads: [The .c5m and the .c5se](index.md#files).
-2.  One of the two units Istari.lua puts on Gandalf's square when he calls for aid.
-3.  156 is the Crystal Palace, the class's home citadel.
-4.  The main commander's sprite, istar.tga, is the class's picture in Choose Class.
+1.  CoE5SE reads `#!@` lines while vanilla CoE5 ignores them as comments: [The .c5m and the .c5se](index.md#files).
+2.  One of the two units `Istari.lua` spawns on Gandalf's square when he uses Call for Aid.
+3.  Terrain 156 is the Crystal Palace, the class's home citadel.
+4.  The main commander's sprite (`istar.tga`) also serves as the class icon on the Choose Class screen.
 
 </div>
 <div class="mod-explorer__pane" data-file="c5se-c5m" markdown>
@@ -104,7 +104,7 @@ icon "banner.png" # (1)!
 description "Adds The Istari, a class of wizards with Gandalf among them."
 ```
 
-1.  `icon`, `description` and the rest of the mod info are read only from the .c5m.
+1.  Mod info commands (`icon`, `description`, `modprio`, and similar) are read only from the `.c5m`.
 
 </div>
 <div class="mod-explorer__pane" data-file="c5se-c5se" markdown>
@@ -177,7 +177,7 @@ selectmonster "Grey Wizard" # (1)!
 fixedname "Gandalf"
 ```
 
-1.  The .c5se is read after the .c5m, so it can select the Grey Wizard the .c5m made.
+1.  CoE5SE loads the `.c5se` after the `.c5m`, so it can select monsters and classes defined in the `.c5m`.
 
 </div>
 <div class="mod-explorer__pane" data-file="lua" markdown>
@@ -230,11 +230,11 @@ coe5.addCommanderLine{ -- (1)!
 }
 ```
 
-1.  Adds an order after the game's orders for the selected commander.
-2.  Shows the order while a Grey Wizard is selected, until its owner has called for aid this game. `coe5.playerData` keeps that in the save, for each player.
-3.  A row with the monster's sprite, as the recruit screen draws one.
-4.  Shows the screen for one frame and returns the id the player selected, 0 for none, so the loop draws it again.
-5.  `monsterVariant` picks among the monster's looks, as recruiting does.
+1.  Adds a custom order to the selected commander's orders on the map.
+2.  Shows the order only while a Grey Wizard is selected and that player has not called for aid yet. Values stored in `coe5.playerData` persist in the save file.
+3.  Draws a choice row with the monster's sprite, matching the Recruit screen style.
+4.  Displays the screen and waits for the player to select an option, returning that button's ID.
+5.  `monsterVariant` picks one of the consecutive monster records sharing the same name, just like recruiting does.
 
 </div>
 <div class="mod-explorer__pane" data-file="white" markdown>
@@ -256,7 +256,7 @@ coe5.addCommanderLine{ -- (1)!
 
 ## The class { #class }
 
-The class itself is vanilla commands, from Illwinter's ["Monster Modding"](https://www.illwinter.com/coe5/coe5modding.pdf#page=14) and ["Class Modding"](https://www.illwinter.com/coe5/coe5modding.pdf#page=27).
+The Istari class and its units are built with standard vanilla commands from Illwinter's ["Monster Modding"](https://www.illwinter.com/coe5/coe5modding.pdf#page=14) and ["Class Modding"](https://www.illwinter.com/coe5/coe5modding.pdf#page=27) sections.
 
 <div class="coe5se-shots" markdown>
 <figure markdown>
@@ -267,36 +267,40 @@ The class itself is vanilla commands, from Illwinter's ["Monster Modding"](https
 
 ## The CoE5SE command { #first-line }
 
-The one CoE5SE command, [`fixedname`](commands/commander-names.md#fixedname), names every Grey Wizard Gandalf.
+The mod's single CoE5SE command, [`fixedname`](commands/commander-names.md#fixedname), forces every Grey Wizard to be named Gandalf.
 
 <div class="coe5se-shots" markdown>
 <figure markdown>
 ![The commander list: the Istar, then Gandalf](assets/getting-started/commander-gandalf.png)
+<figcaption>Gandalf in the commander list</figcaption>
 </figure>
 <figure markdown>
 ![Gandalf's commander stats screen, titled Gandalf the Grey Wizard: his sprite, his stats, a Cast spell weapon and four Pyromancy spells](assets/getting-started/gandalf-stats.png)
-<figcaption>Gandalf the Grey Wizard, on his commander stats screen</figcaption>
+<figcaption>Gandalf the Grey Wizard on the commander stats screen</figcaption>
 </figure>
 </div>
+
+Edits to `.c5m` and `.c5se` files do not require restarting CoE5. Change `fixedname "Gandalf"` to `fixedname "Mithrandir"`, open **Mods** then **Exit** on the main menu to reload mod content, and start a New World. (Lua script edits still require a restart.)
 
 <div class="coe5se-shots" markdown>
 <figure markdown>
 ![The commander list: the Istar, then Mithrandir](assets/getting-started/commander-mithrandir.png)
+<figcaption>Renamed to Mithrandir after Mods, Exit, and New World (no restart)</figcaption>
 </figure>
 </div>
 
 ## The Lua script { #lua }
 
-With a Lua script you can add what commands can't, such as a new order and screen. Here Gandalf gets a Call for Aid order, once a game. On its screen the player picks the Dunedain or the Rohirrim, and they appear on his square.
+Lua lets you add behavior that mod commands cannot, such as custom commander orders and screens. Here, `Istari.lua` gives Gandalf a once-per-game **Call for Aid** order. Choosing it opens a custom screen where the player picks either the Dunedain or the Rohirrim, spawning them on Gandalf's square.
 
 <div class="coe5se-shots" markdown>
 <figure markdown>
 ![Gandalf's orders on the map: Sentry, Transfer Units, Use Special Power and Call for Aid](assets/getting-started/call-for-aid.png)
-<figcaption>Call for Aid, among Gandalf's orders</figcaption>
+<figcaption>Call for Aid among Gandalf's orders</figcaption>
 </figure>
 <figure markdown>
 ![The Call for Aid screen: The Dunedain, 6 Dunedain Rangers, and The Rohirrim, 4 Rohirrim Riders, each with its sprite, and Cancel](assets/getting-started/aid-choice.png)
-<figcaption>The player selects which units spawn on Gandalf's square</figcaption>
+<figcaption>The player chooses which reinforcements spawn on Gandalf's square</figcaption>
 </figure>
 </div>
 
@@ -304,12 +308,12 @@ This ends the sample. The rest is up to you!
 
 ## Where to go next { #next }
 
-- [Commands](commands/index.md): every mod command CoE5SE adds to .c5m and .c5se files.
-- [Spells](commands/spells.md): new spells.
-- [Spell Paths](commands/spell-paths.md): new magic paths, and paths by name.
-- [Planes](commands/planes.md): new planes, and planes by name.
-- [Factions](commands/factions.md): new independent factions.
-- [Event Logic](commands/events.md): if-then logic for your events.
-- [Mod Settings](commands/mod-settings.md): your mod's variables, tied to settings players pick.
-- [Lua](lua/index.md): what Lua scripts do in LAN games, and where every function is listed.
-- [Limits](commands/limits.md): CoE5SE's limits compared to vanilla.
+- [Commands](commands/index.md): every mod command CoE5SE adds to `.c5m` and `.c5se` files.
+- [Spells](commands/spells.md): custom combat spells.
+- [Spell Paths](commands/spell-paths.md): custom magic paths, and referencing paths by name.
+- [Planes](commands/planes.md): custom planes, set pieces, and referencing planes by name.
+- [Factions](commands/factions.md): custom independent factions.
+- [Event Logic](commands/events.md): `if`, `elseif`, `else`, and `or` branching for events.
+- [Mod Settings](commands/mod-settings.md): player-configurable settings for events and Lua scripts.
+- [Lua](lua/index.md): LAN game behavior and a link to the `coe5.lua` API reference.
+- [Limits](commands/limits.md): CoE5SE's limits and caps compared to vanilla.

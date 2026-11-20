@@ -2,13 +2,13 @@
 
 # Mod Files
 
-Split your mod into as many files as you like, and give its Lua script room for the data files it saves.
+Organize your mod across as many `.c5m` or `.c5se` files and folders as you want, and configure storage space for files written by your Lua script.
 
 ### maxdata &lt;megabytes&gt; { #maxdata .command data-toc-label="maxdata" data-added="2.4" }
 
-Sets the room for the data files your mod's Lua script saves. Goes in the .c5se or on a `#!@` line, once.
+Sets the storage limit for data files written by your mod's Lua script. Declare once in your `.c5se` or on a `#!@` line in your `.c5m`.
 
-- **megabytes:** The room your script's data files may take, 1 to 100. Without the line, 10. A save that would go past it fails, and CoE5SE deletes nothing to make room.
+- **megabytes:** Storage cap from 1 to 100 MB (defaults to 10). A data file write that would exceed the cap fails without deleting existing files.
 
 === ".c5m"
 
@@ -24,7 +24,7 @@ Sets the room for the data files your mod's Lua script saves. Goes in the .c5se 
 
 ### include "&lt;file&gt;" { #include .command data-toc-label="include" data-added="2.10" }
 
-Lets you arrange your mod in as many .c5se files and folders as you wish: by faction, by region, or by units, spells, and events. Put the `include` lines only in your mod's ROOT files: [its .c5se](../index.md#files), or `#!@` lines of its .c5m.
+Lets you arrange your mod in as many `.c5m` or `.c5se` files and folders as you wish: by faction, by region, or by units, spells, events, and [languages](languages.md). Put `include` lines only in your mod's ROOT files: [its `.c5se`](../index.md#files), or `#!@` lines in its `.c5m`.
 
 ```text
 LOTROverhaulMod/
@@ -35,19 +35,13 @@ LOTROverhaulMod/
     └── riders.c5se         ◀── included: no include lines
 ```
 
-- **file:** The path from the folder that holds your .c5m, with `/` between folders, ending in `.c5se`. Any number of folders deep. Letters, digits, `_`, `-` and `.` only, no folder or file name starting with a dot (so no `..`), capitals as on disk.
+- **file:** Path relative to the folder containing your `.c5m` (optional leading `./`), using `/` between folders and ending in `.c5se` or `.c5m`. Case-sensitive, any folder depth. Allowed characters are letters, digits, `_`, `-`, and `.`, with no folder or filename starting with a dot (so no `..`).
 
-Write anything in those files you'd write in your .c5se, events and [settings](mod-settings.md) included.
+Included files support anything valid in a `.c5se`, including events, [Mod Settings](mod-settings.md), and [language blocks](languages.md#language). You can also declare `include` inside a `language` block, and the included file inherits that active block. The game reads your mod top to bottom, inserting each included file where its `include` line appears. Edits take effect the next time CoE5 reloads mods (such as leaving the Mods screen or loading a game), with no restart.
 
-The game reads your mod top to bottom, each included file at its `include` line.
+Keep every block (such as `newmonster` or an event) within a single file. Leaving an event open at the end of a file stops the game with `"Missing endevent"`. Include all subfolders when distributing your mod. In a LAN game, modifying your mod's `.c5m`, `.c5se`, or included files after the game starts ends the game.
 
-Edits take effect the next time the game reads the mods, such as leaving the Mods screen or loading a game, with no restart.
-
-Keep each block, such as a `newmonster` or an event, inside one file. An event still open at a file's end stops the game with "Missing endevent".
-
-Ship the folders with your mod. In a network or hotseat game, changing a file after the game started ends the game.
-
-Including a missing file, or one twice, stops the game with the Mod Error. An `include` inside an event, an included file, or a .c5m line without `#!@` does too. For a mistake inside an included file, the Mod Error gives its path and line.
+Including a missing file or including the same file twice stops the game with a Mod Error. Placing `include` inside an event, inside an included file, or on a plain `.c5m` line without `#!@` does the same. Errors inside an included file report that file's path and line number.
 
 === ".c5m"
 

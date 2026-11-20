@@ -1,0 +1,27 @@
+icon "banner.png"
+description "Adds The Istari, a class of wizards with Gandalf among them."
+
+newmonster "Istar"
+copystats "White Wizard"
+spr1 "istar.tga"
+
+newmonster "Grey Wizard"
+copystats "Pyromancer"
+spr1 "greywizard.tga"
+#!@fixedname "Gandalf"
+
+newmonster "Dunedain Ranger"
+copystats "Longbowman"
+
+newmonster "Rohirrim Rider"
+copystats "Knight"
+
+newclass
+setclassname "The Istari"
+classdescr "The Istari, wizards sent across the sea to stand against the Shadow."
+hometerr 156
+setmaincom "Istar"
+addstartcom "Grey Wizard"
+addstartunits "Spearman" 10
+addstartunits "Archer" 5
+stdtroops
