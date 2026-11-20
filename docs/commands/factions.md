@@ -532,6 +532,36 @@ The game's commands whose first number is a player also take a faction by string
     setplayer "Host of Mordor"
     ```
 
+A command whose player is followed by a string, such as a monster's name or a message, takes the faction only with that string after it. With the string alone, the player is -1, as in vanilla: any player for a trigger, every player for `message`.
+
+Or in a trigger, with its monster's name:
+
+=== ".c5m"
+
+    ```c5m
+    +hasunit "Host of Mordor" "Goblin"
+    ```
+
+=== ".c5se"
+
+    ```c5se
+    +hasunit "Host of Mordor" "Goblin"
+    ```
+
+Or `hasunit` with an empty name, for any of the faction's units:
+
+=== ".c5m"
+
+    ```c5m
+    +hasunit "Host of Mordor" ""
+    ```
+
+=== ".c5se"
+
+    ```c5se
+    +hasunit "Host of Mordor" ""
+    ```
+
 !!! warning "Saves"
     Keep your faction's `newfaction` block, under the same name, in every later version of your mod. A save holding your faction loads only while an enabled mod still declares it, so removing the block leaves your players unable to load those saves.
 

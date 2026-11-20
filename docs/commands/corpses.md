@@ -12,7 +12,7 @@ Every corpse has a [type](#corpse-kinds), either vanilla or declared by a mod. M
 !!! info "More in the game's manual"
     The game's own corpse commands are in Illwinter's official modding manual, under ["Ritual Modding"](https://www.illwinter.com/coe5/coe5modding.pdf#page=33) and ["Events"](https://www.illwinter.com/coe5/coe5modding.pdf#page=38).
 
-### newcorpsetype "&lt;name&gt;" &lt;type&gt;|bypassvanillacorpse <span class="new-badge">New</span> { #newcorpsekind .command data-toc-label="newcorpsetype" data-added="3.1" }
+### newcorpsetype "&lt;name&gt;" &lt;type&gt;|bypassvanillacorpse { #newcorpsekind .command data-toc-label="newcorpsetype" data-added="3.1" }
 
 Declares a new corpse type ([Limits](limits.md#corpses)).
 

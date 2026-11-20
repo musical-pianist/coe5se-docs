@@ -70,6 +70,12 @@ All enabled mods together can add 16 factions.
 | [`factionavoid`](factions.md#factionavoid) | 8 per faction |
 | [`factionpopulateterrain`](factions.md#factionpopulateterrain) | 8 per faction |
 
+## Ritual Effects { #ritual-effects }
+
+| Command | Limit |
+| --- | --- |
+| [`ritualmenu`](ritual-effects.md#ritualmenu) | 47 characters in a menu's name |
+
 ## Spells { #spells }
 
 All enabled mods together can add 3,000 spells.

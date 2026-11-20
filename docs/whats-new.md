@@ -4,7 +4,19 @@
 
 The commands and pages each CoE5SE release added, newest first.
 
+## CoE5SE 3.8 { #v3-8 }
+
+- **[Ritual Effects](commands/ritual-effects.md)**: [`ritualmenu`](commands/ritual-effects.md#ritualmenu)
+
+## CoE5SE 3.7 { #v3-7 }
+
+[Release notes on GitHub](https://github.com/musical-pianist/coe5se/releases/tag/CoE5SE-v3.7.0)
+
+- **[Monster Traits](commands/monster-traits.md)**: [`battlesize`](commands/monster-traits.md#battlesize)
+
 ## CoE5SE 3.6 { #v3-6 }
+
+[Release notes on GitHub](https://github.com/musical-pianist/coe5se/releases/tag/CoE5SE-v3.6.0)
 
 - **[Languages](commands/languages.md) (new page)**: [`language`](commands/languages.md#language), [`fallbackfont`](commands/languages.md#fallbackfont)
 - **[Monster Traits](commands/monster-traits.md)**: [`uniquegroup`](commands/monster-traits.md#uniquegroup)

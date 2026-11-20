@@ -105,5 +105,6 @@ nav:
 hooks:
   - hooks/tooltips.py
   - hooks/new_labels.py
+  - hooks/needs_work.py
   - hooks/command_toc.py
   - hooks/command_versions.py

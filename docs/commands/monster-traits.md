@@ -5,7 +5,7 @@ status: new
 
 # Monster Traits
 
-Give a monster Small, Combat Caster or Hates, and give a commander the item slots you want, like two weapons and nine misc items. Let one commander ride different mounts and still be one unique monster. Take off any one trait while keeping the rest.
+Give a monster Small, Combat Caster or Hates, and give a commander the item slots you want, like two weapons and nine misc items. Let one commander ride different mounts and still be one unique monster. Size a monster's battlefield token up to 12 x 12 squares. Take off any one trait while keeping the rest.
 
 These go after `newmonster`, `selectmonster`, `newitem` or `selectitem`. A `0` after a trait removes it: `small 0`. With CoE5SE the same works for these vanilla traits:
 
@@ -310,6 +310,33 @@ Like vanilla `unique`, but every monster with the same group name counts as one 
     uniquegroup "Witch-king"
     ```
 
+### battlesize &lt;width&gt; &lt;height&gt; <span class="new-badge">New</span> { #battlesize .command data-toc-label="battlesize" data-added="3.7" }
+
+Like `size2x2`, but the monster takes up width x height squares on the battlefield. It wins over the token `size1x1`, `size2x2`, `huge` or the sprite would give. A token of 9 squares or more, like 3 x 3 or 5 x 2, also makes the monster `huge`. `battlesize 0` takes it off. `copystats` and `clearspec` affect it.
+
+The sprite should be 64 px a square, like 192 x 256 for a 3 x 4 token ([every size](#sprite-sizes)). A smaller one stands in the middle of the token.
+
+- **width:** 1 to 12 squares.
+- **height:** 1 to 12 squares.
+
+=== ".c5m"
+
+    An Ent too tall for a 3 x 3 token:
+
+    ```c5m
+    selectmonster "Treebeard"
+    #!@battlesize 3 4
+    ```
+
+=== ".c5se"
+
+    An Ent too tall for a 3 x 3 token:
+
+    ```c5se
+    selectmonster "Treebeard"
+    battlesize 3 4
+    ```
+
 ### Example monsters { #example }
 
 === ".c5m"
@@ -341,6 +368,11 @@ Like vanilla `unique`, but every monster with the same group name counts as one 
     flying
     #!@tag "Nazgul"
     #!@uniquegroup "Witch-king"
+
+    newmonster "Treebeard"
+    copystats "Ent"
+    copyspr "Ent"
+    #!@battlesize 3 4
 
     newmonster "Aragorn"
     copystats "Baron"
@@ -390,6 +422,11 @@ Like vanilla `unique`, but every monster with the same group name counts as one 
     tag "Nazgul"
     uniquegroup "Witch-king"
 
+    newmonster "Treebeard"
+    copystats "Ent"
+    copyspr "Ent"
+    battlesize 3 4
+
     newmonster "Aragorn"
     copystats "Baron"
     copyspr "Baron"
@@ -433,3 +470,22 @@ Like vanilla `unique`, but every monster with the same group name counts as one 
     | `"gauntlets"` | 5 |
     | `"boots"` | 6 |
     | `"misc item"` | 7 |
+
+### Sprite sizes { #sprite-sizes }
+
+??? info "Sprite px for each battlesize"
+
+    | Squares | Sprite px |
+    | --- | --- |
+    | 1 | 64 |
+    | 2 | 128 |
+    | 3 | 192 |
+    | 4 | 256 |
+    | 5 | 320 |
+    | 6 | 384 |
+    | 7 | 448 |
+    | 8 | 512 |
+    | 9 | 576 |
+    | 10 | 640 |
+    | 11 | 704 |
+    | 12 | 768 |

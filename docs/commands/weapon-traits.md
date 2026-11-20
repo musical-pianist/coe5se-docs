@@ -110,7 +110,7 @@ Doubles the weapon's damage against units with the trait, as vanilla `stonekill`
     doubledmgvs tag "Nazgul"
     ```
 
-### beamwidth &lt;width&gt; [lines] <span class="new-badge">New</span> { #beamwidth .command data-toc-label="beamwidth" data-added="3.0" }
+### beamwidth &lt;width&gt; [lines] { #beamwidth .command data-toc-label="beamwidth" data-added="3.0" }
 
 Makes the weapon's beam as many squares wide as you choose, where vanilla's beams are one square wide. Use it for breaths and beam spells that should hit more than one line of units. It works only on a beam (`aoe` 10xx or 50xx in ["Weapon Modding Numbers"](https://www.illwinter.com/coe5/coe5modding.pdf#page=6)); CoE5SE ignores it on any other `aoe`. Like vanilla's beam on its line, the side lanes hit the attacker's own units too, and vanilla `onlyenemy` keeps them off. In battle, units aim a wide beam as if it were one square wide (for now). `clearwspec` leaves the width as it is, and `beamwidth 1` puts vanilla's one-square beam back. Without CoE5SE, the beam stays one square wide.
 

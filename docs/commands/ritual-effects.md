@@ -87,6 +87,30 @@ Ritual cannot be cast more than this number of times per commander. Unlike `forg
     castermaxcast 1
     ```
 
+### ritualmenu "<name>" <span class="new-badge">New</span> { #ritualmenu .command data-toc-label="ritualmenu" data-added="3.8" }
+
+Puts the ritual in a menu, which the ritual screen shows as one line, `<name> ▸`. A click on the line opens the menu's rituals, each cast as if picked from the list.
+
+- **name:** In double quotes ([length limit](limits.md#ritual-effects)), shared by every mod. Case counts.
+
+When the commander knows only one of the menu's rituals, the ritual screen lists that ritual with no menu line.
+
+![The ritual screen's Level 2 with the line Elven Treasures ▸ in place of the menu's three rituals](../assets/ritual-effects/ritualmenu-list.png)
+
+![The Elven Treasures menu: Gifts of the Galadhrim, Archives of Rivendell and Forge of Eregion, and Cancel](../assets/ritual-effects/ritualmenu-menu.png)
+
+=== ".c5m"
+
+    ```c5m
+    #!@ritualmenu "Elven Treasures"
+    ```
+
+=== ".c5se"
+
+    ```c5se
+    ritualmenu "Elven Treasures"
+    ```
+
 ### Item groups { #item-groups }
 
 ??? info "Names and numbers of the five item groups"
@@ -114,11 +138,19 @@ Ritual cannot be cast more than this number of times per commander. Unlike `forg
     addstring "|Elven Armor"
     addstring "|Ring of Protection"
     #!@castermaxcast 1
+    #!@ritualmenu "Elven Treasures"
 
     newritual "Forge of Eregion"
     descr "The smiths of Eregion forge a treasure as in the old days."
     level 3
     #!@randartifact
+    #!@ritualmenu "Elven Treasures"
+
+    newritual "Archives of Rivendell"
+    descr "The house of Elrond gives a scholar a book of the old lore."
+    level 2
+    #!@randartifact books
+    #!@ritualmenu "Elven Treasures"
     ```
 
 === ".c5se"
@@ -134,9 +166,17 @@ Ritual cannot be cast more than this number of times per commander. Unlike `forg
     addstring "|Elven Armor"
     addstring "|Ring of Protection"
     castermaxcast 1
+    ritualmenu "Elven Treasures"
 
     newritual "Forge of Eregion"
     descr "The smiths of Eregion forge a treasure as in the old days."
     level 3
     randartifact
+    ritualmenu "Elven Treasures"
+
+    newritual "Archives of Rivendell"
+    descr "The house of Elrond gives a scholar a book of the old lore."
+    level 2
+    randartifact books
+    ritualmenu "Elven Treasures"
     ```
