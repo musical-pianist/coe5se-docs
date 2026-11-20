@@ -203,7 +203,7 @@ Like `lookcolor`, but for the weapon's `flylook`. With `flymode 1` the fly sprit
     flylookcolor smoke 70 110 70
     ```
 
-### reanimate [&lt;type&gt;] "&lt;monster&gt;" <span class="new-badge">New</span> { #reanimate .command data-toc-label="reanimate" data-added="3.2" }
+### reanimate [&lt;type&gt;] "&lt;monster&gt;" { #reanimate .command data-toc-label="reanimate" data-added="3.2" }
 
 A victim killed by the weapon becomes this monster instead of a Soulless. Like vanilla `reanimate`, it does not affect undead, tiny, ethereal or inanimate victims, and the victim leaves its corpse.
 
@@ -224,7 +224,7 @@ A victim killed by the weapon becomes this monster instead of a Soulless. Like v
     reanimate human "Wraith"
     ```
 
-### mutate "&lt;monster&gt;" <span class="new-badge">New</span> { #mutate .command data-toc-label="mutate" data-added="3.2" }
+### mutate "&lt;monster&gt;" { #mutate .command data-toc-label="mutate" data-added="3.2" }
 
 A victim killed by the weapon becomes this monster, instead of the monster that follows the killer in the monster list. Like vanilla `mutate`, it does not affect inanimate or ethereal victims.
 

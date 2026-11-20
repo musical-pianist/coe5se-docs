@@ -239,7 +239,7 @@ Like `raisecorpses`, but at the target location, as [`farraisedead`](#farraisede
     farraisecorpses "Dunedain" "c*Wight" 1
     ```
 
-### maxraise &lt;amount&gt; <span class="new-badge">New</span> { #maxraise .command data-toc-label="maxraise" data-added="3.2" }
+### maxraise &lt;amount&gt; { #maxraise .command data-toc-label="maxraise" data-added="3.2" }
 
 Ritual cannot create more than this number of units in one cast, from all its `raisedead`, `raiseanimals` and `raisecorpses` commands together, their far forms included. The commands are processed in order, so once the maximum is reached the later ones create none. A cap on one line still applies to that line. Also applies to AI players.
 
@@ -257,7 +257,7 @@ Ritual cannot create more than this number of units in one cast, from all its `r
     maxraise 1
     ```
 
-### needcorpses <span class="new-badge">New</span> { #needcorpses .command data-toc-label="needcorpses" data-added="3.2" }
+### needcorpses { #needcorpses .command data-toc-label="needcorpses" data-added="3.2" }
 
 Ritual cannot be cast unless the caster's square has a corpse its `raisedead`, `raiseanimals` or `raisecorpses` commands can use. The ritual is greyed out with the game's normal "Not possible to cast this ritual now" text. Does not affect AI players (for now), or a ritual with `farraisedead`, `farraiseanimals` or `farraisecorpses`, whose target location is chosen only when it is cast.
 
@@ -273,7 +273,7 @@ Ritual cannot be cast unless the caster's square has a corpse its `raisedead`, `
     needcorpses
     ```
 
-### excludecorpses "&lt;type&gt;" <span class="new-badge">New</span> { #excludecorpses .command data-toc-label="excludecorpses" data-added="3.2" }
+### excludecorpses "&lt;type&gt;" { #excludecorpses .command data-toc-label="excludecorpses" data-added="3.2" }
 
 `raisedead`, `raiseanimals` and `raisecorpses` in this ritual, and their far forms, will not use corpses of this type, except a `raisecorpses` or `farraisecorpses` that names it. Useful for a corpse type that counts as `human` but should only be used by its own `raisecorpses`. Does not affect AI players (for now).
 

@@ -6,6 +6,8 @@ The commands and pages each CoE5SE release added, newest first.
 
 ## CoE5SE 3.8 { #v3-8 }
 
+[Release notes on GitHub](https://github.com/musical-pianist/coe5se/releases/tag/CoE5SE-v3.8.0)
+
 - **[Ritual Effects](commands/ritual-effects.md)**: [`ritualmenu`](commands/ritual-effects.md#ritualmenu)
 
 ## CoE5SE 3.7 { #v3-7 }
