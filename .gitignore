@@ -3,3 +3,8 @@ site/
 styles/*
 !styles/CoE5SE/
 __pycache__/
+
+# The local build of the CoE5 Modding extension a preview reads, and the release the site downloads
+# (lexer/coe5_lexers/extension.py).
+coe5-modding.vsix
+.cache/

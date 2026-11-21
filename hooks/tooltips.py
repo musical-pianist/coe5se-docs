@@ -1,7 +1,7 @@
 # Each command word in a code block gets the VS Code extension's hover text as its title, which the
 # theme's improved tooltips (content.tooltips) shows as a hover box, and so does each number the
 # manual's number tables explain (newunits 28: Inferno). words.json and tables.json are read out of the
-# extension itself, coe5-modding.vsix at the site's root, so the site and the extension never differ. A number no table explains gets what its form says the
+# extension itself, the release extension.json pins (a local build for a preview: coe5_lexers/extension.py), so the site and the extension never differ. A number no table explains gets what its form says the
 # argument does (words.json "args": templerec 4 3's amount and cap). On a noexplode line each part number gets the part
 # of the addstring above it, read back as the extension reads it, and start and end their form.
 import html
@@ -10,15 +10,20 @@ import re
 import zipfile
 from pathlib import Path
 
-with zipfile.ZipFile(Path(__file__).parent.parent / "coe5-modding.vsix") as _vsix:
+from coe5_lexers.extension import find_extension_vsix
+
+_VSIX, _LOCAL = find_extension_vsix(Path(__file__).parent.parent)
+with zipfile.ZipFile(_VSIX) as _vsix:
     WORDS = json.loads(_vsix.read("extension/data/words.json"))
     TABLES = json.loads(_vsix.read("extension/data/tables.json"))
     EXTENSION_VERSION = json.loads(_vsix.read("extension/package.json"))["version"]
 
 
 def on_config(config):
-    """The footer names the extension version the site's hovers and code colours come from."""
-    config["copyright"] = f"Hovers and code colours: CoE5 Modding extension {EXTENSION_VERSION}"
+    """The footer names the extension version the site's hovers and code colours come from, and says
+    when they come from a local build rather than the release."""
+    built = " (local build)" if _LOCAL else ""
+    config["copyright"] = f"Hovers and code colours: CoE5 Modding extension {EXTENSION_VERSION}{built}"
     return config
 SPAN = re.compile(r'<span class="([^"]*)">([+\-]?[a-z_][a-z_0-9.]*)</span>')
 NUMBER = re.compile(r'<span class="(m[a-z]*)">(-?\d+)</span>')
