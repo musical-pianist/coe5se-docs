@@ -2,36 +2,36 @@
 
 # CoE5SE Commands
 
-The commands CoE5SE adds to a mod's files, and the game's commands it reads its own way. Which file each goes in: [The .c5m and the .c5se](../index.md#files).
+Mod commands CoE5SE adds to `.c5m` and `.c5se` files, plus vanilla commands CoE5SE extends to accept names by string or extra options. See [The .c5m and the .c5se](../index.md#files) for file syntax and layouts.
 {: #where }
 
 ### Pages { #pages }
 
-| Section | Page | For |
+| Section | Page | Covers |
 | --- | --- | --- |
-| Mod Info | [Mod Loading](mod-loading.md) | Needing CoE5SE, and loading after another mod |
-| | [Mod Files](other-commands.md) | Your mod in many files, and room for its Lua script's data |
-| | [Mod Settings](mod-settings.md) | Settings players change |
-| | [Languages](languages.md) | Your mod's text in other languages, and fonts for the letters the game's fonts lack |
-| Weapon Modding | [Weapon Traits](weapon-traits.md) | Weapons aimed at any trait or tag |
-| Magic Item Modding | [Magic Items](magic-items.md) | What the game's scrolls, tomes, maps, hearts and eyes have |
-| Monster Modding | [Monster Traits](monster-traits.md) | Traits on a monster or item |
-| | [Immunities](immunities.md) | Monsters immune to instant death, polymorph, petrification or Feeblemind |
-| | [Commander Names](commander-names.md) | Lists of commander names |
-| | [Growth](growth.md) | Monsters that grow by kills or XP, into one of several monsters by chance |
-| | [Vehicles](vehicles.md) | Monsters that carry their army by land or air, with a deck in battle and recruiting on the move |
-| Class Modding | [Classes](classes.md) | Classes by name, and classes no player gets |
-| | [Recruitment Bonuses](recruitment.md) | What temples, libraries, villages and units add to a recruitment offer |
-| World Modding | [Planes](planes.md) | New planes, and planes by name |
-| | [Factions](factions.md) | New independent factions |
-| Ritual Modding | [Ritual Effects](ritual-effects.md) | Effects only the game's own rituals had |
-| Spell Modding | [Spells](spells.md) | New spells |
-| | [Spell Modifiers](spell-modifiers.md) | Limits and effects on a spell |
-| | [Army Healing](army-healing.md) | An army that heals faster while one of its units knows a spell |
-| | [Spell Paths](spell-paths.md) | New magic paths, and paths by name |
-| Event Modding | [Event Logic](events.md) | Events that choose between groups of triggers and branches |
-| Across Sections | [Corpses](corpses.md) | Corpse types, the corpse a monster leaves, and the rituals and events that use them |
-| | [Afflictions](afflictions.md) | New afflictions, and the events, rituals and monsters that give, cure and resist them |
-| | [Exploding Dice](noexplode.md) | Capping a die at its highest roll, for weapons and ritual summons |
-| | [Monsters and Rituals by Name](monster-names.md) | Another monster or ritual by its name, where the game takes a number |
-| Reference | [Limits](limits.md) | Every cap CoE5SE sets |
+| Mod Info | [Mod Loading](mod-loading.md) | Requiring CoE5SE, ordering script loads, and marking personal or single-player-only mods for LAN games |
+| | [Mod Files](other-commands.md) | Splitting a mod across multiple files and folders, and setting Lua data storage limits |
+| | [Mod Settings](mod-settings.md) | Player-configurable settings for events and Lua scripts |
+| | [Languages](languages.md) | Translating mod text into other languages and loading fallback fonts |
+| Weapon Modding | [Weapon Traits](weapon-traits.md) | Targeting traits or custom tags, widening beams, tinting visuals, and choosing what slain units turn into |
+| Magic Item Modding | [Magic Items](magic-items.md) | Clearing copied item stats and building scrolls, tomes, maps, hearts, eyes, and Soul Stone items |
+| Monster Modding | [Monster Traits](monster-traits.md) | Extra monster and item traits, custom item slots, unique groups, battlefield token sizes, and removing traits |
+| | [Immunities](immunities.md) | Making monsters immune to instant death, polymorph, petrification, or Feeblemind |
+| | [Commander Names](commander-names.md) | Custom lists of commander names |
+| | [Growth](growth.md) | Growing monsters by kills or XP, with weighted random outcomes |
+| | [Vehicles](vehicles.md) | Land and air transports with battle decks and mobile recruitment |
+| Class Modding | [Classes](classes.md) | Selecting classes by string and disabling vanilla classes for players |
+| | [Recruitment Bonuses](recruitment.md) | Customizing recruitment offer bonus tables for temples, libraries, villages, and units |
+| World Modding | [Planes](planes.md) | Adding custom planes, loading `.coem` maps, placing set pieces, and referencing planes by string |
+| | [Factions](factions.md) | Creating non-playable independent factions that inhabit terrain and react to events |
+| Ritual Modding | [Ritual Effects](ritual-effects.md) | Additional ritual effects not supported by vanilla CoE5, plus custom ritual menus |
+| Spell Modding | [Spells](spells.md) | Defining custom combat spells with paths, levels, and weapons |
+| | [Spell Modifiers](spell-modifiers.md) | Spell limits and passive effects such as slow cast, no sea casting, or Burn Forest |
+| | [Army Healing](army-healing.md) | Spells that increase between-turn healing for the caster's army |
+| | [Spell Paths](spell-paths.md) | Adding custom magic paths and referencing paths by string |
+| Event Modding | [Event Logic](events.md) | Branching `if`/`elseif`/`else` and `or` trigger logic for events |
+| Across Sections | [Corpses](corpses.md) | Assigning corpse types, defining custom corpse types, and targeting them in rituals and events |
+| | [Afflictions](afflictions.md) | Defining custom afflictions and wiring them into monsters, rituals, events, and Lua |
+| | [Exploding Dice](noexplode.md) | Capping damage and summoning dice so they do not explode on max rolls |
+| | [Monsters and Rituals by Name](monster-names.md) | Referencing monsters and rituals by string where vanilla expects a number |
+| Reference | [Limits](limits.md) | Every table slot, count, and text length cap in CoE5SE |

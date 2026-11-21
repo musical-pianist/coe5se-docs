@@ -255,7 +255,7 @@ Greek, Cyrillic, and Western/Central European accented characters are already co
 | Line | Behavior inside a language block |
 | --- | --- |
 | `translation "from" "to"` | Same as vanilla `translation`, scoped to this language. `^` in either string becomes a line break for multi-paragraph text. `#` inside quotes stays part of the text. |
-| `include "file"` | Includes a `.c5se` or `.c5m` file from your ROOT `.c5se` or `#!@` lines in `.c5m` (optional leading `./`). The included file inherits the active language block. |
+| `include "file"` | Includes a `.c5se` or `.c5m` file from your ROOT `.c5se` or `#!@` lines in `.c5m` (optional leading `./`). The included file inherits the active language block, and is skipped while that language is inactive. |
 | `fontfile`, `fallbackfont` | Same as outside a block, scoped to this language. |
 | `description "text"` | Translates the mod's description on the Mods screen (applies while off too, when this language is selected). |
 | `selectmonster`, `selectitem`, `selectritual`, or `selectaffliction`, followed by `descr "text"` | Translates that monster, item, ritual, or affliction description (matched by name). |
