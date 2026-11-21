@@ -9,16 +9,16 @@ A faction is `newfaction`, followed by the commands on this page that shape the 
 | To find | Look in |
 | --- | --- |
 | Monster names | "Monster Data" in the [CoE5 Data thread](https://steamcommunity.com/app/1606340/discussions/1/3198114142283463845/) |
-| Terrain numbers and groups | ctrl+i on a square in the game; "Terrain Data" in the [CoE5 Data thread](https://steamcommunity.com/app/1606340/discussions/1/3198114142283463845/) |
-| Group strings | `sitepop` in ["Terrain Modding"](https://www.illwinter.com/coe5/coe5modding.pdf#page=30) of the official modding manual |
+| Terrain numbers and groups | `ctrl+i` on a square in-game, or "Terrain Data" in the [CoE5 Data thread](https://steamcommunity.com/app/1606340/discussions/1/3198114142283463845/) |
+| Group strings | `sitepop` under ["Terrain Modding"](https://www.illwinter.com/coe5/coe5modding.pdf#page=30) in the official modding manual |
 
 ## Declaring a faction
 
 ### newfaction "&lt;name&gt;" { #newfaction .command data-toc-label="newfaction" data-added="2.10" }
 
-Creates a faction. Its name shows wherever the game names a player.
+Creates a faction. Its name appears anywhere CoE5 displays a player or faction name.
 
-- **name:** In double quotes. It must differ from every other faction's name, the vanilla factions' included ("Inferno", "Kingdom").
+- **name:** In double quotes. Must be unique across all factions, including vanilla factions (`"Inferno"`, `"Kingdom"`, and the rest).
 
 === ".c5m"
 
@@ -34,9 +34,9 @@ Creates a faction. Its name shows wherever the game names a player.
 
 ### factionlike "&lt;faction&gt;" { #factionlike .command data-toc-label="factionlike" data-added="2.10" }
 
-Clones a vanilla faction's rules, so each line your block leaves out keeps the vanilla faction's setting. Your faction stays a faction of its own, apart from the faction it clones.
+Clones a vanilla faction's rules as a starting template. Any command you omit keeps the cloned preset's behavior, while your faction remains a separate faction from the vanilla one.
 
-- **faction:** A vanilla faction by string: "Independents", "Special Monsters", "Horrors", "Hades", "Inferno", "Celestial" or "Empire" ("Kingdom"). Without `factionlike`, the faction clones the Independents.
+- **faction:** A vanilla faction by string: `"Independents"`, `"Special Monsters"`, `"Horrors"`, `"Hades"`, `"Inferno"`, `"Celestial"`, or `"Empire"` (`"Kingdom"`). If omitted, defaults to `"Independents"`.
 
 === ".c5m"
 
@@ -52,9 +52,9 @@ Clones a vanilla faction's rules, so each line your block leaves out keeps the v
 
 ### factioncolor &lt;red&gt; &lt;green&gt; &lt;blue&gt; { #factioncolor .command data-toc-label="factioncolor" data-added="2.10" }
 
-Sets the faction's colour.
+Sets the faction's map color.
 
-- **red, green, blue:** 0 to 255 each.
+- **red, green, blue:** Color channels, `0` to `255` each.
 
 === ".c5m"
 
@@ -70,9 +70,11 @@ Sets the faction's colour.
 
 ### factionhome "&lt;plane&gt;" { #factionhome .command data-toc-label="factionhome" data-added="2.10" }
 
-Sets the faction's home plane: where its citadel spawns, its gateway's exit and its waiting wanderers are.
+Sets the faction's home plane, where its citadel spawns, restored gateway exits, and waiting wanderers operate.
 
-- **plane:** A vanilla plane or one of your [planes](planes.md), by string. `factionpopulate` needs one of your planes here, since a vanilla plane's independents stay owned by the vanilla faction.
+<!-- vale CoE5SE.Reports = NO -->
+- **plane:** A vanilla plane (by short name such as `"Inferno"` or `"Void"`, or full name such as `"Celestial Plane"`) or a custom [plane](planes.md), by string. `"The Void"` does not match. A misspelled plane name is skipped (logged in `coe5mod.log`), leaving the faction with no home. If you plan to use `factionpopulate on`, this must be a custom plane.
+<!-- vale CoE5SE.Reports = YES -->
 
 === ".c5m"
 
@@ -88,9 +90,17 @@ Sets the faction's home plane: where its citadel spawns, its gateway's exit and 
 
 ## Faction world generation
 
+These three commands control what territory and armies the faction starts with during world generation:
+
+- Use `factionpopulate` to claim the independents generated on a custom home plane.
+- Use `factionunits` to spawn new armies on free squares of any plane.
+- Use `factionpopulateterrain` to take over Independents already placed on matching terrain.
+
 ### factionpopulate on|off { #factionpopulate .command data-toc-label="factionpopulate" data-added="2.10" }
 
 Makes the independents owned by the faction. You usually want this.
+
+Applies only when `factionhome` is a custom plane. Vanilla planes keep their vanilla independent owner.
 
 === ".c5m"
 
@@ -108,11 +118,11 @@ Makes the independents owned by the faction. You usually want this.
 
 The faction places owned units on a plane at world generation, and owns each square it places them on.
 
-- **monster:** The units' monster. A monster with `water` goes on water squares, and one with `noland` never goes on land.
-- **count:** 1 to 1000, doubled with Wilder.
-- **chance:** In 100 for each free square, 1 to 100. A free square has no army and no owner but the Independents.
-- **terrain:** A terrain number or group. Without it, any.
-- **plane:** Without it, every plane.
+- **monster:** The monster to place, by string. Monsters with `water` spawn on water squares, and monsters with `noland` never spawn on land.
+- **count:** Units per square, `1` to `1000` (doubled when Wilder is enabled).
+- **chance:** Percent chance (`1` to `100`) per free square. A square is free if it is passable, has no army, is unowned or owned by Independents, and has not already been claimed by an earlier faction, earlier `factionunits` line, or `factionpopulateterrain`.
+- **terrain:** A terrain number or group (`-1` or omitted for any terrain).
+- **plane:** A plane by string (vanilla name or custom plane). Omit to place across all planes.
 
 === ".c5m"
 
@@ -131,7 +141,7 @@ The faction places owned units on a plane at world generation, and owns each squ
 Independents already placed during world generation (a previous step) are then owned by the faction, along with their squares.
 
 - **terrain:** A terrain number or group.
-- **plane:** Without it, every plane.
+- **plane:** A plane by string. Omit to apply across all planes.
 
 === ".c5m"
 
@@ -145,13 +155,42 @@ Independents already placed during world generation (a previous step) are then o
     factionpopulateterrain 38 "Elysium"
     ```
 
+#### Example: Home plane and starting territory { #example-worldgen }
+
+=== ".c5m"
+
+    Claim a custom home plane, plus extra units and terrain on Elysium:
+
+    ```c5m
+    #!@newfaction "Host of Mordor"
+    #!@factionlike "Inferno"
+    #!@factionhome "Mordor"
+    #!@factionpopulate on
+    #!@factionunits "Ghost" 2 5 -1 "Elysium"
+    #!@factionpopulateterrain 38 "Elysium"
+    ```
+
+=== ".c5se"
+
+    Claim a custom home plane, plus extra units and terrain on Elysium:
+
+    ```c5se
+    newfaction "Host of Mordor"
+    factionlike "Inferno"
+    factionhome "Mordor"
+    factionpopulate on
+    factionunits "Ghost" 2 5 -1 "Elysium"
+    factionpopulateterrain 38 "Elysium"
+    ```
+
 ## Spawns
 
 ### factionactive always|never|portals &lt;n&gt; { #factionactive .command data-toc-label="factionactive" data-added="2.10" }
 
-Sets when the faction is active, which its citadel spawns and waiting wanderers need: always, never, or by the Inferno's rule (`portals`). By that rule the faction is active while that many gateways to its home are open. It is also active while a player's army or a citadel someone else owns stands on its home.
+Sets when the faction is active. An active faction runs its citadel spawns and releases wanderers held by `factionwandergate`.
 
-- **n:** The open gateways the faction waits for, 1 to 1000. The Inferno waits for 1, the Celestial for 2.
+- **always / never:** Always active from turn 1, or never active.
+- **portals &lt;n&gt;:** Uses the Inferno's activation rule. The faction is active while at least `n` (`1` to `1000`) gateways to the home plane are open, not counting the plane's original entrance. It is also active while a player's army or a citadel owned by anyone else stands on the home plane. Vanilla Inferno uses `1`, and Celestial uses `2`. Because another faction's citadel counts, a faction homed on the vanilla Inferno is active from turn 1.
 
 === ".c5m"
 
@@ -167,9 +206,11 @@ Sets when the faction is active, which its citadel spawns and waiting wanderers 
 
 ### factionspawnsite owncitadel|monument ["&lt;plane&gt;"]|none { #factionspawnsite .command data-toc-label="factionspawnsite" data-added="2.10" }
 
-Sets where the faction spawns its units: at a citadel it owns on its home, as the Inferno does; at its monuments, as Hades does; or nowhere.
+Sets where the faction spawns units from its `factionspawn` table.
 
-- **plane:** The plane of the faction's monuments, by string. Without it, Elysium.
+- **owncitadel:** Picks a random citadel on the home plane each turn and spawns there if this faction owns it and is active, like the Inferno.
+- **monument ["&lt;plane&gt;"]:** Spawns at the faction's monuments on the named plane (defaults to `"Elysium"`), like Hades.
+- **none:** Disables site spawns.
 
 === ".c5m"
 
@@ -185,7 +226,9 @@ Sets where the faction spawns its units: at a citadel it owns on its home, as th
 
 ### factionfuel "&lt;monster&gt;" { #factionfuel .command data-toc-label="factionfuel" data-added="2.10" }
 
-Sets the monster the faction uses up to spawn units, as the Inferno uses Sinners.
+Sets the monster consumed at spawn sites to fund `factionspawn` entries and gathered by `factiongather` carriers, like the Inferno uses Sinners.
+
+- **monster:** Monster name in double quotes (case-insensitive).
 
 === ".c5m"
 
@@ -201,18 +244,24 @@ Sets the monster the faction uses up to spawn units, as the Inferno uses Sinners
 
 ### factionspawn &lt;min&gt; &lt;use&gt; &lt;chance&gt; "&lt;group&gt;" [magma|ice|waste] { #factionspawn .command data-toc-label="factionspawn" data-added="2.10" }
 
-Adds a spawn the faction tries on its turn. At each site the faction sends out only the first spawn whose fuel, terrain and chance pass, so declare the biggest first. The block's first `factionspawn` replaces the cloned faction's spawns.
+Adds an entry to the faction's spawn table, checked on the faction's turn. At each site, only the first entry whose fuel, terrain, and chance checks pass will spawn, so list larger or higher-priority spawns first. The first `factionspawn` in a block replaces the cloned preset's spawn table.
 
-- **min:** The fuel the site needs, 0 to 10000.
-- **use:** The fuel the spawn uses up, 0 to `min`.
-- **chance:** In 100, 1 to 100.
-- **group:** The units, as a `sitepop` group string.
-- **magma, ice or waste:** The terrain the spawn needs within 2 squares of the site, as the Inferno's spawns do.
+- **min:** Minimum fuel units required at the site, `0` to `10000`.
+- **use:** Fuel units consumed when the spawn triggers, `0` to `min`.
+- **chance:** Percent chance to spawn, `1` to `100`.
+- **group:** Units to spawn, as a `sitepop` group string.
+- **magma, ice, or waste:** Optional terrain required within 2 squares of the site, like the Inferno's spawns. Applies to `owncitadel` sites only (never fires at `monument` sites).
 
 === ".c5m"
 
     ```c5m
     #!@factionspawn 20 10 50 "10*Goblin"
+    ```
+
+    Or requiring magma within 2 squares:
+
+    ```c5m
+    #!@factionspawn 50 40 30 "c*Demon Lord & 10*Greater Demon" magma
     ```
 
 === ".c5se"
@@ -221,13 +270,47 @@ Adds a spawn the faction tries on its turn. At each site the faction sends out o
     factionspawn 20 10 50 "10*Goblin"
     ```
 
+    Or requiring magma within 2 squares:
+
+    ```c5se
+    factionspawn 50 40 30 "c*Demon Lord & 10*Greater Demon" magma
+    ```
+
+#### Example: Fuel, priority order, and terrain spawns { #example-spawns }
+
+=== ".c5m"
+
+    List bigger spawns first; the first passing entry fires each turn:
+
+    ```c5m
+    #!@factionactive portals 1
+    #!@factionspawnsite owncitadel
+    #!@factionfuel "Sinner"
+    #!@factionspawn 50 40 30 "c*Demon Lord & 10*Greater Demon" magma
+    #!@factionspawn 25 15 50 "c*Demon Lieutenant & 12*Lesser Demon" waste
+    #!@factionspawn 10 5 60 "10*Goblin"
+    ```
+
+=== ".c5se"
+
+    List bigger spawns first; the first passing entry fires each turn:
+
+    ```c5se
+    factionactive portals 1
+    factionspawnsite owncitadel
+    factionfuel "Sinner"
+    factionspawn 50 40 30 "c*Demon Lord & 10*Greater Demon" magma
+    factionspawn 25 15 50 "c*Demon Lieutenant & 12*Lesser Demon" waste
+    factionspawn 10 5 60 "10*Goblin"
+    ```
+
 ## Wanderers
 
 ### factionwander "&lt;word&gt;" { #factionwander .command data-toc-label="factionwander" data-added="2.10" }
 
-Sets the wander command the faction's commanders follow.
+Sets which vanilla wander command this faction's commanders follow on their turn.
 
-- **word:** "wander", "indwander", "infwander", "hadeswander" or "celwander".
+- **word:** `"wander"`, `"indwander"`, `"infwander"`, `"hadeswander"`, or `"celwander"`.
 
 === ".c5m"
 
@@ -243,7 +326,9 @@ Sets the wander command the faction's commanders follow.
 
 ### factionwandergate on|off { #factionwandergate .command data-toc-label="factionwandergate" data-added="2.10" }
 
-Makes the faction's wanderers wait on its home until the faction is active, as the Inferno's wanderers do. It works with `factionwander` "infwander" or "celwander"; with "indwander" the Independents' own gate rule applies instead.
+Holds the faction's wanderers on the home plane until the faction becomes active, like the Inferno's wanderers. Applies when `factionwander` is `"infwander"` or `"celwander"`. With `"indwander"`, the Independents' gate rule applies instead.
+
+Only factions cloned from `"Inferno"` or `"Celestial"` update this gate's active flag. Using `factionwandergate on` with `"infwander"` or `"celwander"` on another preset (such as `"Independents"`) leaves wanderers stuck on the home plane for the whole game.
 
 === ".c5m"
 
@@ -261,7 +346,9 @@ Makes the faction's wanderers wait on its home until the faction is active, as t
 
 ### factionmonument "&lt;monster&gt;"|none { #factionmonument .command data-toc-label="factionmonument" data-added="2.10" }
 
-Sets the monster the faction uses as its monument, like Hades' Monument of Hades.
+Sets the monster that counts as this faction's monument (for `factionspawnsite monument`, `factionmonumentrule`, `factionplaneshift`, and `factionloyalty`), like Hades' Monument of Hades.
+
+- **monster:** Monster name in double quotes (case-insensitive), or `none` to clear.
 
 === ".c5m"
 
@@ -277,7 +364,7 @@ Sets the monster the faction uses as its monument, like Hades' Monument of Hades
 
 ### factionmonumentrule on|off { #factionmonumentrule .command data-toc-label="factionmonumentrule" data-added="2.10" }
 
-Lets the faction's monument on Elysium stop a player from ruling Elysium, as the Monument of Hades does.
+Prevents any player from claiming rulership of Elysium while this faction has a monument standing on Elysium, like the Monument of Hades.
 
 === ".c5m"
 
@@ -293,13 +380,14 @@ Lets the faction's monument on Elysium stop a player from ruling Elysium, as the
 
 ### factionmonumentevent &lt;month&gt; &lt;chance&gt; "&lt;plane&gt;" &lt;terrain&gt; "&lt;monster&gt;" ["&lt;news&gt;"]|none { #factionmonumentevent .command data-toc-label="factionmonumentevent" data-added="2.10" }
 
-Lets the faction found its monument on a square the Independents own, as Hades founds the Monument of Hades. The Independents' units on the square become owned by the faction.
+Periodically founds the faction's monument on a square owned by Independents, like Hades founds the Monument of Hades. The Independents' units on that square transfer to this faction. Because the event does not stop after the first founding, set `chance` to control how often it can trigger (Hades uses `8`).
 
-- **month:** The turn the founding can start after.
-- **chance:** In 1000, each turn.
-- **terrain:** A terrain number or group. The square needs one of the Independents' commanders on it.
-- **monster:** The unfinished monument the faction summons on the square.
-- **news:** The World News, `%s` once for the commander, `%%` for a percent sign.
+- **month:** Turn the event can start triggering after (for example, `24` starts on turn 25).
+- **chance:** Chance per turn out of `1000` (`1` to `1000`).
+- **plane:** Plane to search, by string.
+- **terrain:** A terrain number or group. The chosen square must be owned by Independents and have an Independent commander on it.
+- **monster:** The monument (or unfinished monument) monster summoned on the square.
+- **news:** Optional World News message. Use `%s` once for the commander's name, and `%%` for a literal percent sign.
 
 === ".c5m"
 
@@ -315,10 +403,11 @@ Lets the faction found its monument on a square the Independents own, as Hades f
 
 ### factionplaneshift "&lt;monster&gt;" &lt;percent&gt; &lt;each&gt;|none { #factionplaneshift .command data-toc-label="factionplaneshift" data-added="2.10" }
 
-Moves the monster from the faction's home to the matching square on Elysium while the faction's monument stands, as Hades moves Dispossessed Spirits.
+While the faction's monument stands, moves units of this monster from the home plane to the matching coordinates on Elysium, like Hades shifts Dispossessed Spirits.
 
-- **percent:** The chance each square of the home holding an army is picked, 1 to 100.
-- **each:** The chance each of the monster's units on a picked square moves, 1 to 100.
+- **monster:** Monster name in double quotes (case-insensitive), or `none` to disable.
+- **percent:** Percent chance (`1` to `100`) that each home-plane square holding an army is picked each turn.
+- **each:** Percent chance (`1` to `100`) that each matching unit on a picked square shifts to Elysium.
 
 === ".c5m"
 
@@ -334,7 +423,9 @@ Moves the monster from the faction's home to the matching square on Elysium whil
 
 ### factionloyalty "&lt;monster&gt;"|none { #factionloyalty .command data-toc-label="factionloyalty" data-added="2.10" }
 
-Makes every unit of the monster on the monument's plane owned by the faction while its monument stands, as Hades does with Dispossessed Spirits.
+While the faction's monument stands, transfers every unit of this monster on the monument's plane to this faction, like Hades claims Dispossessed Spirits.
+
+- **monster:** Monster name in double quotes (case-insensitive), or `none` to disable.
 
 === ".c5m"
 
@@ -348,13 +439,45 @@ Makes every unit of the monster on the monument's plane owned by the faction whi
     factionloyalty "Dispossessed Spirit"
     ```
 
+#### Example: Hades-style monument faction { #example-monuments }
+
+=== ".c5m"
+
+    Found a monument on Elysium, block rulership, and shift spirits over:
+
+    ```c5m
+    #!@newfaction "Dead of Dunharrow"
+    #!@factionlike "Hades"
+    #!@factionspawnsite monument
+    #!@factionmonument "Monument of Hades"
+    #!@factionmonumentrule on
+    #!@factionmonumentevent 24 8 "Elysium" 38 "Unfinished Monument" "%s has raised the Stone of Erech."
+    #!@factionplaneshift "Dispossessed Spirit" 8 50
+    #!@factionloyalty "Dispossessed Spirit"
+    ```
+
+=== ".c5se"
+
+    Found a monument on Elysium, block rulership, and shift spirits over:
+
+    ```c5se
+    newfaction "Dead of Dunharrow"
+    factionlike "Hades"
+    factionspawnsite monument
+    factionmonument "Monument of Hades"
+    factionmonumentrule on
+    factionmonumentevent 24 8 "Elysium" 38 "Unfinished Monument" "%s has raised the Stone of Erech."
+    factionplaneshift "Dispossessed Spirit" 8 50
+    factionloyalty "Dispossessed Spirit"
+    ```
+
 ## Gateways, like the Inferno
 
 ### factiongather &lt;ability&gt;|none { #factiongather .command data-toc-label="factiongather" data-added="2.10" }
 
-Makes the faction's units with the ability gather its fuel from Elysium's settlements and bring it home.
+Makes faction units with the given ability gather `factionfuel` units from settlements on Elysium and carry them back to the home plane.
 
-- **ability:** An ability number. The Inferno's carriers have 1224.
+- **ability:** Ability number, or `none` to disable. The Inferno's Sinner carriers use `1224`.
 
 === ".c5m"
 
@@ -370,11 +493,11 @@ Makes the faction's units with the ability gather its fuel from Elysium's settle
 
 ### factiongateway &lt;fuel&gt; &lt;ruin&gt; &lt;gate&gt; &lt;exit&gt; ["&lt;news&gt;"]|none { #factiongateway .command data-toc-label="factiongateway" data-added="2.10" }
 
-Sets the ruined gateway on Elysium the faction's carriers restore, and where it leads on the faction's home.
+Lets the faction's carriers restore a ruined gateway terrain on Elysium into an open portal leading to the home plane. If multiple factions target the same ruin terrain, whichever restores a ruin first claims it.
 
-- **fuel:** The fuel on the ruin that restores it, 1 to 10000. The Inferno's takes 99 Sinners.
-- **ruin, gate, exit:** Terrain numbers: the ruin, the restored gateway, and its exit.
-- **news:** The World News, with no `%s`; `%%` for a percent sign.
+- **fuel:** Number of `factionfuel` units required on the ruin square to restore it, `1` to `10000`. Vanilla Inferno requires `99` Sinners.
+- **ruin, gate, exit:** Terrain numbers for the ruined gateway on Elysium, the restored gateway on Elysium, and its exit terrain on the home plane.
+- **news:** Optional World News message. Does not accept `%s`, and uses `%%` for a literal percent sign.
 
 === ".c5m"
 
@@ -388,11 +511,35 @@ Sets the ruined gateway on Elysium the faction's carriers restore, and where it 
     factiongateway 99 200 201 203 "The Black Gate opens."
     ```
 
+#### Example: Carriers gathering fuel for gateways { #example-gateways }
+
+=== ".c5m"
+
+    Carriers gather Sinners on Elysium and spend 99 to reopen ruined gateways:
+
+    ```c5m
+    #!@factionhome "Mordor"
+    #!@factionfuel "Sinner"
+    #!@factiongather 1224
+    #!@factiongateway 99 200 201 203 "The Black Gate opens."
+    ```
+
+=== ".c5se"
+
+    Carriers gather Sinners on Elysium and spend 99 to reopen ruined gateways:
+
+    ```c5se
+    factionhome "Mordor"
+    factionfuel "Sinner"
+    factiongather 1224
+    factiongateway 99 200 201 203 "The Black Gate opens."
+    ```
+
 ## Game rules
 
 ### factiontithe on|off { #factiontithe .command data-toc-label="factiontithe" data-added="2.10" }
 
-Sends the gold of the faction's squares to the Tithe of El. You usually want this.
+Sends the gold of the faction's squares to the Tithe of El. You usually want this if you are doing El things.
 
 === ".c5m"
 
@@ -408,7 +555,7 @@ Sends the gold of the faction's squares to the Tithe of El. You usually want thi
 
 ### factionworldevents on|off { #factionworldevents .command data-toc-label="factionworldevents" data-added="2.10" }
 
-Lets the world events that act on the Independents' squares and armies, like the Bandit King and the brigands' lair, act on the faction's squares and armies too.
+Allows vanilla independent world events (such as Bandit King, Brigand Lair, and meteors) to target this faction's squares and armies.
 
 === ".c5m"
 
@@ -424,7 +571,10 @@ Lets the world events that act on the Independents' squares and armies, like the
 
 ### factionconquest independent|normal { #factionconquest .command data-toc-label="factionconquest" data-added="2.10" }
 
-Sets how players conquer the faction's squares: `independent` as they conquer the Independents' squares, `normal` as they conquer any other faction's.
+Sets which conquest rule applies when a player takes one of the faction's squares:
+
+- **independent:** Squares with nothing worth owning (no citadel, resources, enchantment, or site) stay owned by the faction instead of flipping, like Independents' squares.
+- **normal:** Every conquered square flips to the conquering player (when allowed to own squares), like taking territory from another player or faction.
 
 === ".c5m"
 
@@ -440,7 +590,7 @@ Sets how players conquer the faction's squares: `independent` as they conquer th
 
 ### factionstatue on|off { #factionstatue .command data-toc-label="factionstatue" data-added="2.10" }
 
-Makes the faction a faction of cities like the Empire: the Imperial Statue and the wanderers that seek cities count its squares.
+Marks the faction as a city faction like the Empire, so the Imperial Statue event and city-seeking wanderers count its squares.
 
 === ".c5m"
 
@@ -456,7 +606,7 @@ Makes the faction a faction of cities like the Empire: the Imperial Statue and t
 
 ### factionhorrors on|off { #factionhorrors .command data-toc-label="factionhorrors" data-added="2.10" }
 
-Gives the faction a share of the Horrors' spawns, making it a second Horrors.
+Gives this faction an equal share of Horror spawns triggered on horror-marked units alongside vanilla Horrors (and any other faction with `factionhorrors on`).
 
 === ".c5m"
 
@@ -472,10 +622,10 @@ Gives the faction a share of the Horrors' spawns, making it a second Horrors.
 
 ### factionavoid "&lt;faction&gt;" &lt;percent&gt;|none { #factionavoid .command data-toc-label="factionavoid" data-added="2.10" }
 
-Makes the faction's armies avoid another faction's armies. The block's first `factionavoid` replaces the cloned faction's list.
+Controls how likely this faction's armies are to step onto another faction's armies. The first `factionavoid` in a block replaces the cloned preset's avoidance list.
 
-- **faction:** A faction by string, yours or a vanilla one. A vanilla name also covers every faction cloned from it.
-- **percent:** The chance the faction's armies step onto that faction's armies, 0 to 100. The Independents step onto the Empire's at 25.
+- **faction:** A custom or vanilla faction by string, or `none` to clear the list. Naming a vanilla faction also matches every custom faction cloned from it.
+- **percent:** Percent chance (`0` to `100`) that this faction's armies will step onto that faction's armies (`0` always avoids, `100` never avoids). Vanilla Independents use `25` against `"Empire"`.
 
 === ".c5m"
 
@@ -491,18 +641,25 @@ Makes the faction's armies avoid another faction's armies. The block's first `fa
 
 ### factioncaravan &lt;month&gt; &lt;chance&gt; "&lt;plane&gt;" &lt;terrain&gt; ["&lt;group&gt;"] ["&lt;news&gt;"]|none { #factioncaravan .command data-toc-label="factioncaravan" data-added="2.10" }
 
-Gives the faction a caravan, beside the vanilla game's caravan.
+Spawns a periodic caravan for this faction alongside the vanilla caravan. In an Agricultural society, a second draw runs at double chance.
 
-- **month:** The turn the caravan can start after.
-- **chance:** In 350, each turn, 1 to 350.
-- **terrain:** The terrain the caravan arrives beside, a terrain number or group. The game's caravan uses `-93`.
-- **group:** The units, as a `sitepop` group string. Without it, the Merchants' crew.
-- **news:** The World News, `%s` once for the square, `%%` for a percent sign.
+- **month:** Turn the caravan can begin spawning after.
+- **chance:** Chance per turn out of `350` (`1` to `350`).
+- **plane:** Plane to spawn on, by string.
+- **terrain:** Terrain number or group the caravan arrives beside. Vanilla caravans use `-93`.
+- **group:** Optional `sitepop` group string for the caravan's units. Omit to use the vanilla Merchants crew, or pass `""` if you also want to set custom `news`.
+- **news:** Optional World News message. Use `%s` once for the square name, and `%%` for a literal percent sign.
 
 === ".c5m"
 
     ```c5m
     #!@factioncaravan 12 2 "Elysium" -93 "4*Goblin" "Orc traders reach %s."
+    ```
+
+    Or with the default Merchants crew and custom news:
+
+    ```c5m
+    #!@factioncaravan 12 2 "Elysium" -93 "" "Traders reach %s."
     ```
 
 === ".c5se"
@@ -511,14 +668,22 @@ Gives the faction a caravan, beside the vanilla game's caravan.
     factioncaravan 12 2 "Elysium" -93 "4*Goblin" "Orc traders reach %s."
     ```
 
+    Or with the default Merchants crew and custom news:
+
+    ```c5se
+    factioncaravan 12 2 "Elysium" -93 "" "Traders reach %s."
+    ```
+
 ## Faction names in commands { #names }
 
-The game's commands whose first number is a player also take a faction by string, yours or a vanilla one. CoE5SE hands out each faction's player number when a game starts, so the name is how your events, rituals and monsters reach your faction.
+CoE5SE assigns each custom faction a player slot at game start. Vanilla commands that take a player number first also accept any custom or vanilla faction by string:
 
-- Rituals: `setplayer`, `failplayer`, `promplayer`.
-- Monsters: `wanderattack`, `revertowner`.
-- Event triggers, with `+` or `-`: `squareowner`, `armyowner`, `player`, `class`, `humanplayer`, `aiplayer`, `hascom`, `hascomhere`, `ownsloc`, `ownsloctarg`, `hasunit`, `hasunithere`, `hasitem`, `hasitemhere`, `hasaffunithere`, `minunits`, `minunitshere`.
-- Event actions: `newunits`, `playercolor`, `addresources`, `message`, `promoteunits`, `reveal`, `changeowner`.
+| Category | Supported commands |
+| --- | --- |
+| Rituals | `setplayer`, `failplayer`, `promplayer` |
+| Monsters | `wanderattack`, `revertowner` |
+| Event triggers (`+` / `-`) | `squareowner`, `armyowner`, `player`, `class`, `humanplayer`, `aiplayer`, `hascom`, `hascomhere`, `ownsloc`, `ownsloctarg`, `hasunit`, `hasunithere`, `hasitem`, `hasitemhere`, `hasaffunithere`, `minunits`, `minunitshere` |
+| Event actions | `newunits`, `playercolor`, `addresources`, `message`, `promoteunits`, `reveal`, `changeowner` |
 
 === ".c5m"
 
@@ -532,38 +697,40 @@ The game's commands whose first number is a player also take a faction by string
     setplayer "Host of Mordor"
     ```
 
-A command whose player is followed by a string, such as a monster's name or a message, takes the faction only with that string after it. With the string alone, the player is -1, as in vanilla: any player for a trigger, every player for `message`.
+For ritual and monster commands, declare the `newfaction` block earlier in load order than the line referencing it. Event commands can reference a faction declared anywhere across enabled mods.
 
-Or in a trigger, with its monster's name:
+When an event command also reads quoted strings, pass one more quoted string than vanilla takes (two for `+hasunit`, three for `promoteunits`). Passing only the vanilla strings leaves the player at `-1` (any player for triggers, every player for `message`), just as in vanilla.
 
 === ".c5m"
+
+    Check if the faction owns a Goblin:
 
     ```c5m
     +hasunit "Host of Mordor" "Goblin"
     ```
 
-=== ".c5se"
-
-    ```c5se
-    +hasunit "Host of Mordor" "Goblin"
-    ```
-
-Or `hasunit` with an empty name, for any of the faction's units:
-
-=== ".c5m"
+    Check if the faction owns any unit (empty monster name):
 
     ```c5m
     +hasunit "Host of Mordor" ""
     ```
 
 === ".c5se"
+
+    Check if the faction owns a Goblin:
+
+    ```c5se
+    +hasunit "Host of Mordor" "Goblin"
+    ```
+
+    Check if the faction owns any unit (empty monster name):
 
     ```c5se
     +hasunit "Host of Mordor" ""
     ```
 
 !!! warning "Saves"
-    Keep your faction's `newfaction` block, under the same name, in every later version of your mod. A save holding your faction loads only while an enabled mod still declares it, so removing the block leaves your players unable to load those saves.
+    Keep your faction's `newfaction` block under the same name in every later version of your mod. A save containing a custom faction only loads while an enabled mod still declares it, so removing or renaming the block breaks existing saves.
 
 ## Example factions { #example }
 

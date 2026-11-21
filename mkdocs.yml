@@ -100,6 +100,10 @@ nav:
       - Limits: commands/limits.md
   - Lua:
       - Overview: lua/index.md
+      - Hooking the Game: lua/hooking.md
+      - State and Storage: lua/state.md
+      - UI and Hotkeys: lua/ui.md
+      - Custom Commands: lua/commands.md
       - LAN Games: lua/lan-games.md
 
 hooks:

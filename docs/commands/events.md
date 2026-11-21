@@ -4,27 +4,32 @@
 
 Give your events if-then logic, so a single event can have multiple decision trees or checks within the game.
 
-Each word is declared inside a `playerevent` or `squareevent`. To make an event happen only while a mod setting is on, use [`+setting`](mod-settings.md#setting). To count only the corpses of one type, use [`+mincorpses`](corpses.md#mincorpses).
+Each word is declared alone on a line inside a `playerevent` or `squareevent`. To gate an event on a mod setting, use [`+setting`](mod-settings.md#setting). To count corpses of one type, use [`+mincorpses`](corpses.md#mincorpses).
 
-!!! info "More in the game's manual"
-    The game's own event triggers and actions are in Illwinter's official modding manual, under ["Events"](https://www.illwinter.com/coe5/coe5modding.pdf#page=38).
+!!! info "More in the CoE5 manual"
+    Vanilla event triggers and actions are in Illwinter's official modding manual, under ["Events"](https://www.illwinter.com/coe5/coe5modding.pdf#page=38).
 
-### How an event runs { #how-an-event-runs }
+## How branching works { #how-an-event-runs }
 
-- `playerevent` starts an event and `endevent` ends it. The game checks a `playerevent` once for each player, every turn.
-- A `+` trigger must be true and a `-` trigger must be false. `-2` is the player whose turn it is.
-- `if` starts the branches. The triggers above it hold for every branch, so a condition the whole event needs, like the turn, is written once.
-- `elseif` starts the next branch, which is tried only if no branch above it ran. `else` is the last branch, and it runs if nothing above it did.
-- `or` splits one branch's triggers into groups. The branch holds if every trigger in any one group holds.
-- The game tries the branches from the top. The first branch whose triggers hold runs its actions, and the rest of the event is skipped, so one branch runs for each player each turn.
+CoE5 checks a `playerevent` once for each player every turn. A `+` trigger must be true, a `-` trigger must be false, and `-2` refers to the active player.
+
+CoE5SE evaluates branches from top to bottom inside an event:
+
+- Triggers placed above `if` act as shared preconditions for every branch. If they fail, the entire event stops (including `else`). In a `squareevent`, every branch starts from the squares kept by the triggers above `if`.
+- Each branch (`if`, `elseif`, `else`) runs only if no earlier branch matched. Once a branch's actions run, the rest of the event is skipped.
+- Inside any branch (or above `if`), `or` splits triggers into alternative groups. The section passes if every trigger in at least one group passes.
+
+## Branching commands
 
 ### if { #if .command data-toc-label="if" data-added="2.8" }
 
-Starts the branches. The triggers above it hold for every branch below it: when they hold, each branch starts from there; when they fail, no branch runs, `else` included. At most one `if`, before the first branch's actions.
+Starts the branches of an event. Triggers placed above `if` must pass before any branch is tested. If they fail, no branch runs, `else` included.
+
+Declare at most one `if` per event, before any actions (`setvar`, `message`, and the rest) and before any `elseif` or `else`. Putting an action above `if` runs that action and then stops the rest of the event. Declaring a second `if` also stops the rest of the event.
 
 === ".c5m"
 
-    A trigger every branch needs:
+    Shared trigger required by every branch:
 
     ```c5m
     +turnnbr 150
@@ -33,7 +38,7 @@ Starts the branches. The triggers above it hold for every branch below it: when 
 
 === ".c5se"
 
-    A trigger every branch needs:
+    Shared trigger required by every branch:
 
     ```c5se
     +turnnbr 150
@@ -42,7 +47,9 @@ Starts the branches. The triggers above it hold for every branch below it: when 
 
 ### or { #or .command data-toc-label="or" data-added="2.4" }
 
-Starts another group of triggers. The event holds when every trigger in any one group holds. It goes between triggers, before the branch's first action. In a `playerevent`, the first group that holds sets the event's target: a `+hasunithere` in a later group doesn't change it.
+Starts an alternative group of triggers. The section passes if every trigger in any one group passes. Declare `or` between triggers, before the branch's first action (or above `if`).
+
+In a `playerevent`, the first group that passes locks in the event's target square and unit. Later `or` groups are skipped, so a `+hasunithere` in a later group never overwrites the target. In a `squareevent`, `or` keeps every square that passed any group.
 
 === ".c5m"
 
@@ -66,7 +73,7 @@ Starts another group of triggers. The event holds when every trigger in any one 
 
 ### elseif { #elseif .command data-toc-label="elseif" data-added="2.4" }
 
-Starts another branch: its own triggers, then its own actions. It runs only if no branch before it ran.
+Starts the next branch, with triggers followed by actions. Runs only if no earlier branch ran.
 
 === ".c5m"
 
@@ -88,7 +95,9 @@ Starts another branch: its own triggers, then its own actions. It runs only if n
 
 ### else { #else .command data-toc-label="else" data-added="2.4" }
 
-Starts the last branch, with no triggers: its actions run whenever no branch before it ran, on every turn the event checks. Use it in an event meant to act every turn, not in a one-time event. Put only its actions after it: another `elseif` or `else` after it stops the rest of the event.
+Starts the fallback branch, with no triggers. Its actions run whenever no earlier branch matched.
+
+Put only actions after `else`. Putting another `elseif` or `else` after `else` stops the rest of the event. If your event should only fire once, read [Using else in one-time events](#one-time-else) before adding `else`.
 
 === ".c5m"
 
@@ -110,13 +119,95 @@ Starts the last branch, with no triggers: its actions run whenever no branch bef
     newunits 28 "c*Demon Lord & 6*Greater Demon & 60*Lesser Demon"
     ```
 
+## Using else in one-time events { #one-time-else }
+
+CoE5 checks a `playerevent` every turn for every player. Without a trigger above `if`, `else` runs on every turn where the earlier branches fail.
+
+To stop `else` from firing every turn, put the trigger that gates the whole event (such as `+turnnbr 150` or `+varequal`) **above `if`**. When a trigger above `if` fails, the entire event stops and `else` is skipped.
+
+```mermaid
+flowchart TD
+    subgraph wrong["Wrong: +turnnbr 150 in the first branch"]
+        w1(["Every turn"]) --> w2{"Turn 150 and has Ring?"}
+        w2 -- yes --> w4["First branch runs"]
+        w2 -- no --> w3["else fires on turns 1 to 149 and 151+"]
+    end
+    subgraph right["Right: +turnnbr 150 above if"]
+        r1(["Every turn"]) --> r2{"Turn 150? (above if)"}
+        r2 -- no --> r3["Event stops (else skipped)"]
+        r2 -- yes --> r4{"Has Ring?"}
+        r4 -- yes --> r5["First branch runs"]
+        r4 -- no --> r6["else runs on turn 150 only"]
+    end
+    classDef bug fill:#ffcdd2,color:#b71c1c,stroke:#c62828,stroke-width:2px
+    classDef ok fill:#c8e6c9,color:#1b5e20,stroke:#2e7d32,stroke-width:2px
+    class w3 bug
+    class r3,r6 ok
+```
+
+=== ".c5m"
+
+    Wrong: +turnnbr 150 is in the first branch, so else runs on every other turn:
+
+    ```c5m
+    playerevent
+    +turnnbr 150
+    +hasitem -2 "Ring of Invisibility"
+    message -2 "The Ring answers the call."
+    #!@else
+    message -2 "The Shadow falls."
+    endevent
+    ```
+
+    Right: +turnnbr 150 sits above if, so else runs on turn 150 only:
+
+    ```c5m
+    playerevent
+    +turnnbr 150
+    #!@if
+    +hasitem -2 "Ring of Invisibility"
+    message -2 "The Ring answers the call."
+    #!@else
+    message -2 "The Shadow falls."
+    endevent
+    ```
+
+=== ".c5se"
+
+    Wrong: +turnnbr 150 is in the first branch, so else runs on every other turn:
+
+    ```c5se
+    playerevent
+    +turnnbr 150
+    +hasitem -2 "Ring of Invisibility"
+    message -2 "The Ring answers the call."
+    else
+    message -2 "The Shadow falls."
+    endevent
+    ```
+
+    Right: +turnnbr 150 sits above if, so else runs on turn 150 only:
+
+    ```c5se
+    playerevent
+    +turnnbr 150
+    if
+    +hasitem -2 "Ring of Invisibility"
+    message -2 "The Ring answers the call."
+    else
+    message -2 "The Shadow falls."
+    endevent
+    ```
+
+## Square events and vanilla fallback
+
+!!! note "In a `squareevent`"
+    Each square is branched independently. A square runs the actions of the first branch whose triggers match it and skips later branches, so `else` catches every square that did not match any earlier branch. With `or`, a square passes if it matches any trigger group.
+
 !!! tip "For players without CoE5SE"
-    Put the branch every player can get first, and start each later branch with a trigger the first one rules out. In the .c5m, the game without CoE5SE skips these words and reads the rest straight through. It stops at the first trigger that fails, so it runs the first branch and nothing else.
+    Put the default branch first, and start each later branch with a trigger the first branch rules out. In a `.c5m`, vanilla CoE5 ignores `#!@` lines and reads straight down, stopping at the first trigger that fails. That way it runs the first branch cleanly and skips the rest.
 
-!!! note "In a squareevent"
-    Each square takes its own branch, and `or` keeps every square that any group kept. With a terrain trigger, then `else`, the actions before `else` run on that terrain's squares and the ones after it on every other square.
-
-### Example event { #example }
+## Example event { #example }
 
 === ".c5m"
 
@@ -208,12 +299,12 @@ Starts the last branch, with no triggers: its actions run whenever no branch bef
 
 ### Example breakdown { #example-breakdown }
 
-One event that acts once, on turn 150. `+turnnbr 150` sits above `if`, so it holds for every branch and is written once. Without CoE5SE the event can do one thing: the dragons, for a player who gathered nothing. With CoE5SE, what comes depends on what the player gathered. The game tries the branches from the top, in the order the chart below shows.
+This event triggers once on turn 150. Because `+turnnbr 150` sits above `if`, it gates every branch (including `else`) while only being written once.
 
-- The first branch is the one a game without CoE5SE can run. It reads the .c5m straight down, skipping the `#!@` lines, and stops at the first trigger that fails: the red box.
-- Earlier branches win. A player with a Ring and the Eye of the Night gets the riders, not Isengard.
-- `else` is the only case left: the player kept the Grey Wizard.
-- Every army belongs to the Inferno, player 28. `targetunitloc` sends the riders to the Ring's bearer; the other armies arrive near the player's home, spread out by `scatterloc`.
+- **Vanilla fallback:** The first branch runs when a player has none of the items or the Grey Wizard. Without CoE5SE, the game skips `#!@` lines, reads straight down, and stops at the first failing trigger (shown in red below).
+- **Top-to-bottom priority:** Earlier branches win. A player holding both a Ring and the Eye of the Night gets the riders, not Isengard.
+- **Fallback branch:** `else` handles the remaining case where the player kept the Grey Wizard.
+- **Targets:** Every army spawns for Inferno (player 28). `targetunitloc` sends the riders to the Ring's bearer, while the other armies arrive near the player's home using `scatterloc`.
 
 ```mermaid
 flowchart TD

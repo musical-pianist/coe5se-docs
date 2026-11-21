@@ -5,22 +5,24 @@ status: new
 
 # Monster Traits
 
-Give a monster Small, Combat Caster or Hates, and give a commander the item slots you want, like two weapons and nine misc items. Let one commander ride different mounts and still be one unique monster. Size a monster's battlefield token up to 12 x 12 squares. Take off any one trait while keeping the rest.
+Give monsters extra traits like Small, Combat Caster, or Hates, customize equipment slots, group alternate forms into one unique monster, or resize battlefield tokens up to 12 x 12 squares. You can also strip individual traits without clearing the rest.
 
-These go after `newmonster`, `selectmonster`, `newitem` or `selectitem`. A `0` after a trait removes it: `small 0`. With CoE5SE the same works for these vanilla traits:
+Declare these after `newmonster`, `selectmonster`, `newitem`, or `selectitem`. Entries marked **Monsters only** do not work on items. Adding `0` after a trait removes it (for example, `small 0`). CoE5SE also supports `0` on these vanilla traits:
 
 ??? note "Vanilla traits"
 
     `acutesenses`, `allitemslots`, `animal`, `badsight`, `banishsurv`, `berserker`, `bluntres`, `charmres`, `clumsy`, `coldblood`, `curseditem`, `demonic`, `desertstealth`, `diseaseres`, `ethereal`, `fastheal`, `female`, `foreststealth`, `frontpos`, `holy`, `human`, `immortal`, `inanimate`, `invisible`, `invul`, `largeshield`, `lucky`, `magicshield`, `nobootslots`, `nocombat`, `noheal`, `noleader`, `nonmaginvul`, `noslots`, `nozoc`, `pierceres`, `rearpos`, `regeneration`, `shield`, `size1x1`, `size2x2`, `slashres`, `sleepres`, `snowstealth`, `spiritsight`, `stealth`, `swallowres`, `tiny`, `treelook`, `unaging`, `undead`, `unimportant`, `weaponslots`
 
-To set the corpse a monster leaves, use `corpsetype` on [Corpses](corpses.md). To name the monster it grows into or spawns, use the commands on [Monsters and Rituals by Name](monster-names.md).
+To set the corpse a monster leaves, use `corpsetype` on [Corpses](corpses.md). To reference monsters by string for spawns, growth, or shapeshifting, see [Monsters and Rituals by Name](monster-names.md).
 
 !!! info "More in the CoE5 manual"
     Vanilla monster and item commands are in Illwinter's official modding manual, under ["Monster Modding"](https://www.illwinter.com/coe5/coe5modding.pdf#page=14) and ["Magic Item Modding"](https://www.illwinter.com/coe5/coe5modding.pdf#page=10).
 
+## Combat and behavior traits
+
 ### small { #small .command data-toc-label="small" data-added="2.3" }
 
-Makes the unit small, like vanilla Goblins: a Soulless raised from it is a Little Soulless.
+Makes the unit small, like vanilla Goblins. A Soulless raised from it becomes a Little Soulless.
 
 === ".c5m"
 
@@ -84,13 +86,13 @@ Makes the unit a Combat Caster, like vanilla Paladins.
 
 ### hates "&lt;kind&gt;" { #hates .command data-toc-label="hates" data-added="2.11" }
 
-Makes the unit hate a kind. Each turn, it has a 15% chance to kill one unit on its square that is `hated` as that kind. Only a unit on its team can die this way, so hates is a drawback on keeping both kinds on one square, not a weapon.
+Makes the unit hate a kind. Each turn, it has a 15% chance to kill one unit on its square that is `hated` as that kind. Only units on the same team can die this way, making `hates` a drawback to mixing both kinds in one army rather than a weapon.
 
-- **kind:** A [kind](#hated-kinds) by string or number, or 0 to take it off.
+- **kind:** A [hated kind](#hated-kinds) by string or number, or `0` to remove it.
 
 <!-- vale CoE5SE.Reports = NO -->
 !!! warning
-    `hates` and `hated` only take the vanilla [kinds](#hated-kinds). Any other, like `hates "tanks"`, silently does nothing (logged in `coe5mod.log`), and the mod still loads.
+    `hates` and `hated` only take the vanilla [kinds](#hated-kinds). Any other, like `hates "tanks"`, is a silent failure that does nothing (logged in `coe5mod.log`), and the mod still loads.
 <!-- vale CoE5SE.Reports = YES -->
 
 === ".c5m"
@@ -137,9 +139,9 @@ Makes the unit hate a kind. Each turn, it has a 15% chance to kill one unit on i
 
 ### hated "&lt;kind&gt;" { #hated .command data-toc-label="hated" data-added="2.11" }
 
-Makes the unit hated as a kind, so a unit on its team that hates that kind may kill it. Vanilla Cultists are hated as witches & cultists, and vanilla Fire Elementals are hated as fire beings.
+Marks the unit as hated as that kind, so friendly units on the same square with matching `hates` may kill it. Vanilla Cultists are hated as `"witches & cultists"`, and Fire Elementals as `"fire beings"`.
 
-- **kind:** The same [kinds](#hated-kinds) as `hates`, by string or number, or 0 to take it off.
+- **kind:** One of the same [hated kinds](#hated-kinds) as `hates`, by string or number, or `0` to remove it.
 
 === ".c5m"
 
@@ -169,11 +171,13 @@ Makes the unit hated as a kind, so a unit on its team that hates that kind may k
     hated 1
     ```
 
+## Custom tags
+
 ### tag "&lt;name&gt;" { #tag .command data-toc-label="tag" data-added="2.12" }
 
-Tags the monster for a weapon's [`onlyaffects`](weapon-traits.md#onlyaffects), [`doesntaffect`](weapon-traits.md#doesntaffect) or [`doubledmgvs`](weapon-traits.md#doubledmgvs) `tag "<name>"`. A monster can have several. `copystats` and `clearspec` affect these. Monsters only. Separate from vanilla's numbered `montag`.
+Applies a custom tag to the monster so weapons and spells can match it with [`onlyaffects`](weapon-traits.md#onlyaffects), [`doesntaffect`](weapon-traits.md#doesntaffect), [`doubledmgvs`](weapon-traits.md#doubledmgvs), or [`healarmy`](army-healing.md#healarmy). A monster can hold multiple tags. `copystats` and `clearspec` affect these. Separate from vanilla numbered `montag`. **Monsters only.**
 
-- **name:** In double quotes ([length limit](limits.md#monster-traits)), shared by every mod. Case counts. A `0` after it takes the tag off.
+- **name:** Tag name in double quotes ([length limit](limits.md#monster-traits)), shared across all mods. Case-sensitive. Append `0` (`tag "Nazgul" 0`) to remove the tag.
 
 === ".c5m"
 
@@ -207,14 +211,22 @@ Tags the monster for a weapon's [`onlyaffects`](weapon-traits.md#onlyaffects), [
     doesntaffect tag "Nazgul"
     ```
 
+## Item slots
+
 ### itemslots "&lt;item type&gt;" &lt;count&gt; <span class="new-badge">New</span> { #itemslots .command data-toc-label="itemslots" data-added="3.4" }
 
-Gives the monster this many slots of an item type. Its first `itemslots` line replaces vanilla's slots, so give it a line for every type it should have. `copystats` and `clearspec` affect it. Monsters only.
+Sets how many equipment slots of an item type the monster has. The first `itemslots` line replaces the monster's vanilla slots completely, so declare a line for every slot type you want it to keep. `copystats` and `clearspec` affect this. **Monsters only.**
 
-The first weapon item works as in vanilla. Each one after it goes into another of the monster's damaging melee weapons, then adds an attack once none is left ([attack limit](limits.md#monster-traits)).
+Weapon items follow this order in battle:
 
-- **item type:** An [item type](#item-types) by string or number. Case counts.
-- **count:** How many slots of that type. All its lines together stay within the [slot limit](limits.md#monster-traits). A second line for the same type is ignored <!-- vale CoE5SE.Reports = NO -->(logged in `coe5mod.log`)<!-- vale CoE5SE.Reports = YES -->.
+1. The first weapon item works as in vanilla (replacing the monster's first damaging melee weapon).
+2. Each additional weapon item replaces one of the monster's remaining damaging melee weapons.
+3. Once no damaging melee weapons remain, each extra weapon item adds a new attack (up to the [attack limit](limits.md#monster-traits)).
+
+On a monster with no damaging melee weapon, the first weapon item does nothing (as in vanilla), and later weapon items add attacks with base damage `0`. Use [`keepweapons`](#keepweapons) if you want extra weapon items to add attacks instead of replacing existing melee weapons.
+
+- **item type:** An [item type](#item-types) by string or number. Case-sensitive.
+- **count:** Number of slots of that type. All `itemslots` lines together must stay within the [slot limit](limits.md#monster-traits). A second line for the same type is ignored <!-- vale CoE5SE.Reports = NO -->(logged in `coe5mod.log`)<!-- vale CoE5SE.Reports = YES -->.
 
 === ".c5m"
 
@@ -252,7 +264,7 @@ The first weapon item works as in vanilla. Each one after it goes into another o
 
 ### keepweapons <span class="new-badge">New</span> { #keepweapons .command data-toc-label="keepweapons" data-added="3.4" }
 
-Makes each weapon item after the first add an attack, instead of going into another of the monster's damaging melee weapons. `copystats` and `clearspec` affect it. Monsters only.
+Makes every equipped weapon item after the first add a new attack instead of replacing one of the monster's damaging melee weapons. `copystats` and `clearspec` affect this. **Monsters only.**
 
 === ".c5m"
 
@@ -282,11 +294,17 @@ Makes each weapon item after the first add an attack, instead of going into anot
     keepweapons 0
     ```
 
+## Unique groups
+
 ### uniquegroup "&lt;name&gt;" <span class="new-badge">New</span> { #uniquegroup .command data-toc-label="uniquegroup" data-added="3.6" }
 
-Like vanilla `unique`, but every monster with the same group name counts as one unique monster: there can only be one of the group in the entire world. The monster needs no `unique` line, but one can stay so the mod still works without CoE5SE, where each monster is its own unique. Change the unit from one of the group's monsters to another with a ritual's `transformtarg` or `promotion`. As with `unique`, getting one of the group while another lives turns the living one into it, and it loses its items and experience. `copystats` and `clearspec` affect it. Monsters only.
+Like vanilla `unique`, but every monster with the same group name counts as one unique monster: there can only be one of the group in the entire world. `copystats` and `clearspec` affect this. **Monsters only.**
 
-- **name:** In double quotes ([length limit](limits.md#monster-traits)), shared by every mod. Case counts.
+Switch a living unit between forms in the group with a ritual's `transformtarg` or `promotion`. As with vanilla `unique`, recruiting, summoning, or spawning another member via events moves the living unit to the new square under the new owner. It then transforms into the new form and loses its items, experience, and afflictions.
+
+Monsters in a group do not need a separate `unique` line, though keeping `unique` lets the mod still work without CoE5SE (where each monster acts as a separate unique).
+
+- **name:** Group name in double quotes ([length limit](limits.md#monster-traits)), shared across all mods. Case-sensitive.
 
 === ".c5m"
 
@@ -310,14 +328,18 @@ Like vanilla `unique`, but every monster with the same group name counts as one 
     uniquegroup "Witch-king"
     ```
 
+## Battlefield size
+
 ### battlesize &lt;width&gt; &lt;height&gt; <span class="new-badge">New</span> { #battlesize .command data-toc-label="battlesize" data-added="3.7" }
 
-Like `size2x2`, but the monster takes up width x height squares on the battlefield. It wins over the token `size1x1`, `size2x2`, `huge` or the sprite would give. A token of 9 squares or more, like 3 x 3 or 5 x 2, also makes the monster `huge`. `battlesize 0` takes it off. `copystats` and `clearspec` affect it.
+Like `size2x2`, but sets the monster's battlefield footprint to `width` x `height` squares. Overrides the token size from `size1x1`, `size2x2`, `huge`, or the sprite. Use `battlesize 0` to remove it. `copystats` and `clearspec` affect this. **Monsters only.**
 
-The sprite should be 64 px a square, like 192 x 256 for a 3 x 4 token ([every size](#sprite-sizes)). A smaller one stands in the middle of the token.
+Any footprint of 9 squares or more (such as 3 x 3 or 5 x 2) automatically gives the monster `huge` after the mod pass, so `huge 0` or `clearmove` cannot remove it. Footprints under 9 squares keep any `huge` you declare.
 
-- **width:** 1 to 12 squares.
-- **height:** 1 to 12 squares.
+Size the sprite at 64 px per square (for example, 192 x 256 for a 3 x 4 token; see [Sprite sizes](#sprite-sizes)). A smaller sprite centers inside the footprint.
+
+- **width:** `1` to `12` squares.
+- **height:** `1` to `12` squares.
 
 === ".c5m"
 
@@ -337,7 +359,7 @@ The sprite should be 64 px a square, like 192 x 256 for a 3 x 4 token ([every si
     battlesize 3 4
     ```
 
-### Example monsters { #example }
+## Example monsters { #example }
 
 === ".c5m"
 
@@ -444,6 +466,8 @@ The sprite should be 64 px a square, like 192 x 256 for a 3 x 4 token ([every si
     itemslots "misc item" 2
     keepweapons
     ```
+
+## Reference tables
 
 ### Hated kinds { #hated-kinds }
 

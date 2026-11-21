@@ -315,5 +315,5 @@ This ends the sample. The rest is up to you!
 - [Factions](commands/factions.md): custom independent factions.
 - [Event Logic](commands/events.md): `if`, `elseif`, `else`, and `or` branching for events.
 - [Mod Settings](commands/mod-settings.md): player-configurable settings for events and Lua scripts.
-- [Lua](lua/index.md): LAN game behavior and a link to the `coe5.lua` API reference.
+- [Lua](lua/index.md): scripting setup, mod types, hooks, state, UI, custom commands, and LAN games.
 - [Limits](commands/limits.md): CoE5SE's limits and caps compared to vanilla.

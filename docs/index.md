@@ -34,7 +34,7 @@ Most command examples on this site have both `.c5m` and `.c5se` tabs, and the ta
 - [Getting Started](getting-started.md): installing CoE5SE and walking through an example mod, from file layouts to Lua.
 - [Commands](commands/index.md): every mod command CoE5SE adds to `.c5m` and `.c5se` files.
 - [Limits](commands/limits.md): CoE5SE's limits compared to vanilla.
-- [Lua](lua/index.md): LAN game behavior and the `coe5.lua` API reference.
+- [Lua](lua/index.md): scripting setup, mod types, hooks, state, UI, custom commands, and LAN games.
 - [What's New](whats-new.md): commands and pages added in recent releases.
 
 If something here is wrong or missing, open an issue on [GitHub](https://github.com/musical-pianist/coe5se-docs/issues).
