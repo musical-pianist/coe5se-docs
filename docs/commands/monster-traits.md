@@ -175,7 +175,7 @@ Marks the unit as hated as that kind, so friendly units on the same square with 
 
 ### tag "&lt;name&gt;" { #tag .command data-toc-label="tag" data-added="2.12" }
 
-Applies a custom tag to the monster so weapons and spells can match it with [`onlyaffects`](weapon-traits.md#onlyaffects), [`doesntaffect`](weapon-traits.md#doesntaffect), [`doubledmgvs`](weapon-traits.md#doubledmgvs), or [`healarmy`](army-healing.md#healarmy). A monster can hold multiple tags. `copystats` and `clearspec` affect these. Separate from vanilla numbered `montag`. **Monsters only.**
+Applies a custom tag to the monster so weapons and spells can match it with [`onlyaffects`](weapon-traits.md#onlyaffects), [`doesntaffect`](weapon-traits.md#doesntaffect), [`doubledmgvs`](weapon-traits.md#doubledmgvs), or [`healarmy`](army-healing.md#healarmy). A monster can hold multiple tags. `copystats` and `clearspec` affect these. Separate from vanilla numbered `montag`. After `newitem` or `selectitem`, it tags the magic item instead, for [`randitemloc`](ritual-effects.md#randitemloc).
 
 - **name:** Tag name in double quotes ([length limit](limits.md#monster-traits)), shared across all mods. Case-sensitive. Append `0` (`tag "Nazgul" 0`) to remove the tag.
 

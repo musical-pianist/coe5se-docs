@@ -87,6 +87,74 @@ Ritual cannot be cast more than this number of times per commander. Unlike `forg
     castermaxcast 1
     ```
 
+### randitemloc <item> <span class="new-badge">New</span> { #randitemloc .command data-toc-label="randitemloc" data-added="3.9" }
+
+Like `randterrloc`, but sets loc to a random square on active plane where this magic item is, lying on the ground or carried by a commander of an enemy player. Ritual fails when no such item is there. Windows only (for now).
+
+- **item:** `tag "<name>"` for any item with that [`tag`](monster-traits.md#tag), a magic item command like [`indestructible`](magic-items.md#indestructible) or `extralife` for any item that has it, or `"<item name>"` for that one item.
+
+=== ".c5m"
+
+    ```c5m
+    #!@randitemloc tag "Silmarils"
+    scryloc 5
+    ```
+
+    Or any item with a command:
+
+    ```c5m
+    #!@randitemloc indestructible
+    scryloc 5
+    ```
+
+    Or one item, by name:
+
+    ```c5m
+    #!@randitemloc "The One Ring"
+    scryloc 5
+    ```
+
+=== ".c5se"
+
+    ```c5se
+    randitemloc tag "Silmarils"
+    scryloc 5
+    ```
+
+    Or any item with a command:
+
+    ```c5se
+    randitemloc indestructible
+    scryloc 5
+    ```
+
+    Or one item, by name:
+
+    ```c5se
+    randitemloc "The One Ring"
+    scryloc 5
+    ```
+
+### randnewitemloc <item> <span class="new-badge">New</span> { #randnewitemloc .command data-toc-label="randnewitemloc" data-added="3.9" }
+
+Like [`randitemloc`](#randitemloc), but tries to find a square the caster's player cannot see first.
+
+- **item:** As for [`randitemloc`](#randitemloc).
+
+=== ".c5m"
+
+    ```c5m
+    #!@randnewitemloc tag "Silmarils"
+    scryloc 5
+    ```
+
+=== ".c5se"
+
+    ```c5se
+    randnewitemloc tag "Silmarils"
+    scryloc 5
+    ```
+
 ### ritualmenu "<name>" <span class="new-badge">New</span> { #ritualmenu .command data-toc-label="ritualmenu" data-added="3.8" }
 
 Puts the ritual in a menu, which the ritual screen shows as one line, `<name> ▸`. A click on the line opens the menu's rituals, each cast as if picked from the list.

@@ -124,6 +124,22 @@ Grants Extra Life, like the Soul Stone: when the holder dies, the item is destro
     extralife
     ```
 
+### indestructible <span class="new-badge">New</span> { #indestructible .command data-toc-label="indestructible" data-added="3.9" }
+
+Item is never destroyed. Where the game would destroy it, like a `nodrop` item whose holder dies, it lies on that square instead. The next commander to enter the square or win a battle there picks it up. Square terrain info (`i`) lists the items lying on it. An item used up, taken by `removeitem`, or an [`extralife`](#extralife) item that saves its holder, is still spent. Use `indestructible 0` to remove it. Windows only (for now).
+
+=== ".c5m"
+
+    ```c5m
+    #!@indestructible
+    ```
+
+=== ".c5se"
+
+    ```c5se
+    indestructible
+    ```
+
 ### eyeitem <span class="new-badge">New</span> { #eyeitem .command data-toc-label="eyeitem" data-added="3.3" }
 
 Marks the item as an eye, like the Spirit Eye: a unit with no free eye slot cannot hold it. Vanilla eyes also pair this with `makeaff 1048576` (Lost an Eye). Use `eyeitem 0` to remove it.

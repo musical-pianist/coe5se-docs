@@ -21,7 +21,7 @@ Mod commands CoE5SE adds to `.c5m` and `.c5se` files, plus vanilla commands CoE5
 | | [Growth](growth.md) | Growing monsters by kills or XP, with weighted random outcomes |
 | | [Vehicles](vehicles.md) | Land and air transports with battle decks and mobile recruitment |
 | Class Modding | [Classes](classes.md) | Selecting classes by string and disabling vanilla classes for players |
-| | [Recruitment Bonuses](recruitment.md) | Customizing recruitment offer bonus tables for temples, libraries, villages, and units |
+| | [Recruitment Bonuses](recruitment.md) | Customizing recruitment bonus tables, setting offer conditions, and adding recruitment to terrain |
 | World Modding | [Planes](planes.md) | Adding custom planes, loading `.coem` maps, placing set pieces, and referencing planes by string |
 | | [Factions](factions.md) | Creating non-playable independent factions that inhabit terrain and react to events |
 | Ritual Modding | [Ritual Effects](ritual-effects.md) | Additional ritual effects not supported by vanilla CoE5, plus custom ritual menus |

@@ -2,11 +2,11 @@
 
 # Army Healing
 
-Make the units of an army heal faster between turns while one of them knows a spell. Vanilla Heal does this for every unit that heals, and Healing Words for humans & hoburghers. The unit that knows it doesn't need to cast it. Each command goes on its own line in a [spell](spells.md).
+Make the units of an army heal faster between turns while one of them knows a spell, holds a magic item, or is a monster with these commands. Vanilla Heal does this for every unit that heals, and Healing Words for humans & hoburghers. The unit that knows it doesn't need to cast it. Each command goes on its own line in a [spell](spells.md), a monster or a magic item.
 
 ### heal&lt;trait&gt;army [bypassnoheal] { #heal-trait-army .command data-toc-label="heal&lt;trait&gt;army" data-added="3.0" }
 
-Makes the units with the trait in the caster's army heal half their maximum Hit Points a campaign turn, where they would heal a tenth. The caster must know the spell, with a path level that reaches the spell's level. To heal the undead in battle too, declare a copy of the vanilla Heal weapon ("Weapon Data" in the [CoE5 Data thread](https://steamcommunity.com/app/1606340/discussions/1/3198114142283463845/)) with `affectundead` in place of `inanimate`. Name that weapon in the spell's `weapon` line.
+Makes the units with the trait in the caster's army heal half their maximum Hit Points a campaign turn, where they would heal a tenth. The caster must know the spell, with a path level that reaches the spell's level. On a monster or a magic item, a unit of that monster or a unit holding the item does it in the caster's place, with no path level. To heal the undead in battle too, declare a copy of the vanilla Heal weapon ("Weapon Data" in the [CoE5 Data thread](https://steamcommunity.com/app/1606340/discussions/1/3198114142283463845/)) with `affectundead` in place of `inanimate`. Name that weapon in the spell's `weapon` line.
 
 - **trait:** One of the [vanilla traits](#vanilla-traits), or an ability command (["Monster Modding"](https://www.illwinter.com/coe5/coe5modding.pdf#page=14)), as [`onlyaffects`](weapon-traits.md#onlyaffects) takes it. `heallivingarmy` and `healhumanarmy` are vanilla's and take no `bypassnoheal`: for humans that never heal, write `healarmy human bypassnoheal`.
 - **bypassnoheal:** Also heals the units with the trait that have `noheal`, which otherwise never heal. Half the vanilla undead have `noheal`, the Longdead among them, so `healundeadarmy` heals them only with `bypassnoheal`.
