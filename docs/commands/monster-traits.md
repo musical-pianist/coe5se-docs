@@ -195,6 +195,21 @@ Applies a custom tag to the monster so weapons and spells can match it with [`on
     #!@doesntaffect tag "Nazgul"
     ```
 
+    Or tagging magic items as a group:
+
+    ```c5m
+    selectitem "Ring of Invisibility"
+    #!@tag "Rings of Power"
+    selectitem "Ring of Shadows"
+    #!@tag "Rings of Power"
+    selectitem "Ring of Wizardry"
+    #!@tag "Rings of Power"
+    selectitem "Spirit Ring"
+    #!@tag "Rings of Power"
+    selectitem "Ring of the Dead"
+    #!@tag "Rings of Power"
+    ```
+
 === ".c5se"
 
     A boss and its kin, tagged:
@@ -209,6 +224,21 @@ Applies a custom tag to the monster so weapons and spells can match it with [`on
     ```c5se
     selectweapon "Morgul Blade"
     doesntaffect tag "Nazgul"
+    ```
+
+    Or tagging magic items as a group:
+
+    ```c5se
+    selectitem "Ring of Invisibility"
+    tag "Rings of Power"
+    selectitem "Ring of Shadows"
+    tag "Rings of Power"
+    selectitem "Ring of Wizardry"
+    tag "Rings of Power"
+    selectitem "Spirit Ring"
+    tag "Rings of Power"
+    selectitem "Ring of the Dead"
+    tag "Rings of Power"
     ```
 
 ## Item slots

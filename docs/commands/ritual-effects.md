@@ -96,7 +96,7 @@ Like `randterrloc`, but sets loc to a random square on active plane where this m
 === ".c5m"
 
     ```c5m
-    #!@randitemloc tag "Silmarils"
+    #!@randitemloc tag "Rings of Power"
     scryloc 5
     ```
 
@@ -117,7 +117,7 @@ Like `randterrloc`, but sets loc to a random square on active plane where this m
 === ".c5se"
 
     ```c5se
-    randitemloc tag "Silmarils"
+    randitemloc tag "Rings of Power"
     scryloc 5
     ```
 
@@ -144,14 +144,14 @@ Like [`randitemloc`](#randitemloc), but tries to find a square the caster's play
 === ".c5m"
 
     ```c5m
-    #!@randnewitemloc tag "Silmarils"
+    #!@randnewitemloc tag "Rings of Power"
     scryloc 5
     ```
 
 === ".c5se"
 
     ```c5se
-    randnewitemloc tag "Silmarils"
+    randnewitemloc tag "Rings of Power"
     scryloc 5
     ```
 
@@ -219,6 +219,20 @@ When the commander knows only one of the menu's rituals, the ritual screen lists
     level 2
     #!@randartifact books
     #!@ritualmenu "Elven Treasures"
+
+    newritpow
+
+    newritual "Seek the Rings"
+    descr "Sauron searches the unseen places of Middle-earth for any of the Rings of Power."
+    level 2
+    #!@randnewitemloc tag "Rings of Power"
+    scryloc 5
+
+    newritual "Eye of Barad-dur"
+    descr "The Lidless Eye searches Middle-earth for the One Ring."
+    level 3
+    #!@randitemloc "The One Ring"
+    scryloc 5
     ```
 
 === ".c5se"
@@ -247,4 +261,18 @@ When the commander knows only one of the menu's rituals, the ritual screen lists
     level 2
     randartifact books
     ritualmenu "Elven Treasures"
+
+    newritpow
+
+    newritual "Seek the Rings"
+    descr "Sauron searches the unseen places of Middle-earth for any of the Rings of Power."
+    level 2
+    randnewitemloc tag "Rings of Power"
+    scryloc 5
+
+    newritual "Eye of Barad-dur"
+    descr "The Lidless Eye searches Middle-earth for the One Ring."
+    level 3
+    randitemloc "The One Ring"
+    scryloc 5
     ```

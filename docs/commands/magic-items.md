@@ -410,11 +410,30 @@ Breaks one of the seven seals, like the Heavenly Seal. Has no further effect onc
     copyspr "Ring of Wizardry"
     rarity 3
     curseditem
+    #!@indestructible
     invisible
     stealth
     unaging
     magicboost 2
     awe 2
+    #!@tag "Rings of Power"
+
+    selectitem "Ring of Invisibility"
+    #!@tag "Rings of Power"
+    selectitem "Ring of Shadows"
+    #!@tag "Rings of Power"
+    selectitem "Ring of Wizardry"
+    #!@tag "Rings of Power"
+    selectitem "Spirit Ring"
+    #!@tag "Rings of Power"
+    selectitem "Ring of the Dead"
+    #!@tag "Rings of Power"
+    selectitem "Ring of Evasion"
+    #!@tag "Rings of Power"
+    selectitem "Bloodstone Ring"
+    #!@tag "Rings of Power"
+    selectitem "Coral Ring"
+    #!@tag "Rings of Power"
 
     newitem "Mithril Coat"
     type 4
@@ -492,11 +511,30 @@ Breaks one of the seven seals, like the Heavenly Seal. Has no further effect onc
     copyspr "Ring of Wizardry"
     rarity 3
     curseditem
+    indestructible
     invisible
     stealth
     unaging
     magicboost 2
     awe 2
+    tag "Rings of Power"
+
+    selectitem "Ring of Invisibility"
+    tag "Rings of Power"
+    selectitem "Ring of Shadows"
+    tag "Rings of Power"
+    selectitem "Ring of Wizardry"
+    tag "Rings of Power"
+    selectitem "Spirit Ring"
+    tag "Rings of Power"
+    selectitem "Ring of the Dead"
+    tag "Rings of Power"
+    selectitem "Ring of Evasion"
+    tag "Rings of Power"
+    selectitem "Bloodstone Ring"
+    tag "Rings of Power"
+    selectitem "Coral Ring"
+    tag "Rings of Power"
 
     newitem "Mithril Coat"
     type 4
