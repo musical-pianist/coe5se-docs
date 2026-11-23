@@ -6,6 +6,8 @@ The commands and pages each CoE5SE release added, newest first.
 
 ## CoE5SE 3.9 { #v3-9 }
 
+[Release notes on GitHub](https://github.com/musical-pianist/coe5se/releases/tag/CoE5SE-v3.9.0)
+
 - **[Magic Items](commands/magic-items.md)**: [`indestructible`](commands/magic-items.md#indestructible)
 - **[Recruitment Bonuses](commands/recruitment.md)**: [`humanrec`](commands/recruitment.md#humanrec), [`nogathererrec`](commands/recruitment.md#nogathererrec), [`priestrec`](commands/recruitment.md#priestrec), [`towerrec`](commands/recruitment.md#towerrec)
 - **[Ritual Effects](commands/ritual-effects.md)**: [`randitemloc`](commands/ritual-effects.md#randitemloc), [`randnewitemloc`](commands/ritual-effects.md#randnewitemloc)

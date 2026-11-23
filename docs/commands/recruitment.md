@@ -226,7 +226,7 @@ Marks the previous entry in the recruitment list as human recruitment, like Cast
 
     ```c5m
     selectterr 22
-    addunitrec "Pikeneer" 100 5 50 0 5
+    #!@addunitrec "Pikeneer" 100 5 50 0 5
     #!@humanrec
     ```
 
@@ -314,18 +314,18 @@ An unknown monster name adds nothing, and the commands after it change the offer
 
     ```c5m
     selectterr 1
-    addunitrec "Hoburg Crossbow" 100 15 50 0 5
-    recxcost 3 5
-    addcomrec "Burgmann" 10 20 5 0
-    templerec 2
+    #!@addunitrec "Hoburg Crossbow" 100 15 50 0 5
+    #!@recxcost 3 5
+    #!@addcomrec "Burgmann" 10 20 5 0
+    #!@templerec 2
     ```
 
     Or replace a terrain's vanilla offers:
 
     ```c5m
     selectterr 32
-    clearrec
-    addunitrec "Goblin Spearman" 100 10 40 0 0
+    #!@clearrec
+    #!@addunitrec "Goblin Spearman" 100 10 40 0 0
     ```
 
 === ".c5se"
@@ -380,7 +380,7 @@ An unknown monster name adds nothing, and the commands after it change the offer
     #!@towerrec
 
     selectterr 38
-    addunitrec "Ranger of Ithilien" 100 5 50 0 5
+    #!@addunitrec "Ranger of Ithilien" 100 5 50 0 5
     #!@humanrec
     ```
 

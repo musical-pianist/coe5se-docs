@@ -14,7 +14,7 @@ Declare these commands after `newitem` or `selectitem`.
 
 ## Clearing copied items
 
-### clearspec <span class="new-badge">New</span> { #clearspec .command data-toc-label="clearspec" data-added="3.3" }
+### clearspec { #clearspec .command data-toc-label="clearspec" data-added="3.3" }
 
 Clears all special abilities from the active magic item: item flags, stat bonuses, combat spells and summons, afflictions, special benefits, `hates` and `hated`, CoE5SE immunities, and `affres`. It also removes every Use and passive ability on this page, so put `clearspec` before anything you add back. The item's name, sprite, slot type, rarity, and item groups are kept. Movement abilities and weapons stay untouched. Use [`clearmove`](#clearmove) and [`clearweapons`](#clearweapons) for those.
 
@@ -34,7 +34,7 @@ Clears all special abilities from the active magic item: item flags, stat bonuse
     armor 2
     ```
 
-### clearmove <span class="new-badge">New</span> { #clearmove .command data-toc-label="clearmove" data-added="3.3" }
+### clearmove { #clearmove .command data-toc-label="clearmove" data-added="3.3" }
 
 Clears all movement abilities from the active magic item, such as `flying` and `swamp`.
 
@@ -52,7 +52,7 @@ Clears all movement abilities from the active magic item, such as `flying` and `
     clearmove
     ```
 
-### clearweapons <span class="new-badge">New</span> { #clearweapons .command data-toc-label="clearweapons" data-added="3.3" }
+### clearweapons { #clearweapons .command data-toc-label="clearweapons" data-added="3.3" }
 
 Removes the `itemwep` weapon from the active magic item, leaving the holder to fight with normal attacks.
 
@@ -72,7 +72,7 @@ Removes the `itemwep` weapon from the active magic item, leaving the holder to f
 
 ## Passive effects and special slots
 
-### makeaff &lt;aff&gt; <span class="new-badge">New</span> { #makeaff .command data-toc-label="makeaff" data-added="3.3" }
+### makeaff &lt;aff&gt; { #makeaff .command data-toc-label="makeaff" data-added="3.3" }
 
 Applies one or more afflictions to the holder while the item is equipped, like the Crystal Heart's Chest Wound. Repeatable to combine afflictions. Always supply a number (omitting it sets every affliction bit). `makeaff 0` removes nothing. Use [`clearspec`](#clearspec) to clear afflictions.
 
@@ -90,7 +90,7 @@ Applies one or more afflictions to the holder while the item is equipped, like t
     makeaff 4194304
     ```
 
-### makeben &lt;ben&gt; <span class="new-badge">New</span> { #makeben .command data-toc-label="makeben" data-added="3.3" }
+### makeben &lt;ben&gt; { #makeben .command data-toc-label="makeben" data-added="3.3" }
 
 Applies one or more special benefits to the holder while the item is equipped, like the Sword of No Weight's Quickness. Repeatable to combine benefits. Always supply a number (omitting it sets every benefit bit). `makeben 0` removes nothing. Use [`clearspec`](#clearspec) to clear benefits.
 
@@ -108,7 +108,7 @@ Applies one or more special benefits to the holder while the item is equipped, l
     makeben 1073741824
     ```
 
-### extralife <span class="new-badge">New</span> { #extralife .command data-toc-label="extralife" data-added="3.3" }
+### extralife { #extralife .command data-toc-label="extralife" data-added="3.3" }
 
 Grants Extra Life, like the Soul Stone: when the holder dies, the item is destroyed and the holder revives at full Hit Points. Use `extralife 0` to remove it.
 
@@ -140,7 +140,7 @@ Item is never destroyed. Where the game would destroy it, like a `nodrop` item w
     indestructible
     ```
 
-### eyeitem <span class="new-badge">New</span> { #eyeitem .command data-toc-label="eyeitem" data-added="3.3" }
+### eyeitem { #eyeitem .command data-toc-label="eyeitem" data-added="3.3" }
 
 Marks the item as an eye, like the Spirit Eye: a unit with no free eye slot cannot hold it. Vanilla eyes also pair this with `makeaff 1048576` (Lost an Eye). Use `eyeitem 0` to remove it.
 
@@ -156,7 +156,7 @@ Marks the item as an eye, like the Spirit Eye: a unit with no free eye slot cann
     eyeitem
     ```
 
-### heartitem [&lt;nbr&gt;] <span class="new-badge">New</span> { #heartitem .command data-toc-label="heartitem" data-added="3.3" }
+### heartitem [&lt;nbr&gt;] { #heartitem .command data-toc-label="heartitem" data-added="3.3" }
 
 Marks the item as a heart, like the Crystal Heart: a lifeless unit cannot hold it. Vanilla hearts also pair this with `makeaff 4194304` (Chest Wound).
 
@@ -188,7 +188,7 @@ Marks the item as a heart, like the Crystal Heart: a lifeless unit cannot hold i
 
 ## Usable and consumable items
 
-### consumableitem <span class="new-badge">New</span> { #consumableitem .command data-toc-label="consumableitem" data-added="3.3" }
+### consumableitem { #consumableitem .command data-toc-label="consumableitem" data-added="3.3" }
 
 Gives the holding commander a Use button and destroys the item once used, like spell scrolls and maps. Pair with one or more use effects below. Use `consumableitem 0` to remove it.
 
@@ -204,7 +204,7 @@ Gives the holding commander a Use button and destroys the item once used, like s
     consumableitem
     ```
 
-### useableitem <span class="new-badge">New</span> { #useableitem .command data-toc-label="useableitem" data-added="3.3" }
+### useableitem { #useableitem .command data-toc-label="useableitem" data-added="3.3" }
 
 Gives the holding commander a Use button and keeps the item after use, like the Tome of Afterlife. Pair with one or more use effects below. Use `useableitem 0` to remove it.
 
@@ -220,7 +220,7 @@ Gives the holding commander a Use button and keeps the item after use, like the 
     useableitem
     ```
 
-### useonlyin &lt;terrain nbr&gt; <span class="new-badge">New</span> { #useonlyin .command data-toc-label="useonlyin" data-added="3.3" }
+### useonlyin &lt;terrain nbr&gt; { #useonlyin .command data-toc-label="useonlyin" data-added="3.3" }
 
 Restricts the Use button so the item can only be used on this terrain, like the Magic Bean and Portable Pit.
 
@@ -242,7 +242,7 @@ Restricts the Use button so the item can only be used on this terrain, like the 
 
 Pair these commands with [`consumableitem`](#consumableitem) or [`useableitem`](#useableitem).
 
-### cureoneaff &lt;chance&gt; <span class="new-badge">New</span> { #cureoneaff .command data-toc-label="cureoneaff" data-added="3.3" }
+### cureoneaff &lt;chance&gt; { #cureoneaff .command data-toc-label="cureoneaff" data-added="3.3" }
 
 Cures afflictions on the user when activated, like the Elixir of Health. Every full 100 guarantees one cured affliction, and any remainder is the percent chance to cure one more.
 
@@ -260,7 +260,7 @@ Cures afflictions on the user when activated, like the Elixir of Health. Every f
     cureoneaff 100
     ```
 
-### newspell1 &lt;nbr&gt; <span class="new-badge">New</span> { #newspell1 .command data-toc-label="newspell1, newspell2, newspell3" data-added="3.3" }
+### newspell1 &lt;nbr&gt; { #newspell1 .command data-toc-label="newspell1, newspell2, newspell3" data-added="3.3" }
 
 Teaches the user random unknown level 1 combat spells from the magic path of the user's first spell, like Spell Scroll Level 1. `newspell2` and `newspell3` do the same for level 2 and level 3 spells. A unit that knows no spells learns nothing.
 
@@ -294,7 +294,7 @@ Teaches the user random unknown level 1 combat spells from the magic path of the
     newspell3 1
     ```
 
-### usereveal &lt;terrain nbr&gt; <span class="new-badge">New</span> { #usereveal .command data-toc-label="usereveal" data-added="3.3" }
+### usereveal &lt;terrain nbr&gt; { #usereveal .command data-toc-label="usereveal" data-added="3.3" }
 
 Reveals every square of this terrain across the map with almost perfect knowledge, like the Map of Inferno.
 
@@ -312,7 +312,7 @@ Reveals every square of this terrain across the map with almost perfect knowledg
     usereveal -74
     ```
 
-### useteleport &lt;terrain nbr&gt; <span class="new-badge">New</span> { #useteleport .command data-toc-label="useteleport" data-added="3.3" }
+### useteleport &lt;terrain nbr&gt; { #useteleport .command data-toc-label="useteleport" data-added="3.3" }
 
 Teleports the user and the entire army to a random square of this terrain, like the Scroll of Hades Journey.
 
@@ -330,7 +330,7 @@ Teleports the user and the entire army to a random square of this terrain, like 
     useteleport -78
     ```
 
-### useplanetravel &lt;terrain nbr&gt; <span class="new-badge">New</span> { #useplanetravel .command data-toc-label="useplanetravel" data-added="3.3" }
+### useplanetravel &lt;terrain nbr&gt; { #useplanetravel .command data-toc-label="useplanetravel" data-added="3.3" }
 
 Teleports the user and the entire army to a random square of this terrain from Elysium, or back to Elysium from any other plane, like the Tome of Afterlife. Costs 1 action point.
 
@@ -348,7 +348,7 @@ Teleports the user and the entire army to a random square of this terrain from E
     useplanetravel -78
     ```
 
-### usebeanstalk <span class="new-badge">New</span> { #usebeanstalk .command data-toc-label="usebeanstalk" data-added="3.3" }
+### usebeanstalk { #usebeanstalk .command data-toc-label="usebeanstalk" data-added="3.3" }
 
 Grows a giant beanstalk on the user's square, creating a portal to the matching square in the Sky, like the Magic Bean. Fails if the destination square has incompatible terrain. Use `usebeanstalk 0` to remove it.
 
@@ -364,7 +364,7 @@ Grows a giant beanstalk on the user's square, creating a portal to the matching 
     usebeanstalk
     ```
 
-### usepit <span class="new-badge">New</span> { #usepit .command data-toc-label="usepit" data-added="3.3" }
+### usepit { #usepit .command data-toc-label="usepit" data-added="3.3" }
 
 Creates a deep pit on the user's square, creating a portal to the matching square on a plane below, like the Portable Pit. Fails if the destination square has incompatible terrain. Use `usepit 0` to remove it.
 
@@ -380,7 +380,7 @@ Creates a deep pit on the user's square, creating a portal to the matching squar
     usepit
     ```
 
-### usebreakseal <span class="new-badge">New</span> { #usebreakseal .command data-toc-label="usebreakseal" data-added="3.3" }
+### usebreakseal { #usebreakseal .command data-toc-label="usebreakseal" data-added="3.3" }
 
 Breaks one of the seven seals, like the Heavenly Seal. Has no further effect once all seven seals are broken. Use `usebreakseal 0` to remove it.
 
