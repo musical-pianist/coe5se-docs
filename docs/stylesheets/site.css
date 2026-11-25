@@ -153,6 +153,25 @@
   font-style: normal;
 }
 
+/* Shots side by side in one row, each scaled to its column, wrapping on a narrow screen. */
+.md-typeset .coe5se-shots--row {
+  grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr));
+  gap: 0.8rem;
+  justify-items: stretch;
+}
+
+.md-typeset .coe5se-shots--row figure {
+  width: auto;
+}
+
+.md-typeset .coe5se-shots--row figure p {
+  margin: 0;
+}
+
+.md-typeset .coe5se-shots--row img {
+  width: 100%;
+}
+
 /* The mod explorer on Getting Started (javascripts/mod_explorer.js): the layouts across the top, a layout's files on the
    left, the open file on the right. */
 .md-typeset .mod-explorer {

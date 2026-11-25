@@ -70,6 +70,14 @@ All enabled mods together can add 16 factions.
 | [`factionavoid`](factions.md#factionavoid) | 8 per faction |
 | [`factionpopulateterrain`](factions.md#factionpopulateterrain) | 8 per faction |
 
+## Terrain Scatter { #terrain-scatter }
+
+| Command | Limit |
+| --- | --- |
+| [`newspritepack`](terrain-scatter.md#newspritepack) | 16 pictures in a sprite pack |
+| [`terrainscatter`](terrain-scatter.md#terrainscatter) | 64 terrainscatter and terraincenter lines of a mod on one terrain |
+| [`terrainscatter`](terrain-scatter.md#terrainscatter) | 100 pieces a mod's lines draw on one square: each piece's count, or the counts of the versions drawn in its place, a terraincenter line one |
+
 ## Ritual Effects { #ritual-effects }
 
 | Command | Limit |

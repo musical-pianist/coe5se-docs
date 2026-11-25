@@ -45,7 +45,7 @@ end
 - **Booleans:** Always pass `true` or `false` to `checkbox` and `choice` (in Lua, `0` is truthy).
 - **Layouts:** `sectionBegin` and `sectionEnd` draw framed sections; `listBegin`, `listRow`, and `listEnd` match the Load Game list; `monsterRow` draws a Recruit-style row with a monster sprite; `buttonRow` starts the bottom button bar (always last).
 - **Keyboard input:** Bind shortcuts with `coe5.ui.bindEscape(id)` and `coe5.ui.bindKey(id, key)`. For text fields, call `coe5.ui.setTextFocus(true)` each frame between `screenBegin` and `wait` and drain `coe5.ui.takeTextEvents()`, or call `coe5.ui.nameBox(...)` for a standalone text prompt.
-- **Custom drawing:** `coe5.ui` also provides drawing primitives (`drawRect`, `drawLine`, `drawText`, `drawMonsterSprite`, `drawItemSprite`, `drawResourceIcon`, `textWidth`) documented in `coe5.lua`.
+- **Custom drawing:** `coe5.ui` also provides drawing primitives (`drawRect`, `drawLine`, `drawText`, `drawMonsterSprite`, `drawItemSprite`, `drawResourceIcon`, `textWidth`) documented in `coe5_calls.lua`.
 
 ## Messages, settings, and translations
 

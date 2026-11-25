@@ -4,6 +4,12 @@
 
 The commands and pages each CoE5SE release added, newest first.
 
+## CoE5SE 3.10 { #v3-10 }
+
+- **[Terrain Scatter](commands/terrain-scatter.md) (new page)**: [`newspritepack`](commands/terrain-scatter.md#newspritepack), [`terrainscatter`](commands/terrain-scatter.md#terrainscatter), [`terraincenter`](commands/terrain-scatter.md#terraincenter), [`heartclaim`](commands/terrain-scatter.md#heartclaim), [`wildspawn`](commands/terrain-scatter.md#wildspawn), [`hotconvert`](commands/terrain-scatter.md#hotconvert), [`fullforest`](commands/terrain-scatter.md#fullforest)
+- **[Making Trees](commands/making-trees.md) (new page)**
+- **[Afflictions](commands/afflictions.md)**: [`icon`](commands/afflictions.md#icon)
+
 ## CoE5SE 3.9 { #v3-9 }
 
 [Release notes on GitHub](https://github.com/musical-pianist/coe5se/releases/tag/CoE5SE-v3.9.0)

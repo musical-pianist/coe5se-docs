@@ -3,7 +3,7 @@ added: 3.0
 ---
 # LAN Games
 
-[`coe5.lua`](https://github.com/musical-pianist/coe5se/blob/main/coe5.lua) documents every call. This page covers how scripts behave in a LAN game, which sites personal mods can reach, and the multiplayer gotchas.
+[`coe5.lua`](https://github.com/musical-pianist/coe5se/blob/main/coe5.lua) documents every site and [`coe5_calls.lua`](https://github.com/musical-pianist/coe5se/blob/main/coe5_calls.lua) every call. This page covers how scripts behave in a LAN game, which sites personal mods can reach, and the multiplayer gotchas.
 
 | Mod type | Declare in `.c5se` or `#!@` | Script runs on | Every player needs it |
 | --- | --- | --- | --- |

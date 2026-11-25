@@ -5,7 +5,7 @@ added: 3.0
 
 Script what a `.c5m` cannot. Custom screens, hotkeys, scripted campaigns, custom mod commands, and smarter AI are all possible with Lua in CoE5SE.
 
-CoE5SE exposes over 500 functions, hook sites, game variables, and constants. [`coe5.lua`](https://github.com/musical-pianist/coe5se/blob/main/coe5.lua) is the complete annotated API reference (a copy also ships inside the `CoE5SE` mod folder). Place `coe5.lua` in your workspace for autocomplete and hovers in VS Code or Cursor with the Lua language server (LuaLS). For the language itself, see the [Lua 5.5 manual](https://www.lua.org/manual/5.5/).
+CoE5SE exposes over 500 functions, hook sites, game variables, and constants. The complete annotated API reference is two files: [`coe5.lua`](https://github.com/musical-pianist/coe5se/blob/main/coe5.lua) has the cheat sheet, the game's words, the hook sites, and the game variables, and [`coe5_calls.lua`](https://github.com/musical-pianist/coe5se/blob/main/coe5_calls.lua) has every function (copies also ship inside the `CoE5SE` mod folder). Place both in your workspace for autocomplete and hovers in VS Code or Cursor with the Lua language server (LuaLS). For the language itself, see the [Lua 5.5 manual](https://www.lua.org/manual/5.5/).
 
 CoE5SE never ships Conquest of Elysium 5 or its executable, and every Lua function, hook site, and variable requires the player's installed game binary at launch. The API is built with the strict intention of extending the game for modders, not reverse-engineering or exposing Illwinter's code.
 

@@ -24,6 +24,8 @@ Mod commands CoE5SE adds to `.c5m` and `.c5se` files, plus vanilla commands CoE5
 | | [Recruitment Bonuses](recruitment.md) | Customizing recruitment bonus tables, setting offer conditions, and adding recruitment to terrain |
 | World Modding | [Planes](planes.md) | Adding custom planes, loading `.coem` maps, placing set pieces, and referencing planes by string |
 | | [Factions](factions.md) | Creating non-playable independent factions that inhabit terrain and react to events |
+| | [Terrain Scatter](terrain-scatter.md) | Scattering custom trees, reeds or rocks on any terrain, with snow and cold versions |
+| | [Making Trees](making-trees.md) | Building a forest of custom trees for a terrain, from the sprites to density, sway and seasonal versions |
 | Ritual Modding | [Ritual Effects](ritual-effects.md) | Additional ritual effects not supported by vanilla CoE5, plus custom ritual menus |
 | Spell Modding | [Spells](spells.md) | Defining custom combat spells with paths, levels, and weapons |
 | | [Spell Modifiers](spell-modifiers.md) | Spell limits and passive effects such as slow cast, no sea casting, or Burn Forest |

@@ -12,11 +12,11 @@ Add afflictions to your mod, like the game's Diseased or Chest Wound. A unit's a
 
 ### newaffliction "&lt;name&gt;" <span class="new-badge">New</span> { #newaffliction .command data-toc-label="newaffliction" data-added="3.6" }
 
-Creates an affliction. Its `descr` (the text the player reads by clicking it on the unit stats screen) and `battleaff` follow it, then `end`.
+Creates an affliction. Its `descr` (the text the player reads by clicking it on the unit stats screen), `icon`, and `battleaff` follow it, then `end`.
 
 - **name:** In double quotes, as the unit stats screen shows it. Mods using the same name share the affliction.
 
-A Lua script gives it its effect with `coe5.afflictionEffect` ([`coe5.lua`](https://github.com/musical-pianist/coe5se/blob/main/coe5.lua) documents every call).
+A Lua script gives it its effect with `coe5.afflictionEffect` ([`coe5_calls.lua`](https://github.com/musical-pianist/coe5se/blob/main/coe5_calls.lua) documents every call).
 
 === ".c5m"
 
@@ -52,6 +52,41 @@ Makes the affliction a battle affliction: `regeneration`, `fastheal`, the Elixir
     battleaff
     ```
 
+### icon &lt;nbr&gt; | "./&lt;file&gt;" <span class="new-badge">New</span> { #icon .command data-toc-label="icon" data-added="3.10" }
+
+Sets the affliction's icon on the unit stats screen, inside a `newaffliction` block. Without `icon`, the affliction uses the Diseased icon.
+
+- **nbr:** A vanilla icon number from `res.trs` (for example, `32` for a gold star on a red disc, or `211` for Magic Shield).
+- **file:** A 32 x 32 `.tga` or `.png` image in your mod's folder, starting with `./`.
+
+<!-- vale CoE5SE.Reports = NO -->
+An invalid number or missing file leaves the affliction with the Diseased icon (logged in `coe5mod.log`). A second mod's `icon` for the same affliction must match the first's, or it is ignored (logged in `coe5mod.log`).
+<!-- vale CoE5SE.Reports = YES -->
+
+=== ".c5m"
+
+    ```c5m
+    icon 32
+    ```
+
+    Or a custom picture in your mod's folder:
+
+    ```c5m
+    icon "./fading.tga"
+    ```
+
+=== ".c5se"
+
+    ```c5se
+    icon 32
+    ```
+
+    Or a custom picture in your mod's folder:
+
+    ```c5se
+    icon "./fading.tga"
+    ```
+
 ## An affliction by string { #by-string }
 
 Vanilla `makeaff`, `cureoneaff`, `+hasaffunithere`, `afftarg` and `affres` take your affliction by string, in place of the number. With a number, the command works as in vanilla.
@@ -60,7 +95,7 @@ Vanilla `makeaff`, `cureoneaff`, `+hasaffunithere`, `afftarg` and `affres` take 
 | --- | --- | --- |
 | `makeaff "<name>"` | An event | Gives the affliction to the target unit. |
 | `cureoneaff "<name>"` | An event | Cures it on the target unit. |
-| `+hasaffunithere <player> "<name>"` | An event | True if player has a unit in the current square that has the affliction. Also sets target unit (player -1 = any player). |
+| `+hasaffunithere <player> "<name>"` | An event | True if player has a unit in the current square that has the affliction. Also sets target unit (player `-1` = any player). |
 | `afftarg "<name>"` | A ritual | Gives the affliction to the target unit. |
 | `cureoneaff "<name>" <chance>` | A ritual | Has this chance of curing it on the target unit, 0 to 100. |
 | `affres "<name>" <chance>` | A monster or magic item | Chance of not receiving the affliction, 0 to 1000. At 100 or more the unit never receives it. The chances of a unit's monster and its items add up. |
